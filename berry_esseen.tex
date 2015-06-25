@@ -1,0 +1,444 @@
+\chapter{The Berry-Esseen theorem}
+
+In this chapter I present you the Berry-Essen theorem which not only proves the central limit but also gives an upper bound for the maximal error of the normal approximation. In the proof of this theorem I will mainly follow Nourdin and Peccati\cite[p. 71 ff.]{nourdin}\todo{Bessere Referenz - Originalquelle?}, who use the Method of Stein.
+
+\section{CLT and Berry-Esseen bounds}
+
+From the central limit theorem we know, that each standardized sum $S_n = \tfrac 1{\sqrt n\sigma} \left(\sum_{k=1}^n x_k - n\mu\right)$ of i.i.d real valued random variables $\seq{X_n}$ with finite expected value $\mu=\E{X_1}$ and finite variance $\sigma^2=\E{X_1^2}-\E{X_1}^2$ converges in distribution to the standard normal distribution \refneeded. So we have $\lim_{n\to\infty} \P{S_n\le x} = \Phi(x)$ for all $x\in\R$. Thus we can use the normal distribution to approximate the cumulative distribution function of $S_n$.
+
+Unfortunately not each proof of the central limit theorem provides an estimate of the error $\abs{\P{S_n\le x}-\Phi(x)}$ \refneeded. Here comes the Berry-Esseen theorem into play. It provides an upper bound for the maximal error between $\P{S_n \le x}$ and $\Phi(x)$ \todo{$\Phi$ muss eingeführt werden}. Therefore the Berry-Esseen theorem needs the finiteness of the third moment for each $X_n$ as an additional premise compared to the central limit theorem. The Berry-Esseen theorem states\cite[p. 71]{nourdin}:
+
+\begin{theorem}[CLT and Berry-Esseen bounds]
+  Let $\seq{X_n}$ be a sequence of standardized i.i.d real valued random variables with finite third moment. Thus we have $\E{X_1}=0$, $\E{X_1^2}=1$ and $\E{|X_1|^3} < \infty$. Let $S_n$ be the associated sequence of normalized partial sums, i.e
+
+  \begin{align}
+    S_n = \frac{1}{\sqrt n} \sum_{k=1}^n X_k
+  \end{align}
+
+  The partial sums $S_n$ converge in law to the standard normal distribution. Moreover there is a $C > 0$ not depending on $n$ nor $\seq{X_n}$ such that
+
+  \begin{align}
+    \sup_{x\in\R} \abs{\P{S_n\le x}-\Phi(x)} \le \frac{C \E{|X_1|^3}}{\sqrt n}
+  \end{align}
+\end{theorem}
+
+\begin{remark}
+  The currently best known estimate for the best choice of $C$ is $C \ge \Cmin$\cite{esseen1956} and $C \le \Cmax$\cite{shevtsova2011}.
+\end{remark}
+
+\begin{remark}[Berry-Esseen theorem for the binomial distribution]
+  If for example $\seq{X_n}$ are binomial trials with the probability of success $p \in (0,1)$ the third moment of all $X_n$ are finite. With $q=1-p$ we get \refneeded
+
+\begin{align}
+  \E{X_1}=\frac{p^2+q^2}{\sqrt{pq}}
+\end{align}
+
+Thus the Berry-Esseen theorem yields the following estimate for the normalized binomial distribution
+
+\begin{align}
+  \sup_{x\in\R} \abs{\P{S_n\le x}-\Phi(x)} \le \frac{C(p^2+q^2)}{\sqrt{npq}}
+\end{align}
+
+\noindent Thereby the best choice of $C$ fulfills $C \le \Cmax$.
+\end{remark}
+
+\section{The method of Stein}
+
+\subsection{The basic idea of the method of Stein}
+
+We need to estimate $\sup_{x\in\R} \abs{\P{S_n\le x}-\Phi(x)}$ to prove the Berry-Esseen theorem. To do so we first rewrite this supremum norm:
+
+\begin{align}
+   & \sup_{x\in\R} \abs{\P{S_n\le x}-\Phi(x)} \nl
+   &
+   \begin{comment}
+     \text{Let } N \text{ have a standard normal distribution}
+   \end{comment} \nl
+  =& \sup_{x\in\R} \abs{\int_{-\infty}^x \d{S_n} - \int_{-\infty}^x \d{N}} \nl
+  =& \sup_{x\in\R} \abs{\int_{\R} \cfs{x} \d{S_n} - \int_{\R} \cfs{x} \d{N}} \nl
+  =& \sup_{x\in\R} \abs{\E{\cf{x}{S_n}} - \E{\cf{x}{N}}} \nl
+   &
+   \begin{comment}
+     \text{Let }\mathcal H=\left\{\cfs{x} : x\in\R\right\}
+   \end{comment} \nl
+  =& \sup_{h\in\mathcal H} \abs{\E{h(S_n)}-\E{h(N)}}
+\end{align}
+
+Now we can use the method of Stein to transform the difference $\E{h(S_n)}-\E{h(N)}$ in a way that $N$ does not occur any more. Here we take the solution $f$ of the following so called \emph{Stein's equation}:
+
+\begin{align}
+  f'(x)=xf(x) + h(x) - \E{h(N)}
+\end{align}
+
+Let's assume that this ordinary differential equation has a solution $f$. We get for any random variable $Y$:
+
+\begin{align}
+  &               & f'(x) - xf(x) & = h(x) - \E{h(N)} \nl
+  &  \implies\ & \int_{\R} (f'(t)-t f(t)) \d{Y}(t) &= \int_{\R} (h(t)-\E{h(N)}) \d{Y}(t) \nl 
+  &  \implies\ & \E{f'(Y)-Y f(Y)} &= \E{h(Y)}-\E{h(N)}
+\end{align}
+
+So instead of $\abs{\E{h(S_n)}-\E{h(N)}}$ we can estimate $\abs{\E{f'(S_n)-S_n f(S_n)}}$ which does not contain $N$ anymore. Thereby we will use some properties of $f$ which follow from the Stein's equation, namely $\snorm{f} \le \sqrt{\tfrac \pi2}$ and $\snorm{f'} \le 2$.
+
+Before I continue with the proof of the Berry-Esseen theorem I want to concrete what I have mentioned in this section.
+
+\subsection{Stein's equation and its solutions}
+
+For this and the following section we assume that $N$ is a random variable with a standard normal distribution. We have
+
+\begin{definition}[Stein's equation]
+  Let $h:\R \to \R$ be a Borel function such that $\E{h(N)}$ exists and $\abs{\E{h(N)}} < \infty$. The \emph{Stein's equation} associated to $h$ is the following ordinary differential equation
+
+  \begin{align}
+    f'(x) = x f(x) + h(x) - \E{h(N)}
+  \end{align}
+\end{definition}
+
+The following proposition shows that the Stein's equation always has a solution and provides an explicit form for it:
+
+\begin{proposition}[Solutions for the Stein's equation]
+  Let $f_h$ be defined by
+
+  \begin{align}
+    f_h(x) = \e{\frac{x^2}{2}} \int_{-\infty}^x \Big[h(y)-\E{h(N)}\Big] \e{-\frac{y^2}{2}}\d{y}
+  \end{align}
+
+  \noindent Every solution to the Stein's equation has the form
+
+  \begin{align}
+    f(x) = c \e{\frac{x^2}{2}} + f_h(x)
+  \end{align}
+
+  \noindent with $c \in \R$.
+\end{proposition}
+
+\begin{proof}
+   Because $\E{h(N)}$ exists \todo{bessere Formulierung}, the function $y\mapsto h(y)\e{-\frac{y^2}{2}}$ is integrable so that also for each $x\in\R$ the integral ${\int_{-\infty}^x \Big[h(y)-\E{h(N)}\Big]\e{-\frac{y^2}{2}}\d{y}}$ exists. Thus $f_h$ is well defined. From the Stein's equation follows
+
+  \begin{align}
+    &      & f'(x)-xf(x) & = h(x) - \E{h(N)} \nl
+    & \iff & \left[ f'(x) - xf(x) \right] \e{-\frac{x^2}{2}} &= \Big[h(x) - \E{h(N)}\Big] \e{-\frac{x^2}{2}} \nl
+    & \iff & \partial_x \left( \e{-\frac{x^2}2} f(x) \right) &= \Big[h(x) - \E{h(N)}\Big] \e{-\frac{x^2}{2}} \nl
+    & \iff & \e{-\frac{x^2}{2}} f(x) & = \int_{-\infty}^x \Big[ h(y) - \E{h(N)} \Big] \e{-\frac{y^2}{2}} \d{y} + c \nl
+    & \iff & f(x) & = f_h(x) + c \e{\frac{x^2}{2}}
+  \end{align}
+\end{proof}
+
+In the proof of the Berry-Esseen theorem we will need a estimate of $\snorm{f_h}$ and $\snorm{f_h'}$. Therefore we need to restrict the values of $h$ in the interval $h$. After this restriction we get
+
+\begin{proposition}[Stein's bounds]
+  Let $h:\R \to [0,1]$ be a Borel-function such that $\E{h(N)}$ exists with $\E{h(N)}<\infty$. The solution $f_h$ of Stein's equation given in the above proposition fulfills
+
+  \begin{align}
+    \snorm{f_h} \le \sqrt{\frac \pi2} \text{ and } \snorm{f_h'} \le 2
+  \end{align}
+\end{proposition}
+
+\begin{proof}
+  We start with proving $\snorm{f_h}\le \sqrt{\frac{\pi}{2}}$. First get the estimate
+
+  \begin{align} \label{eq:estimate1}
+    \abs{f_h(x)} & \le \abs{\e{-\frac{x^2}{2}} \int_{-\infty}^x \Big[ h(y) - \E{h(N)} \Big] \e{-\frac{y^2}{2}} \d{y} } \nl 
+    &\le \e{\frac{x^2}{2}} \int_{-\infty}^x \abs{h(y)-\E{h(N)}} \e{-\frac{y^2}{2}}\d{y} \nl
+    &
+    \begin{comment}
+      h(y), \E{h(N)} \in [0,1] \implies \abs{h(y)-\E{h(N)}} \le 1
+    \end{comment} \nl
+    & \le \e{\frac{x^2}{2}} \int_{-\infty}^x \e{-\frac{y^2}{2}} \d{y}
+  \end{align}
+  
+  \noindent We also have
+
+  \begin{align}
+    \int_{-\infty}^x \Big[h(y)-\E{h(N)}\Big] \e{-\frac{y^2}{2}} \d{y} = -\int_{x}^\infty \Big[h(y)-\E{h(N)}\Big] \e{-\frac{y^2}{2}} \d{y}
+  \end{align}
+
+  \noindent because $\int_{\R} \Big[h(y)-\E{h(N)}\Big] \e{-\frac{y^2}{2}} \d{y}=0$ \todo{$\d{N(y)}$ richtig?}:
+
+  \begin{align} \label{eq:estimate2}
+    \int_{\R} \Big[ h(y)-\E{h(N)} \Big] \e{-\frac{y^2}{2}} \d{y} & = \int_{\R} h(y) \e{-\frac{y^2}{2}} \d{y} - \int_{\R} \E{h(N)} \e{-\frac{y^2}2} \d{y} \nl
+    &= \sqrt{2\pi} \int_{\R} h(y) \frac{1}{2\pi} \e{-\frac{y^2}{2}} \d{y} - \sqrt{2\pi} \E{h(N)} \int_{\R} \frac{1}{\sqrt{2\pi}} \e{-\frac{y^2}{2}} \d{y} \nl
+    &= \sqrt{2\pi} \int_{\R} h(y) \d{N(y)} - \sqrt{2\pi} \E{h(N)} \int_{\R} \d{N(y)} \nl
+    &= \sqrt{2\pi}\E{h(N)} - \sqrt{2\pi}\E{h(N)} \nl
+    &= 0
+  \end{align}
+
+  \noindent Thus we also could estimate $\abs{f_h(x)}$ via
+
+  \begin{align}
+    \abs{f_h(x)} & \le \abs{\e{-\frac{x^2}{2}} \int_{-\infty}^x \Big[ h(y) - \E{h(N)} \Big] \e{-\frac{y^2}{2}} \d{y} } \nl 
+    & \le \abs{-\e{-\frac{x^2}{2}} \int_{x}^\infty \Big[ h(y) - \E{h(N)} \Big] \e{-\frac{y^2}{2}} \d{y} } \nl 
+    &\le \e{\frac{x^2}{2}} \int_{x}^\infty \abs{h(y)-\E{h(N)}} \e{-\frac{y^2}{2}}\d{y} \nl
+    &\le \e{\frac{x^2}{2}} \int_{x}^\infty \e{-\frac{y^2}{2}} \d{y}
+  \end{align}
+ 
+  \noindent From \eqref{eq:estimate1} and \eqref{eq:estimate2} follows
+
+  \begin{align}
+    \abs{f_h(x)} & \le \min\left\{ \e{\frac{x^2}{2}} \int_{-\infty}^x \e{-\frac{y^2}{2}} \d{y}, \e{\frac{x^2}{2}} \int_x^\infty \e{-\frac{y^2}{2}} \d{y} \right\} \nl
+    & \le \e{\frac{x^2}{2}} \min\left\{ \int_{-\infty}^x \e{-\frac{y^2}{2}} \d{y}, \int_x^\infty \e{-\frac{y^2}{2}} \d{y} \right\} \nl
+    &
+    \begin{comment}
+      y \mapsto \e{-\frac{y^2}{2}} \text{ is even}
+    \end{comment} \nl
+    & = \underbrace{\e{\frac{x^2}{2}} \int_{\abs{x}}^\infty \e{-\frac{y^2}{2}} \d{y}}_{=: s(x)} \nl
+  \end{align}
+
+  \noindent To find the maximum of $s(x)$ we first compute $s'(x)$ for $x > 0$:
+
+  \begin{align}
+    s'(x) &= \partial_x \left( \e{\frac{x^2}{2}} \int_x^\infty \e{-\frac{y^2}{2}} \d{y} \right) \nl
+    &= x\e{\frac{x^2}{2}} \int_x^\infty \e{-\frac{y^2}{2}} \d{y} - 1 \nl
+    &= \e{\frac{x^2}{2}} \int_x^\infty x\e{-\frac{y^2}{2}} \d{y} - 1 \nl
+    &
+    \begin{comment}
+      x \le y \text{ on } [x,\infty)
+    \end{comment} \nl
+    &\le \e{\frac{x^2}{2}} \int_x^\infty y\e{-\frac{y^2}{2}} \d{y} - 1 \nl
+    &= \e{\frac{x^2}{2}} \left[-\e{-\frac{y^2}{2}}\right]_x^\infty \d{y} - 1 \nl
+    &= \e{\frac{x^2}{2}} \e{-\frac{x^2}{2}} - 1 \nl
+    &= 0
+  \end{align}
+
+  Thus $s'(x) \le 0$ for $x \ge 0$ so that $s(x)$ is monotone decreasing on $[x,\infty)$. Because $s(x)$ is even (i.e. $s(-x)=s(x)$) we have $s'(x) \ge 0$ for $x < 0$ which implies that $s(x)$ is monotone increasing on $\R^{-}_0$. Altogether $s(x)$ has its global maximum at $x=0$ which is
+
+  \begin{align}
+    s(0) = \int_0^\infty \e{-\frac{y^2}{2}} \d{y} = \frac{1}{2} \int_{-\infty}^\infty \e{-\frac{y^2}{2}} \d{y} = \frac{1}{2} \sqrt{2\pi} = \sqrt{\frac{\pi}{2}}
+  \end{align}
+
+  \noindent Finally we have
+
+  \begin{align}
+    \abs{f_h(x)} \le s(x) \le \sqrt{\frac \pi 2}
+  \end{align}
+
+  \noindent To prove the second estimate $\snorm{f_h'} \le 2$ we can start with Stein's equation:
+
+  \begin{align}
+    \abs{f_h'(x)} & = \abs{x f_h(x) + h(x) - \E{h(N)}} \nl
+    & = \abs{x \e{\frac{x^2}{2}} \int_{-\infty}^x \Big[ h(y) - \E{h(N)} \Big] \e{-\frac{y^2}{2}} \d{y}} \nl
+    & \le \abs{x} \e{\frac{x^2}{2}} \int_{-\infty}^x \abs{h(y)-\E{h(N)}} \e{-\frac{y^2}{2}} \d{y}  + \abs{h(y)-\E{h(y)}} \nl
+    &
+    \begin{comment}
+      \abs{h(y)-\E{h(N)}} \le 1
+    \end{comment} \nl
+    & \le \abs{x} \e{\frac{x^2}{2}} \int_{-\infty}^x \e{-\frac{y^2}{2}} \d{y}  + 1 \nl
+  \end{align}
+
+  \noindent Again we can use the following equation in the estimation of $\abs{f_h'(x)}$
+
+  \begin{align}
+    \int_{-\infty}^x \Big[h(y)-\E{h(N)}\Big] \e{-\frac{y^2}{2}} \d{y} = -\int_{x}^\infty \Big[h(y)-\E{h(N)}\Big] \e{-\frac{y^2}{2}} \d{y}
+  \end{align}
+
+  \noindent No we get
+
+  \begin{align}
+    \abs{f_h'(x)} \le \abs{x} \e{\frac{x^2}{2}} \int_x^\infty \e{-\frac{y^2}{2}} \d{y}  + 1 \nl
+  \end{align}
+
+  \noindent Altogether we have
+
+  \begin{align}
+    \abs{f_h'(x)} & \le \abs{x} \e{\frac{x^2}{2}} \min\left\{ \int_{-\infty}^x \e{-\frac{y^2}{2}} \d{y},  \int_x^\infty \e{-\frac{y^2}{2}} \d{y} \right\} + 1 \nl
+    & = \abs{x} \e{\frac{x^2}{2}} \int_{\abs{x}}^\infty \e{-\frac{y^2}{2}} \d{y} + 1 \nl
+    & = \e{\frac{x^2}{2}} \int_{\abs{x}}^\infty \abs{x} \e{-\frac{y^2}{2}} \d{y} + 1 \nl
+    &
+    \begin{comment}
+      \abs{x} \le y \text{ on interval } \left[\abs{x},\infty\right)
+    \end{comment} \nl
+    & = \e{\frac{x^2}{2}} \int_{\abs{x}}^\infty y \e{-\frac{y^2}{2}} \d{y} + 1 \nl
+    & = \e{\frac{x^2}{2}} \e{-\frac{x^2}{2}} + 1 \nl
+    & = 2 \nl
+  \end{align}
+
+  \noindent This proves $\snorm{f_h'} \le 2$.
+\end{proof}
+
+\section{Proof of the Berry-Esseen theorem}
+
+
+
+\newpage
+
+\section{Umschreibung von $E[h_{z,\epsilon}(V_n)]-E[h_{z,\epsilon}(N)]$}
+
+Im folgenden setzen wir
+
+\begin{enumerate}
+\item $h:=h_{z,\epsilon}$
+\item $f:=f_h$
+\item $\tilde f(x):=xf(x)$
+\end{enumerate}
+
+\noindent Es ist
+
+\begin{align*}
+E[h(V_n)]-E[h(N)] &= E[f'(V_n)-V_nf(V_h)] \\
+&= E\left[f'(V_n)-\sum_{k=1}^n \frac{Y_k}{\sqrt n} f(V_n)\right] \\
+&= \sum_{k=1}^n E\left[f'(V_n)\frac 1n-\frac{Y_k}{\sqrt n} f(V_n)\right] \\
+&\left\downarrow\ E\left[f\left(V_n^k\right)Y_k\right]=E\left[f\left(V_n^k\right)\right]E\left[Y_k\right]=0\right.\\
+&= \sum_{k=1}^n E\left[f'(V_n)\frac 1n-\frac{Y_k}{\sqrt n} f(V_n)+\frac{Y_k}{\sqrt n} f(V_n^k)\right] \\
+&= \sum_{k=1}^n E\left[f'(V_n)\frac 1n-\frac{Y_k}{\sqrt n} \left(f(V_n)-f(V_n^k)\right)\right] \\[1em]
+&\left\downarrow\ \begin{array}{rl}
+	f(y)-f(x) &= \int_x^y f'(s) ds \\[0.5em]
+	&= (y-x) \int_0^1 f'(x+(y-x)s)ds \\[0.5em]
+	&= (y-x) E\left[f'(x+(y-x)\Theta\right]
+\end{array} \right.\\[1em]
+&= \sum_{k=1}^n E\left[f'(V_n)\frac 1n-\frac{Y_k^2}{n} E\left[f'\left(V_n^k+\Theta\frac{Y_K}{\sqrt n}\right)\right]\right] \\[1em]
+&\left\downarrow\ \begin{array}{rl}
+E\left[\frac{Y_k^2}{n} E\left[f'\left(V_n^k+\Theta\frac{Y_K}{\sqrt n}\right)\right]\right] &= \frac{E\left[Y_k^2\right]}{n} E\left[f'\left(V_n^k+\Theta\frac{Y_K}{\sqrt n}\right)\right] \\[0.5em]
+&= \frac{1}{n} E\left[f'\left(V_n^k+\Theta\frac{Y_K}{\sqrt n}\right)\right]
+\end{array}\right.\\[1em]
+&= \sum_{k=1}^n \frac 1n E\left[f'(V_n)-f'\left(V_n^k+\Theta\frac{Y_K}{\sqrt n}\right)\right] \\[1em]
+&\left\downarrow\ f'(x)=\tilde f(x) + h(x)-E[h(N)] \right. \\
+&= \sum_{k=1}^n \frac 1n E \left[\begin{array}{l} \tilde f(V_n) + h(V_n) - E[h(N)] \\[0.3em]
+-\tilde f\left(V_n^k +\Theta \frac{Y_k}{\sqrt n}\right) -h\left(V_n^k +\Theta \frac{Y_k}{\sqrt n}\right) + E[h(N)]\end{array}\right]\\[1em]
+&= \sum_{k=1}^n \frac 1n E \left[\begin{array}{l} \tilde f(V_n) + h(V_n) \\[0.3em]
+-\tilde f\left(V_n^k +\Theta \frac{Y_k}{\sqrt n}\right) -h\left(V_n^k +\Theta \frac{Y_k}{\sqrt n}\right)\end{array}\right]\\[1em]
+&= \sum_{k=1}^n \frac 1n E \left[\begin{array}{ll} \tilde f(V_n) &-\tilde f\left(V_n^k\right)\\[0.3em]
+-\tilde f\left(V_n^k +\Theta \frac{Y_k}{\sqrt n}\right) &+ \tilde f\left(V_n^k\right)\\[0.3em]
+h(V_n) & - h\left(V_n^k\right)\\[0.3em]
+ -h\left(V_n^k +\Theta \frac{Y_k}{\sqrt n}\right) & + h\left(V_n^k\right)\end{array}\right]
+\end{align*}
+
+\section{Abschätzung der einzelnen Terme}
+
+\subsection{Abschätzung des ersten Terms}
+
+\begin{align*}
+\left|E\left[\tilde f(V_n)-\tilde f\left(V_n^k\right)\right]\right| &\le E\left[\left|\tilde f(V_n)-\tilde f\left(V_n^k\right)\right|\right] \\[1em]
+& \left\downarrow\ \begin{array}{rl}
+|\tilde f(x) - \tilde f(y)| & = |xf(x)-yf(y)|\\[0.3em]
+& =|xf(x)-yf(x)+yf(x)-yf(y)| \\[0.3em]
+& =|f(x)(x-y) + y(f(x)-f(y))| \\[0.3em]
+& \le |f(x)||x-y|+|y||f(x)-f(y)| \\[0.3em]
+& \le \|f\|_\infty |x-y|+ |y| \|f'\|_\infty |x-y| \\[0.3em]
+& \le \sqrt{\tfrac \pi2}|x-y|+2|y||x-y| \\[0.3em]
+& = \left(\sqrt{\tfrac\pi2}+2|y|\right)|x-y|
+\end{array} \right.\\[1em]
+&\le E\left[\left(\sqrt{\tfrac \pi2}+2\left|V_n^k\right|\right)\left|V_n-V_n^k\right|\right] \\[0.5em]
+&\le E\left[\left(\sqrt{\tfrac \pi2}+2\left|V_n^k\right|\right)\frac{|Y_k|}{\sqrt n}\right] \\[0.5em]
+&\le \tfrac 1{\sqrt n} \left(\sqrt{\tfrac \pi2}+2E\left[\left|V_n^k\right|\right]\right)E[|Y_k|] \\[0.5em]
+&\left\downarrow\ \begin{array}{l}
+E[|Y_k|] \le E[Y_k^2]^{\tfrac 12} = 1 \\[0.3em]
+E[|V_n^k|] \le E[{V_n^k}^2]^{\tfrac 12} = 1
+\end{array} \right.\\[0.5em]
+&\le \tfrac 1{\sqrt n} \left(\sqrt{\tfrac \pi2}+2\right) \\[0.5em]
+\end{align*}
+
+\subsection{Abschätzung des zweiten Terms}
+
+\begin{align*}
+\left|E\left[\tilde f\left(V_n^k + \Theta \frac{Y_k}{\sqrt n}\right)-\tilde f\left(V_n^k\right)\right]\right| & \le \frac{E[|Y_k|]}{\sqrt n}\left(E[\Theta]\sqrt{\tfrac \pi2}+2E[\Theta]E[|V_n^k|]\right) \\
+&\left\downarrow\ E[\Theta]=\tfrac 12 \land E[|V_n^k|] \le E[{V_n^k}^2]^{\tfrac 12}=1\right.\\
+& \le \frac{E[|Y_k|]}{\sqrt n}\left(\frac 12\sqrt{\frac \pi2}+1\right) \\
+&\left\downarrow\ E[|Y_k|] \le E[Y_k^2]^{\tfrac 12}=1\right.\\
+& \le \frac{1}{\sqrt n}\left(\frac 12\sqrt{\frac \pi2}+1\right) \\
+\end{align*}
+
+\subsection{Abschätzung des dritten Terms}
+
+\begin{align*}
+\left|E\left[h(V_n)-h\left(V_n^k\right)\right]\right|&\le E\left[\left|h(V_n)-h\left(V_n^k\right)\right|\right] \\[1em]
+&\left\downarrow\ \begin{array}{rl}
+h(y)-h(x) & = \int_y^x h'(s) ds \\[0.5em]
+&= (y-x) \int_0^1 h'(x+s(y-x))ds \\[0.5em]
+&=-\frac{y-x}{2\epsilon} E\left[\mathbf{1}_{[z-\epsilon,z+\epsilon]}(x + \tilde \Theta (y-x))\right]
+\end{array} \right. \\[1em]
+&= \frac{1}{2\epsilon}E\left[\left|V_n-V_n^k\right|\cdot E\left[\mathbf{1}_{[z-\epsilon,z+\epsilon]}(V_n^k + \tilde \Theta (V_n-V_n^k))\right]\right] \\
+&= \frac{1}{2\sqrt{n}\epsilon}E\left[\left|Y_k\right|\right]\cdot E\left[\mathbf{1}_{[z-\epsilon,z+\epsilon]}\left(V_n^k + \tilde \Theta \frac{Y_k}{\sqrt n}\right)\right] \\[1em]
+&\left\downarrow\ E[|Y_1|]\le E\left[Y_1^2\right]^{\tfrac 12}=1 \right.\\[1em]
+&\le \frac{1}{2\sqrt{n}\epsilon}E\left[\mathbf{1}_{[z-\epsilon,z+\epsilon]}\left(V_n^k + \tilde \Theta \frac{Y_k}{\sqrt n}\right)\right] \\
+&= \frac{1}{2\sqrt{n}\epsilon}P\left(z-\epsilon \le V_n^k + \tilde \Theta \frac{Y_k}{\sqrt n} \le z+\epsilon\right) \\[1em]
+&\left\downarrow\ \tilde \Theta\frac{Y_k}{\sqrt n} \in \mathbb R \right. \\[1em]
+&\le \frac{1}{2\sqrt{n}\epsilon} \sup_{c\in\mathbb R} P\left(z-c-\epsilon \le V_n^k \le z-c+\epsilon\right) \\
+\end{align*}
+
+Um $P(a\le V_n^k\le b)$ abschätzen zu können, setzen wir $\tilde V_n^k = \tfrac{1}{\sqrt{n-1}} \sum_{i\neq k} Y_i$ und damit ist $V_n^k = \sqrt{1-\tfrac 1n} \tilde V_n^k$. Es ist
+
+\begin{align*}
+P(a\le V_n^k\le b) &= P\left(a \le \sqrt{1-\tfrac 1n} \tilde V_n^k \le b\right) \\
+&= P\left(\frac{a}{\sqrt{1-\tfrac 1n}} \le \tilde V_n^k \le \frac{b}{\sqrt{1-\tfrac 1n}}\right) \\
+&= P\left(\frac{a}{\sqrt{1-\tfrac 1n}} \le \tilde V_n^k \le \frac{b}{\sqrt{1-\tfrac 1n}}\right)- P\left(\frac{a}{\sqrt{1-\tfrac 1n}} \le N \le \frac{b}{\sqrt{1-\tfrac 1n}}\right)\\
+& \quad +P\left(\frac{a}{\sqrt{1-\tfrac 1n}} \le N \le \frac{b}{\sqrt{1-\tfrac 1n}}\right) \\[1em]
+& \left\downarrow\ P\left(\frac{a}{\sqrt{1-\tfrac 1n}} \le N \le \frac{b}{\sqrt{1-\tfrac 1n}}\right) \le \frac{b-a}{\sqrt{2\pi}\sqrt{1-\tfrac 1n}}\right. \\[1em]
+&\le P\left(\frac{a}{\sqrt{1-\tfrac 1n}} \le \tilde V_n^k \le \frac{b}{\sqrt{1-\tfrac 1n}}\right)- P\left(\frac{a}{\sqrt{1-\tfrac 1n}} \le N \le \frac{b}{\sqrt{1-\tfrac 1n}}\right)\\
+& \quad +\frac{b-a}{\sqrt{2\pi}\sqrt{1-\tfrac 1n}} \\[1em]
+&\left\downarrow\ \begin{array}{rl}
+P(x \le \tilde V_n^k \le y) - P(x\le N \le y) & = P(\tilde V_n^k \le y) - P(\tilde V_n^k < x) \\[0.3em]
+&\quad- P(N \le y) + P(N < x) \\[0.3em]
+& = P(\tilde V_n^k \le y) - P(N \le y) \\[0.3em]
+&\quad+ P(N < x) - P(\tilde V_n^k < x) \\[0.3em]
+&\le 2 d_\text{Kol}(\tilde V_n^k, N)= \frac{2 C_{n-1} E\left[|Y_1|^3\right]}{\sqrt{n-1}}
+\end{array} \right. \\[1em]
+& \le \frac{2 C_{n-1} E\left[|Y_1|^3\right]}{\sqrt{n-1}}+\frac{b-a}{\sqrt{2\pi}\sqrt{1-\tfrac 1n}}
+\end{align*}
+
+\noindent Damit
+
+\begin{align*}
+\left|E\left[h(V_n)\right] - E\left[h(N)\right]\right| & \le \frac{1}{2\sqrt{n}\epsilon} \sup_{c\in\mathbb R} P\left(z-c-\epsilon \le V_n^k \le z-c+\epsilon\right) \\[1em]
+& \le \frac{C_{n-1} E\left[|Y_1|^3\right]}{\sqrt n\sqrt{n-1}\epsilon}+\frac{2\epsilon}{2\epsilon\sqrt{2\pi}\sqrt{n-1}} \\
+& \le \frac{C_{n-1} E\left[|Y_1|^3\right]}{\sqrt n\sqrt{n-1}\epsilon}+\frac{1}{\sqrt{2\pi}\sqrt{n-1}} \\
+\end{align*}
+
+\subsection{Abschätzung des vierten Terms}
+
+\begin{align*}
+	\left|E\left[h\left(V_n^k+\Theta\frac{Y_k^2}n\right)-h\left(V_n^k\right)\right]\right| &=\frac{1}{2\sqrt n \epsilon}\left|E\left[Y_k\Theta\cdot E\left[\mathbf{1}_[z-\epsilon,z+\epsilon]\left(V_n^k + \tilde \Theta\Theta\frac{Y_k}{\sqrt n}\right)\right]\right]\right| \\[1em]
+& \le \frac{E[|Y_1|]}{4\sqrt n \epsilon} \sup_{c\in\mathbb R} P\left(z-c-\epsilon \le V_n^k \le z-c+\epsilon\right) \\[1em]
+& \le \frac{1}{2\sqrt{2\pi}\sqrt{n-1}} + \frac{C_{n-1}E[|Y_1|^3]}{2\sqrt  n\sqrt{n-1}\epsilon}
+\end{align*}
+
+\section{Herleitung einer Rekursionsbeziehung für $C_n$}
+
+\begin{align*}
+\left|E[h(V_n)] - E[h(N)]\right| &= \left|\sum_{k=1}^n \frac 1n E \left[\begin{array}{ll} \tilde f(V_n) &-\tilde f\left(V_n^k\right)\\[0.3em]
+-\tilde f\left(V_n^k +\Theta \frac{Y_k}{\sqrt n}\right) &+ \tilde f\left(V_n^k\right)\\[0.3em]
+h(V_n)& - h\left(V_n^k\right) \\[0.3em]
+ -h\left(V_n^k +\Theta \frac{Y_k}{\sqrt n}\right) & + h\left(V_n^k\right) \end{array}\right] \right| \\[1em]
+&\le \sum_{k=1}^n \frac 1n \left(\begin{array}{ll} E\left[\left|\tilde f(V_n)\right.\right.&\left.\left.-\tilde f\left(V_n^k\right)\right|\right]\\[0.3em]
++E\left[\left|\tilde f\left(V_n^k +\Theta \frac{Y_k}{\sqrt n}\right) \right.\right.&\left.\left.- \tilde f\left(V_n^k\right)\right|\right]\\[0.3em]
++E\left[\left|h(V_n) \right.\right.&\left.\left. - h\left(V_n^k\right)\right|\right]\\[0.3em]
++E\left[\left|h\left(V_n^k +\Theta \frac{Y_k}{\sqrt n}\right) \right.\right.&\left.\left. - h\left(V_n^k\right) \right|\right]\end{array}\right)  \\[1em]
+&\le \sum_{k=1}^n \frac 1n \left(\begin{array}{l}
+\left(\sqrt{\tfrac\pi2}+2\right)\frac1{\sqrt n}\\[0.3em]
++\left(\tfrac 12\sqrt{\tfrac \pi2}+1\right)\frac{1}{\sqrt n}\\[0.3em]
++\tfrac{1}{\sqrt{2\pi}\sqrt{n-1}}+\frac{C_{n-1}E[|Y_1|^3]}{\sqrt{n}\sqrt{n-1}\epsilon}\\[0.3em]
++\tfrac{1}{2\sqrt{2\pi}\sqrt{n-1}}+\frac{C_{n-1}E[|Y_1|^3]}{2\sqrt{n}\sqrt{n-1}\epsilon}
+\end{array}  \right)\\[1em]
+&= \begin{array}{l}
+\left(\sqrt{\tfrac\pi2}+2\right)\frac1{\sqrt n}\\[0.3em]
++\left(\tfrac 12\sqrt{\tfrac \pi2}+1\right)\frac{1}{\sqrt n}\\[0.3em]
++\tfrac{1}{\sqrt{2\pi}\sqrt{n-1}}+\frac{C_{n-1}E[|Y_1|^3]}{\sqrt{n}\sqrt{n-1}\epsilon}\\[0.3em]
++\tfrac{1}{2\sqrt{2\pi}\sqrt{n-1}}+\frac{C_{n-1}E[|Y_1|^3]}{2\sqrt{n}\sqrt{n-1}\epsilon}\\[0.3em]
+\end{array}  \\[1em]
+&= \frac{1}{\sqrt n} \left(\begin{array}{l}\left(\sqrt{\frac\pi2}+2\right)+\frac 1n\left(\frac 12 \sqrt{\frac \pi2}+1\right)\\ +\frac{\sqrt{n}}{\sqrt{2\pi}\sqrt{n-1}} + \frac{\sqrt{n}}{2\sqrt{2\pi}\sqrt{n-1}}\end{array}\right) \\[0.5em]
+&\quad + \frac{3C_{n-1}E[|Y_1|^3]}{2\sqrt{n}\sqrt{n-1}\epsilon} \\[1em]
+&\left\downarrow\ E[|Y_1|^3] \ge E[Y_1^2]^{\tfrac 32}=1 \land \tfrac 1n \le 1\right.\\[1em]
+&\le \frac{E[|Y_1|^3]}{\sqrt n} \left(\begin{array}{l}\sqrt{\frac\pi2}+2+\frac 12 \sqrt{\frac \pi2}+1\\ +\frac{\sqrt{n}}{\sqrt{2\pi}\sqrt{n-1}} + \frac{\sqrt{n}}{2\sqrt{2\pi}\sqrt{n-1}}\end{array}\right) \\[0.5em]
+&\quad + \frac{3C_{n-1}E[|Y_1|^3]^2}{2\sqrt{n}\sqrt{n-1}\epsilon} \\[1em]
+&\left\downarrow\ n \ge 2 \Rightarrow n-1 \ge \tfrac n2 \Rightarrow \sqrt{n-1} \ge \frac{\sqrt{n}}{\sqrt 2} \right. \\[1em]
+&\le \frac{E[|Y_1|^3]}{\sqrt n} \left(\begin{array}{l}\sqrt{\frac\pi2}+2+\frac 12 \sqrt{\frac \pi2}+1\\ +\frac{\sqrt{2}}{\sqrt{2\pi}} + \frac{\sqrt{2}}{2\sqrt{2\pi}}\end{array}\right) \\[0.5em]
+&\quad + \frac{3\sqrt{2}C_{n-1}E[|Y_1|^3]^2}{2n\epsilon}\\[1em]
+&\left\downarrow\ \frac{\sqrt 2}2 \le 1 \right. \\[1em]
+&\le \frac{E[|Y_1|^3]}{\sqrt n} 5{,}726\ldots + \frac{3 C_{n-1}E[|Y_1|^3]^2}{n\epsilon} \\[1em]
+&\le \frac{6E[|Y_1|^3]}{\sqrt n} + \frac{3 C_{n-1}E[|Y_1|^3]^2}{n\epsilon}
+\end{align*}
+
+\section{Zusammenfassung}
+
+\begin{align*}
+d_\text{Kol}(V_n,N) & \le \sup_{z\in\mathbb R}\left|E[h_{z,\epsilon}(V_n)]-E[h_{z,\epsilon}(N)]\right|+\frac{4\epsilon}{\sqrt{2\pi}} \\
+&\le 6\frac{E[|Y_1|^3]}{\sqrt n}+\frac{3C_{n-1}E[|Y_1|^3]^2}{n\epsilon}+\frac{4\epsilon}{\sqrt{2\pi}} \\
+&\left\downarrow\ \epsilon = \sqrt{\frac{C_{n-1}}{n}}E[|Y_1|^3] \right. \\
+&\le 6\frac{E[|Y_1|^3]}{\sqrt n}+\frac{3\sqrt{C_{n-1}}E[|Y_1|^3]}{\sqrt n}+\frac{4\sqrt{C_{n-1}}E[|Y_1|^3]}{\sqrt{2\pi}\sqrt{n}} \\
+&\le \frac{E[|Y_1|^3]}{\sqrt n}\left[6+\left(3+\frac{4}{\sqrt{2\pi}}\right)\sqrt{C_{n-1}}\right] \\
+\end{align*}
+
+\noindent Damit
+
+\begin{align*}
+C_n \le 6 + \left(3 + \frac{4}{\sqrt{2\pi}}\right)\sqrt{C_{n-1}}
+\end{align*}
