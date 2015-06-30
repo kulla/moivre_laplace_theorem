@@ -73,7 +73,7 @@ Now we can use the method of Stein to transform the difference $\E{h(S_n)}-\E{h(
 Let's assume that this ordinary differential equation has a solution $f$. We get for any random variable $Y$:
 
 \begin{align}
-  &               & f'(x) - xf(x) & = h(x) - \E{h(N)} \nl
+  &            & f'(x) - xf(x) & = h(x) - \E{h(N)} \nl
   &  \implies\ & \int_{\R} (f'(t)-t f(t)) \d{Y}(t) &= \int_{\R} (h(t)-\E{h(N)}) \d{Y}(t) \nl 
   &  \implies\ & \E{f'(Y)-Y f(Y)} &= \E{h(Y)}-\E{h(N)}
 \end{align}
@@ -257,184 +257,372 @@ In the proof of the Berry-Esseen theorem we will need a estimate of $\snorm{f_h}
 
 \section{Proof of the Berry-Esseen theorem}
 
+\subsection{First steps of the proof\todo{better title}}
 
+Let's recall the Berry-Esseen theorem: For the standardized partial sum $S_n$ of i.i.d random variables $\seq{X_n}$ with finite third moment $\E{\abs{X_n}^3}<\infty$ there is a $C > 0$ such that
 
-\newpage
+\begin{align}
+  \sup_{x\in\R} \abs{\P{S_n\le x}-\Phi(x)} \le \frac{C \E{|X_1|^3}}{\sqrt n}
+\end{align}
 
-\section{Umschreibung von $E[h_{z,\epsilon}(V_n)]-E[h_{z,\epsilon}(N)]$}
+We first define $C_n$ via
 
-Im folgenden setzen wir
+\begin{align}
+  C_n = \frac{\sqrt{n}}{\E{\abs{X_1}^3}} \sup_{x\in\R} \abs{\P{S_n \le x}-\Phi(x)}
+\end{align}
 
-\begin{enumerate}
-\item $h:=h_{z,\epsilon}$
-\item $f:=f_h$
-\item $\tilde f(x):=xf(x)$
-\end{enumerate}
+\noindent Thus $C_n$ is the smallest real number with
 
-\noindent Es ist
+\begin{align}
+  \sup_{x\in\R}\abs{\P{S_n\le x} - \Phi(x)} \le \frac{C_n\E{\abs{X_1}^3}}{\sqrt{n}}
+\end{align}
 
-\begin{align*}
-E[h(V_n)]-E[h(N)] &= E[f'(V_n)-V_nf(V_h)] \\
-&= E\left[f'(V_n)-\sum_{k=1}^n \frac{Y_k}{\sqrt n} f(V_n)\right] \\
-&= \sum_{k=1}^n E\left[f'(V_n)\frac 1n-\frac{Y_k}{\sqrt n} f(V_n)\right] \\
-&\left\downarrow\ E\left[f\left(V_n^k\right)Y_k\right]=E\left[f\left(V_n^k\right)\right]E\left[Y_k\right]=0\right.\\
-&= \sum_{k=1}^n E\left[f'(V_n)\frac 1n-\frac{Y_k}{\sqrt n} f(V_n)+\frac{Y_k}{\sqrt n} f(V_n^k)\right] \\
-&= \sum_{k=1}^n E\left[f'(V_n)\frac 1n-\frac{Y_k}{\sqrt n} \left(f(V_n)-f(V_n^k)\right)\right] \\[1em]
-&\left\downarrow\ \begin{array}{rl}
-	f(y)-f(x) &= \int_x^y f'(s) ds \\[0.5em]
-	&= (y-x) \int_0^1 f'(x+(y-x)s)ds \\[0.5em]
-	&= (y-x) E\left[f'(x+(y-x)\Theta\right]
-\end{array} \right.\\[1em]
-&= \sum_{k=1}^n E\left[f'(V_n)\frac 1n-\frac{Y_k^2}{n} E\left[f'\left(V_n^k+\Theta\frac{Y_K}{\sqrt n}\right)\right]\right] \\[1em]
-&\left\downarrow\ \begin{array}{rl}
-E\left[\frac{Y_k^2}{n} E\left[f'\left(V_n^k+\Theta\frac{Y_K}{\sqrt n}\right)\right]\right] &= \frac{E\left[Y_k^2\right]}{n} E\left[f'\left(V_n^k+\Theta\frac{Y_K}{\sqrt n}\right)\right] \\[0.5em]
-&= \frac{1}{n} E\left[f'\left(V_n^k+\Theta\frac{Y_K}{\sqrt n}\right)\right]
-\end{array}\right.\\[1em]
-&= \sum_{k=1}^n \frac 1n E\left[f'(V_n)-f'\left(V_n^k+\Theta\frac{Y_K}{\sqrt n}\right)\right] \\[1em]
-&\left\downarrow\ f'(x)=\tilde f(x) + h(x)-E[h(N)] \right. \\
-&= \sum_{k=1}^n \frac 1n E \left[\begin{array}{l} \tilde f(V_n) + h(V_n) - E[h(N)] \\[0.3em]
--\tilde f\left(V_n^k +\Theta \frac{Y_k}{\sqrt n}\right) -h\left(V_n^k +\Theta \frac{Y_k}{\sqrt n}\right) + E[h(N)]\end{array}\right]\\[1em]
-&= \sum_{k=1}^n \frac 1n E \left[\begin{array}{l} \tilde f(V_n) + h(V_n) \\[0.3em]
--\tilde f\left(V_n^k +\Theta \frac{Y_k}{\sqrt n}\right) -h\left(V_n^k +\Theta \frac{Y_k}{\sqrt n}\right)\end{array}\right]\\[1em]
-&= \sum_{k=1}^n \frac 1n E \left[\begin{array}{ll} \tilde f(V_n) &-\tilde f\left(V_n^k\right)\\[0.3em]
--\tilde f\left(V_n^k +\Theta \frac{Y_k}{\sqrt n}\right) &+ \tilde f\left(V_n^k\right)\\[0.3em]
-h(V_n) & - h\left(V_n^k\right)\\[0.3em]
- -h\left(V_n^k +\Theta \frac{Y_k}{\sqrt n}\right) & + h\left(V_n^k\right)\end{array}\right]
-\end{align*}
+To prove the Berry-Essen theorem we have to show, that $\sup_{n\in\N} C_n < \infty$. Let $\mathcal H$ be the set of all $\cfs{x}$ for $x\in\R$. We already have shown in the section about Stein's method that
 
-\section{Abschätzung der einzelnen Terme}
+\begin{align}
+  \sup_{x\in\R}\abs{\P{S_n\le x} - \Phi(x)} & = \sup_{h\in\mathcal H} \abs{\E{h(S_n)}-\E{h(N)}} \nl
+  &= \sup_{h\in\R} \abs{\E{f_h'(S_n)-S_n f_h(S_n)}}
+\end{align}
 
-\subsection{Abschätzung des ersten Terms}
+Unfortunately the functions of $\mathcal H$ are not continuous and thus $f_h$ is no $C^1$-function for any $h\in \mathcal H$. That's why we introduce the functions $h_{\epsilon,x}$ which are defined by
 
-\begin{align*}
-\left|E\left[\tilde f(V_n)-\tilde f\left(V_n^k\right)\right]\right| &\le E\left[\left|\tilde f(V_n)-\tilde f\left(V_n^k\right)\right|\right] \\[1em]
-& \left\downarrow\ \begin{array}{rl}
-|\tilde f(x) - \tilde f(y)| & = |xf(x)-yf(y)|\\[0.3em]
-& =|xf(x)-yf(x)+yf(x)-yf(y)| \\[0.3em]
-& =|f(x)(x-y) + y(f(x)-f(y))| \\[0.3em]
-& \le |f(x)||x-y|+|y||f(x)-f(y)| \\[0.3em]
-& \le \|f\|_\infty |x-y|+ |y| \|f'\|_\infty |x-y| \\[0.3em]
-& \le \sqrt{\tfrac \pi2}|x-y|+2|y||x-y| \\[0.3em]
-& = \left(\sqrt{\tfrac\pi2}+2|y|\right)|x-y|
-\end{array} \right.\\[1em]
-&\le E\left[\left(\sqrt{\tfrac \pi2}+2\left|V_n^k\right|\right)\left|V_n-V_n^k\right|\right] \\[0.5em]
-&\le E\left[\left(\sqrt{\tfrac \pi2}+2\left|V_n^k\right|\right)\frac{|Y_k|}{\sqrt n}\right] \\[0.5em]
-&\le \tfrac 1{\sqrt n} \left(\sqrt{\tfrac \pi2}+2E\left[\left|V_n^k\right|\right]\right)E[|Y_k|] \\[0.5em]
-&\left\downarrow\ \begin{array}{l}
-E[|Y_k|] \le E[Y_k^2]^{\tfrac 12} = 1 \\[0.3em]
-E[|V_n^k|] \le E[{V_n^k}^2]^{\tfrac 12} = 1
-\end{array} \right.\\[0.5em]
-&\le \tfrac 1{\sqrt n} \left(\sqrt{\tfrac \pi2}+2\right) \\[0.5em]
-\end{align*}
+\includefig{continuous_step_function}
 
-\subsection{Abschätzung des zweiten Terms}
+\noindent For any random variable $Y$ it is
 
-\begin{align*}
-\left|E\left[\tilde f\left(V_n^k + \Theta \frac{Y_k}{\sqrt n}\right)-\tilde f\left(V_n^k\right)\right]\right| & \le \frac{E[|Y_k|]}{\sqrt n}\left(E[\Theta]\sqrt{\tfrac \pi2}+2E[\Theta]E[|V_n^k|]\right) \\
-&\left\downarrow\ E[\Theta]=\tfrac 12 \land E[|V_n^k|] \le E[{V_n^k}^2]^{\tfrac 12}=1\right.\\
-& \le \frac{E[|Y_k|]}{\sqrt n}\left(\frac 12\sqrt{\frac \pi2}+1\right) \\
-&\left\downarrow\ E[|Y_k|] \le E[Y_k^2]^{\tfrac 12}=1\right.\\
-& \le \frac{1}{\sqrt n}\left(\frac 12\sqrt{\frac \pi2}+1\right) \\
-\end{align*}
+\begin{align} \label{berryproof:inequality1}
+  \E{h_{x-\epsilon,\epsilon}(Y)} \le \P{Y \le x} \le \E{h_{x+\epsilon,\epsilon}(Y)}
+\end{align}
 
-\subsection{Abschätzung des dritten Terms}
+Because the density function $\phi(t)$ of $N$ with the standard normal distribution is bounded by $\tfrac{1}{\sqrt{2\pi}}$ we have:
 
-\begin{align*}
-\left|E\left[h(V_n)-h\left(V_n^k\right)\right]\right|&\le E\left[\left|h(V_n)-h\left(V_n^k\right)\right|\right] \\[1em]
-&\left\downarrow\ \begin{array}{rl}
-h(y)-h(x) & = \int_y^x h'(s) ds \\[0.5em]
-&= (y-x) \int_0^1 h'(x+s(y-x))ds \\[0.5em]
-&=-\frac{y-x}{2\epsilon} E\left[\mathbf{1}_{[z-\epsilon,z+\epsilon]}(x + \tilde \Theta (y-x))\right]
-\end{array} \right. \\[1em]
-&= \frac{1}{2\epsilon}E\left[\left|V_n-V_n^k\right|\cdot E\left[\mathbf{1}_{[z-\epsilon,z+\epsilon]}(V_n^k + \tilde \Theta (V_n-V_n^k))\right]\right] \\
-&= \frac{1}{2\sqrt{n}\epsilon}E\left[\left|Y_k\right|\right]\cdot E\left[\mathbf{1}_{[z-\epsilon,z+\epsilon]}\left(V_n^k + \tilde \Theta \frac{Y_k}{\sqrt n}\right)\right] \\[1em]
-&\left\downarrow\ E[|Y_1|]\le E\left[Y_1^2\right]^{\tfrac 12}=1 \right.\\[1em]
-&\le \frac{1}{2\sqrt{n}\epsilon}E\left[\mathbf{1}_{[z-\epsilon,z+\epsilon]}\left(V_n^k + \tilde \Theta \frac{Y_k}{\sqrt n}\right)\right] \\
-&= \frac{1}{2\sqrt{n}\epsilon}P\left(z-\epsilon \le V_n^k + \tilde \Theta \frac{Y_k}{\sqrt n} \le z+\epsilon\right) \\[1em]
-&\left\downarrow\ \tilde \Theta\frac{Y_k}{\sqrt n} \in \mathbb R \right. \\[1em]
-&\le \frac{1}{2\sqrt{n}\epsilon} \sup_{c\in\mathbb R} P\left(z-c-\epsilon \le V_n^k \le z-c+\epsilon\right) \\
-\end{align*}
+\begin{align}
+  \E{h_{x+\epsilon,\epsilon}(N)}-\frac{4\epsilon}{\sqrt{2\pi}} \le \E{h_{x-\epsilon,\epsilon}(N)} \text{ and } \E{h_{x+\epsilon,\epsilon}(N)} \le \E{h_{x-\epsilon,\epsilon}(N)} + \frac{4\epsilon}{\sqrt{2\pi}}
+\end{align}
 
-Um $P(a\le V_n^k\le b)$ abschätzen zu können, setzen wir $\tilde V_n^k = \tfrac{1}{\sqrt{n-1}} \sum_{i\neq k} Y_i$ und damit ist $V_n^k = \sqrt{1-\tfrac 1n} \tilde V_n^k$. Es ist
+\noindent Together with \eqref{berryproof:inequality1} we get
 
-\begin{align*}
-P(a\le V_n^k\le b) &= P\left(a \le \sqrt{1-\tfrac 1n} \tilde V_n^k \le b\right) \\
-&= P\left(\frac{a}{\sqrt{1-\tfrac 1n}} \le \tilde V_n^k \le \frac{b}{\sqrt{1-\tfrac 1n}}\right) \\
-&= P\left(\frac{a}{\sqrt{1-\tfrac 1n}} \le \tilde V_n^k \le \frac{b}{\sqrt{1-\tfrac 1n}}\right)- P\left(\frac{a}{\sqrt{1-\tfrac 1n}} \le N \le \frac{b}{\sqrt{1-\tfrac 1n}}\right)\\
-& \quad +P\left(\frac{a}{\sqrt{1-\tfrac 1n}} \le N \le \frac{b}{\sqrt{1-\tfrac 1n}}\right) \\[1em]
-& \left\downarrow\ P\left(\frac{a}{\sqrt{1-\tfrac 1n}} \le N \le \frac{b}{\sqrt{1-\tfrac 1n}}\right) \le \frac{b-a}{\sqrt{2\pi}\sqrt{1-\tfrac 1n}}\right. \\[1em]
-&\le P\left(\frac{a}{\sqrt{1-\tfrac 1n}} \le \tilde V_n^k \le \frac{b}{\sqrt{1-\tfrac 1n}}\right)- P\left(\frac{a}{\sqrt{1-\tfrac 1n}} \le N \le \frac{b}{\sqrt{1-\tfrac 1n}}\right)\\
-& \quad +\frac{b-a}{\sqrt{2\pi}\sqrt{1-\tfrac 1n}} \\[1em]
-&\left\downarrow\ \begin{array}{rl}
-P(x \le \tilde V_n^k \le y) - P(x\le N \le y) & = P(\tilde V_n^k \le y) - P(\tilde V_n^k < x) \\[0.3em]
-&\quad- P(N \le y) + P(N < x) \\[0.3em]
-& = P(\tilde V_n^k \le y) - P(N \le y) \\[0.3em]
-&\quad+ P(N < x) - P(\tilde V_n^k < x) \\[0.3em]
-&\le 2 d_\text{Kol}(\tilde V_n^k, N)= \frac{2 C_{n-1} E\left[|Y_1|^3\right]}{\sqrt{n-1}}
-\end{array} \right. \\[1em]
-& \le \frac{2 C_{n-1} E\left[|Y_1|^3\right]}{\sqrt{n-1}}+\frac{b-a}{\sqrt{2\pi}\sqrt{1-\tfrac 1n}}
-\end{align*}
+\begin{align} \label{berryproof:inequality2}
+  \E{h_{x+\epsilon,\epsilon}(N)}-\frac{4\epsilon}{\sqrt{2\pi}} \le \P{N\le x} \le \E{h_{x-\epsilon,\epsilon}(N)} + \frac{4\epsilon}{\sqrt{2\pi}}
+\end{align}
 
-\noindent Damit
+\noindent When we combine \eqref{berryproof:inequality1} and \eqref{berryproof:inequality2} we get the estimate
 
-\begin{align*}
-\left|E\left[h(V_n)\right] - E\left[h(N)\right]\right| & \le \frac{1}{2\sqrt{n}\epsilon} \sup_{c\in\mathbb R} P\left(z-c-\epsilon \le V_n^k \le z-c+\epsilon\right) \\[1em]
-& \le \frac{C_{n-1} E\left[|Y_1|^3\right]}{\sqrt n\sqrt{n-1}\epsilon}+\frac{2\epsilon}{2\epsilon\sqrt{2\pi}\sqrt{n-1}} \\
-& \le \frac{C_{n-1} E\left[|Y_1|^3\right]}{\sqrt n\sqrt{n-1}\epsilon}+\frac{1}{\sqrt{2\pi}\sqrt{n-1}} \\
-\end{align*}
+\begin{align}
+  \E{h_{x-\epsilon,\epsilon}(S_n)} - \E{h_{x-\epsilon,\epsilon}(N)} - \frac{4\epsilon}{\sqrt{2\pi}} & \le \P{S_n \le x} - \P{N \le x} \nl
+  &\le \E{h_{x+\epsilon,\epsilon}(S_n)} - \E{h_{x+\epsilon,\epsilon}(N)} + \frac{4\epsilon}{\sqrt{2\pi}}
+\end{align}
 
-\subsection{Abschätzung des vierten Terms}
+\noindent Thus
 
-\begin{align*}
-	\left|E\left[h\left(V_n^k+\Theta\frac{Y_k^2}n\right)-h\left(V_n^k\right)\right]\right| &=\frac{1}{2\sqrt n \epsilon}\left|E\left[Y_k\Theta\cdot E\left[\mathbf{1}_[z-\epsilon,z+\epsilon]\left(V_n^k + \tilde \Theta\Theta\frac{Y_k}{\sqrt n}\right)\right]\right]\right| \\[1em]
-& \le \frac{E[|Y_1|]}{4\sqrt n \epsilon} \sup_{c\in\mathbb R} P\left(z-c-\epsilon \le V_n^k \le z-c+\epsilon\right) \\[1em]
-& \le \frac{1}{2\sqrt{2\pi}\sqrt{n-1}} + \frac{C_{n-1}E[|Y_1|^3]}{2\sqrt  n\sqrt{n-1}\epsilon}
-\end{align*}
+\begin{align}
+  \abs{\P{S_n \le x}-\P{N \le x}} \le \max\left\{
+    \begin{array}{l}
+      \E{h_{x-\epsilon,\epsilon}(S_n)} - \E{h_{x-\epsilon,\epsilon}(N)}, \nl
+      \E{h_{x+\epsilon,\epsilon}(S_n)} - \E{h_{x+\epsilon,\epsilon}(N)}
+    \end{array}
+  \right\} + \frac{4\epsilon}{\sqrt{2\pi}}
+\end{align}
+
+\noindent So we get the estimate
+
+\begin{align}
+  \sup_{x\in\R} \abs{\P{S_n \le x} - \P{N \le x}} \le \sup_{x\in\R} \Big\{ \abs{\E{h_{x,\epsilon}(S_n)} - \E{h_{x,\epsilon}(N)}} \Big\} + \frac{4\epsilon}{\sqrt{2\pi}}
+\end{align}
+
+For estimating $\abs{\E{h_{x,\epsilon}(S_n)} - \E{h_{x,\epsilon}(N)}}$ we can now use the method of Stein. Because $h_{x,\epsilon}$ is continuous its solution to the Stein's equation is a $C^1$-function.
+
+\subsection{Application of the method of Stein}
+
+In the following I set $h=h_{x,\epsilon}$. Let $f=f_h$ be the solution to the Stein's equation for $h=h_{x,\epsilon}$. I also define $\tilde f(x)=xf(x)$ and $S_n^k$ via
+
+\begin{align}
+  S_n^k = \frac 1{\sqrt{n}} \sum_{j\neq k} Y_j = S_n - \frac 1{\sqrt n} Y_k
+\end{align}
+
+\noindent In the section about the method of Stein we have seen
+
+\begin{align}
+  \E{h(S_n)}-\E{h(N)}=\E{f'(S_n)-S_n f(S_n)}
+\end{align}
+
+\noindent The later term can be rewritten as
+
+\begin{align}
+  \E{h(S_n)}-\E{h(N)} &= \E{ \fp{S_n} -S_nf(S_h)} \nl
+  & \begin{comment}
+    S_n = \frac 1{\sqrt n} \sum_{k=1}^n Y_k
+  \end{comment} \nl
+  &= \E{f'(S_n)-\sum_{k=1}^n \frac{Y_k}{\sqrt n} f(S_n)} \nl
+  &= \sum_{k=1}^n \E{f'(S_n)\frac 1n-\frac{Y_k}{\sqrt n} f(S_n)} \nl
+  & \begin{comment}
+    \E{ \f{S_n^k} Y_k } = \E{ \f{S_n^k} }\E{Y_k} = 0
+  \end{comment} \nl
+  &= \sum_{k=1}^n \E{ f'(S_n) \frac 1n- \frac{Y_k}{\sqrt n} f(S_n) + \frac{Y_k}{\sqrt n} \f{S_n^k }} \nl
+  &= \sum_{k=1}^n \E{ f'(S_n) \frac 1n - \frac{Y_k}{\sqrt n} \left( f(S_n)-\f{S_n^k} \right)} \nl
+  &
+  \begin{comment}
+    \begin{aligned}
+  f(y)-f(x) &= \int_x^y f'(s) \d{s} \nl
+  &= (y-x) \int_0^1 f'(x+(y-x)s) \d{s} \nl
+  &
+  \begin{comment}
+    \text{\parbox{0.4\textwidth}{
+      Choose $\Theta$ uniformly distributed in $[0,1]$ and independent of all $Y_1,\ldots,Y_k$
+    }}
+  \end{comment} \nl
+  &= (y-x)\ \E{ \fp{x+(y-x)} \Theta }
+    \end{aligned}
+  \end{comment} \nl
+  &= \sum_{k=1}^n \E{ f'(S_n) \frac 1n - \frac{Y_k^2}{n} \E{ \fp{ S_n^k + \Theta\frac{Y_k}{\sqrt n} }}} \nl
+  &
+  \begin{comment}
+    \begin{aligned}
+      \E{ \frac{Y_k^2}{n} \E{ \fp{ S_n^k + \Theta\frac{Y_k}{\sqrt n} }}} &= \frac{\E{Y_k^2}}{n}  \E{ \ft{S_n^k+\Theta\frac{Y_k}{\sqrt n} }} \nl
+&= \frac{1}{n} E\left[f'\left(S_n^k+\Theta\frac{Y_k}{\sqrt n}\right)\right]
+    \end{aligned}
+  \end{comment} \nl
+  &= \frac 1n \sum_{k=1}^n \E{ f'(S_n) - \fp{S_n^k+\Theta\frac{Y_k}{\sqrt n}}} \nl
+  &\begin{comment}
+    f'(x)=\tilde f(x) + h(x)-E[h(N)]
+  \end{comment} \nl
+  &= \frac 1n \sum_{k=1}^n \E{
+    \begin{multlined}
+      \tilde f(S_n) + h(S_n) - E[h(N)] \nl
+      -\ft{S_n^k +\Theta \frac{Y_k}{\sqrt n} } - \h{ S_n^k +\Theta \frac{Y_k}{\sqrt n} } + E[h(N)]
+    \end{multlined}
+  } \nl
+  &= \frac 1n \sum_{k=1}^n \E{
+  \begin{multlined}
+      \tilde f(S_n) + h(S_n) \nl
+      -\ft{ S_n^k +\Theta \frac{Y_k}{\sqrt n}} - \h{S_n^k +\Theta \frac{Y_k}{\sqrt n}}
+  \end{multlined}
+  } \nl
+  &= \frac 1n \sum_{k=1}^n \E{
+    \begin{multlined}
+      \ft{S_n} - \ft{S_n^k} \nl
+      - \ft{ S_n^k +\Theta \frac{Y_k}{\sqrt n} } + \ft{ S_n^k } \nl
+      + \h{S_n} - \h{ S_n^k } \nl
+      - \h{ S_n^k +\Theta \frac{Y_k}{\sqrt n} } + \h{ S_n^k }
+    \end{multlined}
+  }
+\end{align}
+
+\noindent Thus
+
+\begin{align}
+  \abs{\E{h(S_n)}-\E{h(N)}}
+  &= \abs{\frac 1n \sum_{k=1}^n \E{
+    \begin{multlined}
+      \ft{S_n} - \ft{S_n^k} \nl
+      - \ft{ S_n^k +\Theta \frac{Y_k}{\sqrt n} } + \ft{ S_n^k } \nl
+      + \h{S_n} - \h{ S_n^k } \nl
+      - \h{ S_n^k +\Theta \frac{Y_k}{\sqrt n} } + \h{ S_n^k }
+    \end{multlined}
+  }} \nl
+  &\le \frac 1n \sum_{k=1}^n \left(
+  \begin{multlined}
+      \E{\abs{\ft{S_n} - \ft{S_n^k}}} \nl
+      +\E{\abs{\ft{ S_n^k +\Theta \frac{Y_k}{\sqrt n} } - \ft{ S_n^k }}} \nl
+      +\E{\abs{\h{S_n} - \h{ S_n^k }}} \nl
+      +\E{\abs{\h{ S_n^k +\Theta \frac{Y_k}{\sqrt n} } - \h{ S_n^k }}}
+    \end{multlined}
+  \right)
+\end{align}
+
+\noindent So we have four terms which we will estimate respectively
+
+\subsection{Estimation of all four terms}
+
+\subsubsection{Estimation of the first term}
+
+To estimate the first term we will use the fact, that $\snorm{f} \le \sqrt{\tfrac \pi2}$ and $\snorm{f'} \le 2$:
+
+\begin{align}
+  &\E{\abs{ \ft{S_n} - \ft{S_n^k} }} \nl
+  &
+  \begin{comment}
+    \begin{aligned}
+      |\tilde f(x) - \tilde f(y)| & = |xf(x)-yf(y)| \nl
+      & =|xf(x)-yf(x)+yf(x)-yf(y)| \nl
+      & =|f(x)(x-y) + y(f(x)-f(y))| \nl
+      & \le |f(x)||x-y|+|y||f(x)-f(y)| \nl
+      & \le \snorm{f} |x-y|+ |y| \snorm{f'} |x-y| \nl
+      & \le \sqrt{\frac \pi2} |x-y|+2 |y| |x-y| \nl
+      & = \left( \sqrt{\frac \pi2} + 2|y| \right) |x-y|
+    \end{aligned}
+  \end{comment} \nl
+  &\le \E{ \left( \sqrt{\frac \pi2}+2 \abs{S_n^k} \right) \abs{S_n-S_n^k} } \nl
+  &\le \E{ \left( \sqrt{\frac \pi2}+2 \abs{S_n^k} \right) \frac{|Y_k|}{\sqrt n} } \nl
+  &\le \frac 1{\sqrt n} \left( \sqrt{\frac \pi2}+2 \E{\abs{S_n^k}} \right) \E{\abs{Y_k}} \nl
+  &
+  \begin{comment}
+    \begin{aligned}
+      \E{\abs{Y_k}}   & \le \sqrt{\E{Y_k^2}} = 1 \nl
+      \E{\abs{S_n^k}} & \le \sqrt{\E{{S_n^k}^2}} \le \sqrt{\E{\frac{n}{n-1}{S_n^k}^2}} = 1
+    \end{aligned}
+  \end{comment} \nl
+  &\le \frac 1{\sqrt n} \left( \sqrt{\frac \pi2}+2 \right)
+\end{align}
+
+\subsubsection{Estimation of the second term}
+
+The second term can be estimated analogy to the first term:
+
+\begin{align}
+  \E{\abs{ \ft{ S_n^k + \Theta \frac{Y_k}{\sqrt n} } - \ft{ S_n^k } }} & \le \frac{ \E{\abs{Y_k}} }{\sqrt n} \left( \E{\Theta} \sqrt{\frac \pi2} + 2 \E{\Theta} \E{\abs{S_n^k}} \right) \nl
+  &
+  \begin{comment}
+    \E{\Theta} = \frac 12 \text{ and } \E{\abs{S_n^k}} \le 1
+  \end{comment} \nl
+  & \le \frac{ \E{\abs{Y_k}} }{\sqrt n} \left(\frac 12\sqrt{\frac \pi2}+1\right) \nl
+  &\begin{comment}
+      \E{\abs{Y_k}} \le \sqrt{\E{Y_k^2}} = 1
+  \end{comment} \nl
+  & \le \frac{1}{\sqrt n} \left(\frac 12\sqrt{\frac \pi2}+1\right)
+\end{align}
+
+\subsection{Estimation of the third term}
+
+\begin{align}
+  & \E{\abs{ \h{S_n} - \h{ S_n^k }}} \nl
+  &
+  \begin{comment}
+    \begin{aligned}
+      h(y)-h(x) & = \int_y^x h'(s) \d{s} \nl
+      &= (y-x) \int_0^1 h'(x+s(y-x)) \d{s} \nl
+      &
+      \begin{comment}
+        \text{\parbox{0.45\textwidth}{
+          Choose $\tilde \Theta$ uniformly distributed in $[0,1]$ and independent of all $Y_1,\ldots,Y_n$ and $\Theta$.
+        }}
+      \end{comment} \nl
+      &= -\frac{y-x}{2\epsilon} \E{ \cf[z-\epsilon]{z+\epsilon}{x + \tilde \Theta (y-x)} }
+    \end{aligned}
+  \end{comment} \nl
+  &= \frac{1}{2\epsilon} \E{ \abs{ S_n-S_n^k} \E{ \cf[z-\epsilon]{z+\epsilon}{S_n^k + \tilde \Theta \left( S_n-S_n^k \right)} }} \nl
+  &= \frac{ \E{\abs{Y_k}} }{2\sqrt{n}\epsilon} \E{ \cf[z-\epsilon]{z+\epsilon}{S_n^k + \tilde \Theta \frac{Y_k}{\sqrt n} }} \nl
+  &
+  \begin{comment}
+    \E{\abs{Y_k}} \le 1
+  \end{comment} \nl
+  &\le \frac{1}{2\sqrt{n}\epsilon} \E{ \cf[z-\epsilon]{z+\epsilon}{S_n^k + \tilde \Theta \frac{Y_k}{\sqrt n} }} \nl
+  &= \frac{1}{2\sqrt{n}\epsilon} \P{z-\epsilon \le S_n^k + \tilde \Theta \frac{Y_k}{\sqrt n} \le z+\epsilon } \nl
+  &
+  \begin{comment}
+    \tilde \Theta\frac{Y_k}{\sqrt n} \in \R
+  \end{comment} \nl
+  &\le \frac{1}{2\sqrt{n}\epsilon} \sup_{c\in\R} \P{z-c-\epsilon \le S_n^k \le z-c+\epsilon}
+\end{align}
+
+To estimate $\P{ a\le S_n^k\le b }$ we set $\tilde S_n^k = \tfrac{1}{\sqrt{n-1}} \sum_{j\neq k} Y_j$. $\tilde S_n^k$ is the standardized sum of all $Y_1,\ldots,Y_k$ without $Y_k$. We have $S_n^k = \sqrt{1-\tfrac 1n} \tilde S_n^k$. Thus
+
+\begin{align}
+  \P{a\le S_n^k\le b} &= \P{a \le \sqrt{1-\tfrac 1n} \tilde S_n^k \le b} \nl
+  &= \P{\frac{a}{\sqrt{1-\tfrac 1n}} \le \tilde S_n^k \le \frac{b}{\sqrt{1-\tfrac 1n}}} \nl
+  &
+  \begin{multlined}
+    = \P{\frac{a}{\sqrt{1-\tfrac 1n}} \le \tilde S_n^k \le \frac{b}{\sqrt{1-\tfrac 1n}}}- \P{\frac{a}{\sqrt{1-\tfrac 1n}} \le N \le \frac{b}{\sqrt{1-\tfrac 1n}}} \nl
+    +\P{\frac{a}{\sqrt{1-\tfrac 1n}} \le N \le \frac{b}{\sqrt{1-\tfrac 1n}}}
+  \end{multlined} \nl
+  &
+  \begin{comment}
+    \P{\frac{a}{\sqrt{1-\tfrac 1n}} \le N \le \frac{b}{\sqrt{1-\tfrac 1n}}} \le \frac{b-a}{\sqrt{2\pi}\sqrt{1-\tfrac 1n}}
+  \end{comment} \nl
+  &
+  \begin{multlined}
+    \le \P{\frac{a}{\sqrt{1-\tfrac 1n}} \le \tilde S_n^k \le \frac{b}{\sqrt{1-\tfrac 1n}}}- \P{\frac{a}{\sqrt{1-\tfrac 1n}} \le N \le \frac{b}{\sqrt{1-\tfrac 1n}}} \nl
+    +\frac{b-a}{\sqrt{2\pi}\sqrt{1-\tfrac 1n}}
+  \end{multlined} \nl
+  &
+  \begin{comment}
+    \begin{aligned}
+      & \P{x \le \tilde S_n^k \le y} - \P{x\le N \le y} \nl
+      &
+      \begin{multlined}
+        = \P{\tilde S_n^k \le y} - \P{\tilde S_n^k < x} \nl
+        - \P{N \le y} + \P{N < x}
+      \end{multlined} \nl
+      &
+      \begin{multlined}
+        = \P{\tilde S_n^k \le y} - \P{N \le y} \nl
+        + \P{N < x} - \P{\tilde S_n^k < x}
+      \end{multlined} \nl
+      &\le 2 \sup_{z\in\R} \abs{\P{\tilde S_n^k \le z}-\Phi(z)} \nl
+      &= \frac{2 C_{n-1} \E{\abs{Y_1}^3}}{\sqrt{n-1}}
+     \end{aligned}
+  \end{comment} \nl
+  & \le \frac{2 C_{n-1} \E{\abs{Y_1}^3}}{\sqrt{n-1}} + \frac{b-a}{\sqrt{2\pi}\sqrt{1-\tfrac 1n}}
+\end{align}
+
+\noindent Thus
+
+\begin{align}
+  \E{\abs{h(S_n) - h(N)}} & \le \frac{1}{2\sqrt{n}\epsilon} \sup_{c\in\R} \P{ z-c-\epsilon \le S_n^k \le z-c+\epsilon} \nl
+  &\le \frac{2C_{n-1} \E{\abs{Y_1}^3}}{2\sqrt n\sqrt{n-1}\epsilon}+\frac{2\epsilon}{2\epsilon\sqrt{2\pi}\sqrt{n-1}} \nl
+  &= \frac{C_{n-1} \E{\abs{Y_1}^3}}{\sqrt n\sqrt{n-1}\epsilon}+\frac{1}{\sqrt{2\pi}\sqrt{n-1}} \nl
+\end{align}
+
+\subsubsection{Estimation of the fourth term}
+
+Also the fourth term can be estimated analogy to the third term:
+
+\begin{align}
+  \E{\abs{ \h{ S_n^k+\Theta\frac{Y_k^2}{n} } - \h{ S_n^k } }}
+  &= \frac{1}{2\sqrt n \epsilon} \E{ \abs{Y_k} \abs{\Theta} \E{ \cf[z-\epsilon]{z+\epsilon}{S_n^k + \tilde \Theta\Theta\frac{Y_k}{\sqrt n}} } } \nl
+  &
+  \begin{comment}
+    \E{\abs{Y_k}} \le 1 \text{ and } \E{\Theta} = \frac 12
+  \end{comment} \nl
+  &= \frac{1}{4\sqrt n \epsilon} \E{ \cf[z-\epsilon]{z+\epsilon}{S_n^k + \tilde \Theta\Theta\frac{Y_k}{\sqrt n}} } \nl
+  & \le \frac{1}{4\sqrt n \epsilon} \sup_{c\in\R} \P{z-c-\epsilon \le S_n^k \le z-c+\epsilon} \nl
+  &\le \frac{1}{2\sqrt{2\pi}\sqrt{n-1}} + \frac{C_{n-1} \E{\abs{Y_1}^3} }{2\sqrt  n\sqrt{n-1}\epsilon}
+\end{align}
 
 \section{Herleitung einer Rekursionsbeziehung für $C_n$}
 
 \begin{align*}
-\left|E[h(V_n)] - E[h(N)]\right| &= \left|\sum_{k=1}^n \frac 1n E \left[\begin{array}{ll} \tilde f(V_n) &-\tilde f\left(V_n^k\right)\\[0.3em]
--\tilde f\left(V_n^k +\Theta \frac{Y_k}{\sqrt n}\right) &+ \tilde f\left(V_n^k\right)\\[0.3em]
-h(V_n)& - h\left(V_n^k\right) \\[0.3em]
- -h\left(V_n^k +\Theta \frac{Y_k}{\sqrt n}\right) & + h\left(V_n^k\right) \end{array}\right] \right| \\[1em]
-&\le \sum_{k=1}^n \frac 1n \left(\begin{array}{ll} E\left[\left|\tilde f(V_n)\right.\right.&\left.\left.-\tilde f\left(V_n^k\right)\right|\right]\\[0.3em]
-+E\left[\left|\tilde f\left(V_n^k +\Theta \frac{Y_k}{\sqrt n}\right) \right.\right.&\left.\left.- \tilde f\left(V_n^k\right)\right|\right]\\[0.3em]
-+E\left[\left|h(V_n) \right.\right.&\left.\left. - h\left(V_n^k\right)\right|\right]\\[0.3em]
-+E\left[\left|h\left(V_n^k +\Theta \frac{Y_k}{\sqrt n}\right) \right.\right.&\left.\left. - h\left(V_n^k\right) \right|\right]\end{array}\right)  \\[1em]
-&\le \sum_{k=1}^n \frac 1n \left(\begin{array}{l}
-\left(\sqrt{\tfrac\pi2}+2\right)\frac1{\sqrt n}\\[0.3em]
-+\left(\tfrac 12\sqrt{\tfrac \pi2}+1\right)\frac{1}{\sqrt n}\\[0.3em]
-+\tfrac{1}{\sqrt{2\pi}\sqrt{n-1}}+\frac{C_{n-1}E[|Y_1|^3]}{\sqrt{n}\sqrt{n-1}\epsilon}\\[0.3em]
+\left|E[h(S_n)] - E[h(N)]\right| &= \left|\frac 1n \sum_{k=1}^n E \left[\begin{array}{ll} \tilde f(S_n) &-\tilde f\left(S_n^k\right)\nl
+-\tilde f\left(S_n^k +\Theta \frac{Y_k}{\sqrt n}\right) &+ \tilde f\left(S_n^k\right)\nl
+h(S_n)& - h\left(S_n^k\right) \nl
+ -h\left(S_n^k +\Theta \frac{Y_k}{\sqrt n}\right) & + h\left(S_n^k\right) \end{array}\right] \right| \nl
+&\le \frac 1n \sum_{k=1}^n \left(\begin{array}{ll} E\left[\left|\tilde f(S_n)\right.\right.&\left.\left.-\tilde f\left(S_n^k\right)\right|\right]\nl
++E\left[\left|\tilde f\left(S_n^k +\Theta \frac{Y_k}{\sqrt n}\right) \right.\right.&\left.\left.- \tilde f\left(S_n^k\right)\right|\right]\nl
++E\left[\left|h(S_n) \right.\right.&\left.\left. - h\left(S_n^k\right)\right|\right]\nl
++E\left[\left|h\left(S_n^k +\Theta \frac{Y_k}{\sqrt n}\right) \right.\right.&\left.\left. - h\left(S_n^k\right) \right|\right]\end{array}\right)  \nl
+&\le \frac 1n \sum_{k=1}^n \left(\begin{array}{l}
+\left(\sqrt{\tfrac\pi2}+2\right)\frac1{\sqrt n}\nl
++\left(\tfrac 12\sqrt{\tfrac \pi2}+1\right)\frac{1}{\sqrt n}\nl
++\tfrac{1}{\sqrt{2\pi}\sqrt{n-1}}+\frac{C_{n-1}E[|Y_1|^3]}{\sqrt{n}\sqrt{n-1}\epsilon}\nl
 +\tfrac{1}{2\sqrt{2\pi}\sqrt{n-1}}+\frac{C_{n-1}E[|Y_1|^3]}{2\sqrt{n}\sqrt{n-1}\epsilon}
-\end{array}  \right)\\[1em]
+\end{array}  \right)\nl
 &= \begin{array}{l}
-\left(\sqrt{\tfrac\pi2}+2\right)\frac1{\sqrt n}\\[0.3em]
-+\left(\tfrac 12\sqrt{\tfrac \pi2}+1\right)\frac{1}{\sqrt n}\\[0.3em]
-+\tfrac{1}{\sqrt{2\pi}\sqrt{n-1}}+\frac{C_{n-1}E[|Y_1|^3]}{\sqrt{n}\sqrt{n-1}\epsilon}\\[0.3em]
-+\tfrac{1}{2\sqrt{2\pi}\sqrt{n-1}}+\frac{C_{n-1}E[|Y_1|^3]}{2\sqrt{n}\sqrt{n-1}\epsilon}\\[0.3em]
-\end{array}  \\[1em]
-&= \frac{1}{\sqrt n} \left(\begin{array}{l}\left(\sqrt{\frac\pi2}+2\right)+\frac 1n\left(\frac 12 \sqrt{\frac \pi2}+1\right)\\ +\frac{\sqrt{n}}{\sqrt{2\pi}\sqrt{n-1}} + \frac{\sqrt{n}}{2\sqrt{2\pi}\sqrt{n-1}}\end{array}\right) \\[0.5em]
-&\quad + \frac{3C_{n-1}E[|Y_1|^3]}{2\sqrt{n}\sqrt{n-1}\epsilon} \\[1em]
-&\left\downarrow\ E[|Y_1|^3] \ge E[Y_1^2]^{\tfrac 32}=1 \land \tfrac 1n \le 1\right.\\[1em]
-&\le \frac{E[|Y_1|^3]}{\sqrt n} \left(\begin{array}{l}\sqrt{\frac\pi2}+2+\frac 12 \sqrt{\frac \pi2}+1\\ +\frac{\sqrt{n}}{\sqrt{2\pi}\sqrt{n-1}} + \frac{\sqrt{n}}{2\sqrt{2\pi}\sqrt{n-1}}\end{array}\right) \\[0.5em]
-&\quad + \frac{3C_{n-1}E[|Y_1|^3]^2}{2\sqrt{n}\sqrt{n-1}\epsilon} \\[1em]
-&\left\downarrow\ n \ge 2 \Rightarrow n-1 \ge \tfrac n2 \Rightarrow \sqrt{n-1} \ge \frac{\sqrt{n}}{\sqrt 2} \right. \\[1em]
-&\le \frac{E[|Y_1|^3]}{\sqrt n} \left(\begin{array}{l}\sqrt{\frac\pi2}+2+\frac 12 \sqrt{\frac \pi2}+1\\ +\frac{\sqrt{2}}{\sqrt{2\pi}} + \frac{\sqrt{2}}{2\sqrt{2\pi}}\end{array}\right) \\[0.5em]
-&\quad + \frac{3\sqrt{2}C_{n-1}E[|Y_1|^3]^2}{2n\epsilon}\\[1em]
-&\left\downarrow\ \frac{\sqrt 2}2 \le 1 \right. \\[1em]
-&\le \frac{E[|Y_1|^3]}{\sqrt n} 5{,}726\ldots + \frac{3 C_{n-1}E[|Y_1|^3]^2}{n\epsilon} \\[1em]
+\left(\sqrt{\tfrac\pi2}+2\right)\frac1{\sqrt n}\nl
++\left(\tfrac 12\sqrt{\tfrac \pi2}+1\right)\frac{1}{\sqrt n}\nl
++\tfrac{1}{\sqrt{2\pi}\sqrt{n-1}}+\frac{C_{n-1}E[|Y_1|^3]}{\sqrt{n}\sqrt{n-1}\epsilon}\nl
++\tfrac{1}{2\sqrt{2\pi}\sqrt{n-1}}+\frac{C_{n-1}E[|Y_1|^3]}{2\sqrt{n}\sqrt{n-1}\epsilon}\nl
+\end{array}  \nl
+&= \frac{1}{\sqrt n} \left(\begin{array}{l}\left(\sqrt{\frac\pi2}+2\right)+\frac 1n\left(\frac 12 \sqrt{\frac \pi2}+1\right)\nl +\frac{\sqrt{n}}{\sqrt{2\pi}\sqrt{n-1}} + \frac{\sqrt{n}}{2\sqrt{2\pi}\sqrt{n-1}}\end{array}\right) \nl
+&\quad + \frac{3C_{n-1}E[|Y_1|^3]}{2\sqrt{n}\sqrt{n-1}\epsilon} \nl
+&\left\downarrow\ E[|Y_1|^3] \ge E[Y_1^2]^{\tfrac 32}=1 \land \tfrac 1n \le 1\right.\nl
+&\le \frac{E[|Y_1|^3]}{\sqrt n} \left(\begin{array}{l}\sqrt{\frac\pi2}+2+\frac 12 \sqrt{\frac \pi2}+1\nl +\frac{\sqrt{n}}{\sqrt{2\pi}\sqrt{n-1}} + \frac{\sqrt{n}}{2\sqrt{2\pi}\sqrt{n-1}}\end{array}\right) \nl
+&\quad + \frac{3C_{n-1}E[|Y_1|^3]^2}{2\sqrt{n}\sqrt{n-1}\epsilon} \nl
+&\left\downarrow\ n \ge 2 \Rightarrow n-1 \ge \tfrac n2 \Rightarrow \sqrt{n-1} \ge \frac{\sqrt{n}}{\sqrt 2} \right. \nl
+&\le \frac{E[|Y_1|^3]}{\sqrt n} \left(\begin{array}{l}\sqrt{\frac\pi2}+2+\frac 12 \sqrt{\frac \pi2}+1\nl +\frac{\sqrt{2}}{\sqrt{2\pi}} + \frac{\sqrt{2}}{2\sqrt{2\pi}}\end{array}\right) \nl
+&\quad + \frac{3\sqrt{2}C_{n-1}E[|Y_1|^3]^2}{2n\epsilon}\nl
+&\left\downarrow\ \frac{\sqrt 2}2 \le 1 \right. \nl
+&\le \frac{E[|Y_1|^3]}{\sqrt n} 5{,}726\ldots + \frac{3 C_{n-1}E[|Y_1|^3]^2}{n\epsilon} \nl
 &\le \frac{6E[|Y_1|^3]}{\sqrt n} + \frac{3 C_{n-1}E[|Y_1|^3]^2}{n\epsilon}
 \end{align*}
 
 \section{Zusammenfassung}
 
 \begin{align*}
-d_\text{Kol}(V_n,N) & \le \sup_{z\in\mathbb R}\left|E[h_{z,\epsilon}(V_n)]-E[h_{z,\epsilon}(N)]\right|+\frac{4\epsilon}{\sqrt{2\pi}} \\
-&\le 6\frac{E[|Y_1|^3]}{\sqrt n}+\frac{3C_{n-1}E[|Y_1|^3]^2}{n\epsilon}+\frac{4\epsilon}{\sqrt{2\pi}} \\
-&\left\downarrow\ \epsilon = \sqrt{\frac{C_{n-1}}{n}}E[|Y_1|^3] \right. \\
-&\le 6\frac{E[|Y_1|^3]}{\sqrt n}+\frac{3\sqrt{C_{n-1}}E[|Y_1|^3]}{\sqrt n}+\frac{4\sqrt{C_{n-1}}E[|Y_1|^3]}{\sqrt{2\pi}\sqrt{n}} \\
-&\le \frac{E[|Y_1|^3]}{\sqrt n}\left[6+\left(3+\frac{4}{\sqrt{2\pi}}\right)\sqrt{C_{n-1}}\right] \\
+d_\text{Kol}(S_n,N) & \le \sup_{z\in\mathbb R}\left|E[h_{z,\epsilon}(S_n)]-E[h_{z,\epsilon}(N)]\right|+\frac{4\epsilon}{\sqrt{2\pi}} \nl
+&\le 6\frac{E[|Y_1|^3]}{\sqrt n}+\frac{3C_{n-1}E[|Y_1|^3]^2}{n\epsilon}+\frac{4\epsilon}{\sqrt{2\pi}} \nl
+&\left\downarrow\ \epsilon = \sqrt{\frac{C_{n-1}}{n}}E[|Y_1|^3] \right. \nl
+&\le 6\frac{E[|Y_1|^3]}{\sqrt n}+\frac{3\sqrt{C_{n-1}}E[|Y_1|^3]}{\sqrt n}+\frac{4\sqrt{C_{n-1}}E[|Y_1|^3]}{\sqrt{2\pi}\sqrt{n}} \nl
+&\le \frac{E[|Y_1|^3]}{\sqrt n}\left[6+\left(3+\frac{4}{\sqrt{2\pi}}\right)\sqrt{C_{n-1}}\right] \nl
 \end{align*}
 
 \noindent Damit
