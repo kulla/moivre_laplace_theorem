@@ -265,7 +265,7 @@ Let's recall the Berry-Esseen theorem: For the standardized partial sum $S_n$ of
   \sup_{x\in\R} \abs{\P{S_n\le x}-\Phi(x)} \le \frac{C \E{|X_1|^3}}{\sqrt n}
 \end{align}
 
-We first define $C_n$ via
+\noindent We first define $C_n$ via
 
 \begin{align}
   C_n = \frac{\sqrt{n}}{\E{\abs{X_1}^3}} \sup_{x\in\R} \abs{\P{S_n \le x}-\Phi(x)}
@@ -326,7 +326,7 @@ Because the density function $\phi(t)$ of $N$ with the standard normal distribut
 
 \noindent So we get the estimate
 
-\begin{align}
+\begin{align} \label{berryproof:before_stein}
   \sup_{x\in\R} \abs{\P{S_n \le x} - \P{N \le x}} \le \sup_{x\in\R} \Big\{ \abs{\E{h_{x,\epsilon}(S_n)} - \E{h_{x,\epsilon}(N)}} \Big\} + \frac{4\epsilon}{\sqrt{2\pi}}
 \end{align}
 
@@ -334,7 +334,7 @@ For estimating $\abs{\E{h_{x,\epsilon}(S_n)} - \E{h_{x,\epsilon}(N)}}$ we can no
 
 \subsection{Application of the method of Stein}
 
-In the following I set $h=h_{x,\epsilon}$. Let $f=f_h$ be the solution to the Stein's equation for $h=h_{x,\epsilon}$. I also define $\tilde f(x)=xf(x)$ and $S_n^k$ via
+In the following I set $h=h_{x,\epsilon}$. Let $f=f_h$ be the solution to the Stein's equation for $h=h_{x,\epsilon}$. Besides let $n \ge 2$ and let $\tilde f(x)=xf(x)$. I also define $S_n^k$ via
 
 \begin{align}
   S_n^k = \frac 1{\sqrt{n}} \sum_{j\neq k} Y_j = S_n - \frac 1{\sqrt n} Y_k
@@ -482,7 +482,7 @@ The second term can be estimated analogy to the first term:
   & \le \frac{1}{\sqrt n} \left(\frac 12\sqrt{\frac \pi2}+1\right)
 \end{align}
 
-\subsection{Estimation of the third term}
+\subsubsection{Estimation of the third term}
 
 \begin{align}
   & \E{\abs{ \h{S_n} - \h{ S_n^k }}} \nl
@@ -579,54 +579,119 @@ Also the fourth term can be estimated analogy to the third term:
   &\le \frac{1}{2\sqrt{2\pi}\sqrt{n-1}} + \frac{C_{n-1} \E{\abs{Y_1}^3} }{2\sqrt  n\sqrt{n-1}\epsilon}
 \end{align}
 
-\section{Herleitung einer Rekursionsbeziehung für $C_n$}
+\subsection{Derivation of recursive relation for $C_n$}
 
-\begin{align*}
-\left|E[h(S_n)] - E[h(N)]\right| &= \left|\frac 1n \sum_{k=1}^n E \left[\begin{array}{ll} \tilde f(S_n) &-\tilde f\left(S_n^k\right)\nl
--\tilde f\left(S_n^k +\Theta \frac{Y_k}{\sqrt n}\right) &+ \tilde f\left(S_n^k\right)\nl
-h(S_n)& - h\left(S_n^k\right) \nl
- -h\left(S_n^k +\Theta \frac{Y_k}{\sqrt n}\right) & + h\left(S_n^k\right) \end{array}\right] \right| \nl
-&\le \frac 1n \sum_{k=1}^n \left(\begin{array}{ll} E\left[\left|\tilde f(S_n)\right.\right.&\left.\left.-\tilde f\left(S_n^k\right)\right|\right]\nl
-+E\left[\left|\tilde f\left(S_n^k +\Theta \frac{Y_k}{\sqrt n}\right) \right.\right.&\left.\left.- \tilde f\left(S_n^k\right)\right|\right]\nl
-+E\left[\left|h(S_n) \right.\right.&\left.\left. - h\left(S_n^k\right)\right|\right]\nl
-+E\left[\left|h\left(S_n^k +\Theta \frac{Y_k}{\sqrt n}\right) \right.\right.&\left.\left. - h\left(S_n^k\right) \right|\right]\end{array}\right)  \nl
-&\le \frac 1n \sum_{k=1}^n \left(\begin{array}{l}
-\left(\sqrt{\tfrac\pi2}+2\right)\frac1{\sqrt n}\nl
-+\left(\tfrac 12\sqrt{\tfrac \pi2}+1\right)\frac{1}{\sqrt n}\nl
-+\tfrac{1}{\sqrt{2\pi}\sqrt{n-1}}+\frac{C_{n-1}E[|Y_1|^3]}{\sqrt{n}\sqrt{n-1}\epsilon}\nl
-+\tfrac{1}{2\sqrt{2\pi}\sqrt{n-1}}+\frac{C_{n-1}E[|Y_1|^3]}{2\sqrt{n}\sqrt{n-1}\epsilon}
-\end{array}  \right)\nl
-&= \begin{array}{l}
-\left(\sqrt{\tfrac\pi2}+2\right)\frac1{\sqrt n}\nl
-+\left(\tfrac 12\sqrt{\tfrac \pi2}+1\right)\frac{1}{\sqrt n}\nl
-+\tfrac{1}{\sqrt{2\pi}\sqrt{n-1}}+\frac{C_{n-1}E[|Y_1|^3]}{\sqrt{n}\sqrt{n-1}\epsilon}\nl
-+\tfrac{1}{2\sqrt{2\pi}\sqrt{n-1}}+\frac{C_{n-1}E[|Y_1|^3]}{2\sqrt{n}\sqrt{n-1}\epsilon}\nl
-\end{array}  \nl
-&= \frac{1}{\sqrt n} \left(\begin{array}{l}\left(\sqrt{\frac\pi2}+2\right)+\frac 1n\left(\frac 12 \sqrt{\frac \pi2}+1\right)\nl +\frac{\sqrt{n}}{\sqrt{2\pi}\sqrt{n-1}} + \frac{\sqrt{n}}{2\sqrt{2\pi}\sqrt{n-1}}\end{array}\right) \nl
-&\quad + \frac{3C_{n-1}E[|Y_1|^3]}{2\sqrt{n}\sqrt{n-1}\epsilon} \nl
-&\left\downarrow\ E[|Y_1|^3] \ge E[Y_1^2]^{\tfrac 32}=1 \land \tfrac 1n \le 1\right.\nl
-&\le \frac{E[|Y_1|^3]}{\sqrt n} \left(\begin{array}{l}\sqrt{\frac\pi2}+2+\frac 12 \sqrt{\frac \pi2}+1\nl +\frac{\sqrt{n}}{\sqrt{2\pi}\sqrt{n-1}} + \frac{\sqrt{n}}{2\sqrt{2\pi}\sqrt{n-1}}\end{array}\right) \nl
-&\quad + \frac{3C_{n-1}E[|Y_1|^3]^2}{2\sqrt{n}\sqrt{n-1}\epsilon} \nl
-&\left\downarrow\ n \ge 2 \Rightarrow n-1 \ge \tfrac n2 \Rightarrow \sqrt{n-1} \ge \frac{\sqrt{n}}{\sqrt 2} \right. \nl
-&\le \frac{E[|Y_1|^3]}{\sqrt n} \left(\begin{array}{l}\sqrt{\frac\pi2}+2+\frac 12 \sqrt{\frac \pi2}+1\nl +\frac{\sqrt{2}}{\sqrt{2\pi}} + \frac{\sqrt{2}}{2\sqrt{2\pi}}\end{array}\right) \nl
-&\quad + \frac{3\sqrt{2}C_{n-1}E[|Y_1|^3]^2}{2n\epsilon}\nl
-&\left\downarrow\ \frac{\sqrt 2}2 \le 1 \right. \nl
-&\le \frac{E[|Y_1|^3]}{\sqrt n} 5{,}726\ldots + \frac{3 C_{n-1}E[|Y_1|^3]^2}{n\epsilon} \nl
-&\le \frac{6E[|Y_1|^3]}{\sqrt n} + \frac{3 C_{n-1}E[|Y_1|^3]^2}{n\epsilon}
-\end{align*}
+\begin{align}
+  \abs{\E{h(S_n)}-\E{h(N)}}
+  &\le \frac 1n \sum_{k=1}^n \left(
+  \begin{multlined}
+      \E{\abs{\ft{S_n} - \ft{S_n^k}}} \nl
+      +\E{\abs{\ft{ S_n^k +\Theta \frac{Y_k}{\sqrt n} } - \ft{ S_n^k }}} \nl
+      +\E{\abs{\h{S_n} - \h{ S_n^k }}} \nl
+      +\E{\abs{\h{ S_n^k +\Theta \frac{Y_k}{\sqrt n} } - \h{ S_n^k }}}
+    \end{multlined}
+  \right) \bnl
+  &\le \frac 1n \sum_{k=1}^n \left(
+    \begin{multlined}
+      \left(\sqrt{\frac\pi2}+2\right) \frac1{\sqrt n} +\left(\frac 12\sqrt{\frac \pi2}+1\right)\frac{1}{\sqrt n}\nl
+      +\frac{1}{\sqrt{2\pi}\sqrt{n-1}}+\frac{C_{n-1} \E{\abs{Y_1}^3} }{\sqrt{n}\sqrt{n-1}\epsilon}\nl
+      +\frac{1}{2\sqrt{2\pi}\sqrt{n-1}}+\frac{C_{n-1} \E{\abs{Y_1}^3} }{2\sqrt{n}\sqrt{n-1}\epsilon}
+    \end{multlined}
+  \right) \bnl
+  &
+  \begin{multlined}
+    = \left(\sqrt{\frac\pi2}+2\right) \frac1{\sqrt n} +\left(\frac 12\sqrt{\frac \pi2}+1\right)\frac{1}{\sqrt n}\nl
+    +\frac{1}{\sqrt{2\pi}\sqrt{n-1}}+\frac{C_{n-1} \E{\abs{Y_1}^3} }{\sqrt{n}\sqrt{n-1}\epsilon}\nl
+    +\frac{1}{2\sqrt{2\pi}\sqrt{n-1}}+\frac{C_{n-1} \E{\abs{Y_1}^3} }{2\sqrt{n}\sqrt{n-1}\epsilon}
+  \end{multlined} \bnl
+  & = \frac{1}{\sqrt{n}} \left(
+  \begin{multlined}
+    \sqrt{\frac\pi2} + 2 + \frac 12 \sqrt{\frac \pi2} + 1 +\frac{3\sqrt n}{2\sqrt{2\pi}\sqrt{n-1}} \nl
+    + \frac{3C_{n-1} \E{\abs{Y_1}^3} }{2\sqrt{n-1}\epsilon}
+  \end{multlined}
+  \right) \bnl
+  &
+  \begin{comment}
+    \E{\abs{Y_1}^3} \ge \E{Y_1^2}^{\tfrac 32} = 1
+  \end{comment} \bnl
+  & = \frac{ \E{\abs{Y_1}^3}  }{\sqrt{n}} \left(
+  \begin{multlined}
+    \sqrt{\frac\pi2} + 2 + \frac 12 \sqrt{\frac \pi2} + 1 +\frac{3\sqrt n}{2\sqrt{2\pi}\sqrt{n-1}} \nl
+    + \frac{3C_{n-1} \E{\abs{Y_1}^3} }{2\sqrt{n-1}\epsilon}
+  \end{multlined}
+  \right) \bnl
+  &
+  \begin{comment}
+    n \ge 2 \implies n-1 \ge \frac n2 \implies \sqrt{n-1} \ge \frac{\sqrt{n}}{\sqrt 2} 
+  \end{comment} \bnl
+  & = \frac{ \E{\abs{Y_1}^3}  }{\sqrt{n}} \left(
+  \begin{multlined}
+    \sqrt{\frac\pi2} + 2 + \frac 12 \sqrt{\frac \pi2} + 1 +\frac{3\sqrt 2}{2\sqrt{2\pi}} \nl
+    + \frac{3 \sqrt{2} C_{n-1} \E{\abs{Y_1}^3} }{2\sqrt{n}\epsilon}
+  \end{multlined}
+  \right) \bnl
+  &
+  \begin{comment}
+    \frac{\sqrt 2}2 \le 1
+  \end{comment} \bnl
+  & = \frac{ \E{\abs{Y_1}^3}  }{\sqrt{n}} \left( 5.726\ldots + \frac{3 C_{n-1} \E{\abs{Y_1}^3} }{\sqrt{n}\epsilon}
+  \right) \bnl
+  &\le \frac{6 \E{\abs{Y_1}^3} }{\sqrt n} + \frac{3 C_{n-1} \E{\abs{Y_1}^3}^2}{n\epsilon}
+\end{align}
 
-\section{Zusammenfassung}
+\noindent This inequality can be used in \eqref{berryproof:before_stein}:
 
-\begin{align*}
-d_\text{Kol}(S_n,N) & \le \sup_{z\in\mathbb R}\left|E[h_{z,\epsilon}(S_n)]-E[h_{z,\epsilon}(N)]\right|+\frac{4\epsilon}{\sqrt{2\pi}} \nl
-&\le 6\frac{E[|Y_1|^3]}{\sqrt n}+\frac{3C_{n-1}E[|Y_1|^3]^2}{n\epsilon}+\frac{4\epsilon}{\sqrt{2\pi}} \nl
-&\left\downarrow\ \epsilon = \sqrt{\frac{C_{n-1}}{n}}E[|Y_1|^3] \right. \nl
-&\le 6\frac{E[|Y_1|^3]}{\sqrt n}+\frac{3\sqrt{C_{n-1}}E[|Y_1|^3]}{\sqrt n}+\frac{4\sqrt{C_{n-1}}E[|Y_1|^3]}{\sqrt{2\pi}\sqrt{n}} \nl
-&\le \frac{E[|Y_1|^3]}{\sqrt n}\left[6+\left(3+\frac{4}{\sqrt{2\pi}}\right)\sqrt{C_{n-1}}\right] \nl
-\end{align*}
+\begin{align}
+  \sup_{x\in\R} \abs{\P{S_n \le x} - \P{N \le x}} & \le \sup_{x\in\R} \Big\{ \abs{\E{h_{x,\epsilon}(S_n)} - \E{h_{x,\epsilon}(N)}} \Big\} + \frac{4\epsilon}{\sqrt{2\pi}} \bnl
+  &\le \frac{6 \E{\abs{Y_1}^3} }{\sqrt n} + \frac{3 C_{n-1} \E{\abs{Y_1}^3}^2}{n\epsilon}+ \frac{4\epsilon}{\sqrt{2\pi}}
+\end{align}
 
-\noindent Damit
+\noindent This inequality holds for all $\epsilon > 0$. We choose $\epsilon = \sqrt{\frac{C_{n-1}}{n}} \E{\abs{Y_1}^3}$. So we get
 
-\begin{align*}
-C_n \le 6 + \left(3 + \frac{4}{\sqrt{2\pi}}\right)\sqrt{C_{n-1}}
-\end{align*}
+\begin{align}
+  \sup_{x\in\R} \abs{\P{S_n \le x} - \P{N \le x}} & \le \frac{6 \E{\abs{Y_1}^3} }{\sqrt n} + \frac{3 \sqrt{C_{n-1}} \E{\abs{Y_1}^3}^2}{ \sqrt n \epsilon } + \frac{4\sqrt{C_{n-1}} \E{\abs{Y_1}^3} }{\sqrt{2\pi}\sqrt{n}} \nl
+  &= \frac{ \E{\abs{Y_1}^3} }{\sqrt n} \left( 6+\left(3+\frac{4}{\sqrt{2\pi}}\right)\sqrt{C_{n-1}} \right)
+\end{align}
+
+\noindent We have defined $C_n$ such that it is the smallest number fulfilling 
+
+\begin{align}
+  \sup_{x\in\R} \abs{\P{S_n \le x} - \P{N \le x}} \le \frac{ \E{\abs{Y_1}^3} }{\sqrt n} C_n
+\end{align}
+
+\noindent Therefore we can conclude for $n \ge 2$
+
+\begin{align}
+  C_n \le 6 + \left(3 + \frac{4}{\sqrt{2\pi}}\right) \sqrt{C_{n-1}}
+\end{align}
+
+\subsection{Final induction}
+
+No we proof by induction that $C_n < 33$. First note that
+
+\begin{align}
+  C_n & = \frac{\sqrt{n}}{\E{\abs{X_1}^3}} \sup_{x\in\R} \abs{\P{S_n \le x}-\Phi(x)} \nl
+  &
+  \begin{comment}
+    \E{\abs{Y_1}^3} \ge 1
+  \end{comment} \nl
+  & \le \sqrt{n} \sup_{x\in\R} \abs{\P{S_n \le x}-\Phi(x)} \nl
+  &
+  \begin{comment}
+    \begin{multlined}
+      \P{S_n \le x} \in [0,1] \land \Phi(x) \in [0,1] \nl
+      \implies \abs{\P{S_n \le x}-\Phi(x)} \le 1
+    \end{multlined}
+  \end{comment} \nl
+  & \le \sqrt{n}
+\end{align}
+
+So we have $C_1 \le \sqrt{1} < 33$ and
+
+\begin{align}
+  C_{n+1} & \le 6+\left(3 + \frac{4}{\sqrt{2\pi}}\right) \sqrt{C_n} \nl
+  & \le 6+\left(3 + \frac{4}{\sqrt{2\pi}}\right) \sqrt{33} \nl
+  & = 32.40\ldots < 33
+\end{align}
+
+This proves $\sup_{n\in\N} C_n < \infty$ from which the Berry-Essen theorem follows.
