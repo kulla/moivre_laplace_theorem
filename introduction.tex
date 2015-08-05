@@ -2,12 +2,37 @@
 
 \section{The binomial distribution}
 
-Probability theory emerges from the investigation of games of chance~\cite[p. 4]{hald1}. Since the antiquity people played dice games and starting from the 14th century card games became more and more popular~\cite[pp. 33-34]{hald1}. The government uses lotteries to finance their expenditures and there were a lot of private lotteries as well~\cite[p. 34]{hald1}\todo{check citations}.
 
-In the 16th century Cardano started to discuss several problems about games of chance~\cite[pp. 33-41]{hald1} and this discussion was continued by mathematicians like Fermat, Pascal and Huygens in the 17th century~\cite[pp. 42-80]{hald1}. For example the odds and the expected winnings of different games were calculated. Among those discussed problem is the problem of division which states in its most general form \todo{ref}:
+\todo{check citations} Probability theory emerged from and was highly influenced by investigations of games of chance~\cite[p. 4]{hald1}. Since the antiquity dice games were played and starting from the 14th century card games became more and more popular~\cite[pp. 33-34]{hald1}. Governments used lotteries to finance their expenditures and a lot of private lotteries were conducted as well~\cite[p. 34]{hald1}.
 
-There are two players $A$ and $B$ which both need $s$ points to win. Player $A$ has the chance $p\in(0,1)$ to win a point in each round and player $B$ has the chance $q=1-p$. After some rounds with $A$ having $x$ and $B$ having $y$ points the game must be interrupted. How shall the stakes be fairly divided between $A$ and $B$? \todo{form}
+\includewrapfig{Christiaan_Huygens}{Christiaan Huygens}
 
-This problem in the symmetrical case $p=\tfrac 12$ was first solved in a correspondence between Pascal and Fermat in 1654~\cite[pp. 54-63]{hald1} \todo{jahr richtig?}. Christiaan Huygens also presented this problem in several example problem in his treatise \emph{De ratiociniis in ludo alea} (On Reasoning in Games of Chance) of 1657~\cite[pp. 54-63]{hald1}. 
+From the economic and recreational importance arose a demand in calculating the odds of a game or the value of the expected winnings \todo{cite, besserer Satz}. In 1654 Fermat and Pascal solved in a correspondence the problem of division~\cite[pp. 42-80]{hald1}\todo{check} which marks the foundation of probability theory \todo{cite}\footnote{In the 16th century Cardano already discussed several problems about games of chance in his work \emph{Liber de ludo aleae} (Book on Games of Chance)~\todo{cite, name des Buchs}\cite[pp. 33-41]{hald1}. However his book was first published posthumously 1663 and thus did not influenced Fermat, Pascal or Huygens~\cite[p. vii]{bernoulli}.}. Christiaan Huygens, who heard from the letters by Pascal and Fermat but did not know their methods~\cite[p. vii]{bernoulli}, wrote a short treatise \emph{De Ratiociniis in Ludo Aleae} (On Reckoning in Games of Chance) which was published 1657~\cite[p. vii]{bernoulli}\footnote{Huygens wrote his treatise in Flemish. Frans van Schooten translated it in Latin and published it at the end of his book \emph{Exercitationes Mathematicae}.}. Among the different problems, Huygens solved in his work, was the following~\cite[p. 163]{bernoulli}:
 
+\begin{quotation}
+  To find with how many dice one may undertake to throw two sixes on the first try.
+\end{quotation}
 
+The problem is to calculate the number of dices one need to throw such that the probability of throwing two sixes is at least $\tfrac 12$. Imagine for example that you are in a tavern of the 17th century drinking beer. A merchant comes to your table and offers you the following deal: ``I'll give you $8$ dices which you can throw at once. If you will get at least two sixes you will get a gold coin. In case you only throw one six or none you have to pay me a gold coin.'' Shall you participate in his game? Is the game fair or not? Who has the higher chance to win? This example demonstrates why Huygens and his colleagues were engaged in solving the above problem. 
+
+To solve this problem one first need to calculate the probability two throw exactly $m$ sixes with $n$ dices. If you are already familiar with the binomial distribution you see how this distribution can be used to solve the problem. This was later done by Jacob Bernoulli who reprinted Huygens's work \todo{Rechtschreibung} in the first part of his book \emph{Ars Conjectandi} (The Art of Conjecturing) where he also added additional comments~\cite[p. 63]{bernoulli}. Before we will have a look at Bernoulli's solution with a derivation of the binomial distribution I want to show how Huygens dealt with the problem to have a comparison of both attempts. Huygens first noted~\cite[p. 163]{bernoulli}:
+
+\begin{quotation}
+  Now this is just the same as asking in how many throws a person may undertake to throw one die in order to get two sixes.
+\end{quotation}
+
+So it does not make any difference whether $n$ dices are thrown at once or whether there is one die which is thrown $n$ times. Jacob Bernoulli gave a good explanation for this circumstance in his reprint of Huygens's work~\cite[p. 163]{bernoulli}\todo{Rechtschreibung}:
+
+\begin{quotation}
+  If, for example, one throw of ten dice is allowed, then it is certainly evident that it makes no difference whether those ten dice are thrown onto the gaming board altogether at one time or successively one after another. And if it is done successively, then it is equally clear that it makes no difference whether the ten dice thrown are ten different dice or one and the same die retrieved from the board and thrown ten times.
+\end{quotation}
+
+Because 
+
+\section{Applications of the binomial distribution}
+
+\section{The De Moivre-Laplace theorem}
+
+\section{Applications of De Moivre-Laplace theorem}
+
+\section{The historical proof of the De Moivre-Laplace theorem}
