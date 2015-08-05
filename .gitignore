@@ -10,6 +10,7 @@
 *\.blg
 *\.bbl
 *\.synctex\.gz
+*\.lof
 
 # ignore generated pdf files
 *\.pdf
