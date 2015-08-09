@@ -2,22 +2,23 @@
 
 \section{The binomial distribution}
 
+\subsection{The motivational problem for the binomial distribution}
 
-\todo{check citations} Probability theory emerged from and was highly influenced by investigations of games of chance~\cite[p. 4]{hald1}. Since the antiquity dice games were played and starting from the 14th century card games became more and more popular~\cite[pp. 33-34]{hald1}. Governments used lotteries to finance their expenditures and a lot of private lotteries were conducted as well~\cite[p. 34]{hald1}.
+Probability theory emerged from and was highly influenced by investigations of games of chance~\cite[p. 4]{hald1}. Since the antiquity dice games were played and starting from the 14th century card games became more and more popular~\cite[pp. 33-34]{hald1}. Governments used lotteries to finance their expenditures and a lot of private lotteries were conducted as well~\cite[p. 34]{hald1}.
 
 \includewrapfig{Christiaan_Huygens}{Christiaan Huygens}{File \href{https://commons.wikimedia.org/wiki/File:Christiaan_Huygens.jpg}{``Christiaan Huygens.jpg''} from Wikimedia Commons uploaded by \href{https://commons.wikimedia.org/w/index.php?title=User:Lord_Horatio_Nelson~commonswiki}{Lord Horatio Nelson$\sim$commonswiki} and licensed under Public domain}
 
-From the economic and recreational importance arose a demand in calculating the odds of a game or the value of the expected winnings \todo{cite, besserer Satz}. In 1654 Fermat and Pascal solved in a correspondence the problem of division~\cite[pp. 42-80]{hald1}\todo{check} which marks the foundation of probability theory \todo{cite}\footnote{In the 16th century Cardano already discussed several problems about games of chance in his work \emph{Liber de ludo aleae} (Book on Games of Chance)~\todo{cite, name des Buchs}\cite[pp. 33-41]{hald1}. However his book was first published posthumously 1663 and thus did not influenced Fermat, Pascal or Huygens~\cite[p. vii]{bernoulli}.}. Christiaan Huygens, who heard from the letters by Pascal and Fermat but did not know their methods~\cite[p. vii]{bernoulli}, wrote a short treatise \emph{De Ratiociniis in Ludo Aleae} (On Reckoning in Games of Chance) which was published 1657~\cite[p. vii]{bernoulli}\footnote{Huygens wrote his treatise in Flemish. Frans van Schooten translated it in Latin and published it at the end of his book \emph{Exercitationes Mathematicae}.}. Among the different problems, Huygens solved in his work, was the following~\cite[p. 163]{bernoulli}:
+From the economic and recreational importance arose a demand in calculating the odds of a game or the value of the expected winnings~\cite[p. 34]{hald1}. In 1654 Fermat and Pascal solved in a correspondence the problem of division~\cite[pp. 42-64]{hald1} which marks the foundation of probability theory~\cite[p. 4]{hald1}\footnote{In the 16th century Cardano already discussed several problems about games of chance in his work \emph{Liber de ludo aleae} (Book on Games of Chance)~\todo{cite, name des Buchs}\cite[pp. 33-41]{hald1}. However his book was first published posthumously 1663 and thus did not influenced Fermat, Pascal or Huygens~\cite[p. vii]{bernoulli}.}. Christiaan Huygens, who (according to himself) heard from the letters by Pascal and Fermat but did not know their methods~\cite[p. 67]{hald1}, wrote a short treatise \emph{De Ratiociniis in Ludo Aleae} (On Reckoning in Games of Chance) which was published 1657~\cite[p. vii]{bernoulli}\footnote{Huygens wrote his treatise in Dutch. His mathematics teacher Frans van Schooten translated it in Latin and published it at the end of his book \emph{Exercitationes Mathematicae}~\cite[pp. 65-68]{hald1}.}. Among the different problems, Huygens solved in his work, was the following~\cite[p. 163]{bernoulli}:
 
 \begin{quotation}
   To find with how many dice one may undertake to throw two sixes on the first try.
 \end{quotation}
 
-The problem is to calculate the number of dices one need to throw such that the probability of throwing two sixes is at least $\tfrac 12$. Imagine for example that you are in a tavern of the 17th century drinking beer. A merchant comes to your table and offers you the following deal: ``I'll give you $8$ dices which you can throw at once. If you will get at least two sixes you will get a gold coin. In case you only throw one six or none you have to pay me a gold coin.'' Shall you participate in his game? Is the game fair or not? Who has the higher chance to win? This example demonstrates why Huygens and his colleagues were engaged in solving the above problem. 
+The problem is to calculate the number of dices one need to throw such that the probability of throwing two sixes is at least $\tfrac 12$. Imagine for example that you are in a tavern of the 17th century drinking beer. A merchant comes to your table and offers you the following deal: ``I'll give you $8$ dices which you can throw at once. If you will get at least two sixes you will get a gold coin. In case you only throw one six or none you have to pay me a gold coin.'' Shall you participate in his game? Is the game fair or not? Who has the higher chance to win? This example demonstrates very well the motivation of Huygens and his colleagues to engage in such problems. 
 
 \includewrapfig{Jakob_Bernoulli}{Jacob Bernoulli}{File \href{https://commons.wikimedia.org/wiki/File:Jakob_Bernoulli.jpg}{``Jakob Bernoulli.jpg''} from Wikimedia Commons uploaded by user \href{https://commons.wikimedia.org/wiki/User:Materialscientist}{Materialscientist} and licensed under Public Domain}
 
-To solve this problem one first need to calculate the probability two throw exactly $m$ sixes with $n$ dices. If you are already familiar with the binomial distribution you see how this distribution can be used to solve the problem. This was later done by Jacob Bernoulli who reprinted Huygens's work \todo{Rechtschreibung} in the first part of his book \emph{Ars Conjectandi} (The Art of Conjecturing) where he also added additional comments~\cite[p. 63]{bernoulli}. Before we will have a look at Bernoulli's solution with a derivation of the binomial distribution I want to show how Huygens dealt with the problem to have a comparison of both attempts. Huygens first noted~\cite[p. 163]{bernoulli}:
+To solve this problem one first need to calculate the probability two throw exactly $m$ sixes with $n$ dices. If you are already familiar with the binomial distribution you see how this distribution can be used in the solution of the problem. This was later done by Jacob Bernoulli who reprinted Huygens's work \todo{Rechtschreibung} in the first part of his book \emph{Ars Conjectandi} (The Art of Conjecturing) where he also added additional comments~\cite[p. 63]{bernoulli}. Before we will have a look at Bernoulli's solution with a derivation of the binomial distribution I want to show how Huygens dealt with the problem to have a comparison of both attempts. Huygens first noted~\cite[p. 163]{bernoulli}:
 
 \begin{quotation}
   Now this is just the same as asking in how many throws a person may undertake to throw one die in order to get two sixes.
@@ -29,7 +30,56 @@ So it does not make any difference whether $n$ dices are thrown at once or wheth
   If, for example, one throw of ten dice is allowed, then it is certainly evident that it makes no difference whether those ten dice are thrown onto the gaming board altogether at one time or successively one after another. And if it is done successively, then it is equally clear that it makes no difference whether the ten dice thrown are ten different dice or one and the same die retrieved from the board and thrown ten times.
 \end{quotation}
 
-Because 
+After noting that it does not matter how the dices are thrown, Huygens showed how to calculate the expected winning recursively when one wins the stake $a$ for throwing at least two sixes in a certain number of throws~\cite[p. 163]{bernoulli}:
+
+\begin{quotation}
+  If someone undertook to do this in two throws, there would fall to him $a/36$, by what was shown before. If he is given three throws, then, if his first throw is a six, he will still have two throws, both of which must be sixes, and we said this is worth the same as $a/36$. But if his first throw is not a six, then he needs only to get one six on the remaining two throws. By proposition X this is worth of having $11a/36$. But there is certainly one case in which he throws a six th first time and five cases in which something else happens. So in the beginning there is one case for $11a/36$ and five cases for $a/36$. By proposition III\todo{typo untersuchen}, this is worth as much as $16a/127$ or $2a/27$. In repeatedly considering one more throw, we find that there is an advantage in undertaking to throw two sixes in ten throws with one die or in one throw with ten dice.
+\end{quotation}
+
+The argumentation of Huygens is the following: First he looked at the case when two dices a thrown. In proposition XI he already had calculated the expected value for this case to be $\tfrac 1{36}a$. The he investigated the case of three throws. There are five cases in which the first throw is not a six and the remaining expected value in these cases is $\tfrac 1{36}a$ because two sixes must be thrown in the remaining two throws. In one case the first throw is a six. Huygens already had shown in proposition X that the expected value of throwing at least one six in two throws is $\tfrac{11}{36}a$. So in total there a $5$ cases with a remaining expected value of $\tfrac 1{36}a$ and $1$ case with the remaining value of $\tfrac{11}{36} a$. The total expected value for three throws was now calculated as
+
+\begin{align}
+  \frac{1}{5+1} \left(5 \cdot \frac 1{36} a + 1 \cdot \frac{11}{36} a \right) = \frac{1}{6} \cdot \frac{5+11}{36} a = \frac{16}{216} a = \frac{2}{27} a
+\end{align}
+
+\noindent Thereby Huygens used his proposition III which states~\cite[p. 135]{bernoulli}:
+
+\begin{quotation}
+  If the number of cases in which $a$ falls to me is $p$ and the number of cases in which $b$ falls to me is $q$, and if all the cases can happen equally easily, then my expectation will be worth $(pa+qb)/(p+q)$.\footnote{The final formula can be rewritten as $\tfrac{p}{p+q} a+\tfrac q{p+q} b$ which is the definition of the expected value for the Bernoulli trial, a distribution with two possible outcomes. \todo{verbessern}}
+\end{quotation}
+
+Without writing it explicitly down in his book, Huygens now calculates recursively the odds of having two sixes in $n$ throws. His calculation might have looked like the following: Let $O_n$ be the expected winning of having at least one six in $n$ throws. In proposition X Huygens already had demonstrated by looking at several examples that $O_n = \tfrac 1{1+5} \left( 1 \cdot a + 5 \cdot O_{n-1} \right)=\tfrac 16 \left( a + 5 \cdot O_{n-1} \right)$. If the first throw is a six, then the player gets the whole stack $a$. In the remaining five cases the player still has the opportunity to throw a six in the remaining $n-1$ throws and thus have an expected winning of $O_{n-1}$ to win. The calculated values by Huygens are:
+
+\begin{align}
+  \begin{array}{rll}
+    O_1 & = \frac 16 a \nl
+    O_2 & = \frac 16 ( a + 5 \cdot \frac 16 a) & = \frac{11}{36} a \nl
+    O_3 & = \frac 16 ( a + 5 \cdot \frac{11}{36} a) & = \frac{91}{216} a \nl
+    O_4 & = \frac 16 ( a + 5 \cdot \frac{91}{216} a) & = \frac{671}{1296} a \nl
+    & \vdots \nl
+    O_8 & = \frac 16 ( a + 5 \cdot \frac{201811}{279936} a) & = \frac{1288991}{1679616} a \nl
+    O_9 & = \frac 16 ( a + 5 \cdot \frac{1288991}{1679616} a) & = \frac{8124571}{10077696} a \nl
+    & \vdots
+  \end{array}
+\end{align}
+
+Let $T_n$ be the expected winning for throwing at least two sixes in $n$ throws. By the same argument Huygens gave for the special case $n=3$ we deduce $T_n = \tfrac{1}{6} ( 5 \cdot T_{n-1}  + O_{n-1})$. Thus Huygens calculated
+
+\begin{align}
+  \begin{array}{rlll}
+    T_2 & = \frac 1{36} a \nl
+    T_3 & = \frac 16 (5 \cdot \frac 1{36} a + \frac{11}{36} a) &= \frac 2{27} a \nl
+    T_4 & = \frac 16 (5 \cdot \frac 2{27} a + \frac{91}{216} a) &= \frac {19}{144} a \nl
+    & \vdots \nl
+    T_9 & = \frac 16 (5 \cdot \frac {663991}{1679616} a + \frac{1288991}{1679616} a) &= \frac {2304473}{5038848} a & \approx 0.457 a \nl
+    T_{10} & = \frac 16 (5 \cdot \frac{2304473}{5038848} a + \frac{8124571}{10077696} a) &= \frac{10389767}{20155392} a & \approx 0.515 a \nl
+    & \vdots 
+  \end{array}
+\end{align}
+
+So starting with $10$ dices the odds for the player to win is higher than $\tfrac 12$. As you can see in the above calculations a lot of effort is need to get this solutions. This motivates the question: Is there a better way to calculate the probability of having $m$ sixes in $n$ throws of a dice?
+
+\subsection{Bernoulli's derivation of the binomial distribution}
 
 \section{Applications of the binomial distribution}
 
