@@ -14,17 +14,17 @@ From the economic and recreational importance arose a demand in calculating the 
   To find with how many dice one may undertake to throw two sixes on the first try.
 \end{quotation}
 
+\includewrapfig[0.5\textwidth]{tavern1658}{Men gambling in a tavern (image section of a Flemish painting from 1658)}{Painting \href{https://commons.wikimedia.org/wiki/File:Tavern_Scene-1658-David_Teniers_II.jpg}{``Tavern Scene''} by \href{https://en.wikipedia.org/wiki/David_Teniers_the_Younger}{David Teniers the Younger} from 1658. Cropped version of picture which was uploaded at Wikimedia Commons and which was taken by National Gallery of Art, Washington, D.C., USA. Picture is licensed under Public Domain.}
+
 The problem is to calculate the number of dices one need to throw such that the probability of throwing two sixes is at least $\tfrac 12$. Imagine for example that you are in a tavern of the 17th century drinking beer. A merchant comes to your table and offers you the following deal: ``I'll give you $8$ dices which you can throw at once. If you will get at least two sixes you will get a gold coin. In case you only throw one six or none you have to pay me a gold coin.'' Shall you participate in his game? Is the game fair or not? Who has the higher chance to win? This example demonstrates very well the motivation of Huygens and his colleagues to engage in such problems. 
 
-\includewrapfig{Jakob_Bernoulli}{Jacob Bernoulli}{File \href{https://commons.wikimedia.org/wiki/File:Jakob_Bernoulli.jpg}{``Jakob Bernoulli.jpg''} from Wikimedia Commons uploaded by user \href{https://commons.wikimedia.org/wiki/User:Materialscientist}{Materialscientist} and licensed under Public Domain}
-
-To solve this problem one first need to calculate the probability two throw exactly $m$ sixes with $n$ dices. If you are already familiar with the binomial distribution you see how this distribution can be used in the solution of the problem. This was later done by Jacob Bernoulli who reprinted Huygens's work \todo{Rechtschreibung} in the first part of his book \emph{Ars Conjectandi} (The Art of Conjecturing) where he also added additional comments~\cite[p. 63]{bernoulli}. Before we will have a look at Bernoulli's solution with a derivation of the binomial distribution I want to show how Huygens dealt with the problem to have a comparison of both attempts. Huygens first noted~\cite[p. 163]{bernoulli}:
+To solve this problem one first need to calculate the probability two throw exactly $m$ sixes with $n$ dices. If you are already familiar with the binomial distribution you see how this distribution can be used in the solution of the problem. This was later done by Jacob Bernoulli who reprinted Huygens' work in the first part of his book \emph{Ars Conjectandi} (The Art of Conjecturing) where he also added additional comments~\cite[p. 63]{bernoulli}. Before we will have a look at Bernoulli's solution with a derivation of the binomial distribution I want to show how Huygens dealt with the problem to have a comparison of both attempts. Huygens first noted~\cite[p. 163]{bernoulli}:
 
 \begin{quotation}
   Now this is just the same as asking in how many throws a person may undertake to throw one die in order to get two sixes.
 \end{quotation}
 
-So it does not make any difference whether $n$ dices are thrown at once or whether there is one die which is thrown $n$ times. Jacob Bernoulli gave a good explanation for this circumstance in his reprint of Huygens's work~\cite[p. 163]{bernoulli}\todo{Rechtschreibung}:
+So it does not make any difference whether $n$ dices are thrown at once or whether there is one die which is thrown $n$ times. Jacob Bernoulli gave a good explanation for this circumstance in his reprint of Huygens' work~\cite[p. 163]{bernoulli}:
 
 \begin{quotation}
   If, for example, one throw of ten dice is allowed, then it is certainly evident that it makes no difference whether those ten dice are thrown onto the gaming board altogether at one time or successively one after another. And if it is done successively, then it is equally clear that it makes no difference whether the ten dice thrown are ten different dice or one and the same die retrieved from the board and thrown ten times.
@@ -77,9 +77,13 @@ Let $T_n$ be the expected winning for throwing at least two sixes in $n$ throws.
   \end{array}
 \end{align}
 
-So starting with $10$ dices the odds for the player to win is higher than $\tfrac 12$. As you can see in the above calculations a lot of effort is need to get this solutions. This motivates the question: Is there a better way to calculate the probability of having $m$ sixes in $n$ throws of a dice?
+So starting with $10$ dices the odds for the player to win is higher than $\tfrac 12$. Besides the probability for us to win in the above supposed game with eight dices is $\tfrac{663991}{1679616}$ which is roughly $0.40$.
 
 \subsection{Bernoulli's derivation of the binomial distribution}
+
+\includewrapfig{Jakob_Bernoulli}{Jacob Bernoulli}{File \href{https://commons.wikimedia.org/wiki/File:Jakob_Bernoulli.jpg}{``Jakob Bernoulli.jpg''} from Wikimedia Commons uploaded by user \href{https://commons.wikimedia.org/wiki/User:Materialscientist}{Materialscientist} and licensed under Public Domain}
+
+As you can see in the above calculations a lot of effort is need to get this solutions. This motivates the question: Is there a better way to calculate the probability of having $m$ sixes in $n$ throws of a dice?
 
 \section{Applications of the binomial distribution}
 
