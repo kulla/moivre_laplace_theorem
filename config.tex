@@ -18,7 +18,7 @@
 \newcommand*{\refneeded}{\todo{Referenz!}}
 
 \newcommand*{\includefig}[3]{\begin{figure}[h] \begin{center} \includegraphics[width=0.5\textwidth,draft=false]{figures/{#1}} \caption[#3]{#2} \end{center} \end{figure}}
-\newcommand*{\includewrapfig}[3]{\begin{wrapfigure}{r}{0.33\textwidth} \vspace{-20pt} \begin{center} \includegraphics[width=0.3\textwidth,draft=false]{figures/{#1}} \caption[#3]{#2} \end{center} \vspace{-30pt} \end{wrapfigure}}
+\newcommand*{\includewrapfig}[4][0.33\textwidth]{\begin{wrapfigure}{r}{#1} \vspace{-20pt} \begin{center} \includegraphics[width=#1 - 0.02\textwidth,draft=false]{figures/{#2}} \caption[#4]{#3} \end{center} \vspace{-30pt} \end{wrapfigure}}
 
 \newcommand*{\seq}[2][n]{\left({#2}\right)_{{#1}\in\N}}
 \newcommand*{\abs}[1]{\left|{#1}\right|}
