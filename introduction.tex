@@ -86,20 +86,73 @@ So starting with $10$ dices the odds for the player to win is higher than $\tfra
 As we have seen in the previous section Christiaan Huygens could well solve his proposed problem. One also can extract an algorithm from his method with which similar problems can be solved. But he only investigated a special case although a more general formulation of his method is possible. For example one may be interested in a game with dices which have more or less than six faces. Also the number of favorable faces on a die may be more then one and the minimal value of favorable results in all throws may differ from two. To the previous and similar problem Jacob Bernoulli wrote~\cite[p. 157]{bernoulli}:
 
 \begin{quotation}
-  If the Author [Christiaan Huygens]\todo{richtig?} had substituted letters for numbers, he could have expressed this and the preceding proposition as one problem and investigated its general solution with equal ease...\todo{richtig?}
+  If the Author [Christiaan Huygens, S.K.]\todo{richtig?} had substituted letters for numbers, he could have expressed this and the preceding proposition as one problem and investigated its general solution with equal ease [...]\todo{richtig?}
 \end{quotation}
 
 Also Huygens' recursive method needs a lot of calculational effort to find the final solution. Thus one question arises: Is there a more direct and general solution for Huygens' problem?
 
-\includewrapfig[0.4\textwidth]{Ars_Conjectandi}{Cover of \emph{Ars Conjectandi}}{Cover of \emph{Ars Conjectandi} by Jacob Bernoulli 1713. File \href{https://commons.wikimedia.org/wiki/File:Arsconj.gif}{``Arsconj.gif''} from Wikimedia Commons uploaded by user \href{https://commons.wikimedia.org/wiki/User:Nousernamesleft}{Nousernamesleft} and licensed under Public Domain.}
+\includefig{Ars_Conjectandi}{Cover of \emph{Ars Conjectandi}}{Cover of \emph{Ars Conjectandi} by Jacob Bernoulli 1713. File \href{https://commons.wikimedia.org/wiki/File:Arsconj.gif}{``Arsconj.gif''} from Wikimedia Commons uploaded by user \href{https://commons.wikimedia.org/wiki/User:Nousernamesleft}{Nousernamesleft} and licensed under Public Domain.}
 
 Jacob Bernoulli addressed this question with the binomial distribution as an answer in his book \emph{Ars Conjectandi} (The Art of Conjecturing) from 1713~\cite[pp. 220-256]{hald1}\footnote{The book was published eight years after Jacob Bernoulli's death by his nephew Nicholas Bernoulli in 1703~\cite[pp. 223-224]{hald1}}. In the first part of this book Bernoulli\footnote{The family of Bernoullis is huge with a lot of influential mathematicians. In the following I always refer to Jacob Bernoulli when I only mention ``Bernoulli''. A good overview of Bernoulli's family tree gives~\cite[pp. 1-4]{bernoulli}} reprinted Huygens' \emph{De Ratiociniis in Ludo Aleae} with additional notes and alternative solutions~\cite[p. 63]{bernoulli}.
 
-In his comments to the above problem Bernoulli first derived the binomial distribution by incomplete induction with an argumentation similar to Huygens' solution. Afterwards he derived the binomial distribution with a combinatorial argumentation:
+In his comments to the above problem Bernoulli first derived the binomial distribution by incomplete induction with an argumentation similar to Huygens' solution. Afterwards he derived the binomial distribution with a combinatorial argumentation~\cite[pp. 165-167]{bernoulli}:
 
 \begin{quotation}
-  T
+  [Consider] $n$ dice A, B, C, D, etc., each constructed with $a$ faces, $b$ of which match the purpose of the player, and the other $c$ of which do not. And ask in how many cases it may happen that what was undertaken is accomplished on none of the dice, on just one of the dice, or on only 2, 3, or 4 of them, and so on; finally, in how many cases the person undertaking the game fails in his purpose and his opponent wins. But it was shown in the Note to the preceding Proposition that there are $C^n$ cases in which what was undertaken is accomplished on none of the dice. And it may be concluded in a similar way that there are $b$ cases, or $bb$, or $b^3$, etc., in which one of the dice, for instance A, or two, A and B, or three, A, B, and C, and so on, meet the purpose of the person undertaking the game. Similarly, there are $c^{n-1}$ cases, or $c^{n-2}$ cases, and so on, in which $n-1$ dice, or $n-2$ dice, or $n-3$ dice, and so on, fail to fulfill his hopes. Therefore, since each of these cases can be joined with any of the preceding, multiplication of the latter by the former produces $bc^{n-1}$ cases, or $bbc{n-2}$ cases, or $b^3c^{n-3}$ cases, and so on. And since the die or dice that favor the person undertaking the game might be either A or B or C, and so on, if there is one, or, if there are two, either A and B, or A and C, or B and C, and so on, or, if there are three, either A, B, and C, or A, B and D, and so on, these number of cases must again be multiplied by the number of units, pairs, triples, and so son that can be drawn from all $n$ dice. But by the theory of combinations developed in Part II, this number is $n$, or $n(n-1)/(1\cdot 2)$, or $n(n-1)(n-2)/(1\cdot 2\cdot 3)$, etc. So from this multiplication we obtain $nbc^{n-1}$, or
+
+  
+  $\frac{n(n-1)}{1\cdot 2}bbc^{n-2}$,
+
+  or $\frac{n(n-1)(n-2)}{1\cdot 2\cdot 3}b^3c^{n-3}$ etc., on up to
+
+  $\frac{n(n-1)(n-2)\ldots(n-m+2)}{1\cdot 2\cdot 3\cdot 4\ldots(m-1)} b^{m-1} c^{n-m+1}$
+
+  for the numbers of cases in which what was undertaken is accomplished with exactly one die, or two dice, or three dice and so on up to $m-1$ dice. Since, as we mentioned, the opponent wins in all these cases and since there are altogether $a^n$ cases with $n$ dice, his lot is, \textbf{[42]} by Corollary 1 of Proposition III,
+
+  $c^n+nbc^{n-1}+\frac{n(n-1)}{1\cdot 2}bbc^{n-2} + \frac{n(n-1)(n-2)}{1\cdot 2\cdot 3}b^3c^{n-3} \ldots$
+
+  $+\frac{n(n-1)(n-2)\ldots(n-m+2)}{1\cdot 2\cdot 3\cdot 4\ldots(m-1)} b^{m-1}c^{n-m+1} : a^n$,\footnote{The notation $x_1+x_2+\ldots+x_n:y$ means $\tfrac 1y (x_1+x_2+\ldots+x_n)$. \todo{cite}}
+
+  as above.
 \end{quotation}
+
+Bernoulli considered a die with $a$ faces which has $b$ faces being favorable for the player and $c=a-b$ faces being unfavorable. The player has to throw at least $m$ times one of the $b$ favorable faces in a total of $n$ throws in order to win. What is the probability of winning / loosing?
+
+Bernoulli started with calculating the number of outcomes in which the player throws exactly $k$ times one of the favorable faces. Fix $k$ of the total $n$ throws. All of these $k$ throws shall be one of the $b$ favorable results and the other $n-k$ shall be one of the $c$ unfavorable results. Because each of these $k$ throws can show one of $b$ possible faces the total number of different outcomes in these $k$ throws with only favorable results is $b^k$. Analogously is the number of possible outcomes in the other $n-k$ throws with only unfavorable results equal to $c^{n-k}$. Therefore there are in total $b^kc^{n-k}$ different outcomes in which the $k$ fixed throws show a favorable face and the other $n-k$ throws show a unfavorable face.
+
+In favor of throwing exactly $k$ favorable numbers, the order in which those $k$ numbers are thrown does not matter. As known by combinatorics there are $\binom nk=\frac{n!}{k!(n-k)!}=\frac{n\cdot(n-1)\ldots(n-k+1)}{1\cdot2\cdot3\ldots k}$ different orders in which exactly $k$ favorable throws occur. For each of these orders the total number of different outcomes, in which the $k$ favorable and $n-k$ unfavorable results occur in the specified order, is $b^kc^{n-k}$ as we have seen in the previous paragraph. Thus the total numbers of outcomes with exactly $k$ favorable throws is $\binom nk b^k c^{n-k}$.
+
+Because the total number of outcomes is $a^n$ and because all outcomes are equally likely, the probability for the player to have exactly $k$ favorable throws is $\frac {1}{a^n} \binom nk b^k c^{n-k}$.
+
+Because the player looses when he throws at most $m-1$ favorable numbers, the probability for the player to loose is
+
+\begin{align}
+  \P{\text{player looses}} = \frac{1}{a^n} \sum_{k=0}^{m-1} \binom nk b^k c^{n-k}
+\end{align}
+
+This is the same formula Bernoulli derived in the end of the above quoted section. He ended his discussion of Huygens' problem with two corollaries which he named ``Rule for knowing the lot of a player to whom several throws of a die have given and who is held to archieving something precisely on some certain throws and not on others''~\cite[p. 170]{bernoulli}:
+
+\begin{quotation}
+  \emph{Corollary 1.} If there are the same numbers of cases in all games [...] the expectation found to be [...] $b^mc^{n-m}/a^n$, taking $n$ for the number of all the throws, and $m$ for the number in which what is to be achieved ought to be achieved.
+  
+  \emph{Corollary 2.} If the same numbers of cases rule in all games and if, in addition, the number of games or throws is determined within which something is to be achieved, but such that the desired result can occur on any throws and not on certain determined ones [...] then it is clear that the quantity of the expectation found in the previous corollary should be multiplied by as many times as [...] $m$ things may be chosen from $n$ diverse things. This, however, may occur, by the Theory of Combinatorics to be treated in Part II, in $n(n-1)(n-2)(n-3)\ldots(n-m+1)/(1\cdot 2\cdot 3\cdot 4\ldots m)$ ways [...]. Thus the expectation of the player will be worth
+
+  \begin{align*}
+    \frac{n(n-1)(n-2)(n-3)\ldots(n-m+1)}{(1\cdot 2\cdot 3\cdot 4\ldots m)}\cdot \frac{b^mc^{n-m}}{a^n}
+  \end{align*}
+\end{quotation}
+
+When we introduce $p=\tfrac ba$ which is the probability that one get a favorable result in one throw and analogously $q=\tfrac ca=1-p$ for the probability of an unfavorable result in a throw, we get:
+
+\begin{align}
+  \P{\text{$m$ in $n$ throws are favorable}} & = \frac{n(n-1)(n-2)(n-3)\ldots(n-m+1)}{(1\cdot 2\cdot 3\cdot 4\ldots m)}\cdot \frac{b^mc^{n-m}}{a^n} \nl
+  &= \binom nm \frac{b^m}{a^m} \frac{c^{n-m}}{a^{n-m}} \nl
+  &= \binom nm p^m q^{n-m}
+\end{align}
+
+So we finally get a formula for calculating the odds of having $m$ favorable cases in a total of $n$ (independent) cases when in each case the probability of having a favorable case is $p$\footnote{In Bernoulli's work $p$ is $\tfrac ba$ and thus Bernoulli only considered rational probabilities in his derivation. This was common in the beginning of probability theory \todo{cite}. It may have its origin, that in most games with a finite number of rounds only rational probabilities occur.}. As we will see in the next section, this formula gets the probability mass of the binomial distribution.
+
+\section{Definition of the binomial distribution}
 
 \section{Applications of the binomial distribution}
 
