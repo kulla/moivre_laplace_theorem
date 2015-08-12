@@ -148,9 +148,39 @@ When we introduce $p=\tfrac ba$ which is the probability that one get a favorabl
   &= \binom nm p^m q^{n-m}
 \end{align}
 
-So we finally get a formula for calculating the odds of having $m$ favorable cases in a total of $n$ (independent) cases when in each case the probability of having a favorable case is $p$\footnote{In Bernoulli's work $p$ is $\tfrac ba$ and thus Bernoulli only considered rational probabilities in his derivation. This was common in the beginning of probability theory \todo{cite}. It may have its origin, that in most games with a finite number of rounds only rational probabilities occur.}. As we will see in the next section, this formula gets the probability mass of the binomial distribution.
+So we finally get a formula for calculating the odds of having $m$ favorable cases in a total of $n$ (independent) cases when in each case $p$ is the probability of having a favorable case\footnote{In Bernoulli's work $p$ is $\tfrac ba$ and thus Bernoulli only considered rational probabilities in his derivation. This was common in the beginning of probability theory \todo{cite}. It may have its origin, that in most games with a finite number of rounds only rational probabilities occur.}. As we will see in the next section, this formula gets the probability mass of the binomial distribution.
 
 \section{Definition of the binomial distribution}
+
+In the previous section we have seen the historical derivation and motivation of the binomial distribution. In this section I want to introduce the binomial distribution in a way contemporary textbooks define it. \todo{cite}
+
+Take $n$ independent random variables $X_1, X_2, \ldots, X_n$. Each of them has two possible outcomes $\alpha$ and $\beta$. Those random variables with two possible outcomes are called ``Bernoulli trials'' named after Jacob Bernoulli. \todo{cite} The outcome $\alpha$ has the probability $p$ and $\beta$ has the probability $q=1-p$ to occur in each random variable $X_i$. 
+
+The binomial distribution is the probability distribution which assigns for each $k\in \{0,1,\ldots,n\}$ the probability of having exactly $k$ times the outcome $\alpha$ among all random variables $X_1,X_2,\ldots,X_n$. A typical way to define the binomial distribution is to set $\alpha=1$ and $\beta=0$. The random variable $\Bs=\sum_{i=1}^n X_i$ is then binomially distributed.
+
+What is $\P{\Bs = k} = \P{\sum_{i=1}^n X_i=k}$? To find this probability we can argue in a very similar way as in the above section. First we fix an order in which $k$ random variables of all $X_i$ are $\alpha$ and the rest $n-k$ random variables have $\beta$ as an outcome. The probability for each such order is $p^kq^{n-k}$ since the random variables are independent.
+
+For example the first $k$ random variables $X_1,X_2,\ldots,X_k$ might have the result $\alpha$ and the other $n-k$ random variables $X_{k+1},X_{k+2},\ldots,X_n$ have the outcome $\beta$. The probability in this case is:
+
+\begin{align}
+  & \P{X_1=\alpha, X_2=\alpha, \ldots, X_k=\alpha,X_{k+1}=\beta, X_{k+2}=\beta, \ldots X_n =\beta} \nl
+  =\ & \underbrace{\P{X_1=\alpha} \cdot \P{ X_2=\alpha} \ldots \P{X_k=\alpha}}_{=p^k} \cdot \underbrace{\P{X_{k+1}=\beta} \cdot \P{X_{k+2}=\beta} \ldots \P{X_n =\beta}}_{= q^{n-k}} \nl
+  =\ & p^kq^{n-k}
+\end{align}
+
+Since the order in which the $k$ outcomes $\alpha$ and the $n-k$ outcomes $\beta$ occur does not matter, we have to sum of the probabilities over all such orders. Do define such an order, we have to take $k$ among all $n$ random variables which shall have the result $\alpha$. From combinatorics we know that there are $\binom nk$ ways to take $k$ objects from a whole set of $n$ objects. So there are $\binom bk$ orders in which exactly $k$ random variables have the outcome $\alpha$. Each of these orders has the possibility $p^kq^{n-k}$. So the total possibility to have exactly $k$ times the outcome $\alpha$ among all random variables is $\binom nk p^kq^{n-k}$.
+
+As already mentioned, this distribution is called ``binomial distribution'':
+
+\begin{definition}[Binomial distribution]
+  The binomial distribution $\Bs$ is the probability distribution on the set $\{0,1,2,\ldots,n\}$ with the probability mass function
+
+  \begin{align}
+    \P{\Bs=k} = \binom nk p^k q^{n-k}
+  \end{align}
+\end{definition}
+
+\includefig{binomial_distribution_pmf}{The probability mass function of the binomial distribution}{File \href{https://commons.wikimedia.org/wiki/File:Binomial_distribution_pmf.svg}{``Binomial distribution pmf.svg''} from Wikimedia Commons. Upload by user \href{https://commons.wikimedia.org/w/index.php?title=User:Tayste}{Tayste} and licensed under Public Domain.}
 
 \section{Applications of the binomial distribution}
 
