@@ -5,6 +5,7 @@
 \usepackage{geometry}
 \usepackage{graphicx}
 \usepackage{hyperref}
+\usepackage{wrapfig}
 
 \usepackage{amsmath}
 \usepackage{amsthm}
@@ -12,7 +13,7 @@
 \usepackage{mathtools}
 \usepackage{dsfont}
 
-\usepackage{todonotes}
+\usepackage[disable]{todonotes}
 
 \usepackage[nottoc]{tocbibind}
 
@@ -22,9 +23,14 @@
   
 \maketitle
 \tableofcontents
+\listoffigures
 
-\include{lemmas}
+\include{introduction}
+\include{binomial_distribution}
+\include{theorem}
+\include{numerical_investigation}
 \include{berry_esseen}
+\include{alternative_proof}
 
 \bibliographystyle{plain}
 \bibliography{references}

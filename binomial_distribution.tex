@@ -1,0 +1,197 @@
+\chapter{The binomial distribution}
+
+\section{The motivational problem for the binomial distribution}
+
+Probability theory emerged from and was highly influenced by investigations of games of chance~\cite[p. 4]{hald1}. Since the antiquity dice games were played and starting from the 14th century card games became more and more popular~\cite[pp. 33-34]{hald1}. Governments used lotteries to finance their expenditures and a lot of private lotteries were conducted as well~\cite[p. 34]{hald1}.
+
+\includewrapfig{Christiaan_Huygens}{Christiaan Huygens}{File \href{https://commons.wikimedia.org/wiki/File:Christiaan_Huygens.jpg}{``Christiaan Huygens.jpg''} from Wikimedia Commons uploaded by \href{https://commons.wikimedia.org/w/index.php?title=User:Lord_Horatio_Nelson~commonswiki}{Lord Horatio Nelson$\sim$commonswiki} and licensed under Public domain}
+
+From the economic and recreational importance arose a demand in calculating the odds of a game or the value of the expected winnings~\cite[p. 34]{hald1}. In 1654 Fermat and Pascal solved in a correspondence the problem of division~\cite[pp. 42-64]{hald1} which marks the foundation of probability theory~\cite[p. 4]{hald1}\footnote{In the 16th century Cardano already discussed several problems about games of chance in his work \emph{Liber de ludo aleae} (Book on Games of Chance)~\todo{cite, name des Buchs}\cite[pp. 33-41]{hald1}. However his book was first published posthumously 1663 and thus did not influenced Fermat, Pascal or Huygens~\cite[p. vii]{bernoulli}.}. Christiaan Huygens, who (according to himself) heard from the letters by Pascal and Fermat but did not know their methods~\cite[p. 67]{hald1}, wrote a short treatise \emph{De Ratiociniis in Ludo Aleae} (On Reckoning in Games of Chance) which was published 1657~\cite[p. vii]{bernoulli}\footnote{Huygens wrote his treatise in Dutch. His mathematics teacher Frans van Schooten translated it in Latin and published it at the end of his book \emph{Exercitationes Mathematicae}~\cite[pp. 65-68]{hald1}.}. Among the different problems, Huygens solved in his work, was the following~\cite[p. 163]{bernoulli}:
+
+\begin{quotation}
+  To find with how many dice one may undertake to throw two sixes on the first try.
+\end{quotation}
+
+\includewrapfig[0.5\textwidth]{tavern1658}{Men gambling in a tavern (image section of a Flemish painting from 1658)}{Painting \href{https://commons.wikimedia.org/wiki/File:Tavern_Scene-1658-David_Teniers_II.jpg}{``Tavern Scene''} by \href{https://en.wikipedia.org/wiki/David_Teniers_the_Younger}{David Teniers the Younger} from 1658. Cropped version of picture which was uploaded at Wikimedia Commons and which was taken by National Gallery of Art, Washington, D.C., USA. Picture is licensed under Public Domain.}
+
+The problem is to calculate the number of dices one need to throw such that the probability of throwing two sixes is at least $\tfrac 12$. Imagine for example that you are in a tavern of the 17th century drinking beer. A merchant comes to your table and offers you the following deal: ``I'll give you $8$ dices which you can throw at once. If you will get at least two sixes you will get a gold coin. In case you only throw one six or none you have to pay me a gold coin.'' Shall you participate in his game? Is the game fair or not? Who has the higher chance to win? This example demonstrates very well the motivation of Huygens and his colleagues to engage in such problems. 
+
+To solve this problem one first need to calculate the probability two throw exactly $m$ sixes with $n$ dices. If you are already familiar with the binomial distribution you see how this distribution can be used in the solution of the problem. This was later done by Jacob Bernoulli who reprinted Huygens' work in the first part of his book \emph{Ars Conjectandi} (The Art of Conjecturing) where he also added additional comments~\cite[p. 63]{bernoulli}. Before we will have a look at Bernoulli's solution with a derivation of the binomial distribution I want to show how Huygens dealt with the problem to have a comparison of both attempts. Huygens first noted~\cite[p. 163]{bernoulli}:
+
+\begin{quotation}
+  Now this is just the same as asking in how many throws a person may undertake to throw one die in order to get two sixes.
+\end{quotation}
+
+So it does not make any difference whether $n$ dices are thrown at once or whether there is one die which is thrown $n$ times. Jacob Bernoulli gave a good explanation for this circumstance in his reprint of Huygens' work~\cite[p. 163]{bernoulli}:
+
+\begin{quotation}
+  If, for example, one throw of ten dice is allowed, then it is certainly evident that it makes no difference whether those ten dice are thrown onto the gaming board altogether at one time or successively one after another. And if it is done successively, then it is equally clear that it makes no difference whether the ten dice thrown are ten different dice or one and the same die retrieved from the board and thrown ten times.
+\end{quotation}
+
+After noting that it does not matter how the dices are thrown, Huygens showed how to calculate the expected winning recursively when one wins the stake $a$ for throwing at least two sixes in a certain number of throws~\cite[p. 163]{bernoulli}:
+
+\begin{quotation}
+  If someone undertook to do this in two throws, there would fall to him $a/36$, by what was shown before. If he is given three throws, then, if his first throw is a six, he will still have two throws, both of which must be sixes, and we said this is worth the same as $a/36$. But if his first throw is not a six, then he needs only to get one six on the remaining two throws. By proposition X this is worth of having $11a/36$. But there is certainly one case in which he throws a six th first time and five cases in which something else happens. So in the beginning there is one case for $11a/36$ and five cases for $a/36$. By proposition III\todo{typo untersuchen}, this is worth as much as $16a/127$ or $2a/27$. In repeatedly considering one more throw, we find that there is an advantage in undertaking to throw two sixes in ten throws with one die or in one throw with ten dice.
+\end{quotation}
+
+The argumentation of Huygens is the following: First he looked at the case when two dices a thrown. In proposition XI he already had calculated the expected value for this case to be $\tfrac 1{36}a$. The he investigated the case of three throws. There are five cases in which the first throw is not a six and the remaining expected value in these cases is $\tfrac 1{36}a$ because two sixes must be thrown in the remaining two throws. In one case the first throw is a six. Huygens already had shown in proposition X that the expected value of throwing at least one six in two throws is $\tfrac{11}{36}a$. So in total there a $5$ cases with a remaining expected value of $\tfrac 1{36}a$ and $1$ case with the remaining value of $\tfrac{11}{36} a$. The total expected value for three throws was now calculated as
+
+\begin{align}
+  \frac{1}{5+1} \left(5 \cdot \frac 1{36} a + 1 \cdot \frac{11}{36} a \right) = \frac{1}{6} \cdot \frac{5+11}{36} a = \frac{16}{216} a = \frac{2}{27} a
+\end{align}
+
+\noindent Thereby Huygens used his proposition III which states~\cite[p. 135]{bernoulli}:
+
+\begin{quotation}
+  If the number of cases in which $a$ falls to me is $p$ and the number of cases in which $b$ falls to me is $q$, and if all the cases can happen equally easily, then my expectation will be worth $(pa+qb)/(p+q)$.\footnote{The final formula can be rewritten as $\tfrac{p}{p+q} a+\tfrac q{p+q} b$ which is the definition of the expected value for the Bernoulli trial, a distribution with two possible outcomes. \todo{verbessern}}
+\end{quotation}
+
+Without writing it explicitly down in his book, Huygens now calculates recursively the odds of having two sixes in $n$ throws. His calculation might have looked like the following: Let $O_n$ be the expected winning of having at least one six in $n$ throws. In proposition X Huygens already had demonstrated by looking at several examples that $O_n = \tfrac 1{1+5} \left( 1 \cdot a + 5 \cdot O_{n-1} \right)=\tfrac 16 \left( a + 5 \cdot O_{n-1} \right)$. If the first throw is a six, then the player gets the whole stack $a$. In the remaining five cases the player still has the opportunity to throw a six in the remaining $n-1$ throws and thus have an expected winning of $O_{n-1}$ to win. The calculated values by Huygens are:
+
+\begin{align}
+  \begin{array}{rll}
+    O_1 & = \frac 16 a \nl
+    O_2 & = \frac 16 ( a + 5 \cdot \frac 16 a) & = \frac{11}{36} a \nl
+    O_3 & = \frac 16 ( a + 5 \cdot \frac{11}{36} a) & = \frac{91}{216} a \nl
+    O_4 & = \frac 16 ( a + 5 \cdot \frac{91}{216} a) & = \frac{671}{1296} a \nl
+    & \vdots \nl
+    O_8 & = \frac 16 ( a + 5 \cdot \frac{201811}{279936} a) & = \frac{1288991}{1679616} a \nl
+    O_9 & = \frac 16 ( a + 5 \cdot \frac{1288991}{1679616} a) & = \frac{8124571}{10077696} a \nl
+    & \vdots
+  \end{array}
+\end{align}
+
+Let $T_n$ be the expected winning for throwing at least two sixes in $n$ throws. By the same argument Huygens gave for the special case $n=3$ we deduce $T_n = \tfrac{1}{6} ( 5 \cdot T_{n-1}  + O_{n-1})$. Thus Huygens calculated
+
+\begin{align}
+  \begin{array}{rlll}
+    T_2 & = \frac 1{36} a \nl
+    T_3 & = \frac 16 (5 \cdot \frac 1{36} a + \frac{11}{36} a) &= \frac 2{27} a \nl
+    T_4 & = \frac 16 (5 \cdot \frac 2{27} a + \frac{91}{216} a) &= \frac {19}{144} a \nl
+    & \vdots \nl
+    T_9 & = \frac 16 (5 \cdot \frac {663991}{1679616} a + \frac{1288991}{1679616} a) &= \frac {2304473}{5038848} a & \approx 0.457 a \nl
+    T_{10} & = \frac 16 (5 \cdot \frac{2304473}{5038848} a + \frac{8124571}{10077696} a) &= \frac{10389767}{20155392} a & \approx 0.515 a \nl
+    & \vdots 
+  \end{array}
+\end{align}
+
+So starting with $10$ dices the odds for the player to win is higher than $\tfrac 12$. Besides the probability for us to win in the above supposed game with eight dices is $\tfrac{663991}{1679616}$ which is roughly $0.40$.
+
+\section{Bernoulli's derivation of the binomial distribution}
+
+\includewrapfig{Jakob_Bernoulli}{Jacob Bernoulli}{File \href{https://commons.wikimedia.org/wiki/File:Jakob_Bernoulli.jpg}{``Jakob Bernoulli.jpg''} from Wikimedia Commons uploaded by user \href{https://commons.wikimedia.org/wiki/User:Materialscientist}{Materialscientist} and licensed under Public Domain}
+
+As we have seen in the previous section Christiaan Huygens could well solve his proposed problem. One also can extract an algorithm from his method with which similar problems can be solved. But he only investigated a special case although a more general formulation of his method is possible. For example one may be interested in a game with dices which have more or less than six faces. Also the number of favorable faces on a die may be more then one and the minimal value of favorable results in all throws may differ from two. To the previous and similar problem Jacob Bernoulli wrote~\cite[p. 157]{bernoulli}:
+
+\begin{quotation}
+  If the Author [Christiaan Huygens, S.K.]\todo{richtig?} had substituted letters for numbers, he could have expressed this and the preceding proposition as one problem and investigated its general solution with equal ease [...]\todo{richtig?}
+\end{quotation}
+
+Also Huygens' recursive method needs a lot of calculational effort to find the final solution. Thus one question arises: Is there a more direct and general solution for Huygens' problem?
+
+\includefig{Ars_Conjectandi}{Cover of \emph{Ars Conjectandi}}{Cover of \emph{Ars Conjectandi} by Jacob Bernoulli 1713. File \href{https://commons.wikimedia.org/wiki/File:Arsconj.gif}{``Arsconj.gif''} from Wikimedia Commons uploaded by user \href{https://commons.wikimedia.org/wiki/User:Nousernamesleft}{Nousernamesleft} and licensed under Public Domain.}
+
+Jacob Bernoulli addressed this question with the binomial distribution as an answer in his book \emph{Ars Conjectandi} (The Art of Conjecturing) from 1713~\cite[pp. 220-256]{hald1}\footnote{The book was published eight years after Jacob Bernoulli's death by his nephew Nicholas Bernoulli in 1703~\cite[pp. 223-224]{hald1}}. In the first part of this book Bernoulli\footnote{The family of Bernoullis is huge with a lot of influential mathematicians. In the following I always refer to Jacob Bernoulli when I only mention ``Bernoulli''. A good overview of Bernoulli's family tree gives~\cite[pp. 1-4]{bernoulli}} reprinted Huygens' \emph{De Ratiociniis in Ludo Aleae} with additional notes and alternative solutions~\cite[p. 63]{bernoulli}.
+
+In his comments to the above problem Bernoulli first derived the binomial distribution by incomplete induction with an argumentation similar to Huygens' solution. Afterwards he derived the binomial distribution with a combinatorial argumentation~\cite[pp. 165-167]{bernoulli}:
+
+\begin{quotation}
+  [Consider] $n$ dice A, B, C, D, etc., each constructed with $a$ faces, $b$ of which match the purpose of the player, and the other $c$ of which do not. And ask in how many cases it may happen that what was undertaken is accomplished on none of the dice, on just one of the dice, or on only 2, 3, or 4 of them, and so on; finally, in how many cases the person undertaking the game fails in his purpose and his opponent wins. But it was shown in the Note to the preceding Proposition that there are $C^n$ cases in which what was undertaken is accomplished on none of the dice. And it may be concluded in a similar way that there are $b$ cases, or $bb$, or $b^3$, etc., in which one of the dice, for instance A, or two, A and B, or three, A, B, and C, and so on, meet the purpose of the person undertaking the game. Similarly, there are $c^{n-1}$ cases, or $c^{n-2}$ cases, and so on, in which $n-1$ dice, or $n-2$ dice, or $n-3$ dice, and so on, fail to fulfill his hopes. Therefore, since each of these cases can be joined with any of the preceding, multiplication of the latter by the former produces $bc^{n-1}$ cases, or $bbc{n-2}$ cases, or $b^3c^{n-3}$ cases, and so on. And since the die or dice that favor the person undertaking the game might be either A or B or C, and so on, if there is one, or, if there are two, either A and B, or A and C, or B and C, and so on, or, if there are three, either A, B, and C, or A, B and D, and so on, these number of cases must again be multiplied by the number of units, pairs, triples, and so son that can be drawn from all $n$ dice. But by the theory of combinations developed in Part II, this number is $n$, or $n(n-1)/(1\cdot 2)$, or $n(n-1)(n-2)/(1\cdot 2\cdot 3)$, etc. So from this multiplication we obtain $nbc^{n-1}$, or
+
+  
+  $\frac{n(n-1)}{1\cdot 2}bbc^{n-2}$,
+
+  or $\frac{n(n-1)(n-2)}{1\cdot 2\cdot 3}b^3c^{n-3}$ etc., on up to
+
+  $\frac{n(n-1)(n-2)\ldots(n-m+2)}{1\cdot 2\cdot 3\cdot 4\ldots(m-1)} b^{m-1} c^{n-m+1}$
+
+  for the numbers of cases in which what was undertaken is accomplished with exactly one die, or two dice, or three dice and so on up to $m-1$ dice. Since, as we mentioned, the opponent wins in all these cases and since there are altogether $a^n$ cases with $n$ dice, his lot is, \textbf{[42]} by Corollary 1 of Proposition III,
+
+  $c^n+nbc^{n-1}+\frac{n(n-1)}{1\cdot 2}bbc^{n-2} + \frac{n(n-1)(n-2)}{1\cdot 2\cdot 3}b^3c^{n-3} \ldots$
+
+  $+\frac{n(n-1)(n-2)\ldots(n-m+2)}{1\cdot 2\cdot 3\cdot 4\ldots(m-1)} b^{m-1}c^{n-m+1} : a^n$,\footnote{The notation $x_1+x_2+\ldots+x_n:y$ means $\tfrac 1y (x_1+x_2+\ldots+x_n)$. \todo{cite}}
+
+  as above.
+\end{quotation}
+
+Bernoulli considered a die with $a$ faces which has $b$ faces being favorable for the player and $c=a-b$ faces being unfavorable. The player has to throw at least $m$ times one of the $b$ favorable faces in a total of $n$ throws in order to win. What is the probability of winning / loosing?
+
+Bernoulli started with calculating the number of outcomes in which the player throws exactly $k$ times one of the favorable faces. Fix $k$ of the total $n$ throws. All of these $k$ throws shall be one of the $b$ favorable results and the other $n-k$ shall be one of the $c$ unfavorable results. Because each of these $k$ throws can show one of $b$ possible faces the total number of different outcomes in these $k$ throws with only favorable results is $b^k$. Analogously is the number of possible outcomes in the other $n-k$ throws with only unfavorable results equal to $c^{n-k}$. Therefore there are in total $b^kc^{n-k}$ different outcomes in which the $k$ fixed throws show a favorable face and the other $n-k$ throws show a unfavorable face.
+
+In favor of throwing exactly $k$ favorable numbers, the order in which those $k$ numbers are thrown does not matter. As known by combinatorics there are $\binom nk=\frac{n!}{k!(n-k)!}=\frac{n\cdot(n-1)\ldots(n-k+1)}{1\cdot2\cdot3\ldots k}$ different orders in which exactly $k$ favorable throws occur. For each of these orders the total number of different outcomes, in which the $k$ favorable and $n-k$ unfavorable results occur in the specified order, is $b^kc^{n-k}$ as we have seen in the previous paragraph. Thus the total numbers of outcomes with exactly $k$ favorable throws is $\binom nk b^k c^{n-k}$.
+
+Because the total number of outcomes is $a^n$ and because all outcomes are equally likely, the probability for the player to have exactly $k$ favorable throws is $\frac {1}{a^n} \binom nk b^k c^{n-k}$.
+
+Because the player looses when he throws at most $m-1$ favorable numbers, the probability for the player to loose is
+
+\begin{align}
+  \P{\text{player looses}} = \frac{1}{a^n} \sum_{k=0}^{m-1} \binom nk b^k c^{n-k}
+\end{align}
+
+This is the same formula Bernoulli derived in the end of the above quoted section. He ended his discussion of Huygens' problem with two corollaries which he named ``Rule for knowing the lot of a player to whom several throws of a die have given and who is held to archieving something precisely on some certain throws and not on others''~\cite[p. 170]{bernoulli}:
+
+\begin{quotation}
+  \emph{Corollary 1.} If there are the same numbers of cases in all games [...] the expectation found to be [...] $b^mc^{n-m}/a^n$, taking $n$ for the number of all the throws, and $m$ for the number in which what is to be achieved ought to be achieved.
+  
+  \emph{Corollary 2.} If the same numbers of cases rule in all games and if, in addition, the number of games or throws is determined within which something is to be achieved, but such that the desired result can occur on any throws and not on certain determined ones [...] then it is clear that the quantity of the expectation found in the previous corollary should be multiplied by as many times as [...] $m$ things may be chosen from $n$ diverse things. This, however, may occur, by the Theory of Combinatorics to be treated in Part II, in $n(n-1)(n-2)(n-3)\ldots(n-m+1)/(1\cdot 2\cdot 3\cdot 4\ldots m)$ ways [...]. Thus the expectation of the player will be worth
+
+  \begin{align*}
+    \frac{n(n-1)(n-2)(n-3)\ldots(n-m+1)}{(1\cdot 2\cdot 3\cdot 4\ldots m)}\cdot \frac{b^mc^{n-m}}{a^n}
+  \end{align*}
+\end{quotation}
+
+When we introduce $p=\tfrac ba$ which is the probability that one get a favorable result in one throw and analogously $q=\tfrac ca=1-p$ for the probability of an unfavorable result in a throw, we get:
+
+\begin{align}
+  \P{\text{$m$ in $n$ throws are favorable}} & = \frac{n(n-1)(n-2)(n-3)\ldots(n-m+1)}{(1\cdot 2\cdot 3\cdot 4\ldots m)}\cdot \frac{b^mc^{n-m}}{a^n} \nl
+  &= \binom nm \frac{b^m}{a^m} \frac{c^{n-m}}{a^{n-m}} \nl
+  &= \binom nm p^m q^{n-m}
+\end{align}
+
+So we finally get a formula for calculating the odds of having $m$ favorable cases in a total of $n$ (independent) cases when in each case $p$ is the probability of having a favorable case\footnote{In Bernoulli's work $p$ is $\tfrac ba$ and thus Bernoulli only considered rational probabilities in his derivation. This was common in the beginning of probability theory \todo{cite}. It may have its origin, that in most games with a finite number of rounds only rational probabilities occur.}. As we will see in the next section, this formula gets the probability mass of the binomial distribution.
+
+\section{Definition of the binomial distribution}
+
+In the previous section we have seen the historical derivation and motivation of the binomial distribution. In this section I want to introduce the binomial distribution in a way contemporary textbooks define it. \todo{cite}
+
+Take $n$ independent random variables $X_1, X_2, \ldots, X_n$. Each of them has two possible outcomes $\alpha$ and $\beta$. Those random variables with two possible outcomes are called ``Bernoulli trials'' named after Jacob Bernoulli. \todo{cite} The outcome $\alpha$ has the probability $p$ and $\beta$ has the probability $q=1-p$ to occur in each random variable $X_i$. 
+
+The binomial distribution is the probability distribution which assigns for each $k\in \{0,1,\ldots,n\}$ the probability of having exactly $k$ times the outcome $\alpha$ among all random variables $X_1,X_2,\ldots,X_n$. A typical way to define the binomial distribution is to set $\alpha=1$ and $\beta=0$. The random variable $\Bs=\sum_{i=1}^n X_i$ is then binomially distributed.
+
+What is $\P{\Bs = k} = \P{\sum_{i=1}^n X_i=k}$? To find this probability we can argue in a very similar way as in the above section. First we fix an order in which $k$ random variables of all $X_i$ are $\alpha$ and the rest $n-k$ random variables have $\beta$ as an outcome. The probability for each such order is $p^kq^{n-k}$ since the random variables are independent.
+
+For example the first $k$ random variables $X_1,X_2,\ldots,X_k$ might have the result $\alpha$ and the other $n-k$ random variables $X_{k+1},X_{k+2},\ldots,X_n$ have the outcome $\beta$. The probability in this case is:
+
+\begin{align}
+  & \P{X_1=\alpha, X_2=\alpha, \ldots, X_k=\alpha,X_{k+1}=\beta, X_{k+2}=\beta, \ldots X_n =\beta} \nl
+  =\ & \underbrace{\P{X_1=\alpha} \cdot \P{ X_2=\alpha} \ldots \P{X_k=\alpha}}_{=p^k} \cdot \underbrace{\P{X_{k+1}=\beta} \cdot \P{X_{k+2}=\beta} \ldots \P{X_n =\beta}}_{= q^{n-k}} \nl
+  =\ & p^kq^{n-k}
+\end{align}
+
+Since the order in which the $k$ outcomes $\alpha$ and the $n-k$ outcomes $\beta$ occur does not matter, we have to sum of the probabilities over all such orders. Do define such an order, we have to take $k$ among all $n$ random variables which shall have the result $\alpha$. From combinatorics we know that there are $\binom nk$ ways to take $k$ objects from a whole set of $n$ objects. So there are $\binom bk$ orders in which exactly $k$ random variables have the outcome $\alpha$. Each of these orders has the possibility $p^kq^{n-k}$. So the total possibility to have exactly $k$ times the outcome $\alpha$ among all random variables is $\binom nk p^kq^{n-k}$.
+
+As already mentioned, this distribution is called ``binomial distribution'':
+
+\begin{definition}[Binomial distribution]
+  The binomial distribution $\Bs$ is the probability distribution on the set $\{0,1,2,\ldots,n\}$ with the probability mass function
+
+  \begin{align}
+    \P{\Bs=k} = \binom nk p^k q^{n-k}
+  \end{align}
+\end{definition}
+
+\includefig{binomial_distribution_pmf}{The probability mass function of the binomial distribution}{File \href{https://commons.wikimedia.org/wiki/File:Binomial_distribution_pmf.svg}{``Binomial distribution pmf.svg''} from Wikimedia Commons. Upload by user \href{https://commons.wikimedia.org/w/index.php?title=User:Tayste}{Tayste} and licensed under Public Domain.}
+
+\section{Applications of the binomial distribution}
+
+The binomial distribution occurs often in statistics and thus in all fields which use statistical tools or probability theory like biology, psychology, economics, physics etc. \todo{cite}. An application in gambling we have already met in the beginning section of this chapter.
+
+The binomial distribution occurs often in counting processes to calculate the odds of having $k$ times a certain property among $n$ objects / occasions. The binomial distribution is also used as a simplified model when the probability of having this certain properties varies a little bit or is not independent between all objects / occasions. Take the following example:
+
+\begin{example}
+  What is the probability that $k$ among $n$ made products in an assembly line are faulty if the probability of one product produced incorrectly is $p$.
+\end{example}
+
+Firstly it is likely that the probability of having a faulty product varies over time. For example it may depend on the temperature of the machines which may fluctuate. Secondly the occurrence of a badly made product may increase the likelihood for flawed products for the next produced merchandises. There may be a failure in one of the machines which also effects the next products until the failure is corrected. 
+
+Although the premises for the binomial distribution is not fulfilled in this example, this distribution may be used by the company to calculate with. This shows how important the binomial distribution for contemporary statistical analysis is because it may be used whenever one investigate a counting process.

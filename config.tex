@@ -11,13 +11,15 @@
 
 \theoremstyle{remark}
 \newtheorem{remark}{Remark}
+\newtheorem{example}{Example}
 
 \newcommand*{\Cmax}{0.4748}
 \newcommand*{\Cmin}{0.40973}
 
 \newcommand*{\refneeded}{\todo{Referenz!}}
 
-\newcommand*{\includefig}[1]{\begin{center} \includegraphics[width=0.5\textwidth,draft=false]{figures/{#1}} \end{center}}
+\newcommand*{\includefig}[3]{\begin{figure}[h] \begin{center} \includegraphics[width=0.5\textwidth,draft=false]{figures/{#1}} \caption[#3]{#2} \end{center} \end{figure}}
+\newcommand*{\includewrapfig}[4][0.33\textwidth]{\begin{wrapfigure}{R}{#1} \vspace{-20pt} \begin{center} \includegraphics[width=#1 - 0.02\textwidth,draft=false]{figures/{#2}} \caption[#4]{#3} \end{center} \vspace{-30pt} \end{wrapfigure}}
 
 \newcommand*{\seq}[2][n]{\left({#2}\right)_{{#1}\in\N}}
 \newcommand*{\abs}[1]{\left|{#1}\right|}
@@ -33,7 +35,9 @@
 \newcommand*{\ft}[1]{\tilde f\left({#1}\right)}
 
 \newcommand*{\cfs}[2][-\infty]{\mathds{1}_{\left[{#1},{#2}\right]}}
-\newcommand*{\cf}[3][-\infty]{\mathds{1}_{\left[{#1},{#2}\right]}\left({#3}\right)}
+\newcommand*{\cf}[3][-\infty]{ \mathds{1}_{\left[{#1},{#2}\right]}\left({#3}\right)}
+
+\newcommand*{\Bs}[1][n]{B_{#1}}
 
 \newcommand*{\R}{\mathbb R}
 \newcommand*{\Q}{\mathbb Q}
