@@ -195,3 +195,42 @@ The binomial distribution occurs often in counting processes~\cite[p. 138]{henze
 Firstly it is likely that the probability of having a faulty product varies over time. For example it may depend on the temperature of the machines which may fluctuate. Secondly the occurrence of a badly made product may increase the likelihood of flawed products for the next produced merchandises. There may be a failure in one of the machines which also effects the next products until the failure is corrected.
 
 Although the premises for the binomial distribution is not fulfilled in this example, this distribution may be used by the company to do statistical analysis. This shows how important the binomial distribution for contemporary statistical analysis is because it may be used whenever one investigate a counting process.
+
+\section{The binomial distribution and the sex ratio}
+
+\includewrapfig{great_plague}{The great plague in London, 1665}{File \href{https://commons.wikimedia.org/wiki/File:Great_plague_of_london-1665.jpg}{``Great plague of london-1665.jpg''} from Wikimedia Commons uploaded by user \href{https://commons.wikimedia.org/wiki/User:7mike5000}{7mike5000} and licensed under Public Domain.}
+
+I want to finish this chapter with presenting you how early statisticians used the binomial distribution to investigate the sex ratio at birth. This investigation was not only one of the earliest statistical analysis it also motivates the theorem by De Moivre and Laplace.
+
+Starting from the 14th century plague epidemics occurred frequently in Europe for nearly 400 years~\cite[p. 82]{hald1}. So since the 1530s the parish clerks in London were requested to publish weekly the number of plague deaths together with the number of all other deaths~\cite[p. 82]{hald1}. These numbers were used by the government to recognize a new plague epidemic so that countermeasures could be taken. Also the wealthier part of the society used this data as an indication when they shall leave London~\cite[pp. 82-83]{hald1}. Alongside the number of deaths, the number of weddings and christenings inside the Church of England were registered too~\cite[p. 83]{hald1}. Besides the burials and christenings were given separately for male and female starting from 1629~\cite[p. 83]{hald1}.
+
+The first statistical analysis of this data were made by John Graunt~\cite[p. 83]{hald1} which was also one of the first statistical analysis of history~\cite[p. 81]{hald1}. In 1662 he published his book \emph{Natural and Political Observations Made upon the Bills of Mortality} in which he summarized and investigated the published data about mortality and birth in London~\cite[pp. 81-105]{hald1}. He calculates the sex ratio in the christenings for each $8$ years and concluded that there are in average more men than female born~\cite[pp. 92-93]{hald1}.
+
+\includewrapfig{bill_of_mortality}{The bill of mortality for 1665}{File \href{https://commons.wikimedia.org/wiki/File:Bill_of_Mortality.jpg}{``Bill of Mortality.jpg''} from Wikimedia Commons. Uploaded by user \href{https://commons.wikimedia.org/wiki/User:Dolledre}{Dolledre} and licensed under Public Domain.}
+
+\begin{figure}
+  \begin{center}
+    \begin{tabular}{c|c|c}
+      Year & Male & Female \\
+      \hline
+      1629 & 5218 & 4683 \\
+      1630 & 4858 & 4457 \\
+      1631 & 4422 & 4102 \\
+      1632 & 4994 & 4590 \\
+      1633 & 5258 & 4839 \\
+      \vdots & \vdots & \vdots
+    \end{tabular}
+
+    \caption{Samples of the used data by Arbuthnott~\cite[p. 276]{hald1}}
+  \end{center}
+\end{figure}
+
+In the following many mathematicians were inspired by Graunt's book to describe the reported phenomenas with probabilistic models~\cite[p. 275]{hald1}. One of these mathematicians was John Arbuthnott. He summarized the yearly number of male and female birth for 82 years in the period 1629-1710 and observed that for each year there are more boys than girls born. In this disproportion he saw a sign of the Divine Design and an evidence of the existence of God~\cite[p. 277]{hald1}\footnote{Arbuthnott's belief was common in the beginning of the 18th century among statisticians and theologians~\cite[p.~285]{hald1}. This may have motivated investigations about the sex ratio during this time.}. He argued that the chance for a boy to die during growing up is slightly higher than for girls. So the bigger chance for a male birth compensates this higher mortality rate in childhood so that there is an equal number of males and females and adulthood~\cite[p. 277]{hald1}. John Arbuthnott wrote~\cite[p. 275]{hald1}:
+
+\begin{quotation}
+    This Equality of [adult] Males and Females is not the Effect of Chance but Divine Providence.
+\end{quotation}
+
+To prove his assumptions that the chances for male offspring is (a little bit) higher than for female offspring, Arbuthnott made the first test of significance in history~\cite[p. 276]{hald1}. He identified the determination of the birth's sex with the throw of a two sided die~\cite[pp. 275-276]{hald1}. Let the chances of a male birth be $p$ and thus let $q$ be the chances of the female birth\footnote{Here we ignore the possibility of an intersex birth. \todo{ausbauen}}. The yearly numbers of male and female births are then binomially distributed.
+
+Arbuthnott then estimated the probability that the number of male births exceeded the number of female births for 82 consecutive years under the binomial model for $p=\tfrac 12$. He argued that because of the symmetry of the binomial distribution for $p=\tfrac 12$ the possibility for having more boys born than girls in one year is less or equal to $\tfrac 12$. Thus the possibility that this happens for $82$ consecutive years must be less than or equal $\left(\tfrac 12\right)^{82}$ which is less than $2.1\cdot 10^{-25}$. Because this possibility is so low the assumption $p=\tfrac 12$ must be rejected for the alternative $p > \tfrac 12$~\cite[p. 278]{hald1}.
