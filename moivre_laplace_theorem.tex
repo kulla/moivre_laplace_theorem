@@ -7,10 +7,6 @@
 \usepackage[draft=false]{hyperref}
 \usepackage{wrapfig}
 
-\usepackage[toc,xindy,nonumberlist]{glossaries}
-\makeglossaries
-\loadglsentries{glossary}
-
 \usepackage{amsmath}
 \usepackage{amsthm}
 \usepackage{amssymb}
@@ -18,10 +14,13 @@
 \usepackage{dsfont}
 
 \usepackage[disable]{todonotes}
-
 \usepackage[nottoc]{tocbibind}
 
 \include{config}
+
+\usepackage[toc,xindy,nonumberlist]{glossaries}
+\makeglossaries
+\loadglsentries{glossary}
 
 \begin{document}
   
