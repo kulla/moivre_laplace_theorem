@@ -12,6 +12,10 @@
 *\.synctex\.gz
 *\.out
 *\.lof
+*\.glg
+*\.glo
+*\.gls
+*\.xdy
 
 # ignore generated pdf files
 *\.pdf

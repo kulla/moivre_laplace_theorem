@@ -13,10 +13,10 @@ pdf: ${MAIN}.pdf
 
 ${MAIN}.pdf: ${SOURCES} ${FIGURES}
 	$(call latex,${MAIN})
+	makeglossaries ${MAIN}
 	bibtex ${MAIN}.aux
-	while ( grep "Rerun to get cross-references" ${MAIN}.log > /dev/null ); do \
-		$(call latex,${MAIN}) \
-	done
+	$(call latex,${MAIN})
+	$(call latex,${MAIN})
 
 figures/%.pdf: figures/%.svg
 	inkscape --export-area-drawing --export-pdf=$@ $<

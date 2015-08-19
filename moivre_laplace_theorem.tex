@@ -7,6 +7,10 @@
 \usepackage[draft=false]{hyperref}
 \usepackage{wrapfig}
 
+\usepackage[toc,xindy,nonumberlist]{glossaries}
+\makeglossaries
+\loadglsentries{glossary}
+
 \usepackage{amsmath}
 \usepackage{amsthm}
 \usepackage{amssymb}
@@ -24,6 +28,8 @@
 \maketitle
 \tableofcontents
 \listoffigures
+\glsaddall
+\printglossary[title={List of symbols},style=altlist]
 
 \include{introduction}
 \include{binomial_distribution}
