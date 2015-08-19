@@ -1,6 +1,71 @@
-\newglossaryentry{factorial}%
-{%
+\newglossaryentry{factorial}{%
   name={\ensuremath{n!}},
-  text={n!},
-  description={the factorial $n!=1\cdot2\cdot3\ldots n$}
+  sort={n},
+  description={The factorial $n!=2\cdot2\cdot3\ldots n$}
+}
+
+\newglossaryentry{binomialcoefficient}{%
+	name={\ensuremath{\binom nk}},
+  sort={nk},
+	description={The binomial coefficient $\binom nk=\frac{n!}{k!(n-k)!}$}
+}
+
+\newglossaryentry{floor}{%
+	name={\ensuremath{\floor{\cdot}}},
+  sort={|_},
+	description={The floor function: $\floor{x}$ is the largest integer less than $x$}
+}
+
+\newglossaryentry{mean}{%
+	name={\ensuremath{\E{X}}},
+  sort={E},
+	description={The mean of the random variable $X$}
+}
+
+\newglossaryentry{probability}{%
+	name={\ensuremath{\P{A}}},
+  sort={p},
+	description={The probability of the event $A$}
+}
+
+\newglossaryentry{binomialpmf}{%
+	name={\ensuremath{\b[n]{k}}},
+  sort={b},
+	description={The probability mass function of the binomial distribution: $\b{k}=\binom nk p^kq^{n-k}$}
+}
+
+\newglossaryentry{bigo}{%
+	name={\ensuremath{O(\cdot)}},
+  sort={O},
+	description={Big O notation: $a_n=O(b_n)$ means, that there is a $M>0$ such that $|a_n|\le M|b_n|$ for all $n\in\N$}
+}
+
+\newglossaryentry{phi}{%
+	name={\ensuremath{\phi(x)}},
+  sort={phi},
+	description={The density function of the standardized normal distribution: $\phi(x)=\frac{1}{\sqrt{2\pi}}\e{-\tfrac{x^2}{2}}$}
+}
+
+\newglossaryentry{Phi}{%
+	name={\ensuremath{\Phi(x)}},
+  sort={Phi},
+	description={The cumulative distribution function of the standardized normal distribution: $\Phi(x) = \int_{-\infty}^x \phi(x) \d{x}$}
+}
+
+\newglossaryentry{N}{%
+	name={\ensuremath{\N}},
+	sort={natural},
+	description={The natural numbers beginning with $1$: $\N=\{1,2,3,\ldots\}$}
+}
+
+\newglossaryentry{char}{%
+	name={\ensuremath{\cfs{A}}},
+	sort={1},
+	description={The characteristic function: $\cf{A}{x} = \begin{cases} 1 & ; x\in A \\ 0 & ; x\notin A \end{cases}$}
+}
+
+\newglossaryentry{snorm}{%
+  name={\ensuremath{\snorm{\cdot}}},
+  sort={|},
+  description={The supremum norm: $\snorm{f}$ for a function $f:D\to X$ is $\snorm{f}=\sup \{ f(x) : x \in D \}$}
 }
