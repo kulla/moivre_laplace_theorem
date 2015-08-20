@@ -241,10 +241,10 @@ As Anders Hald summarized in \cite[p. 278]{hald1}, Arbuthnott then estimated the
 
 The Dutch mathematician Willem Jacob 's Gravesande further improved the test made by Arbuthnott in his 1712 published paper \emph{Dèmonstration Mathèmatique du soin que Dieu prend de diriger ce qui se passe dans ce monde, tirèe du nombre des Garcons et des Filles qui naissent journellement} (A mathematical demonstration of the care, which God takes in governing that which happens in this world, drawn from the daily numbers of male and female birth)~\cite[p. 279]{hald1}. He first observed that the relative frequencies of male birth varies between $0.5027$ and $0.5362$ for the whole period of 82 years and that the average number of total births per year is $n=11,429$~\cite[p. 279]{hald1}. 's Gravesande then postulated a binomial model with $n=11,429$ and $p=\tfrac 12$ and calculated the probability that the number of male birth lies between $0.5027n=5745$ and $0.5362n=6128$~\cite[p. 280]{hald1}. Thus he calculated
 
-\begin{align}
-    \P{5745 < \text{number male birth} < 6128|p=\tfrac 12} \nonumber \nl
+\begin{multline}
+    \P{5745 < \text{number male birth} < 6128|p=\tfrac 12} \nl
     = \sum_{k=5745}^{6128} \binom{11429} k 2^{-11429}
-\end{align}
+\end{multline}
 
 After adding a little value to his final result because he omitted all terms smaller than $0.5\cdot 10^{-5}$ he got the probability $0.292$~\cite[p. 280]{hald1}. Then he computed the 82th power of his result to get the probability that this event occurs in 82 years consecutively~\cite[p. 280]{hald1}. He finally calculated $1.3\cdot10^{-44}$ which is only a small fraction of the probability Arbuthnott computed~\cite[p. 280]{hald1}.
 
