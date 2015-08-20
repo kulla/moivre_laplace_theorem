@@ -18,8 +18,8 @@
 
 \newcommand*{\refneeded}{\todo{Referenz!}}
 
-\newcommand*{\includefig}[4][0.5\textwidth]{\begin{figure}[h] \begin{center} \includegraphics[width={#1},draft=false]{figures/{#2}} \caption[#4]{#3} \end{center} \end{figure}}
-\newcommand*{\includewrapfig}[4][0.33\textwidth]{\begin{wrapfigure}{R}{#1} \vspace{-10pt} \begin{center} \includegraphics[width=#1 - 0.02\textwidth,draft=false]{figures/{#2}} \caption[#4]{#3} \end{center} \vspace{-15pt} \end{wrapfigure}}
+\newcommand*{\includefig}[4][0.5\textwidth]{\begin{figure}[h] \begin{center} \includegraphics[width={#1}]{figures/{#2}} \caption[#4]{#3} \end{center} \end{figure}}
+\newcommand*{\includewrapfig}[4][0.33\textwidth]{\begin{wrapfigure}{R}{#1} \vspace{-10pt} \begin{center} \includegraphics[width=#1 - 0.02\textwidth]{figures/{#2}} \caption[#4]{#3} \end{center} \vspace{-15pt} \end{wrapfigure}}
 
 \newcommand*{\seq}[2][n]{\left({#2}\right)_{{#1}\in\N}}
 \newcommand*{\abs}[1]{\left|{#1}\right|}
@@ -38,9 +38,15 @@
 \newcommand*{\cfs}[2][-\infty]{\mathds{1}_{\left[{#1},{#2}\right]}}
 \newcommand*{\cf}[3][-\infty]{ \mathds{1}_{\left[{#1},{#2}\right]}\left({#3}\right)}
 
+\newcommand*{\bn}[1][n]{\mathfrak{B}_{#1}} % bernoulli number
+\newcommand*{\bps}[1][n]{\beta_{#1}} % symbol bernoulli polynomial
+\newcommand*{\bp}[2][n]{\bps[#1]\left({#2}\right)} % bernoulli polynomial
+
 \newcommand*{\Bs}[1][n]{B_{#1}}
 \newcommand*{\bs}[1][n]{b_{#1}}
 \renewcommand*{\b}[2][n]{\bs[#1]\left({#2}\right)}
+
+\newcommand*{\asim}{\sim}
 
 \newcommand*{\R}{\mathbb R}
 \newcommand*{\Q}{\mathbb Q}
