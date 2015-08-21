@@ -6,7 +6,7 @@ Probability theory emerged from and was highly influenced by investigations of g
 
 \includewrapfig{Christiaan_Huygens}{Christiaan Huygens}{File \href{https://commons.wikimedia.org/wiki/File:Christiaan_Huygens.jpg}{``Christiaan Huygens.jpg''} from Wikimedia Commons uploaded by \href{https://commons.wikimedia.org/w/index.php?title=User:Lord_Horatio_Nelson~commonswiki}{Lord Horatio Nelson$\sim$commonswiki} and licensed under Public domain}
 
-From the economic and recreational importance arose a demand in calculating the odds of a game or the value of the expected winnings~\cite[p. 34]{hald1}. In 1654 Fermat and Pascal solved in a correspondence the problem of division~\cite[pp. 42-64]{hald1} which marks the foundation of probability theory~\cite[p. 4]{hald1}\footnote{In the 16th century Cardano already discussed several problems about games of chance in his work \emph{Liber de ludo aleae} (Book on Games of Chance)~\todo{cite, name des Buchs}\cite[pp. 33-41]{hald1}. However his book was first published posthumously 1663 and thus did not influenced Fermat, Pascal or Huygens~\cite[p. vii]{bernoulli}.}. Christiaan Huygens, who (according to himself) heard from the letters by Pascal and Fermat but did not know their methods~\cite[p. 67]{hald1}, wrote a short treatise \emph{De Ratiociniis in Ludo Aleae} (On Reckoning in Games of Chance) which was published 1657~\cite[p. vii]{bernoulli}\footnote{Huygens wrote his treatise in Dutch. His mathematics teacher Frans van Schooten translated it in Latin and published it at the end of his book \emph{Exercitationes Mathematicae}~\cite[pp. 65-68]{hald1}.}. Among the different problems, Huygens solved in his work, was the following~\cite[p. 163]{bernoulli}:
+From this economic and recreational importance arose a demand in calculating the odds of a game or the value of the expected winnings~\cite[p. 34]{hald1}. These studies started in 1654 when Fermat and Pascal solved in a correspondence the problem of division~\cite[pp. 42-64]{hald1} which marked the foundation of probability theory~\cite[p. 4]{hald1}\footnote{In the 16th century Cardano already discussed several problems about games of chance in his work \emph{Liber de ludo aleae} (Book on Games of Chance)~\todo{cite, name des Buchs}\cite[pp. 33-41]{hald1}. However his book was first published posthumously 1663 and thus did not influenced Fermat, Pascal or Huygens~\cite[p. vii]{bernoulli}.}. Christiaan Huygens, who (according to himself) heard from the letters by Pascal and Fermat but did not know their methods~\cite[p. 67]{hald1}, wrote a short treatise \emph{De Ratiociniis in Ludo Aleae} (On Reckoning in Games of Chance) which was published 1657~\cite[p. vii]{bernoulli}\footnote{Huygens wrote his treatise in Dutch. His mathematics teacher Frans van Schooten translated it in Latin and published it at the end of his book \emph{Exercitationes Mathematicae}~\cite[pp. 65-68]{hald1}.}. Among the different problems, Huygens solved in his work, was the following~\cite[p. 163]{bernoulli}:
 
 \begin{quotation}
   To find with how many dice one may undertake to throw two sixes on the first try.
@@ -14,7 +14,7 @@ From the economic and recreational importance arose a demand in calculating the 
 
 \includewrapfig[0.5\textwidth]{tavern1658}{Men gambling in a tavern (image section of a Flemish painting from 1658)}{Painting \href{https://commons.wikimedia.org/wiki/File:Tavern_Scene-1658-David_Teniers_II.jpg}{``Tavern Scene''} by \href{https://en.wikipedia.org/wiki/David_Teniers_the_Younger}{David Teniers the Younger} from 1658. Cropped version of picture which was uploaded at Wikimedia Commons and which was taken by National Gallery of Art, Washington, D.C., USA. Picture is licensed under Public Domain.}
 
-The problem is to calculate the number of dices one need to throw such that the probability of throwing two sixes is at least $\tfrac 12$. Imagine for example that you are in a tavern of the 17th century drinking beer. A merchant comes to your table and offers you the following deal: ``I'll give you $8$ dices which you can throw at once. If you will get at least two sixes you will get a gold coin. In case you only throw one six or none you have to pay me a gold coin.'' Shall you participate in his game? Is the game fair or not? Who has the higher chance to win? This example demonstrates very well the motivation of Huygens and his colleagues to engage in such problems. 
+The problem is to calculate the number of dices one need to throw such that the probability of throwing two sixes is at least $\tfrac 12$. Imagine for example that you are in a tavern of the 17th century. A merchant comes to your table and offers the following deal: ``I'll give you $8$ dices which you can throw at once. If you will get at least two sixes you will get a gold coin. In case you only throw one six or none you have to pay me a gold coin.'' Shall you participate in his game? Is the game fair or not? Who has the higher chance to win? This example demonstrates very well the motivation of Huygens and his colleagues to engage in problems of gambling.
 
 To solve this problem one first need to calculate the probability two throw exactly $m$ sixes with $n$ dices. If you are already familiar with the binomial distribution you see how this distribution can be used in the solution of the problem. This was later done by Jacob Bernoulli who reprinted Huygens' work in the first part of his book \emph{Ars Conjectandi} (The Art of Conjecturing) where he also added additional comments~\cite[p. 63]{bernoulli}. Before we will have a look at Bernoulli's solution with a derivation of the binomial distribution I want to show how Huygens dealt with the problem to have a comparison of both attempts. Huygens first noted~\cite[p. 163]{bernoulli}:
 
@@ -28,13 +28,13 @@ So it does not make any difference whether $n$ dices are thrown at once or wheth
   If, for example, one throw of ten dice is allowed, then it is certainly evident that it makes no difference whether those ten dice are thrown onto the gaming board altogether at one time or successively one after another. And if it is done successively, then it is equally clear that it makes no difference whether the ten dice thrown are ten different dice or one and the same die retrieved from the board and thrown ten times.
 \end{quotation}
 
-After noting that it does not matter how the dices are thrown, Huygens showed how to calculate the expected winning recursively when one wins the stake $a$ for throwing at least two sixes in a certain number of throws~\cite[p. 163]{bernoulli}:
+After noting that it does not matter how the dices are thrown, Huygens showed how to calculate the expected winning recursively. Let $a$ be the stake one wins for throwing at least two sixes in a certain number of throws. Huygens wrote~\cite[p. 163]{bernoulli}:
 
 \begin{quotation}
   If someone undertook to do this in two throws, there would fall to him $a/36$, by what was shown before. If he is given three throws, then, if his first throw is a six, he will still have two throws, both of which must be sixes, and we said this is worth the same as $a/36$. But if his first throw is not a six, then he needs only to get one six on the remaining two throws. By proposition X this is worth of having $11a/36$. But there is certainly one case in which he throws a six th first time and five cases in which something else happens. So in the beginning there is one case for $11a/36$ and five cases for $a/36$. By proposition III\todo{typo untersuchen}, this is worth as much as $16a/127$ or $2a/27$. In repeatedly considering one more throw, we find that there is an advantage in undertaking to throw two sixes in ten throws with one die or in one throw with ten dice.
 \end{quotation}
 
-The argumentation of Huygens is the following: First he looked at the case when two dices a thrown. In proposition XI he already had calculated the expected value for this case to be $\tfrac 1{36}a$. The he investigated the case of three throws. There are five cases in which the first throw is not a six and the remaining expected value in these cases is $\tfrac 1{36}a$ because two sixes must be thrown in the remaining two throws. In one case the first throw is a six. Huygens already had shown in proposition X that the expected value of throwing at least one six in two throws is $\tfrac{11}{36}a$. So in total there a $5$ cases with a remaining expected value of $\tfrac 1{36}a$ and $1$ case with the remaining value of $\tfrac{11}{36} a$. The total expected value for three throws was now calculated as
+The argumentation of Huygens is the following: First he looked at the case when two dices a thrown. In proposition XI he already had calculated the expected value for this case to be $\tfrac 1{36}a$. Then he investigated the case of three throws. There are five cases in which the first throw is not a six and the remaining expected value is $\tfrac 1{36}a$ in these cases because the two remaining throws must be a six respectively. In one case the first throw is a six. Huygens already had shown in proposition X that the expected value of throwing at least one six in two throws is $\tfrac{11}{36}a$. So in total there are five cases with a remaining expected value of $\tfrac 1{36}a$ and one case with the remaining value of $\tfrac{11}{36} a$. Thus the total expected value for three throws is
 
 \begin{align}
   \frac{1}{5+1} \left(5 \cdot \frac 1{36} a + 1 \cdot \frac{11}{36} a \right) = \frac{1}{6} \cdot \frac{5+11}{36} a = \frac{16}{216} a = \frac{2}{27} a
@@ -46,7 +46,7 @@ The argumentation of Huygens is the following: First he looked at the case when 
   If the number of cases in which $a$ falls to me is $p$ and the number of cases in which $b$ falls to me is $q$, and if all the cases can happen equally easily, then my expectation will be worth $(pa+qb)/(p+q)$.\footnote{The final formula can be rewritten as $\tfrac{p}{p+q} a+\tfrac q{p+q} b$ which is the definition of the expected value for the Bernoulli trial, a distribution with two possible outcomes. \todo{verbessern}}
 \end{quotation}
 
-Without writing it explicitly down in his book, Huygens now calculates recursively the odds of having two sixes in $n$ throws. His calculation might have looked like the following: Let $O_n$ be the expected winning of having at least one six in $n$ throws. In proposition X Huygens already had demonstrated by looking at several examples that $O_n = \tfrac 1{1+5} \left( 1 \cdot a + 5 \cdot O_{n-1} \right)=\tfrac 16 \left( a + 5 \cdot O_{n-1} \right)$. If the first throw is a six, then the player gets the whole stack $a$. In the remaining five cases the player still has the opportunity to throw a six in the remaining $n-1$ throws and thus have an expected winning of $O_{n-1}$ to win. The calculated values by Huygens are:
+Without writing it explicitly down in his book, Huygens now calculated recursively the odds of having two sixes in $n$ throws. His calculation might have looked like the following: Let $O_n$ be the expected winning of having at least one six in $n$ throws. In proposition X Huygens already had demonstrated by looking at several examples that $O_n = \tfrac 1{1+5} \left( 1 \cdot a + 5 \cdot O_{n-1} \right)=\tfrac 16 \left( a + 5 \cdot O_{n-1} \right)$. If the first throw is a six, then the player gets the whole stack $a$. In the remaining five cases the player still has the opportunity to throw a six in the remaining $n-1$ throws and thus have an expected winning of $O_{n-1}$ to win. The calculated values by Huygens are:
 
 \begin{align}
   \begin{array}{rll}
@@ -61,7 +61,7 @@ Without writing it explicitly down in his book, Huygens now calculates recursive
   \end{array}
 \end{align}
 
-Let $T_n$ be the expected winning for throwing at least two sixes in $n$ throws. By the same argument Huygens gave for the special case $n=3$ we deduce $T_n = \tfrac{1}{6} ( 5 \cdot T_{n-1}  + O_{n-1})$. Thus Huygens calculated
+Let $T_n$ be the expected winning for throwing at least two sixes in $n$ throws. By the same argument Huygens gave for the special case $n=3$ he deduced $T_n = \tfrac{1}{6} ( 5 \cdot T_{n-1}  + O_{n-1})$. So Huygens calculated
 
 \begin{align}
   \begin{array}{rlll}
@@ -81,48 +81,46 @@ So starting with $10$ dices the odds for the player to win is higher than $\tfra
 
 \includewrapfig{Jakob_Bernoulli}{Jacob Bernoulli}{File \href{https://commons.wikimedia.org/wiki/File:Jakob_Bernoulli.jpg}{``Jakob Bernoulli.jpg''} from Wikimedia Commons uploaded by user \href{https://commons.wikimedia.org/wiki/User:Materialscientist}{Materialscientist} and licensed under Public Domain}
 
-As we have seen in the previous section Christiaan Huygens could well solve his proposed problem. One also can extract an algorithm from his method with which similar problems can be solved. But he only investigated a special case although a more general formulation of his method is possible. For example one may be interested in a game with dices which have more or less than six faces. Also the number of favorable faces on a die may be more then one and the minimal value of favorable results in all throws may differ from two. To the previous and similar problem Jacob Bernoulli wrote~\cite[p. 157]{bernoulli}:
+As we have seen in the previous sectioni, Christiaan Huygens found a solution for his proposed problem. From this solution also an algorithm can be extracted with which similar problems can be solved too. But he only investigated a special case although a more general formulation of his method is possible. For example one may be interested in a game with dices which have more or less than six faces. Also the number of favorable faces or the number of necessary favorable throws may differ. To the previous and similar problem Jacob Bernoulli wrote~\cite[p. 157]{bernoulli}:
 
 \begin{quotation}
   If the Author [Christiaan Huygens, S.K.]\todo{richtig?} had substituted letters for numbers, he could have expressed this and the preceding proposition as one problem and investigated its general solution with equal ease [...]\todo{richtig?}
 \end{quotation}
 
-Also Huygens' recursive method needs a lot of calculational effort to find the final solution. Thus one question arises: Is there a more direct and general solution for Huygens' problem?
+We also have seen that Huygens' recursive method needs a lot of computational effort for finding the final solution. Hence the following question arises: Is there a more direct and general solution for Huygens' problem?
 
 \includefig{Ars_Conjectandi}{Cover of \emph{Ars Conjectandi}}{Cover of \emph{Ars Conjectandi} by Jacob Bernoulli 1713. File \href{https://commons.wikimedia.org/wiki/File:Arsconj.gif}{``Arsconj.gif''} from Wikimedia Commons uploaded by user \href{https://commons.wikimedia.org/wiki/User:Nousernamesleft}{Nousernamesleft} and licensed under Public Domain.}
 
-Jacob Bernoulli addressed this question with the binomial distribution as an answer in his book \emph{Ars Conjectandi} (The Art of Conjecturing) from 1713~\cite[pp. 220-256]{hald1}\footnote{The book was published eight years after Jacob Bernoulli's death by his nephew Nicholas Bernoulli in 1703~\cite[pp. 223-224]{hald1}}. In the first part of this book Bernoulli\footnote{The family of Bernoullis is huge with a lot of influential mathematicians. In the following I always refer to Jacob Bernoulli when I only mention ``Bernoulli''. A good overview of Bernoulli's family tree gives~\cite[pp. 1-4]{bernoulli}} reprinted Huygens' \emph{De Ratiociniis in Ludo Aleae} with additional notes and alternative solutions~\cite[p. 63]{bernoulli}.
+Jacob Bernoulli addressed this question with the binomial distribution as an answer in his book \emph{Ars Conjectandi} (The Art of Conjecturing) from 1713~\cite[pp. 220-256]{hald1}\footnote{The book was published eight years after Jacob Bernoulli's death by his nephew Nicholas Bernoulli~\cite[pp. 223-224]{hald1}}. In the first part of this book Bernoulli\footnote{The family of Bernoullis is huge and had a lot of influential mathematicians. In the following I always refer to Jacob Bernoulli when I only mention ``Bernoulli''. A good overview of Bernoulli's family tree gives~\cite[pp. 1-4]{bernoulli}} reprinted Huygens' \emph{De Ratiociniis in Ludo Aleae} with additional notes and alternative solutions~\cite[p. 63]{bernoulli}.
 
 In his comments to the above problem Bernoulli first derived the binomial distribution by incomplete induction with an argumentation similar to Huygens' solution. Afterwards he derived the binomial distribution with a combinatorial argumentation~\cite[pp. 165-167]{bernoulli}:
 
 \begin{quotation}
   [Consider] $n$ dice A, B, C, D, etc., each constructed with $a$ faces, $b$ of which match the purpose of the player, and the other $c$ of which do not. And ask in how many cases it may happen that what was undertaken is accomplished on none of the dice, on just one of the dice, or on only 2, 3, or 4 of them, and so on; finally, in how many cases the person undertaking the game fails in his purpose and his opponent wins. But it was shown in the Note to the preceding Proposition that there are $C^n$ cases in which what was undertaken is accomplished on none of the dice. And it may be concluded in a similar way that there are $b$ cases, or $bb$, or $b^3$, etc., in which one of the dice, for instance A, or two, A and B, or three, A, B, and C, and so on, meet the purpose of the person undertaking the game. Similarly, there are $c^{n-1}$ cases, or $c^{n-2}$ cases, and so on, in which $n-1$ dice, or $n-2$ dice, or $n-3$ dice, and so on, fail to fulfill his hopes. Therefore, since each of these cases can be joined with any of the preceding, multiplication of the latter by the former produces $bc^{n-1}$ cases, or $bbc{n-2}$ cases, or $b^3c^{n-3}$ cases, and so on. And since the die or dice that favor the person undertaking the game might be either A or B or C, and so on, if there is one, or, if there are two, either A and B, or A and C, or B and C, and so on, or, if there are three, either A, B, and C, or A, B and D, and so on, these number of cases must again be multiplied by the number of units, pairs, triples, and so son that can be drawn from all $n$ dice. But by the theory of combinations developed in Part II, this number is $n$, or $n(n-1)/(1\cdot 2)$, or $n(n-1)(n-2)/(1\cdot 2\cdot 3)$, etc. So from this multiplication we obtain $nbc^{n-1}$, or
 
-  
-  $\frac{n(n-1)}{1\cdot 2}bbc^{n-2}$,
-
-  or $\frac{n(n-1)(n-2)}{1\cdot 2\cdot 3}b^3c^{n-3}$ etc., on up to
-
-  $\frac{n(n-1)(n-2)\ldots(n-m+2)}{1\cdot 2\cdot 3\cdot 4\ldots(m-1)} b^{m-1} c^{n-m+1}$
+  \begin{align*}
+      & \frac{n(n-1)}{1\cdot 2}bbc^{n-2}, \nl
+      & \text{or } \frac{n(n-1)(n-2)}{1\cdot 2\cdot 3}b^3c^{n-3} \text{ etc., on up to} \nl
+      & \frac{n(n-1)(n-2)\ldots(n-m+2)}{1\cdot 2\cdot 3\cdot 4\ldots(m-1)} b^{m-1} c^{n-m+1}
+  \end{align*}
 
   for the numbers of cases in which what was undertaken is accomplished with exactly one die, or two dice, or three dice and so on up to $m-1$ dice. Since, as we mentioned, the opponent wins in all these cases and since there are altogether $a^n$ cases with $n$ dice, his lot is, \textbf{[42]} by Corollary 1 of Proposition III,
 
-  $c^n+nbc^{n-1}+\frac{n(n-1)}{1\cdot 2}bbc^{n-2} + \frac{n(n-1)(n-2)}{1\cdot 2\cdot 3}b^3c^{n-3} \ldots$
-
-  $+\frac{n(n-1)(n-2)\ldots(n-m+2)}{1\cdot 2\cdot 3\cdot 4\ldots(m-1)} b^{m-1}c^{n-m+1} : a^n$,\footnote{The notation $x_1+x_2+\ldots+x_n:y$ means $\tfrac 1y (x_1+x_2+\ldots+x_n)$. \todo{cite}}
+  \begin{multline*}
+  c^n+nbc^{n-1}+\frac{n(n-1)}{1\cdot 2}bbc^{n-2} + \frac{n(n-1)(n-2)}{1\cdot 2\cdot 3}b^3c^{n-3} \ldots \nl
+  +\frac{n(n-1)(n-2)\ldots(n-m+2)}{1\cdot 2\cdot 3\cdot 4\ldots(m-1)} b^{m-1}c^{n-m+1} : a^n,\text{\footnote{The notation $x_1+x_2+\ldots+x_n:y$ means $\tfrac 1y (x_1+x_2+\ldots+x_n)$.\todo{cite}}}
+  \end{multline*}
 
   as above.
 \end{quotation}
 
-Bernoulli considered a die with $a$ faces which has $b$ faces being favorable for the player and $c=a-b$ faces being unfavorable. The player has to throw at least $m$ times one of the $b$ favorable faces in a total of $n$ throws in order to win. What is the probability of winning / loosing?
+Bernoulli considered a die with $a$ faces which has $b$ faces being favorable for the player and $c=a-b$ faces being unfavorable. In order to win the player has to throw at least $m$ times one of the $b$ favorable faces in a total of $n$ throws. What is the probability of winning / loosing?
 
-Bernoulli started with calculating the number of outcomes in which the player throws exactly $k$ times one of the favorable faces. Fix $k$ of the total $n$ throws. All of these $k$ throws shall be one of the $b$ favorable results and the other $n-k$ shall be one of the $c$ unfavorable results. Because each of these $k$ throws can show one of $b$ possible faces the total number of different outcomes in these $k$ throws with only favorable results is $b^k$. Analogously is the number of possible outcomes in the other $n-k$ throws with only unfavorable results equal to $c^{n-k}$. Therefore there are in total $b^kc^{n-k}$ different outcomes in which the $k$ fixed throws show a favorable face and the other $n-k$ throws show a unfavorable face.
+Bernoulli started with calculating the number of outcomes in which the player throws exactly $k$ times one of the favorable faces. Fix $k$ of the total $n$ throws. All of these $k$ throws shall be one of the $b$ favorable results and the other $n-k$ throws shall be one of the $c$ unfavorable results. Because each of these $k$ throws can show one of $b$ possible faces the total number of different outcomes in these $k$ throws with only favorable results is $b^k$. Analogously is the number of possible outcomes in the other $n-k$ throws with only unfavorable results equal to $c^{n-k}$. Therefore there are in total $b^kc^{n-k}$ different outcomes in which the $k$ fixed throws show a favorable face and the other $n-k$ throws show a unfavorable face.
 
 In favor of throwing exactly $k$ favorable numbers, the order in which those $k$ numbers are thrown does not matter. As known by combinatorics there are $\binom nk=\frac{n!}{k!(n-k)!}=\frac{n\cdot(n-1)\ldots(n-k+1)}{1\cdot2\cdot3\ldots k}$ different orders in which exactly $k$ favorable throws occur. For each of these orders the total number of different outcomes, in which the $k$ favorable and $n-k$ unfavorable results occur in the specified order, is $b^kc^{n-k}$ as we have seen in the previous paragraph. Thus the total numbers of outcomes with exactly $k$ favorable throws is $\binom nk b^k c^{n-k}$.
 
-Because the total number of outcomes is $a^n$ and because all outcomes are equally likely, the probability for the player to have exactly $k$ favorable throws is $\frac {1}{a^n} \binom nk b^k c^{n-k}$.
-
-Because the player looses when he throws at most $m-1$ favorable numbers, the probability for the player to loose is
+Because the total number of outcomes is $a^n$ and because all outcomes are equally likely, the probability for the player to have exactly $k$ favorable throws is $\frac {1}{a^n} \binom nk b^k c^{n-k}$. Furthermore the player looses when he throws at most $m-1$ favorable numbers. Hence the probability for the player to loose is
 
 \begin{align}
   \P{\text{player looses}} = \frac{1}{a^n} \sum_{k=0}^{m-1} \binom nk b^k c^{n-k}
@@ -132,7 +130,7 @@ This is the same formula Bernoulli derived in the end of the above quoted sectio
 
 \begin{quotation}
   \emph{Corollary 1.} If there are the same numbers of cases in all games [...] the expectation found to be [...] $b^mc^{n-m}/a^n$, taking $n$ for the number of all the throws, and $m$ for the number in which what is to be achieved ought to be achieved.
-  
+
   \emph{Corollary 2.} If the same numbers of cases rule in all games and if, in addition, the number of games or throws is determined within which something is to be achieved, but such that the desired result can occur on any throws and not on certain determined ones [...] then it is clear that the quantity of the expectation found in the previous corollary should be multiplied by as many times as [...] $m$ things may be chosen from $n$ diverse things. This, however, may occur, by the Theory of Combinatorics to be treated in Part II, in $n(n-1)(n-2)(n-3)\ldots(n-m+1)/(1\cdot 2\cdot 3\cdot 4\ldots m)$ ways [...]. Thus the expectation of the player will be worth
 
   \begin{align*}
@@ -140,7 +138,7 @@ This is the same formula Bernoulli derived in the end of the above quoted sectio
   \end{align*}
 \end{quotation}
 
-When we introduce $p=\tfrac ba$ which is the probability that one get a favorable result in one throw and analogously $q=\tfrac ca=1-p$ for the probability of an unfavorable result in a throw, we get:
+When we introduce $p=\tfrac ba$ which is the probability that the player gets a favorable result in one throw and analogously $q=\tfrac ca=1-p$ for the probability of an unfavorable result in a throw, we get:
 
 \begin{align}
   \P{\text{$m$ in $n$ throws are favorable}} & = \frac{n(n-1)(n-2)(n-3)\ldots(n-m+1)}{(1\cdot 2\cdot 3\cdot 4\ldots m)}\cdot \frac{b^mc^{n-m}}{a^n} \nl
@@ -148,27 +146,27 @@ When we introduce $p=\tfrac ba$ which is the probability that one get a favorabl
   &= \binom nm p^m q^{n-m}
 \end{align}
 
-So we finally get a formula for calculating the odds of having $m$ favorable cases in a total of $n$ (independent) cases when in each case $p$ is the probability of having a favorable case\footnote{In Bernoulli's work $p$ is $\tfrac ba$ and thus Bernoulli only considered rational probabilities in his derivation. This was common in the beginning of probability theory \todo{cite}. It may have its origin, that in most games with a finite number of rounds only rational probabilities occur.}. As we will see in the next section, this formula gets the probability mass of the binomial distribution.
+So we finally get a formula for calculating the odds of having $m$ favorable cases in a total of $n$ (independent) cases when in each case $p$ is the probability of having a favorable case\footnote{In Bernoulli's work $p$ is $\tfrac ba$ and thus Bernoulli only considered rational probabilities in his derivation. This was common in the beginning of probability theory \todo{cite}. This may be justified by the fact, that in most games with a finite number of rounds only rational probabilities occur.}. As we will see in the next section, this formula is the probability mass function of the binomial distribution.
 
 \section{Definition of the binomial distribution}
 
-In the previous section we have seen the historical derivation and motivation of the binomial distribution. In this section I want to introduce the binomial distribution in a way contemporary textbooks define it. \todo{cite}
+In the previous section I presented you the historical derivation and motivation of the binomial distribution. In this section I want to introduce the binomial distribution in a way contemporary textbooks define it. \todo{cite}
 
-Take $n$ independent random variables $X_1, X_2, \ldots, X_n$. Each of them has two possible outcomes $\alpha$ and $\beta$. Those random variables with two possible outcomes are called ``Bernoulli trials'' named after Jacob Bernoulli. \todo{cite} The outcome $\alpha$ has the probability $p$ and $\beta$ has the probability $q=1-p$ to occur in each random variable $X_i$. 
+Take $n$ independent random variables $X_1, X_2, \ldots, X_n$. Each of them has two possible outcomes $\alpha$ and $\beta$. These random variables with two possible outcomes are called ``Bernoulli trials'' named after Jacob Bernoulli. \todo{cite} Let $p$ be the probability for the outcome $\alpha$ and $q=1-p$ the probability for the outcome $\beta$ for each random variable $X_i$.
 
 The binomial distribution is the probability distribution which assigns for each $k\in \{0,1,\ldots,n\}$ the probability of having exactly $k$ times the outcome $\alpha$ among all random variables $X_1,X_2,\ldots,X_n$. A typical way to define the binomial distribution is to set $\alpha=1$ and $\beta=0$. The random variable $\Bs=\sum_{i=1}^n X_i$ is then binomially distributed.
 
-What is $\P{\Bs = k} = \P{\sum_{i=1}^n X_i=k}$? To find this probability we can argue in a very similar way as in the above section. First we fix an order in which $k$ random variables of all $X_i$ are $\alpha$ and the rest $n-k$ random variables have $\beta$ as an outcome. The probability for each such order is $p^kq^{n-k}$ since the random variables are independent.
+What is $\P{\Bs = k} = \P{\sum_{i=1}^n X_i=k}$? To find this probability we can argue in a very similar way as in the above section. First we fix an order in which $k$ random variables of all $X_i$ have $\alpha$ and the rest $n-k$ random variables have $\beta$ as an outcome. The probability for each such order is $p^kq^{n-k}$ since the random variables are independent.
 
 For example the first $k$ random variables $X_1,X_2,\ldots,X_k$ might have the result $\alpha$ and the other $n-k$ random variables $X_{k+1},X_{k+2},\ldots,X_n$ have the outcome $\beta$. The probability in this case is:
 
 \begin{align}
   & \P{X_1=\alpha, X_2=\alpha, \ldots, X_k=\alpha,X_{k+1}=\beta, X_{k+2}=\beta, \ldots X_n =\beta} \nl
-  =\ & \underbrace{\P{X_1=\alpha} \cdot \P{ X_2=\alpha} \ldots \P{X_k=\alpha}}_{=p^k} \cdot \underbrace{\P{X_{k+1}=\beta} \cdot \P{X_{k+2}=\beta} \ldots \P{X_n =\beta}}_{= q^{n-k}} \nl
+  =\ & \underbrace{\P{X_1=\alpha} \cdot \P{ X_2=\alpha} \ldots \P{X_k=\alpha}}_{=p^k} \cdot \underbrace{\P{X_{k+1}=\beta} \ldots \P{X_n =\beta}}_{= q^{n-k}} \nl
   =\ & p^kq^{n-k}
 \end{align}
 
-Since the order in which the $k$ outcomes $\alpha$ and the $n-k$ outcomes $\beta$ occur does not matter, we have to sum of the probabilities over all such orders. Do define such an order, we have to take $k$ among all $n$ random variables which shall have the result $\alpha$. From combinatorics we know that there are $\binom nk$ ways to take $k$ objects from a whole set of $n$ objects. So there are $\binom bk$ orders in which exactly $k$ random variables have the outcome $\alpha$. Each of these orders has the possibility $p^kq^{n-k}$. So the total possibility to have exactly $k$ times the outcome $\alpha$ among all random variables is $\binom nk p^kq^{n-k}$.
+Since the order in which the $k$ outcomes $\alpha$ and the $n-k$ outcomes $\beta$ occur does not matter, we have to sum the probabilities of all such orders. Do define such an order, we have to take $k$ among all $n$ random variables which shall have the result $\alpha$. From combinatorics we know that there are $\binom nk$ ways to take $k$ objects from a whole set of $n$ objects. So there are $\binom nk$ orders in which exactly $k$ random variables have the outcome $\alpha$. Each of these orders have the probability $p^kq^{n-k}$. So the total probability to have exactly $k$ times the outcome $\alpha$ among all random variables is $\binom nk p^kq^{n-k}$.
 
 As already mentioned, this distribution is called ``binomial distribution'':
 
@@ -184,19 +182,19 @@ As already mentioned, this distribution is called ``binomial distribution'':
 
 \section{Applications of the binomial distribution}
 
-The binomial distribution occurs often in statistics and thus in all fields which uses statistical tools or probability theory like biology~\cite[p. 146]{henze}, psychology, economics, physics etc. \todo{cite}. In the beginning section of this chapter we have already met an application of this distribution in gambling too.
+The binomial distribution occurs often in counting processes~\cite[p. 138]{henze} and thus is used in many fields like biology~\cite[p. 146]{henze}, psychology, economics, physics etc. \todo{cite} In the beginning section of this chapter we have already met an application of this distribution in gambling too.
 
 \includewrapfig{assembly_line}{An assembly line}{File \href{https://www.flickr.com/photos/32659528@N00/2868489384}{``Final assembly''} from Flickr by \href{http://flickr.com/photos/32659528@N00}{Brian Snelson} and licensed under \href{https://creativecommons.org/licenses/by/2.0/deed.de}{CC-BY 2.0}.}
 
-The binomial distribution occurs often in counting processes~\cite[p. 138]{henze} to calculate the odds of having $k$ times a certain property among $n$ objects or occasions. The binomial distribution is also used as a simplified model when the probability of having a certain property varies only a little bit between all objects/occasions or when there is only a slight dependence in the occurence of the property between all objects/occasions. Take the following example:
+As already stated, the binomial distribution is used to calculate the odds of having $k$ times a certain property among $n$ objects or occasions. The binomial distribution is also used as a simplified model when the probability of having a certain property varies only a little bit between all objects/occasions or when there is only a slight dependence in the occurence of the property between all objects/occasions. Take the following example:
 
 \begin{example}
   What is the probability that $k$ among $n$ made products in an assembly line are faulty if the probability of one product produced incorrectly is $p$.
 \end{example}
 
-Firstly it is likely that the probability of having a faulty product varies over time. For example it may depend on the temperature of the machines which may fluctuate. Secondly the occurrence of a badly made product may increase the likelihood of flawed products for the next produced merchandises. There may be a failure in one of the machines which also effects the next products until the failure is corrected.
+Firstly it is likely that the probability of having a faulty product varies over time. For example it may depend on the temperature of the machines which may fluctuate. Secondly the occurrence of a badly made product may increase the likelihood of flawed products for the next produced merchandises. There may be a failure in one of the machines which also effects the next products until this failure is corrected.
 
-Although the premises for the binomial distribution is not fulfilled in this example, this distribution may be used by the company to do statistical analysis. This shows how important the binomial distribution for contemporary statistical analysis is because it may be used whenever one investigate a counting process.
+Although the premises for the binomial distribution is not fulfilled in this example, it may be used by the company to do statistical analysis. This shows how important the binomial distribution for contemporary statistical analysis is because it may be used whenever one investigate a counting process.
 
 \section{The binomial distribution and the sex ratio}
 
@@ -204,11 +202,11 @@ Although the premises for the binomial distribution is not fulfilled in this exa
 
 \includefig{bill_of_mortality}{The bill of mortality for 1665}{File \href{https://commons.wikimedia.org/wiki/File:Bill_of_Mortality.jpg}{``Bill of Mortality.jpg''} from Wikimedia Commons. Uploaded by user \href{https://commons.wikimedia.org/wiki/User:Dolledre}{Dolledre} and licensed under Public Domain.}
 
-I want to finish this chapter with presenting you how early statisticians used the binomial distribution to investigate the sex ratio at birth. This investigation was not only one of the earliest statistical analysis it also motivates the theorem by De Moivre and Laplace.
+I want to finish this chapter with presenting you how early statisticians used the binomial distribution to investigate the sex ratio at birth. This investigation was not only one of the earliest statistical analysis, it also motivates the theorem by de Moivre and Laplace.
 
-Starting from the 14th century plague epidemics occurred frequently in Europe for nearly 400 years~\cite[p. 82]{hald1}. So since the 1530s the parish clerks in London were requested to publish weekly the number of plague deaths together with the number of all other deaths~\cite[p. 82]{hald1}. These numbers were used by the government to recognize a new plague epidemic so that countermeasures could be taken. Also the wealthier part of the society used this data as an indication when they shall leave London~\cite[pp. 82-83]{hald1}. Alongside the number of deaths, the number of weddings and christenings inside the Church of England were registered too~\cite[p. 83]{hald1}. Besides the burials and christenings were given separately for male and female starting from 1629~\cite[p. 83]{hald1}.
+Starting from the 14th century plague epidemics occurred frequently in Europe for nearly 400 years~\cite[p. 82]{hald1}. Since the 1530s the parish clerks in London were requested to publish weekly the number of plague deaths together with the number of all other deaths~\cite[p. 82]{hald1}. These numbers were used by the government to recognize a new plague epidemic so that countermeasures could be taken. Also the wealthier part of the society used this data for making the decision whether they shall leave London to escape the epidemic~\cite[pp. 82-83]{hald1}. Alongside the number of deaths, the number of weddings and christenings inside the Church of England were registered too~\cite[p. 83]{hald1}. Besides the burials and christenings were given separately for male and female starting from 1629~\cite[p. 83]{hald1}.
 
-The first statistical analysis of this data were made by John Graunt~\cite[p. 83]{hald1} which was also one of the first statistical analysis of history~\cite[p. 81]{hald1}. In 1662 he published his book \emph{Natural and Political Observations Made upon the Bills of Mortality} in which he summarized and investigated the published data about mortality and birth in London~\cite[pp. 81-105]{hald1}. He calculates the sex ratio in the christenings for each 8 years and concluded that there are in average more men than female born~\cite[pp. 92-93]{hald1}.
+The first statistical analysis of this data were made by John Graunt~\cite[p. 83]{hald1} which was also one of the first statistical analysis of history~\cite[p. 81]{hald1}. In 1662 he published his book \emph{Natural and Political Observations Made upon the Bills of Mortality} in which he summarized and investigated the so far published data~\cite[pp. 81-105]{hald1}. He calculates the sex ratio in the christenings for each 8 years and concluded that there are in average more men than female born and that this ratio does not vary much~\cite[pp. 92-93]{hald1}.
 
 \begin{figure}
   \begin{center}
@@ -227,34 +225,34 @@ The first statistical analysis of this data were made by John Graunt~\cite[p. 83
   \end{center}
 \end{figure}
 
-In the following many mathematicians were inspired by Graunt's book to describe the reported phenomenas with probabilistic models~\cite[p. 275]{hald1}. One of these mathematicians was John Arbuthnott. He summarized the yearly number of male and female birth for 82 years in the period 1629-1710 and observed that for each year there are more boys than girls born. In this disproportion he saw a sign of the Divine Design and an evidence of the existence of God~\cite[p. 277]{hald1}\footnote{Arbuthnott's belief was common in the beginning of the 18th century among statisticians and theologians~\cite[p.~285]{hald1}. This may have motivated investigations about the sex ratio during this time.}. He argued that the chance for a boy to die during growing up is slightly higher than for girls. So the bigger chance for a male birth compensates this higher mortality rate in childhood. Thus the number of males and females in adulthood is equal~\cite[p. 277]{hald1}. John Arbuthnott wrote~\cite[p. 275]{hald1}:
+In the following many mathematicians were inspired by Graunt's book to describe the reported phenomenas with probabilistic models~\cite[p. 275]{hald1}. One of these mathematicians was John Arbuthnott. He used the yearly number of male and female births for 82 years in the period 1629-1710 and observed that for each year there are more boys than girls born. In this disproportion he saw a sign of the Divine Design and an evidence of the existence of God~\cite[p. 277]{hald1}\footnote{Arbuthnott's belief was common in the beginning of the 18th century among statisticians and theologians~\cite[p.~285]{hald1}. This may have motivated the investigations about the sex ratio during this time.}. He argued that the chance for a boy to die during growing up is slightly higher than for girls. So the bigger chance for a male birth compensates this higher mortality rate in childhood. Thus the number of males and females in adulthood is equal~\cite[p. 277]{hald1}. John Arbuthnott wrote~\cite[p. 275]{hald1}:
 
 \begin{quotation}
     This Equality of [adult] Males and Females is not the Effect of Chance but Divine Providence.
 \end{quotation}
 
-To prove his assumptions that the chances for male offspring is (a little bit) higher than for female offspring, Arbuthnott made the first test of significance in history~\cite[p. 276]{hald1}. He identified the determination of the birth's sex with the throw of a two sided die~\cite[pp. 275-276]{hald1}. Let the chances of a male birth be $p$ and thus let $q$ be the chances of the female birth\footnote{Here we ignore the possibility of an intersex birth. \todo{ausbauen}}. The yearly numbers of male and female births are then binomially distributed.
+To prove his assumptions Arbuthnott made the first test of significance in history~\cite[p. 276]{hald1}. He identified the determination of the birth's sex with the throw of a two sided die~\cite[pp. 275-276]{hald1}. Let the chances of a male birth be $p$ and thus let $q$ be the chances of the female birth\footnote{Here we ignore the possibility of an intersex birth. \todo{ausbauen}}. The yearly numbers of male and female births are then binomially distributed.
 
-As Anders Hald summarized in \cite[p. 278]{hald1}, Arbuthnott then estimated the probability that the number of male births exceeded the number of female births for 82 consecutive years under the binomial model for $p=\tfrac 12$. He argued that because of the symmetry of the binomial distribution for $p=\tfrac 12$ the possibility for having more boys born than girls in one year is less or equal to $\tfrac 12$. Thus the possibility that this happens for 82 consecutive years must be less than or equal $\left(\tfrac 12\right)^{82}$ which is less than $2.1\cdot 10^{-25}$. Because this possibility is so low the assumption $p=\tfrac 12$ must be rejected for the alternative $p > \tfrac 12$~\cite[p. 278]{hald1}.
+As Anders Hald summarized in \cite[p. 278]{hald1}, Arbuthnott then estimated the probability that the number of male births exceeded the number of female births for 82 consecutive years under the binomial model for $p=\tfrac 12$. He argued that because of the symmetry of the binomial distribution for $p=\tfrac 12$ the probability for having more boys born than girls in one year is less or equal to $\tfrac 12$. Thus the probability that this happens for 82 consecutive years must be less than or equal $\left(\tfrac 12\right)^{82}$ which is less than $2.1\cdot 10^{-25}$. Because this probability is so low the assumption $p=\tfrac 12$ must be rejected for the alternative $p > \tfrac 12$~\cite[p. 278]{hald1}.
 
 \includewrapfig{Gravesande}{Willem Jacob 's Gravesande}{File \href{https://en.wikipedia.org/wiki/File:Gravesande.jpg}{``Gravesande.jpg''} from Wikimedia Commons. Uploaded by user Vysotsky and licensed under Public Domain}
 
-The Dutch mathematician Willem Jacob 's Gravesande further improved the test made by Arbuthnott in his 1712 published paper \emph{Dèmonstration Mathèmatique du soin que Dieu prend de diriger ce qui se passe dans ce monde, tirèe du nombre des Garcons et des Filles qui naissent journellement} (A mathematical demonstration of the care, which God takes in governing that which happens in this world, drawn from the daily numbers of male and female birth)~\cite[p. 279]{hald1}. He first observed that the relative frequencies of male birth varies between $0.5027$ and $0.5362$ for the whole period of 82 years and that the average number of total births per year is $n=11,429$~\cite[p. 279]{hald1}. 's Gravesande then postulated a binomial model with $n=11,429$ and $p=\tfrac 12$ and calculated the probability that the number of male birth lies between $0.5027n=5745$ and $0.5362n=6128$~\cite[p. 280]{hald1}. Thus he calculated
+The Dutch mathematician Willem Jacob 's Gravesande further improved the test made by Arbuthnott in his 1712 published paper \emph{Dèmonstration Mathèmatique du soin que Dieu prend de diriger ce qui se passe dans ce monde, tirèe du nombre des Garcons et des Filles qui naissent journellement} (A mathematical demonstration of the care, which God takes in governing that which happens in this world, drawn from the daily numbers of male and female birth)~\cite[p. 279]{hald1}. He first observed that the relative frequencies of male birth varies between $0.5027$ and $0.5362$ for the whole period of 82 years and that the average number of total births per year is $n=11,429$~\cite[p. 279]{hald1}. 's Gravesande then postulated a binomial model with $n=11,429$ and $p=\tfrac 12$ and calculated the probability that the number of male births lies between $0.5027n=5745$ and $0.5362n=6128$~\cite[p. 280]{hald1}. Hence he calculated
 
 \begin{multline}
     \P{5745 < \text{number male birth} < 6128|p=\tfrac 12} \nl
     = \sum_{k=5745}^{6128} \binom{11429} k 2^{-11429}
 \end{multline}
 
-After adding a little value to his final result because he omitted all terms smaller than $0.5\cdot 10^{-5}$ he got the probability $0.292$~\cite[p. 280]{hald1}. Then he computed the 82th power of his result to get the probability that this event occurs in 82 years consecutively~\cite[p. 280]{hald1}. He finally calculated $1.3\cdot10^{-44}$ which is only a small fraction of the probability Arbuthnott computed~\cite[p. 280]{hald1}.
+After adding a little value to his final result because he omitted all terms smaller than $0.5\cdot 10^{-5}$ he got the probability $0.292$~\cite[p. 280]{hald1}. Then he computed the 82th power of his result to get the probability that this event occurs in 82 years consecutively~\cite[p. 280]{hald1}. His final result was $1.3\cdot10^{-44}$ which is only a small fraction of the probability Arbuthnott computed~\cite[p. 280]{hald1}.
 
-Nicolas Bernoulli, who met 's Gravesande 1712~\cite[p. 279]{hald1}, made a different attempt than Arbuthnott and 's Gravesande. He estimated the probability for a male birth to be $p=\tfrac{18}{35}\approx0.514$~\cite[p. 282]{hald1}. Now he assumed a total number of births with $n=14,000$ so that the expected number of male births is $\tfrac{18}{35}\cdot 14,000=7,200$~\cite[p. 282]{hald1}. Then he estimated the probability
+Nicolas Bernoulli, who met 's Gravesande in 1712~\cite[p. 279]{hald1}, made a different attempt than Arbuthnott and 's Gravesande. He estimated the probability for a male birth to be $p=\tfrac{18}{35}\approx0.514$~\cite[p. 282]{hald1}. Now he assumed a total number of births with $n=14,000$ so that the expected number of male births is $\tfrac{18}{35}\cdot 14,000=7,200$~\cite[p. 282]{hald1}. Afterwards he estimated the probability
 
 \begin{align}
     \P{7200-163 < \text{number male birth} < 7200+163|p=\tfrac{18}{35}} = \sum_{k=7037}^{7363} \binom {14000}{k} p^k (1-p)^{n-k}
 \end{align}
 
-to prove the that the number male birth can be assumed to be binomially distributed with $p=\tfrac{18}{35}$~\cite[pp. 281-282]{hald1}. There he used $163$ as the distance around the mean $7200$ because $7037=7200-163$ is the product of $n=14,000$ with the smallest observed relative frequency in male birth~\cite[p. 282]{hald1}. Nicolas Bernoulli did not directly calculated the above sum. He used an estimate which he derived from John Bernoulli's proof of the weak law of large numbers for the binomial distribution~\cite[pp. 264-267]{hald1}. He estimated~\cite[p. 282]{hald1}:
+to prove that the number male births can be assumed to be binomially distributed with $p=\tfrac{18}{35}$~\cite[pp. 281-282]{hald1}. He used $163$ as the distance around the mean $7200$ because $7037=7200-163$ is the product of $n=14,000$ with the smallest observed relative frequency in male birth~\cite[p. 282]{hald1}. Nicolas Bernoulli did not directly calculated the above sum. He used an estimate which he derived from John Bernoulli's proof of the weak law of large numbers for the binomial distribution~\cite[pp. 264-267]{hald1}. He estimated~\cite[p. 282]{hald1}:
 
 \begin{align}
     \P{7200-163 < \text{number male birth} < 7200+163|p=\tfrac{18}{35}} > 0.9776
