@@ -2,6 +2,7 @@
 
 \usepackage[utf8]{inputenc}
 \usepackage[dvipsnames]{xcolor}
+\usepackage[toc,page]{appendix}
 \usepackage{geometry}
 \usepackage{graphicx}
 \usepackage[draft=false]{hyperref}
@@ -34,8 +35,11 @@
 \include{binomial_distribution}
 \include{theorem}
 \include{numerical_investigation}
-\include{berry_esseen}
 \include{alternative_proof}
+
+\begin{appendices}
+\include{berry_esseen}
+\end{appendices}
 
 \bibliographystyle{plain}
 \bibliography{references}
