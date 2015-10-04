@@ -26,3 +26,6 @@ figures/%.pdf: figures/%.jpg
 
 figures/%.pdf: figures/%.png
 	convert $< $@
+
+clean:
+	git -fx
