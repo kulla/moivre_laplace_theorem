@@ -76,6 +76,36 @@ The following theorem contains all arithmetic rules for the big Psi notation whi
 
 \section{Interval arithmetic}
 
+\subsection{Additive interval definition}
+
+In this thesis we will need to derive besides to an approximation for the binomial distribution also an estimate for the error of this approximation. Therefore we will use the interval arithmetic \todo{footnote with references to books about interval arithmetic} because it allows an error propagation calculation alongside the derivation of the approximation.
+
+The main idea of interval arithmetic is to replace numbers in a calculation with intervals. These intervals represent the range where one can be sure to find the considered number. Whereas interval arithmetic normally deals with intervals of the form $[a,b]$ defined by their lower and upper bounds \todo{footnote references} we will use the notation $\an{a}$ which is defined as \todo{ref auf Bachelorarbeit}
+
+\begin{definition}
+  The interval $\an{a}$ is defined as $[a-\epsilon,a+\epsilon]$.
+\end{definition}
+
+So $\an{a}$ represents a number $x$ which is approximated by $a$ with an absolute error $\abs{x-a}$ less then or equal $\epsilon$.
+
+One purpose of interval arithmetic is to offer arithmetic rules to calculate with intervals such as \todo{cite bachelor thesis}
+
+\begin{align}
+  \an{a}+\an[\delta]{b} = \an[\epsilon+\delta]{a+b}
+\end{align}
+
+These rules are defined in a way, that the resulting interval is a superset of all possible outcomes of the operation. Let $f:D\subseteq\R^n\to\R$ be an $n$-ary operation of real numbers and let $\an[\epsilon_1]{a_1},\ldots,\an[\epsilon_2]{a_2}$ be $n$ intervals, then $f\left(\an[\epsilon_1]{a_1},\ldots,\an[\epsilon_n]{a_n}\right)$ is defined in a way that \todo{Fußnote -> vergleiche mit Satz aus Lehrbuch}
+
+\begin{align}
+  \left\{f(x_1,\ldots,x_n):x_1\in\an[\epsilon_1]{a_1},\ldots,x_2\in\an[\epsilon_n]{a_n}\right\} \subseteq f\left(\an[\epsilon_1]{a_1},\ldots,\an[\epsilon_n]{a_n}\right)
+\end{align}
+
+Because we cannot know which number $x_k \in \an[\epsilon_k]{a_k}$ is the actual number of the $k$th interval, each number of $\left\{f(x_1,\ldots,x_n):x_1\in\an[\epsilon_1]{a_1},\ldots,x_2\in\an[\epsilon_n]{a_n}\right\}$ can be the actual result of the operation. Thus we have to take a superset of this image as a result. Obviously the final result shall be an interval and as small as possible, too. The arithmetic rules we will use for this thesis are \todo{ref to Bachelorarbeit}
+
+\begin{theorem}
+
+\end{theorem}
+
 \section{Finite difference calculus}
 
 \todo{wirklich notwendig?!}
