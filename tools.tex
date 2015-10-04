@@ -83,7 +83,7 @@ In this thesis we will need to derive besides to an approximation for the binomi
 The main idea of interval arithmetic is to replace numbers in a calculation with intervals. These intervals represent the range where one can be sure to find the considered number. Whereas interval arithmetic normally deals with intervals of the form $[a,b]$ defined by their lower and upper bounds \todo{footnote references} we will use the notation $\an{a}$ which is defined as \todo{ref auf Bachelorarbeit}
 
 \begin{definition}
-  The interval $\an{a}$ is defined as $[a-\epsilon,a+\epsilon]$.
+  The interval $\an{a}$ for $\epsilon \in \Rplus$ and $a\in \R$ is defined as $[a-\epsilon,a+\epsilon]$.
 \end{definition}
 
 So $\an{a}$ represents a number $x$ which is approximated by $a$ with an absolute error $\abs{x-a}$ less then or equal $\epsilon$.
@@ -105,6 +105,34 @@ Because we cannot know which number $x_k \in \an[\epsilon_k]{a_k}$ is the actual
 \begin{theorem}
 
 \end{theorem}
+
+\subsection{Multiplicative interval definition}
+
+The multiplicative rule for intervals defined as $\an{a}$ is not simple \todo{ref}:
+
+\begin{align}
+  \ldots
+\end{align}
+
+Because we will have to deal often with products we will also use a slightly different definition of an interval \todo{ref to question on MSE}
+
+\begin{definition}
+  The interval $\ean{a}$ for $\epsilon,a\in\Rplus$ is defined as $\left[a\cdot e^{-\epsilon},a\cdot e^\epsilon\right]$.
+\end{definition}
+
+\noindent This interval definition has the advantage its rule for products is easy: \todo{proof?}
+
+\begin{align}
+  \ean[\epsilon]{a}\cdot \ean[\delta]{b} = \ean[\epsilon+\delta]{a+b}
+\end{align}
+
+In the following chapters we will use the following arithmetic rules:
+
+\begin{theorem}
+
+\end{theorem}
+
+\subsection{Interval arithmetic and the big Psi notation}
 
 \section{Finite difference calculus}
 
