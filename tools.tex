@@ -27,7 +27,7 @@ So $\epsilon_n \in \bigo{\frac 1n}$ means that $\epsilon_n$ approaches zero at l
 
 This and other arithmetic rules simplify error estimations. Unfortunately the big O notation does only provide an estimate of the convergence speed but no estimation of the error's value since the constants $C$ and $C_\infty$ in \eqref{bigo_def1} and \eqref{bigo_def_limsup} are not known \todo{cite/footnote}.
 
-Therefore I want to introduce the big Psi notation with which next to the convergence speed also an estimate for the asymptotic error can be stated. The big Psi notation is defined as:
+Therefore I want to introduce the big Psi notation with which besides to the convergence speed also an estimate for the asymptotic error can be stated. The big Psi notation is defined as:
 
 \begin{definition}[Big Psi notation]
   Let $\seq{a_n}$ be a sequence with $a_n > 0$ for all $n\in\N$. $\bigpsi{a_n}$ is the set of all sequences $\seq{\epsilon_n}$ fulfilling $\limsup_{n\to\infty} \abs{\frac{\epsilon_n}{a_n}} \le 1$. Thus
