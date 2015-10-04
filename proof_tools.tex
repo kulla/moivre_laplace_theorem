@@ -4,12 +4,18 @@ In this chapter I will prove the theorems I have stated in the chapter~\ref{chap
 
 \section{Big Psi notation}
 
-\begin{theorem}
-
-\end{theorem}
+\input{bigpsi_rules}
 
 \begin{proof}
+  \begin{enumerate}
+    \item It is
 
+      \begin{align}
+        \seq{\epsilon_n} \in \bigpsi{a_n} & \implies \limsup_{n\to\infty} \abs{\frac{\epsilon_n}{a_n}} \le 1 \nl
+                                          & \implies \exists C_\infty > 0 : \limsup_{n\to\infty} \abs{\frac{\epsilon_n}{a_n}} \le C_\infty \nl
+                                          & \implies \seq{e_n} \in \bigo{a_n}
+      \end{align}
+  \end{enumerate}
 \end{proof}
 
 \section{Interval arithmetic}

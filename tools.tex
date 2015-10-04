@@ -5,29 +5,29 @@ In this chapter I will introduce and explain the tools necessary for the upcomin
 \section{The big Psi notation}
 
 \subsection{Definition of the big Psi notation}
-An important part of this thesis is dedicated to estimate the quality of the normal approximation for the binomial distribution. Therefore we will investigate the error of the cumulative distribution function between the normal distribution and the binomial distribution.
+An important part of this thesis is dedicated to estimate the quality of the normal approximation for the binomial distribution. Therefore we will investigate the error of the cumulative distribution function between the normal and the binomial distribution.
 
-To describe the asymptotic behavior of an error, the big O notation can be used. It declares the convergence speed with which the error converges at least to zero. Given an error $\epsilon_n$ for the $n$-th step of an approximation the big O notation $\epsilon_n \in \bigo{a_n}$ means \todo{cite}
+To describe the asymptotic behavior of an error, the big O notation can be used. It declares the convergence speed with which the error converges at least to zero. Given an error $\epsilon_n$ for the $n$-th step of an approximation the big O notation $\epsilon_n \in \bigo{a_n}$ means \todo{citation needed}
 
 \begin{align} \label{bigo_def1}
   \seq{\epsilon_n} \in \bigo{a_n} :\iff \exists C > 0: \abs{\epsilon_n} \le C \cdot \abs{a_n}
 \end{align}
 
-\noindent This definition is equivalent to \todo{cite}
+\noindent This definition is equivalent to \todo{citation needed}
 
 \begin{align} \label{bigo_def_limsup}
   \seq{\epsilon_n} \in \bigo{a_n} :\iff \exists C_\infty > 0: \limsup_{n\to\infty} \abs{\frac{\epsilon_n}{a_n}} \le C_\infty
 \end{align}
 
-So $\epsilon_n \in \bigo{\frac 1n}$ means that $\epsilon_n$ approaches zero at least with the convergence speed as of $\seq{\frac 1n}$. Thereby the advantage of the big O notation are its simple arithmetic rules. For example we have
+So $\epsilon_n \in \bigo{\frac 1n}$ means that $\epsilon_n$ approaches zero at least with the convergence speed as $\seq{\frac 1n}$. Thereby the advantage of the big O notation are its simple arithmetic rules. For example we have
 
 \begin{align}
   \bigo{\frac 1n} + \bigo{\frac 1{n^2}} \subseteq \bigo{\frac 1n}
 \end{align}
 
-This and other arithmetic rules simplify error estimations. Unfortunately the big O notation does only provide an estimate of the convergence speed but no estimation of the error's value since the constants $C$ and $C_\infty$ in \eqref{bigo_def1} and \eqref{bigo_def_limsup} are not known \todo{cite/footnote}.
+These arithmetic rules simplify error estimations. Unfortunately the big O notation does only provide an estimate of the convergence speed but no estimation of the error's value since the constants $C$ and $C_\infty$ in \eqref{bigo_def1} and \eqref{bigo_def_limsup} are not known\footnote{cf.~\cite{hurkyl_bigo} and \cite{templatetypedef_bigo}}.
 
-Therefore I want to introduce the big Psi notation with which besides to the convergence speed also an estimate for the asymptotic error can be stated. The big Psi notation is defined as:
+Therefore I want to introduce the big Psi notation with which besides to the convergence speed also an estimate for the asymptotic error can be stated. The big Psi notation is defined as\footnote{Although it is likely that this notation is already used in mathematical literature I could not find a reference for it, cf.~\cite{tampis_bigpsi}}:
 
 \begin{definition}[Big Psi notation]
   Let $\seq{a_n}$ be a sequence with $a_n > 0$ for all $n\in\N$. $\bigpsi{a_n}$ is the set of all sequences $\seq{\epsilon_n}$ fulfilling $\limsup_{n\to\infty} \abs{\frac{\epsilon_n}{a_n}} \le 1$. Thus
@@ -36,7 +36,7 @@ Therefore I want to introduce the big Psi notation with which besides to the con
     \seq{\epsilon_n} \in \bigpsi{a_n} :\iff \limsup_{n\to\infty} \abs{\frac{\epsilon_n}{a_n}} \le 1
   \end{align}
 
-  \todo{notation with $\seq{\epsilon_n}$ / cite question on MSE}
+  \todo{Notation with $\epsilon_n$ instead of $\seq{\epsilon_n}$?! Explanation necessary?}
 \end{definition}
 
 Note that the definition of the big Psi notation is the same as the limes superior definition \eqref{bigo_def_limsup} of the big O notation whereby $C_\infty$ has the concrete value $1$. Thus we directly see
@@ -45,19 +45,21 @@ Note that the definition of the big Psi notation is the same as the limes superi
   \seq{\epsilon_n} \in \bigpsi{a_n} \implies \seq{\epsilon_n} \in \bigo{a_n}
 \end{align}
 
-\noindent Due to the properties of the limes superior we may also define the big Psi notation as\footnote{This definition has the advantage that it also allows $a_n=0$ for any $n\in\N$.} \todo{proof?}
+\noindent Due to the properties of the limes superior we may also define the big Psi notation as\footnote{This definition has the advantage that it also allows $a_n=0$ for any $n\in\N$.}
+
+\todo{Is here a proof necessary?}
 
 \begin{align}
   \seq{\epsilon_n} \in \bigpsi{a_n} \iff \forall \epsilon > 0\, \exists N \in \N\, \forall n\ge N: \abs{\epsilon_n} \le (1+\epsilon)\abs{a_n}
 \end{align}
 
-So $\seq{\epsilon_n}\in\bigpsi{a_n}$ iff for each $\epsilon > 0$ almost all $\abs{\epsilon_n}$ are less then or equal $(1+\epsilon)\abs{a_n}$. Because an estimation is only stated for almost all $n\in\N$ and not for all $n\in\N$ the big Psi notation provides an upper bound for the asymptotic error.
+So $\seq{\epsilon_n}\in\bigpsi{a_n}$ iff for each $\epsilon > 0$ almost all $\abs{\epsilon_n}$ are less then or equal $(1+\epsilon)\abs{a_n}$. Because an estimation is only stated for almost all $n\in\N$ the big Psi notation provides an upper bound for the asymptotic error.
 
-Note that $\epsilon_n\in\bigpsi{a_n}$ does not imply $\abs{\epsilon_n}\le\abs{a_n}$ for any $n\in\N$. Take for example $\epsilon_n = \frac 1n + \frac 1{n^2}$. We have $\epsilon_n \in \bigpsi{\frac 1n}$ although $\epsilon_n > \frac 1n$ for all $n\in\N$. \todo{proof?}
+Note that $\epsilon_n\in\bigpsi{a_n}$ does not imply $\abs{\epsilon_n}\le\abs{a_n}$ for any $n\in\N$. Take for example $\epsilon_n = \frac 1n + \frac 1{n^2}$. We have $\epsilon_n \in \bigpsi{\frac 1n}$ although $\epsilon_n > \frac 1n$ for all $n\in\N$\footnote{Proof for $\seq{\epsilon_n} \in \bigpsi{\frac 1n}$: $\limsup_{n\to\infty} \frac{\frac 1n + \frac 1{n^2}}{\frac 1n} = \limsup_{n\to\infty} \left(1+\frac 1n\right) = 1 \le 1$}.
 
 \subsection{Arithmetic rules}
 
-The big Psi notation shares with the big O notation a set of easy arithmetic rules. For example we also have
+The big Psi notation shares with the big O notation a set of easy arithmetic rules. For example we have\footnote{I will prove this statement in theorem \ref{thm:bigpsi:rules}.}
 
 \begin{align} \label{bigpsi_rule_example}
   \bigpsi{\frac an}+\bigpsi{\frac b{n^2}} \subseteq \bigpsi{\frac an}
@@ -69,10 +71,7 @@ We also cannot apply simplifications which are only true for almost all $n\in\N$
 
 The following theorem contains all arithmetic rules for the big Psi notation which we will use in this thesis. You will find a proof in the appendix.
 
-\begin{theorem}
-  The big Psi notation has the following arithmetic rules:
-
-\end{theorem}
+\input{bigpsi_rules}
 
 \section{Interval arithmetic}
 
