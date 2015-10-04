@@ -1,16 +1,10 @@
 \chapter{Standard proof of the De Moivre-Laplace theorem}
 
-In this section I want to prove the theorem by de Moivre and Laplace whereby I want to follow the basic ideas of their original proof. So we will first derive Stirling's formula of the factorial with which we will find an approximation of the binomial's probability mass function. This approximation will be used to deduce de Moivre's and Laplace's theorem.
+In this chapter I want to prove the theorem by de Moivre and Laplace whereby I want to follow the basic ideas of their original proof. So we will first derive Stirling's formula of the factorial with which we will find an approximation of the binomial's probability mass function. This approximation will be used to deduce de Moivre's and Laplace's theorem.
 
 \section{Stirling's formula}
 
-In the following I want to write $a_n \asim b_n$ for sequences $\seq{a_n}$ and $\seq{b_n}$ with nonzero elements, whenever $\lim_{n\to\infty} \tfrac{a_n}{b_n}=1$. Thus
-
-\begin{align}
-  a_n \asim b_n \iff \lim_{n\to\infty} \frac{a_n}{b_n} = 1
-\end{align}
-
-\noindent Without proof the following theorem\footnote{See~\cite[p. 505]{heuser} and \cite[p. 63]{heuser}} will be used in this section:
+Without proof the following theorem\footnote{See~\cite[p. 505]{heuser} and \cite[p. 63]{heuser}} will be used in this section:
 
 \begin{theorem}[Wallis' product]
   It is:
@@ -37,7 +31,7 @@ In the following I want to write $a_n \asim b_n$ for sequences $\seq{a_n}$ and $
   \end{multline}
 \end{theorem}
 
-\noindent The periodic Bernoulli polynomials $\bps$ are defined on $[0,1)$ by~\cite[p. 291]{koenigsberger}:
+The periodic Bernoulli polynomials $\bps$ are defined on $[0,1)$ by the following properties~\cite[p. 291]{koenigsberger}:
 
 \begin{enumerate}
   \item $\bp[0]{x} = 1$
@@ -45,19 +39,19 @@ In the following I want to write $a_n \asim b_n$ for sequences $\seq{a_n}$ and $
   \item $\int_0^1 \bp{x} \d{x} = 0$
 \end{enumerate}
 
-The definition of $\bps$ on $[0,1)$ is then periodically continued to the whole domain $\R$. The Bernoulli numbers $\bn$ fulfill $\bn=\bp{0}$. All odd Bernoulli numbers $\bn[2n-1]$ for $n>1$ are zero and for the even Bernoulli numbers we get~\cite[p.~289]{koenigsberger}:
+The definition of $\bps$ on $[0,1)$ is then periodically continued to the whole domain $\R$ \todo{how? / cite}. The Bernoulli numbers $\bn$ fulfill $\bn=\bp{0}$ \todo{citation needed}. All odd Bernoulli numbers $\bn[2n-1]$ for $n>1$ are zero and for the even Bernoulli numbers we get~\cite[p.~289]{koenigsberger}:
 
 \begin{align}
   \bn[2] = \frac 16;\quad \bn[4]=-\frac{1}{30};\quad \bn[6]=\frac{1}{42};\quad \ldots
 \end{align}
-  
-You can find a proof of the Euler-Maclaurin formula in~\cite[pp.~225-226]{koenigsberger} and~\cite[pp.~506-509]{heuser}. With the above two theorems we can derive Stirling's formula: \todo{Wer?}
+
+You can find a proof of the Euler-Maclaurin formula in~\cite[pp.~225-226]{koenigsberger} and~\cite[pp.~506-509]{heuser}. With the above two theorems we can derive Stirling's formula: \todo{citation needed}
 
 \begin{theorem}[Stirling's formula]
   The factorial $n!$ fulfills:
-  
+
   \begin{align}
-    n! \asim \sqrt{2\pi n} \left(\frac ne\right)^n
+    n! \in \ean[\frac 6n]{\sqrt{2\pi n} \left(\frac ne\right)^n}
   \end{align}
 \end{theorem}
 
@@ -80,7 +74,7 @@ You can find a proof of the Euler-Maclaurin formula in~\cite[pp.~225-226]{koenig
     \ln(n!) - n\ln(n) + n - \frac 12 \ln(n) = \frac{11}{12} + \frac{1}{12n} + \frac 13 \int_1^n \frac{\bp[3]{x}}{x^3} \d{x}
   \end{align}
 
-  $\bps[3]$ is on $[0,1)$ as part of a polynomial bounded. Because $\bps[3]$ is $1$-periodic, this function is bounded on the whole domain $\R$. Thus $\int_1^\infty \frac{\bp[3]{x}}{x^3} \d{x}$ exists. Now we define $\seq{b_n}$ via
+  $\bps[3]$ is on $[0,1)$ as part of a polynomial bounded. Because $\bps[3]$ is $1$-periodic, $\bps[3]$ is bounded on the whole domain $\R$. Thus $\int_1^\infty \frac{\bp[3]{x}}{x^3} \d{x}$ exists. Now we define $\seq{b_n}$ via
 
   \begin{align}
     b_n = \frac{n!}{n^n e^{-n} \sqrt{n}}
@@ -117,7 +111,7 @@ You can find a proof of the Euler-Maclaurin formula in~\cite[pp.~225-226]{koenig
     \lim_{n\to\infty} \frac{n!}{\sqrt{2\pi n}n^n e^{-n}} = \lim_{n\to\infty} \frac{b_n}{\sqrt{2\pi}} = 1
   \end{align}
 
-  \noindent which proves $n! \asim \sqrt{2\pi n}\left(\tfrac ne\right)^{-n}$.
+  \todo{Fehler berechnen und beweisen}
 \end{proof}
 
 \section{The local version of de Moivre-Laplace theorem}
