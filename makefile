@@ -11,7 +11,7 @@ all: pdf
 
 pdf: ${MAIN}.pdf
 
-${MAIN}.pdf: ${SOURCES} ${FIGURES}
+${MAIN}.pdf: ${SOURCES} ${FIGURES} references.bib
 	$(call latex,${MAIN})
 	makeglossaries ${MAIN}
 	bibtex ${MAIN}.aux
