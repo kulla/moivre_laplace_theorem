@@ -48,7 +48,7 @@ Note that the definition of the big Psi notation is the same as the limes superi
 \noindent Due to the properties of the limes superior we may also define the big Psi notation as\footnote{This definition has the advantage that it also allows $a_n=0$ for any $n\in\N$.} \todo{proof?}
 
 \begin{align}
-  \seq{\epsilon_n} \in \bigo{a_n} \iff \forall \epsilon > 0\, \exists N \in \N\, \forall n\ge N: \abs{\epsilon_n} \le (1+\epsilon)\abs{a_n}
+  \seq{\epsilon_n} \in \bigpsi{a_n} \iff \forall \epsilon > 0\, \exists N \in \N\, \forall n\ge N: \abs{\epsilon_n} \le (1+\epsilon)\abs{a_n}
 \end{align}
 
 So $\seq{\epsilon_n}\in\bigpsi{a_n}$ iff for each $\epsilon > 0$ almost all $\abs{\epsilon_n}$ are less then or equal $(1+\epsilon)\abs{a_n}$. Because an estimation is only stated for almost all $n\in\N$ and not for all $n\in\N$ the big Psi notation provides an upper bound for the asymptotic error.
@@ -73,3 +73,5 @@ The following theorem contains all arithmetic rules for the big Psi notation whi
   The big Psi notation has the following arithmetic rules:
 
 \end{theorem}
+
+\section{Interval arithmetic}
