@@ -57,6 +57,25 @@ So $\seq{\epsilon_n}\in\bigpsi{a_n}$ iff for each $\epsilon > 0$ almost all $\ab
 
 Note that $\epsilon_n\in\bigpsi{a_n}$ does not imply $\abs{\epsilon_n}\le\abs{a_n}$ for any $n\in\N$. Take for example $\epsilon_n = \frac 1n + \frac 1{n^2}$. We have $\epsilon_n \in \bigpsi{\frac 1n}$ although $\epsilon_n > \frac 1n$ for all $n\in\N$\footnote{Proof for $\seq{\epsilon_n} \in \bigpsi{\frac 1n}$: $\limsup_{n\to\infty} \frac{\frac 1n + \frac 1{n^2}}{\frac 1n} = \limsup_{n\to\infty} \left(1+\frac 1n\right) = 1 \le 1$}.
 
+\subsection{The little-o notation}
+
+We will also use the little-o notation which is defined as \todo{citation needed}
+
+\begin{definition}
+  Let $\seq{a_n}$ be a sequence with $a_n > 0$ for all $n\in\N$\footnote{To allow $a_n=0$ it is also possible to define the little-notation via \todo{citation needed}
+
+  \begin{align}
+    \seq{\epsilon_n}\in\littleo{a_n} :\iff \forall \epsilon > 0\, \exists N\in\N\, \forall n \ge N: \abs{\epsilon_n} \le \epsilon \abs{a_n}
+  \end{align}
+
+  In this work we will only deal with sequences $\seq{a_n}$ with $a_n > 0$ for all $n\in\N$.
+}. $\littleo{a_n}$ is the set of all sequences $\seq{\epsilon_n}$ with $\lim_{n\to\infty} \abs{\frac{\epsilon_n}{a_n}} = 0$. Thus
+
+  \begin{align}
+    \seq{\epsilon_n}\in\littleo{a_n} \iff \lim_{n\to\infty} \abs{\frac{\epsilon_n}{a_n}} = 0
+  \end{align}
+\end{definition}
+
 \subsection{Arithmetic rules}
 
 The big Psi notation shares with the big O notation a set of easy arithmetic rules. For example we have\footnote{I will prove this statement in theorem \ref{thm:bigpsi:rules}.}
