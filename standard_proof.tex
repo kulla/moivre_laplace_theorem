@@ -1,10 +1,10 @@
 \chapter{Standard proof of the De Moivre-Laplace theorem}
 
-In this chapter I want to prove the theorem by de Moivre and Laplace whereby I want to follow the basic ideas of their original proof. So we will first derive Stirling's formula of the factorial with which we will find an approximation of the binomial's probability mass function. This approximation will be used to deduce de Moivre's and Laplace's theorem.
+In this chapter I want to prove the theorem by de Moivre and Laplace whereby I want to follow the basic ideas of their original proof\footnote{You can find similar proofs in \todo{citations needed}}. So we will first derive Stirling's formula of the factorial with which we will find an approximation of the binomial's probability mass function. This approximation will be used to deduce de Moivre's and Laplace's theorem.
 
 \section{Stirling's formula}
 
-Without proof the following theorem\footnote{See~\cite[p. 505]{heuser} and \cite[p. 63]{heuser}} will be used in this section:
+Without proof the following theorem\footnote{cf.~\cite[p. 505]{heuser} and \cite[p. 63]{heuser} \todo{correction of second citation}} will be used in this section:
 
 \begin{theorem}[Wallis' product]
   It is:
@@ -39,13 +39,13 @@ The periodic Bernoulli polynomials $\bps$ are defined on $[0,1)$ by the followin
   \item $\int_0^1 \bp{x} \d{x} = 0$
 \end{enumerate}
 
-The definition of $\bps$ on $[0,1)$ is then periodically continued to the whole domain $\R$ \todo{how? / cite}. The Bernoulli numbers $\bn$ fulfill $\bn=\bp{0}$ \todo{citation needed}. All odd Bernoulli numbers $\bn[2n-1]$ for $n>1$ are zero and for the even Bernoulli numbers we get~\cite[p.~289]{koenigsberger}:
+The definition of $\bps$ on $[0,1)$ is then periodically continued to the whole domain $\R$ \todo{how? / cite}. The Bernoulli numbers $\bn$ fulfill $\bn=\bp{0}$~\cite[p.~290]{koenigsberger}. All odd Bernoulli numbers $\bn[2n-1]$ for $n>1$ are zero and for the even Bernoulli numbers we get~\cite[p.~289]{koenigsberger}:
 
 \begin{align}
   \bn[2] = \frac 16;\quad \bn[4]=-\frac{1}{30};\quad \bn[6]=\frac{1}{42};\quad \ldots
 \end{align}
 
-You can find a proof of the Euler-Maclaurin formula in~\cite[pp.~225-226]{koenigsberger} and~\cite[pp.~506-509]{heuser}. With the above two theorems we can derive Stirling's formula: \todo{citation needed}
+You can find a proof of the Euler-Maclaurin formula in~\cite[pp.~225-226]{koenigsberger} and~\cite[pp.~506-509]{heuser}. With the above two theorems we can derive Stirling's formula~(cf.~\cite[p.~228]{koenigsberger}):
 
 \begin{theorem}[Stirling's formula]
   The factorial $n!$ fulfills:
