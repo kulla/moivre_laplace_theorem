@@ -78,7 +78,17 @@ We will also use the little-o notation which is defined as~\cite[pp.~99,~103]{ai
 
 \subsection{Arithmetic rules}
 
-The big Psi notation shares with the big O notation a set of easy arithmetic rules. For example we have\footnote{I will prove this statement in theorem \ref{thm:bigpsi:rules}.}
+The big Psi notation shares with the big O notation a set of easy arithmetic rules. For example we have\footnote{With the rules proved in theorem \ref{thm:bigpsi:rules} this statement can be shown in the following way:
+
+  \begin{align}
+    \bigpsi{\frac an}+\bigpsi{\frac{b}{n^2}} & \subseteq \bigpsi{\frac an} + \bigo{\frac b{n^2}} \nl
+    & \begin{comment}
+      \frac b{n^2} \in \littleo{\frac an}
+    \end{comment} \nl
+    & \subseteq \bigpsi{\frac an} + \littleo{\frac an} \nl
+    & \subseteq \bigpsi{\frac an}
+  \end{align}
+}
 
 \begin{align} \label{bigpsi_rule_example}
   \bigpsi{\frac an}+\bigpsi{\frac b{n^2}} \subseteq \bigpsi{\frac an}
