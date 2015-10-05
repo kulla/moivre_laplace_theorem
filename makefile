@@ -28,4 +28,4 @@ figures/%.pdf: figures/%.png
 	convert $< $@
 
 clean:
-	git -fx
+	git clean -fx
