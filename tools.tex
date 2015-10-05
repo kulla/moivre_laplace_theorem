@@ -7,13 +7,13 @@ In this chapter I will introduce and explain the tools necessary for the upcomin
 \subsection{Definition of the big Psi notation}
 An important part of this thesis is dedicated to estimate the quality of the normal approximation for the binomial distribution. Therefore we will investigate the error of the cumulative distribution function between the normal and the binomial distribution.
 
-To describe the asymptotic behavior of an error, the big O notation can be used. It declares the convergence speed with which the error converges at least to zero. Given an error $\epsilon_n$ for the $n$-th step of an approximation the big O notation $\epsilon_n \in \bigo{a_n}$ means \todo{citation needed}
+To describe the asymptotic behavior of an error, the big O notation can be used. It declares the convergence speed with which the error converges at least to zero. Given an error $\epsilon_n$ for the $n$-th step of an approximation the big O notation $\epsilon_n \in \bigo{a_n}$ means~\cite[p.~444]{graham}\cite[p.~100]{aigner}
 
 \begin{align} \label{bigo_def1}
-  \seq{\epsilon_n} \in \bigo{a_n} :\iff \exists C > 0\, \forall n \in \N: \abs{\epsilon_n} \le C \cdot \abs{a_n}
+  \seq{\epsilon_n} \in \bigo{a_n} :\iff \exists C > 0\, \exists N\in\N\,\forall n\ge N: \abs{\epsilon_n} \le C \cdot \abs{a_n}
 \end{align}
 
-\noindent This definition is equivalent to \todo{citation needed}
+\noindent This definition is equivalent to~\cite[p.~383]{hachenberger}\cite{wiki:bigo}
 
 \begin{align} \label{bigo_def_limsup}
   \seq{\epsilon_n} \in \bigo{a_n} :\iff \exists C_\infty > 0: \limsup_{n\to\infty} \abs{\frac{\epsilon_n}{a_n}} \le C_\infty
@@ -25,7 +25,7 @@ So $\epsilon_n \in \bigo{\frac 1n}$ means that $\epsilon_n$ approaches zero at l
   \bigo{\frac 1n} + \bigo{\frac 1{n^2}} \subseteq \bigo{\frac 1n}
 \end{align}
 
-These arithmetic rules simplify error estimations. Unfortunately the big O notation does only provide an estimate of the convergence speed but no estimation of the error's value since the constants $C$ and $C_\infty$ in \eqref{bigo_def1} and \eqref{bigo_def_limsup} are not known\footnote{cf.~\cite{hurkyl_bigo} and \cite{templatetypedef_bigo}}.
+These arithmetic rules simplify error estimations. Unfortunately the big O notation does only provide an estimate of the convergence speed but no estimation of the error's value since the constants $C$ and $C_\infty$ in \eqref{bigo_def1} and \eqref{bigo_def_limsup} are not known\footnote{cf.~\cite[p.~444]{graham},~\cite{hurkyl_bigo} and \cite{templatetypedef_bigo}}.
 
 Therefore I want to introduce the big Psi notation with which besides to the convergence speed also an estimate for the asymptotic error can be stated. The big Psi notation is defined as\footnote{Although it is likely that this notation is already used in mathematical literature I could not find a reference for it, cf.~\cite{tampis_bigpsi}}:
 
