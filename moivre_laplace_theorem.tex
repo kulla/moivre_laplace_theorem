@@ -16,6 +16,9 @@
 
 \usepackage[nottoc]{tocbibind}
 
+\usepackage{biblatex}
+\addbibresource{references.bib}
+
 \include{config}
 
 \usepackage[toc,xindy,nonumberlist]{glossaries}
@@ -42,7 +45,6 @@
   \include{berry_esseen}
 \end{appendices}
 
-\bibliographystyle{plain}
-\bibliography{references}
+\printbibliography
 
 \end{document}
