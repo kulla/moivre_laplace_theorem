@@ -11,6 +11,14 @@ In this chapter I will prove the theorems I have stated in the chapter~\ref{chap
     \item
 
       \begin{align}
+        & \seq{\epsilon_n}\in\bigo{a_n} \land \seq{a_n} \in \littleo{b_n} \nl
+        \implies & \left(\exists C > 0: \limsup_{n\to\infty} \abs{\frac{\epsilon_n}{a_n}} \le C\right) \land \lim_{n\to\infty} \abs{\frac{a_n}{b_n}} = 0 \nl
+        \implies & \lim_{n\to\infty} \abs{\frac{\epsilon_n}{b_n}} = \lim_{n\to\infty} \underbrace{\abs{\frac{\epsilon_n}{a_n}}}_{\text{bounded}} \cdot \underbrace{\abs{\frac{a_n}{b_n}}}_{\to 0} = 0 \nl
+        \implies & \seq{\epsilon_n} \in \littleo{b_n}
+      \end{align}
+    \item
+
+      \begin{align}
         \seq{\epsilon_n} \in \bigpsi{a_n} & \implies \limsup_{n\to\infty} \abs{\frac{\epsilon_n}{a_n}} \le 1 \nl
                                           & \implies \exists C_\infty > 0 : \limsup_{n\to\infty} \abs{\frac{\epsilon_n}{a_n}} \le C_\infty \nl
                                           & \implies \seq{e_n} \in \bigo{a_n}
