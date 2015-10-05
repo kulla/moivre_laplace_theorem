@@ -15,6 +15,15 @@ In this chapter I will prove the theorems I have stated in the chapter~\ref{chap
                                           & \implies \exists C_\infty > 0 : \limsup_{n\to\infty} \abs{\frac{\epsilon_n}{a_n}} \le C_\infty \nl
                                           & \implies \seq{e_n} \in \bigo{a_n}
       \end{align}
+
+    \item
+
+      \begin{align}
+        & \seq{\epsilon_n} \in \bigpsi{a_n} \land \seq{\delta_n} \in \littleo{a_n} \nl
+        \implies& \left(\limsup_{n\to\infty} \abs{\frac{\epsilon_n}{a_n}} \le 1\right) \land \left(\lim_{n\to\infty} \abs{\frac{\delta_n}{a_n}} = 0\right) \nl
+        \implies& \limsup_{n\to\infty} \abs{\frac{\epsilon_n+\delta_n}{a_n}} \le \limsup_{n\to\infty} \left(\abs{\frac{\epsilon_n}{a_n}}+\abs{\frac{\delta_n}{a_n}}\right) \le 1 \nl
+        \implies& \seq{\epsilon_n+\delta_n} \in \bigpsi{a_n}
+      \end{align}
   \end{enumerate}
 \end{proof}
 
