@@ -37,7 +37,7 @@
 \newglossaryentry{bigo}{%
 	name={\ensuremath{O(\cdot)}},
   sort={O},
-	description={Big O notation: $a_n=O(b_n)$ means, that there is a $M>0$ such that $|a_n|\le M|b_n|$ for all $n\in\N$}
+	description={Big O notation: $\seq{\epsilon_n} \in \bigo{a_n} \iff \exists C_\infty > 0 : \limsup_{n\to\infty} \abs{\frac{\epsilon_n}{a_n}} \le C_\infty$}
 }
 
 \newglossaryentry{phi}{%
@@ -68,4 +68,22 @@
   name={\ensuremath{\snorm{\cdot}}},
   sort={|},
   description={The supremum norm: $\snorm{f}$ for a function $f:D\to X$ is $\snorm{f}=\sup \{ f(x) : x \in D \}$}
+}
+
+\newglossaryentry{bigpsi}{%
+	name={\ensuremath{\bigpsi{\cdot}}},
+	sort={psi},
+	description={Big Psi notation: $\seq{\epsilon_n} \in \bigpsi{a_n} \iff \limsup_{n\to\infty} \abs{\frac{\epsilon_n}{a_n}} \le 1$}
+}
+
+\newglossaryentry{an}{%
+  name={\ensuremath{\an{a}}},
+  sort={a},
+  description={The interval $\an[\epsilon]{a} = [a-\epsilon,a+\epsilon]$}
+}
+
+\newglossaryentry{ean}{%
+  name={\ensuremath{\ean{a}}},
+  sort={ae},
+  description={The interval $\ean[\epsilon]{a} = \left[ae^{-\epsilon},ae^\epsilon\right]$}
 }
