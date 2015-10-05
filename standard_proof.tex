@@ -74,7 +74,7 @@ You can find a proof of the Euler-Maclaurin formula in~\cite[pp.~225-226]{koenig
     \ln(n!) - n\ln(n) + n - \frac 12 \ln(n) = \frac{11}{12} + \frac{1}{12n} + \frac 13 \int_1^n \frac{\bp[3]{x}}{x^3} \d{x}
   \end{align}
 
-  $\bps[3]$ is on $[0,1)$ as part of a polynomial bounded. Because $\bps[3]$ is $1$-periodic, $\bps[3]$ is bounded on the whole domain $\R$. Thus $\int_1^\infty \frac{\bp[3]{x}}{x^3} \d{x}$ exists. Now we define $\seq{b_n}$ via
+  $\bps[3]$ is on $[0,1)$ as part of a polynomial bounded. Because $\bps[3]$ is $1$-periodic, $\bps[3]$ is bounded on the whole domain $\R$. Thus $\int_1^\infty \frac{\bp[3]{x}}{x^3} \d{x}$ exists because $\int_1^\infty \frac 1{x^3} d{x} < \infty$. Now we define $\seq{b_n}$ via
 
   \begin{align}
     b_n = \frac{n!}{n^n e^{-n} \sqrt{n}}
@@ -111,7 +111,23 @@ You can find a proof of the Euler-Maclaurin formula in~\cite[pp.~225-226]{koenig
     \lim_{n\to\infty} \frac{n!}{\sqrt{2\pi n}n^n e^{-n}} = \lim_{n\to\infty} \frac{b_n}{\sqrt{2\pi}} = 1
   \end{align}
 
-  \todo{Fehler berechnen und beweisen}
+  This proves that $n!$ can be approximated by $\sqrt{2\pi n}n^n e^{-n}$ for large $n$. To estimate the error of this approximation we first calculate $\ln(n!)-\ln\left(\sqrt{2\pi n}n^n e^{-n}\right)$:
+
+  \begin{align}
+    \ln\left(\frac{n!}{\sqrt{2\pi n}n^n e^{-n}}\right) & = \ln\left(\frac{b_n}{\sqrt{2\pi}}\right) \nl
+    &= \ln(b_n)-\ln\left(\sqrt{2\pi}\right) \nl
+    &= \ln(b_n)-\lim_{n\to\infty} \ln(b_n) \nl
+    &\begin{comment}
+      \begin{aligned}
+        \ln(b_n) &= \ln(n!)-n\ln(n)+n-\frac 12\ln(n) \nl
+        &= \frac{11}{12} + \frac{1}{12n} + \frac 13 \int_1^n \frac{\bp[3]{x}}{x^3} \d{x}
+      \end{aligned}
+    \end{comment} \nl
+    &= \frac{11}{12} + \frac{1}{12n} + \frac 13 \int_1^n \frac{\bp[3]{x}}{x^3} \d{x} -\left(\frac{11}{12}  + \frac 13 \int_1^\infty \frac{\bp[3]{x}}{x^3} \d{x}\right) \nl
+    &= \frac{1}{12n}-\frac 13\int_n^\infty \frac{\bp[3]{x}}{x^3} \d{x}
+  \end{align}
+
+  On $[0,1)$ the periodic Bernoulli polynomial has the form $\bp[3]{x} = x^3-\frac 32 x^2 + \frac 12 x$~\cite[p.~290]{koenigsberger}. 
 \end{proof}
 
 \section{The local version of de Moivre-Laplace theorem}
