@@ -48,6 +48,15 @@ In this chapter I will prove the theorems I have stated in the chapter~\ref{chap
         & \implies abe^{-(\epsilon+\delta)} \le xy \le abe^{\epsilon+\delta} \nl
         & \implies xy \in \ean[\epsilon+\delta]{a\cdot b}
       \end{align}
+
+    \item
+      
+      \begin{align}
+        x\in\ean[\epsilon]{a} & \implies ae^{-\epsilon} \le x \le ae^{\epsilon} \nl
+        & \implies x \in \an[\frac{ae^\epsilon-ae^{-\epsilon}}2]{\frac{ae^\epsilon+ae^{-\epsilon}}2} \nl
+        & \implies x \in \an[a\cdot \frac{e^\epsilon-e^{-\epsilon}}2]{a\cdot \frac{e^\epsilon+e^{-\epsilon}}2} \nl
+        & \implies x\in \an[a\sinh(\epsilon)]{a\cosh(\epsilon)}
+      \end{align}
   \end{enumerate}
 
 \end{proof}
