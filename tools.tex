@@ -53,9 +53,7 @@ Note that the definition of the big Psi notation is the same as the limes superi
   \seq{\epsilon_n} \in \bigpsi{a_n} \iff \forall \epsilon > 0\, \exists N \in \N\, \forall n\ge N: \abs{\epsilon_n} \le (1+\epsilon)\abs{a_n}
 \end{align}
 
-So $\seq{\epsilon_n}\in\bigpsi{a_n}$ iff for each $\epsilon > 0$ almost all $\abs{\epsilon_n}$ are less then or equal $(1+\epsilon)\abs{a_n}$. Because an estimation is only stated for almost all $n\in\N$ the big Psi notation provides an upper bound for the asymptotic error.
-
-Note that $\epsilon_n\in\bigpsi{a_n}$ does not imply $\abs{\epsilon_n}\le\abs{a_n}$ for any $n\in\N$. Take for example $\epsilon_n = \frac 1n + \frac 1{n^2}$. We have $\epsilon_n \in \bigpsi{\frac 1n}$ although $\epsilon_n > \frac 1n$ for all $n\in\N$\footnote{Proof for $\seq{\epsilon_n} \in \bigpsi{\frac 1n}$: $\limsup_{n\to\infty} \frac{\frac 1n + \frac 1{n^2}}{\frac 1n} = \limsup_{n\to\infty} \left(1+\frac 1n\right) = 1 \le 1$}.
+So $\seq{\epsilon_n}\in\bigpsi{a_n}$ iff for each $\epsilon > 0$ almost all $\abs{\epsilon_n}$ are less then or equal $(1+\epsilon)\abs{a_n}$. Because an estimation is only stated for almost all $n\in\N$ the big Psi notation provides an upper bound for the asymptotic error. Note that $\epsilon_n\in\bigpsi{a_n}$ does not imply $\abs{\epsilon_n}\le\abs{a_n}$ for any $n\in\N$. Take for example $\epsilon_n = \frac 1n + \frac 1{n^2}$. We have $\epsilon_n \in \bigpsi{\frac 1n}$ although $\epsilon_n > \frac 1n$ for all $n\in\N$\footnote{Proof for $\seq{\epsilon_n} \in \bigpsi{\frac 1n}$: $\limsup_{n\to\infty} \frac{\frac 1n + \frac 1{n^2}}{\frac 1n} = \limsup_{n\to\infty} \left(1+\frac 1n\right) = 1 \le 1$}.
 
 \subsection{The little-o notation}
 
@@ -144,17 +142,15 @@ Because we will often have to deal with products I introduce a slightly differen
   The interval $\ean{a}$ for $\epsilon,a\in\Rplus$ is defined as $\left[a\cdot e^{-\epsilon},a\cdot e^\epsilon\right]$.
 \end{definition}
 
-\noindent This interval definition has the advantage its rule for products is easy: \todo{footnote with ref to proof}
+\noindent This interval definition has the advantage its rule for products is easy (ass wee will prove in the appendix):
 
 \begin{align}
   \ean[\epsilon]{a}\cdot \ean[\delta]{b} = \ean[\epsilon+\delta]{a+b}
 \end{align}
 
-\noindent In the following chapters we will use the following arithmetic rules:
+In the following chapters we will use the following arithmetic rules:
 
-\begin{theorem}
-
-\end{theorem}
+\input{multiplicative_interval_rules}
 
 \subsection{Interval arithmetic and the big Psi notation}
 

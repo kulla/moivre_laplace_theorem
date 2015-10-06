@@ -37,10 +37,17 @@ In this chapter I will prove the theorems I have stated in the chapter~\ref{chap
 
 \section{Interval arithmetic}
 
-\begin{theorem}
+\input{multiplicative_interval_rules}
 
-\end{theorem}
+\begin{proof} ~
+  \begin{enumerate}
+    \item
 
-\begin{proof}
+      \begin{align}
+        x \in \ean[\epsilon]{a} \land y \in \ean[\delta]{b} & \implies \left(ae^{-\epsilon} \le x \le ae^{\epsilon}\right) \land \left(be^{-\delta} \le y \le be^\delta\right) \nl
+        & \implies abe^{-(\epsilon+\delta)} \le xy \le abe^{\epsilon+\delta} \nl
+        & \implies xy \in \ean[\epsilon+\delta]{a\cdot b}
+      \end{align}
+  \end{enumerate}
 
 \end{proof}
