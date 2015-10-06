@@ -51,7 +51,7 @@ You can find a proof of the Euler-Maclaurin formula in~\cite[pp.~225-226]{koenig
   The factorial $n!$ fulfills:
 
   \begin{align}
-    n! \in \ean[\frac 6n]{\sqrt{2\pi n} \left(\frac ne\right)^n}
+    n! \in \ean[\frac 1n]{\sqrt{2\pi n} \left(\frac ne\right)^n}
   \end{align}
 \end{theorem}
 
@@ -127,7 +127,51 @@ You can find a proof of the Euler-Maclaurin formula in~\cite[pp.~225-226]{koenig
     &= \frac{1}{12n}-\frac 13\int_n^\infty \frac{\bp[3]{x}}{x^3} \d{x}
   \end{align}
 
-  On $[0,1)$ the periodic Bernoulli polynomial has the form $\bp[3]{x} = x^3-\frac 32 x^2 + \frac 12 x$~\cite[p.~290]{koenigsberger}. 
+  On $[0,1)$ the periodic Bernoulli polynomial has the form $\bp[3]{x} = x^3-\frac 32 x^2 + \frac 12 x$~\cite[p.~290]{koenigsberger}. It has roots at $x=0$ and $x=1$. Its derivative $\bps[3]'(x) = 3x^2-3x+\tfrac 12$ has two distinct roots at $x = \frac 12 \pm \sqrt{\frac 1{12}}$. Thus $\bps[3]$ has local extrema at $x=\frac 12 \pm \sqrt{1{12}}$. Because $\bp[3]{0}=\bp[3]{1}=0$ and $\bps[3]$ is 1-periodic its supremum is
+
+  \begin{align}
+    \snorm{\bps[3]} = \max\left\{\abs{\bp[3]{\frac 12 + \sqrt{\frac{1}{12}}}}, \abs{\bp[3]{\frac 12 - \sqrt{\frac{1}{12}}}}\right\} \approx 0.0481 \le 0.05 = \frac{1}{20}
+  \end{align}
+
+  \noindent Thus
+
+  \begin{align}
+    \abs{\frac 13\int_n^\infty \frac{\bp[3]{x}}{x^3} \d{x}} & \le \frac 13 \int_n^\infty \frac{\abs{\bp[3]{x}}}{x^3} \d{x} \nl
+    & \le \frac{\snorm{\bps[3]}}{3} \int_n^\infty \frac 1{x^3} \d{x} \nl
+    & \le \frac{1}{60} \left[-\frac{1}{2x^2}\right]_n^\infty \nl
+    & = \frac 1{120n^2}
+  \end{align}
+
+  \noindent So\footnote{At this point we also may have deduced $\ln\left(\frac{n!}{\sqrt{2\pi n}n^n e^{-n}}\right) \in \an[\frac1{120}{n^2}]{\frac 1{12n}}$ from which follows
+
+  \begin{align}
+    n! \in \ean[\frac 1{120n^2}]{\sqrt{2\pi n} \left(\frac ne\right)^n e^{\frac 1{12n}}}
+  \end{align}
+
+  This gives a better approximation with a better error bound. For the following sections we do not need such a good approximation.
+
+  \todo{better design -> clearpage?! Sieht sonst blöd aus mit der Fußnote am Seitenende}
+  }
+
+  \begin{align}
+    \abs{\ln\left(\frac{n!}{\sqrt{2\pi n}n^n e^{-n}}\right)} & = \abs{\frac 1{12n}-\frac 13 \int_n^\infty \frac{\bp[3]{x}}{x^3} \d{x}} \nl
+    & \le \frac 1{12n} + \abs{\frac 13\int_n^\infty \frac{\bp[3]{x}}{x^3} \d{x}} \nl
+    & \le \frac 1{12n} + \frac{1}{120n^2} \nl
+    & \le \frac 1{2n} + \frac{1}{2n} \nl
+    & = \frac{1}{n}
+  \end{align}
+
+  \noindent From the above inequality follows
+
+  \begin{align}
+    \sqrt{2\pi n}n^n e^{-n} e^{-\frac 1n} \le n! \le \sqrt{2\pi n} n^n e^n
+  \end{align}
+
+  \noindent or
+
+  \begin{align}
+    n! \in \ean[\frac 1n]{\sqrt{2\pi n} \left(\frac ne\right)^n}
+  \end{align}
 \end{proof}
 
 \section{The local version of de Moivre-Laplace theorem}
