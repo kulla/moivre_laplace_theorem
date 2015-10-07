@@ -48,7 +48,24 @@ In this chapter I will prove the theorems I have stated in the chapter~\ref{chap
         & \implies (a+b)-(\epsilon + \delta) \le x+y \le (a+b)+(\epsilon + \delta) \nl
         & \implies x+y \in \an[\epsilon+\delta]{a+b}
       \end{align}
+
+    \item
+
+      \begin{align}
+        \an[\epsilon]{\an[\delta]{a}} & = \bigcup_{x\in \interval{a-\delta}{a+\delta}} \an[\epsilon]{x} = \bigcup_{x\in\interval{a-\delta}{a+\delta}} \bigcup_{y\in\interval{-\epsilon}{\epsilon}} \{x+y\} \nl
+        &= \an[\delta]{a} + \an[\epsilon]{0} = \an[\epsilon+\delta]{a}
+      \end{align}
  
+    \item
+
+      This follows directly from $-\abs{b} \le b \le \abs{b}$ because $b \in \{-\abs{b}, \abs{b}\}$.
+
+    \item
+
+      \begin{align}
+        \an[\epsilon]{a+b} \subseteq \an[\epsilon]{a+\an[\abs{b}]{0}} = \an[\epsilon]{\an[\abs{b}]{a}} = \an[\epsilon+\abs{b}]{a}
+      \end{align}
+
     \item
       Let $\lambda \ge 0$ and let $f_\lambda$ be the function $f_\lambda : \an[\epsilon]{a}\to\R:x\mapsto \lambda x$. $f_\lambda$ attains its maximum at $\lambda(a+\epsilon)$ and its minimum at $\lambda(a-\epsilon)$. Because $f_\lambda$ is continuous and $\an[\epsilon]{a}$ is connected, also $f_\lambda(\an[\epsilon]{a})$ is connected and therefore $f_\lambda$ attains all values between $\lambda(a-\epsilon)$ and $\lambda(a+\epsilon)$ (intermediate value theorem~\cite{wiki:intermediatevaluetheorem}). Thus
 
