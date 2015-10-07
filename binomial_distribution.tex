@@ -178,6 +178,12 @@ As already mentioned, this distribution is called ``binomial distribution'':
   \end{align}
 \end{definition}
 
+It is also possible to define $\Bs$ on $\Z$ by setting $\b{k}=0$ for each $k\notin \{0,1,\ldots,n\}$. So we declare
+
+\begin{align}
+  \b[n]{k} = \P{\Bs[n] = k} = \begin{cases} \binom nk p^k q^k & ;\ k \in \{0,1,\ldots,n\} \\ 0 & ;\  \text{otherwise} \end{cases}
+\end{align}
+
 \includefig{binomial_distribution_pmf}{The probability mass function of the binomial distribution}{File \href{https://commons.wikimedia.org/wiki/File:Binomial_distribution_pmf.svg}{``Binomial distribution pmf.svg''} from Wikimedia Commons. Upload by user \href{https://commons.wikimedia.org/w/index.php?title=User:Tayste}{Tayste} and licensed under Public Domain.}
 
 \section{Applications of the binomial distribution}
