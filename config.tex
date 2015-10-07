@@ -22,6 +22,8 @@
 \newcommand*{\includefig}[4][0.5\textwidth]{\begin{figure}[h] \begin{center} \includegraphics[width={#1}]{figures/{#2}} \caption[#4]{#3} \end{center} \end{figure}}
 \newcommand*{\includewrapfig}[4][0.33\textwidth]{\begin{wrapfigure}{R}{#1} \vspace{-10pt} \begin{center} \includegraphics[width=#1 - 0.02\textwidth]{figures/{#2}} \caption[#4]{#3} \end{center} \vspace{-15pt} \end{wrapfigure}}
 
+\newcommand*{\interval}[2]{\left[{#1},{#2}\right]}
+
 \newcommand*{\seq}[2][n]{\left({#2}\right)_{{#1}\in\N}}
 \newcommand*{\abs}[1]{\left|{#1}\right|}
 \newcommand*{\norm}[1]{\left\|{#1}\right\|}
