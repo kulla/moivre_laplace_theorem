@@ -20,7 +20,7 @@ So $\an{a}$ represents a number $x$ which is approximated by $a$ with an absolut
   \an{a}+\an[\delta]{b} = \an[\epsilon+\delta]{a+b}
 \end{align}
 
-\subsection{Calculations with sets}
+\subsection{Calculations with sets} \label{sec:calculations_sets}
 
 In interval arithmetic one calculates with sets instead of real numbers. So we have to define, what the result of an operation with sets shall be. Here we need to find a definition so that the result is the best approximation for the result of the considered number\footnote{cf. \cite[pp. 17-18]{kulla}}.
 
@@ -119,6 +119,12 @@ Note that the definition of the big Psi notation is the same as the limes superi
 
 So $\seq{\epsilon_n}\in\bigpsi{a_n}$ iff for each $\epsilon > 0$ almost all $\abs{\epsilon_n}$ are less then or equal $(1+\epsilon)\abs{a_n}$. Because an estimation is only stated for almost all $n\in\N$ the big Psi notation provides an upper bound for the asymptotic error. Note that $\epsilon_n\in\bigpsi{a_n}$ does not imply $\abs{\epsilon_n}\le\abs{a_n}$ for any $n\in\N$. Take for example $\epsilon_n = \frac 1n + \frac 1{n^2}$. We have $\epsilon_n \in \bigpsi{\frac 1n}$ although $\epsilon_n > \frac 1n$ for all $n\in\N$\footnote{Proof for $\seq{\epsilon_n} \in \bigpsi{\frac 1n}$: $\limsup_{n\to\infty} \frac{\frac 1n + \frac 1{n^2}}{\frac 1n} = \limsup_{n\to\infty} \left(1+\frac 1n\right) = 1 \le 1$}.
 
+I will use variables like $h=\frac{1}{\sqrt{npq}}$ where I drop the dependence on $n$ in the name of the variable. When I state something like $\bigpsi{h}$ I will always mean $\bigpsi{h_n}$, e.g.
+
+\begin{align}
+  \seq{\epsilon_n} \in \bigpsi{h} \iff \limsup_{n\to\infty} \abs{\frac{\epsilon_n}{h}} = \limsup_{n\to\infty} \abs{\epsilon_n \sqrt{npq}} \le 1
+\end{align}
+
 \subsection{The little-o notation}
 
 We will also use the little-o notation which is defined as~\cite[pp.~99,~103]{aigner}\cite[p.~385]{hachenberger}\cite{wiki:bigo}
@@ -139,6 +145,12 @@ We will also use the little-o notation which is defined as~\cite[pp.~99,~103]{ai
 \end{definition}
 
 \subsection{Arithmetic rules}
+
+What shall be the result of an operation involving big Psi, big O or little-o notations? In the above section \ref{sec:calculations_sets} we have already defined how we calculate with sets. Because these notations are defined as sets of sequences, the definitions of section \ref{sec:calculations_sets} can also be applied to them. For example we have
+
+\begin{align}
+  \bigpsi{a_n} + \littleo{b_n} = \left\{ \seq{\epsilon_n+\delta_n} : \epsilon_n \in \bigpsi{a_n} \land \seq{\delta_n} \in \littleo{b_n} \right\}
+\end{align}
 
 The big Psi notation shares with the big O notation a set of easy arithmetic rules. For example we have\footnote{With the rules proved in theorem \ref{thm:bigpsi:rules} this statement can be shown in the following way:
 
