@@ -37,6 +37,20 @@ In this chapter I will prove the theorems I have stated in the chapter~\ref{chap
 
 \section{Interval arithmetic}
 
+\input{additive_rules}
+
+\begin{proof} ~
+  \begin{enumerate}
+    \item
+
+      \begin{align}
+        x \in \an[\epsilon]{a} \land y \in \an[\delta]{b} & \implies a-\epsilon \le x \le a+\epsilon \land b-\delta \le y \le b+\delta \nl
+        & \implies (a+b)-(\epsilon + \delta) \le x+y \le (a+b)+(\epsilon + \delta) \nl
+        & \implies x+y \in \an[\epsilon+\delta]{a+b}
+      \end{align}
+  \end{enumerate}
+\end{proof}
+
 \input{multiplicative_interval_rules}
 
 \begin{proof} ~
