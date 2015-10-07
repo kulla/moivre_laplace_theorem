@@ -84,6 +84,19 @@ In this chapter I will prove the theorems I have stated in the chapter~\ref{chap
         & \implies x \in \an[a\cdot \frac{e^\epsilon-e^{-\epsilon}}2]{a\cdot \frac{e^\epsilon+e^{-\epsilon}}2} \nl
         & \implies x\in \an[a\sinh(\epsilon)]{a\cosh(\epsilon)}
       \end{align}
+
+    \item
+
+      \begin{align}
+        \ean[\epsilon]{a} &= \an[\sinh(\epsilon)a]{\cosh(\epsilon)a} \nl
+        &= \an[\sinh(\epsilon)a]{a+\cosh(\epsilon)a-a} \nl
+        &= \an[\sinh(\epsilon)a+\abs{\cosh(\epsilon)a-a}]{a} \nl
+      &\begin{comment} a > 0 \land \cosh(\epsilon) > 0 \implies \cosh(\epsilon)a > a \end{comment} \nl
+        &= \an[\sinh(\epsilon)a+\cosh(\epsilon)a-a]{a} \nl
+      &\begin{comment} \sinh(\epsilon) + \cosh(\epsilon) = \frac 12 \left(e^\epsilon-e^{-\epsilon}\right) + \frac 12 \left(e^\epsilon+e^{-\epsilon}\right) = e^\epsilon \end{comment} \nl
+        &= \an[e^\epsilon a-a]{a} \nl
+        &= \an[\left(e^\epsilon-1\right)a]{a}
+      \end{align}
   \end{enumerate}
 
 \end{proof}
