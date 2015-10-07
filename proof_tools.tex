@@ -42,6 +42,14 @@ In this chapter I will prove the theorems I have stated in the chapter~\ref{chap
 \begin{proof} ~
   \begin{enumerate}
     \item
+
+      \begin{align}
+        x \in \an[\epsilon]{a} \land y \in \an[\delta]{b} & \implies a-\epsilon \le x \le a+\epsilon \land b-\delta \le y \le b+\delta \nl
+        & \implies (a+b)-(\epsilon + \delta) \le x+y \le (a+b)+(\epsilon + \delta) \nl
+        & \implies x+y \in \an[\epsilon+\delta]{a+b}
+      \end{align}
+ 
+    \item
       Let $\lambda \ge 0$ and let $f_\lambda$ be the function $f_\lambda : \an[\epsilon]{a}\to\R:x\mapsto \lambda x$. $f_\lambda$ attains its maximum at $\lambda(a+\epsilon)$ and its minimum at $\lambda(a-\epsilon)$. Because $f_\lambda$ is continuous and $\an[\epsilon]{a}$ is connected, also $f_\lambda(\an[\epsilon]{a})$ is connected and therefore $f_\lambda$ attains all values between $\lambda(a-\epsilon)$ and $\lambda(a+\epsilon)$ (intermediate value theorem~\cite{wiki:intermediatevaluetheorem}). Thus
 
       \begin{align}
@@ -54,14 +62,7 @@ In this chapter I will prove the theorems I have stated in the chapter~\ref{chap
         f_\lambda\left(\an[\lambda]{a}\right) = \interval{\lambda(a+\epsilon)}{\lambda(a-\epsilon)} = \interval{\lambda a -\abs{\lambda}\cdot \epsilon}{\lambda a + \abs{\lambda}\cdot \epsilon} = \an[\abs{\lambda}\cdot \epsilon]{\lambda a}
       \end{align}
 
-    \item
-
-      \begin{align}
-        x \in \an[\epsilon]{a} \land y \in \an[\delta]{b} & \implies a-\epsilon \le x \le a+\epsilon \land b-\delta \le y \le b+\delta \nl
-        & \implies (a+b)-(\epsilon + \delta) \le x+y \le (a+b)+(\epsilon + \delta) \nl
-        & \implies x+y \in \an[\epsilon+\delta]{a+b}
-      \end{align}
-  \end{enumerate}
+ \end{enumerate}
 \end{proof}
 
 \input{multiplicative_interval_rules}
