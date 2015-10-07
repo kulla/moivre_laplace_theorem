@@ -50,6 +50,17 @@ In this chapter I will prove the theorems I have stated in the chapter~\ref{chap
     \item
 
       \begin{align}
+        & \seq{\epsilon_n} \in \bigpsi{\lambda a_n} \land \seq{\delta_n} \in \bigpsi{\mu a_n} \nl
+        \implies &
+        \begin{aligned}
+          \limsup_{n\to\infty} \abs{\frac{\epsilon_n+\delta_n}{(\lambda+\mu)a_n}} & \le \limsup_{n\to\infty} \left( \frac{\lambda}{\lambda + \mu} \cdot \underbrace{\abs{\frac{\epsilon_n}{\lambda a_n}}}_{\le 1} + \frac{\mu}{\lambda + \mu} \underbrace{\abs{\frac{\delta_n}{\mu a_n}}}_{\le 1} \right) \nl
+          &\le \frac{\lambda}{\lambda+\mu} + \frac{\mu}{\lambda+\mu} = 1
+        \end{aligned} \nl
+        \implies & \seq{\epsilon_n+\delta_n} \in \bigpsi{(\lambda+\delta)a_n}
+      \end{align}
+    \item
+
+      \begin{align}
         \seq{\epsilon_n} \in \littleo{1} & \implies \lim_{n\to\infty} \epsilon_n = 0 \nl
         & \implies \lim_{n\to\infty} e^{\epsilon_n} = 1 \nl
         & \implies \limsup_{n\to\infty} \frac{e^{\epsilon_n}}{1} \le 1 \nl
