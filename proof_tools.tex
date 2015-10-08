@@ -147,6 +147,10 @@ In this chapter I will prove the theorems I have stated in the chapter~\ref{chap
 
 \begin{proof} ~
   \begin{enumerate}
+    \item
+
+      This follows directly from $\limsup_{n\to\infty} \abs{\frac{a_n}{a_n}} = 1 \le 1$.
+
     \item \label{proof:littleo_rule}
 
       \begin{align}
@@ -155,6 +159,7 @@ In this chapter I will prove the theorems I have stated in the chapter~\ref{chap
         \implies & \lim_{n\to\infty} \abs{\frac{\epsilon_n}{b_n}} = \lim_{n\to\infty} \underbrace{\abs{\frac{\epsilon_n}{a_n}}}_{\text{bounded}} \cdot \underbrace{\abs{\frac{a_n}{b_n}}}_{\to 0} = 0 \nl
         \implies & \seq{\epsilon_n} \in \littleo{b_n}
       \end{align}
+
     \item
 
       \begin{align}
@@ -175,9 +180,16 @@ In this chapter I will prove the theorems I have stated in the chapter~\ref{chap
     \item
 
       \begin{align}
-        \seq{\epsilon_n} \in \bigpsi{a_n}  & \implies \limsup_{n\to\infty} \abs{\frac{\epsilon_n}{a_n}} \le 1 \nl
-        & \implies \limsup_{n\to\infty} \abs{\frac{\epsilon_n b_n}{a_n b_n}} = \limsup_{n\to\infty} \abs{\frac{\epsilon_n}{a_n}} \le 1 \nl
-        & \implies \seq{\epsilon_n b_n} \in \bigpsi{a_n b_n}
+        & \seq{\epsilon_n} \in \bigpsi{a_n} \land \seq{\delta_n} \in \bigpsi{b_n} \nl
+        \implies & \limsup_{n\to\infty} \abs{\frac{\epsilon_n}{a_n}} \le 1 \land \limsup_{n\to\infty} \abs{\frac{\delta_n}{b_n}} \le 1 \nl
+        \implies & \limsup_{n\to\infty} \abs{\frac{\epsilon_n\delta_n}{a_nb_n}} \le \underbrace{\limsup_{n\to\infty} \abs{\frac{\epsilon_n}{a_n}}}_{\le 1} \cdot \underbrace{\limsup_{n\to\infty} \abs{\frac{\delta_n}{b_n}}}_{\le 1} \le 1 \nl
+        \implies & \seq{\epsilon_n\delta_n} \in \bigpsi{a_nb_n}
+      \end{align}
+
+    \item
+
+      \begin{align}
+        \bigpsi{a_n} \cdot b_n \subseteq \bigpsi{a_n} \cdot \bigpsi{b_n} \subseteq \bigpsi{a_n b_n}
       \end{align}
 
     \item
