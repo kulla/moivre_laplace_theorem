@@ -177,3 +177,48 @@ You can find a proof of the Euler-Maclaurin formula in~\cite[pp.~225-226]{koenig
 \section{The local version of de Moivre-Laplace theorem}
 
 In this section we will show that the probability mass function of the standardized binomial distribution can be approximated by the density function of the normal distribution. This will be the basis for the global version of de Moivre-Laplace theorem.
+
+\begin{theorem}[Local version of de Moivre-Laplace theorem]
+  Let $C \in \Rplus$. For $\abs{\x} \le \bigpsi{C}$ we have
+
+  \begin{align}
+    \bb{k} = \binom nk p^k q^{n-k} & \in \ean[\bigpsi{\frac{1}{2\sqrt{npq}} \cdot C + \frac{p^2+q^2}{6\sqrt{npq}} \cdot C^3}]{\frac{1}{\sqrt{2\pi npq} \exp\left(-\frac{(k-np)^2}{2npq}\right)}} \nl
+    & = \ean[\bigpsi{\frac{1}{2} Ch + \frac{p^2+q^2}{6} \cdot C^3h}]{\frac{1}{\sqrt{2\pi}} \exp\left(-\frac{\x}{2}\right) h}
+  \end{align}
+\end{theorem}
+
+\begin{proof}
+  Note that $\abs{\x}\le \bigpsi{C}$ means that there is a sequence $\seq{\epsilon_n}$ with $\limsup_{n\to\infty} \frac{\epsilon_n}{C} \le 1$ and $\abs{\x} \le \epsilon_n$. First we investigate what $\abs{\x} \le \bigpsi{C}$ means for $k$ and $n-k$:
+
+  \begin{align}
+    \begin{array}{rrl}
+      & \abs{\x} & \le \bigpsi{C} \nl
+      \implies & \abs{\frac{k-np}{\sqrt{npq}}} & \le \bigpsi{C} \nl
+      \implies & \abs{k-np} & \le \bigpsi{C\sqrt{npq}} \nl
+      \implies & \abs{\frac k{np}-1} & \le \bigpsi{\frac{C\sqrt{q}}{\sqrt{np}}} \nl
+      && \begin{comment}
+       \abs{\frac ab-1} \le \epsilon \implies a \in \ean[\epsilon]{b}
+      \end{comment} \nl
+      \implies & k & \in \ean[\bigpsi{\frac{C\sqrt{q}}{\sqrt{np}}}]{np} \nl
+      \implies & k & \in \ean[\bigpsi{qCh}]{np}
+    \end{array}
+  \end{align}
+
+  \noindent For $n-k$ we get
+
+  \begin{align}
+    \begin{array}{rrl}
+      & \abs{\x} & \le \bigpsi{C} \nl
+      \implies & \abs{\frac{k-np}{\sqrt{npq}}} & \le \bigpsi{C} \nl
+      \implies & \abs{np-k} & \le \bigpsi{C\sqrt{npq}} \nl
+      \implies & \abs{n-k-nq} & \le \bigpsi{C\sqrt{npq}} \nl
+      \implies & \abs{\frac {n-k}{nq}-1} & \le \bigpsi{\frac{C\sqrt{p}}{\sqrt{nq}}} \nl
+      && \begin{comment}
+       \abs{\frac ab-1} \le \epsilon \implies a \in \ean[\epsilon]{b}
+      \end{comment} \nl
+      \implies & k & \in \ean[\bigpsi{\frac{C\sqrt{p}}{\sqrt{nq}}}]{nq} \nl
+      \implies & k & \in \ean[\bigpsi{pCh}]{nq}
+    \end{array}
+  \end{align}
+  
+\end{proof}
