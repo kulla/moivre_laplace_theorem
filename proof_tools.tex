@@ -227,5 +227,15 @@ In this chapter I will prove the theorems I have stated in the chapter~\ref{chap
       \end{align}
 
       \noindent Thus $\seq{e^{\epsilon_n}} \in \bigpsi{a_n}$.
+
+    \item
+
+      Note that $\ean[\littleo{1}]{a_n} = \{ \seq{b_n} : \exists \seq{\delta_n} \in \littleo{1} \,\forall n\in\N: b_n \in \ean[\delta_n]{a_n}\}$. Let $\seq{b_n} \in \ean[\littleo{1}]{a_n}$. Thus there is a null sequence $\seq{\delta_n}$ with
+      
+      \begin{align}
+        a_ne^{-\delta_n} \le b_n \le a_ne^{\delta_n} \iff e^{-\delta_n} \le \frac{b_n}{a_n} \le e^\delta_n
+      \end{align}
+
+      Because $\lim_{n\to\infty} e^{-\delta_n} = \lim_{n\to\infty} e^\delta_n = 1$ also $\lim_{n\to\infty} \frac{b_n}{a_n} = 1$ (squeeze theorem~\cite{wiki:squeeze}). This implies $\limsup_{n\to\infty} \abs{\frac{b_n}{a_n}} = 1 \le 1$ or $\seq{b_n} \in \bigpsi{a_n}$.
   \end{enumerate}
 \end{proof}
