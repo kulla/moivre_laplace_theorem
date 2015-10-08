@@ -65,6 +65,13 @@ In this chapter I will prove the theorems I have stated in the chapter~\ref{chap
       Claim $\ean[\epsilon+\delta]{ab} \subseteq \ean[\epsilon]{a} \cdot \ean[\delta]{b}$: Let $f$ be the function $f: \ean[\epsilon]{a} \times \ean[\delta]{b} \to \R$ with $f(x,y) =xy$ so that $\ean[\epsilon]{a} \cdot \ean[\delta]{b}$ is the image of $f$. The function $f$ attains the maximum $abe^{\epsilon+\delta}$ of the interval $\ean[\epsilon+\delta]{ab}$ for $(x,y) = \left(ae^\epsilon,be^\delta\right)$ and its minimum $abe^{-(\epsilon+\delta)}$ for $(x,y)=\left(ae^{-\epsilon},be^{-\delta}\right)$. Because $f$ is continuous, $f$ attains each value between $abe^{-(\epsilon+\delta)}$ and $abe^{\epsilon+\delta}$ and therefore each value of $\ean[\epsilon+\delta]{ab}$ (intermediate value theorem~\cite{wiki:intermediatevaluetheorem}).
 
     \item
+
+      \begin{align}
+        \ean[\epsilon]{\ean[\delta]{a}} & = \bigcup_{x\in \ean[\delta]{a}} \ean[\epsilon]{x} = \bigcup_{x\in\ean[\epsilon]{a}} \bigcup_{y\in\ean[\epsilon]{1}} \{x\cdot y\} \nl
+        &= \ean[\delta]{a} \cdot \ean[\epsilon]{1} = \ean[\epsilon+\delta]{a}
+      \end{align}
+
+    \item
       
       \begin{align}
         x\in\ean[\epsilon]{a} & \iff x \in \interval{ae^{-\epsilon}}{ae^\epsilon} \nl
