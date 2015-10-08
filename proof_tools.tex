@@ -2,83 +2,6 @@
 
 In this chapter I will prove the theorems I have stated in the chapter~\ref{chapter:tools} where I presented the needed tools for this thesis.
 
-\section{Big Psi notation}
-
-\input{bigpsi_rules}
-
-\begin{proof} ~
-  \begin{enumerate}
-    \item \label{proof:littleo_rule}
-
-      \begin{align}
-        & \seq{\epsilon_n}\in\bigo{a_n} \land \seq{a_n} \in \littleo{b_n} \nl
-        \implies & \left(\exists C > 0: \limsup_{n\to\infty} \abs{\frac{\epsilon_n}{a_n}} \le C\right) \land \lim_{n\to\infty} \abs{\frac{a_n}{b_n}} = 0 \nl
-        \implies & \lim_{n\to\infty} \abs{\frac{\epsilon_n}{b_n}} = \lim_{n\to\infty} \underbrace{\abs{\frac{\epsilon_n}{a_n}}}_{\text{bounded}} \cdot \underbrace{\abs{\frac{a_n}{b_n}}}_{\to 0} = 0 \nl
-        \implies & \seq{\epsilon_n} \in \littleo{b_n}
-      \end{align}
-    \item
-
-      \begin{align}
-        \seq{\epsilon_n} \in \bigpsi{a_n} & \implies \limsup_{n\to\infty} \abs{\frac{\epsilon_n}{a_n}} \le 1 \nl
-                                          & \implies \exists C_\infty > 0 : \limsup_{n\to\infty} \abs{\frac{\epsilon_n}{a_n}} \le C_\infty \nl
-                                          & \implies \seq{e_n} \in \bigo{a_n}
-      \end{align}
-
-    \item
-
-      \begin{align}
-        & \seq{\epsilon_n} \in \bigpsi{a_n} \land \seq{\delta_n} \in \littleo{a_n} \nl
-        \implies& \left(\limsup_{n\to\infty} \abs{\frac{\epsilon_n}{a_n}} \le 1\right) \land \left(\lim_{n\to\infty} \abs{\frac{\delta_n}{a_n}} = 0\right) \nl
-        \implies& \limsup_{n\to\infty} \abs{\frac{\epsilon_n+\delta_n}{a_n}} \le \limsup_{n\to\infty} \left(\abs{\frac{\epsilon_n}{a_n}}+\abs{\frac{\delta_n}{a_n}}\right) \le 1 \nl
-        \implies& \seq{\epsilon_n+\delta_n} \in \bigpsi{a_n}
-      \end{align}
-
-    \item
-
-      \begin{align}
-        \seq{\epsilon_n} \in \bigpsi{a_n}  & \implies \limsup_{n\to\infty} \abs{\frac{\epsilon_n}{a_n}} \le 1 \nl
-        & \implies \limsup_{n\to\infty} \abs{\frac{\epsilon_n b_n}{a_n b_n}} = \limsup_{n\to\infty} \abs{\frac{\epsilon_n}{a_n}} \le 1 \nl
-        & \implies \seq{\epsilon_n b_n} \in \bigpsi{a_n b_n}
-      \end{align}
-
-    \item
-
-      \begin{align}
-        \frac{\bigpsi{a_n}}{b_n} = \bigpsi{a_n} \cdot \frac{1}{b_n} \subseteq \bigpsi{\frac{a_n}{b_n}}
-      \end{align}
-
-    \item
-
-      \begin{align}
-        & \seq{\epsilon_n} \in \bigpsi{\lambda a_n} \land \seq{\delta_n} \in \bigpsi{\mu a_n} \nl
-        \implies &
-        \begin{aligned}
-          \limsup_{n\to\infty} \abs{\frac{\epsilon_n+\delta_n}{(\lambda+\mu)a_n}} & \le \limsup_{n\to\infty} \left( \frac{\lambda}{\lambda + \mu} \cdot \underbrace{\abs{\frac{\epsilon_n}{\lambda a_n}}}_{\le 1} + \frac{\mu}{\lambda + \mu} \underbrace{\abs{\frac{\delta_n}{\mu a_n}}}_{\le 1} \right) \nl
-          &\le \frac{\lambda}{\lambda+\mu} + \frac{\mu}{\lambda+\mu} = 1
-        \end{aligned} \nl
-        \implies & \seq{\epsilon_n+\delta_n} \in \bigpsi{(\lambda+\delta)a_n}
-      \end{align}
-    \item
-
-      \begin{align}
-        \seq{\epsilon_n} \in \littleo{1} & \implies \lim_{n\to\infty} \epsilon_n = 0 \nl
-        & \implies \lim_{n\to\infty} e^{\epsilon_n} = 1 \nl
-        & \implies \limsup_{n\to\infty} \frac{e^{\epsilon_n}}{1} \le 1 \nl
-        & \implies \seq{e^{\epsilon_n}} \in \bigpsi{1}
-      \end{align}
-
-    \item
-
-      Let $\seq{a_n}\in\littleo{1}$ and $\seq{\epsilon_n}\in\bigpsi{a_n}\subseteq \bigo{a_n}$. Rule \ref{proof:littleo_rule} implies $\seq{\epsilon_n} \in o(1)$ and thus $\lim_{n\to\infty} \epsilon_n = 0$. We have
-
-      \begin{align}
-        \limsup_{n\to\infty} \abs{\frac{e^{\epsilon_n}-1}{a_n}} = \limsup_{n\to\infty} \underbrace{\abs{\frac{e^{\epsilon_n}-1}{\epsilon_n}}}_{\to \exp'(0)=1} \cdot \underbrace{\abs{\frac{\epsilon_n}{a_n}}}_{\le 1} \le 1
-      \end{align}
-
-      \noindent Thus $\seq{e^{\epsilon_n}} \in \bigpsi{a_n}$.
-  \end{enumerate}
-\end{proof}
-
 \section{Interval arithmetic}
 
 \input{additive_rules}
@@ -173,4 +96,81 @@ In this chapter I will prove the theorems I have stated in the chapter~\ref{chap
       \end{align}
   \end{enumerate}
 
+\end{proof}
+
+\section{Big Psi notation}
+
+\input{bigpsi_rules}
+
+\begin{proof} ~
+  \begin{enumerate}
+    \item \label{proof:littleo_rule}
+
+      \begin{align}
+        & \seq{\epsilon_n}\in\bigo{a_n} \land \seq{a_n} \in \littleo{b_n} \nl
+        \implies & \left(\exists C > 0: \limsup_{n\to\infty} \abs{\frac{\epsilon_n}{a_n}} \le C\right) \land \lim_{n\to\infty} \abs{\frac{a_n}{b_n}} = 0 \nl
+        \implies & \lim_{n\to\infty} \abs{\frac{\epsilon_n}{b_n}} = \lim_{n\to\infty} \underbrace{\abs{\frac{\epsilon_n}{a_n}}}_{\text{bounded}} \cdot \underbrace{\abs{\frac{a_n}{b_n}}}_{\to 0} = 0 \nl
+        \implies & \seq{\epsilon_n} \in \littleo{b_n}
+      \end{align}
+    \item
+
+      \begin{align}
+        \seq{\epsilon_n} \in \bigpsi{a_n} & \implies \limsup_{n\to\infty} \abs{\frac{\epsilon_n}{a_n}} \le 1 \nl
+                                          & \implies \exists C_\infty > 0 : \limsup_{n\to\infty} \abs{\frac{\epsilon_n}{a_n}} \le C_\infty \nl
+                                          & \implies \seq{e_n} \in \bigo{a_n}
+      \end{align}
+
+    \item
+
+      \begin{align}
+        & \seq{\epsilon_n} \in \bigpsi{a_n} \land \seq{\delta_n} \in \littleo{a_n} \nl
+        \implies& \left(\limsup_{n\to\infty} \abs{\frac{\epsilon_n}{a_n}} \le 1\right) \land \left(\lim_{n\to\infty} \abs{\frac{\delta_n}{a_n}} = 0\right) \nl
+        \implies& \limsup_{n\to\infty} \abs{\frac{\epsilon_n+\delta_n}{a_n}} \le \limsup_{n\to\infty} \left(\abs{\frac{\epsilon_n}{a_n}}+\abs{\frac{\delta_n}{a_n}}\right) \le 1 \nl
+        \implies& \seq{\epsilon_n+\delta_n} \in \bigpsi{a_n}
+      \end{align}
+
+    \item
+
+      \begin{align}
+        \seq{\epsilon_n} \in \bigpsi{a_n}  & \implies \limsup_{n\to\infty} \abs{\frac{\epsilon_n}{a_n}} \le 1 \nl
+        & \implies \limsup_{n\to\infty} \abs{\frac{\epsilon_n b_n}{a_n b_n}} = \limsup_{n\to\infty} \abs{\frac{\epsilon_n}{a_n}} \le 1 \nl
+        & \implies \seq{\epsilon_n b_n} \in \bigpsi{a_n b_n}
+      \end{align}
+
+    \item
+
+      \begin{align}
+        \frac{\bigpsi{a_n}}{b_n} = \bigpsi{a_n} \cdot \frac{1}{b_n} \subseteq \bigpsi{\frac{a_n}{b_n}}
+      \end{align}
+
+    \item
+
+      \begin{align}
+        & \seq{\epsilon_n} \in \bigpsi{\lambda a_n} \land \seq{\delta_n} \in \bigpsi{\mu a_n} \nl
+        \implies &
+        \begin{aligned}
+          \limsup_{n\to\infty} \abs{\frac{\epsilon_n+\delta_n}{(\lambda+\mu)a_n}} & \le \limsup_{n\to\infty} \left( \frac{\lambda}{\lambda + \mu} \cdot \underbrace{\abs{\frac{\epsilon_n}{\lambda a_n}}}_{\le 1} + \frac{\mu}{\lambda + \mu} \underbrace{\abs{\frac{\delta_n}{\mu a_n}}}_{\le 1} \right) \nl
+          &\le \frac{\lambda}{\lambda+\mu} + \frac{\mu}{\lambda+\mu} = 1
+        \end{aligned} \nl
+        \implies & \seq{\epsilon_n+\delta_n} \in \bigpsi{(\lambda+\delta)a_n}
+      \end{align}
+    \item
+
+      \begin{align}
+        \seq{\epsilon_n} \in \littleo{1} & \implies \lim_{n\to\infty} \epsilon_n = 0 \nl
+        & \implies \lim_{n\to\infty} e^{\epsilon_n} = 1 \nl
+        & \implies \limsup_{n\to\infty} \frac{e^{\epsilon_n}}{1} \le 1 \nl
+        & \implies \seq{e^{\epsilon_n}} \in \bigpsi{1}
+      \end{align}
+
+    \item
+
+      Let $\seq{a_n}\in\littleo{1}$ and $\seq{\epsilon_n}\in\bigpsi{a_n}\subseteq \bigo{a_n}$. Rule \ref{proof:littleo_rule} implies $\seq{\epsilon_n} \in o(1)$ and thus $\lim_{n\to\infty} \epsilon_n = 0$. We have
+
+      \begin{align}
+        \limsup_{n\to\infty} \abs{\frac{e^{\epsilon_n}-1}{a_n}} = \limsup_{n\to\infty} \underbrace{\abs{\frac{e^{\epsilon_n}-1}{\epsilon_n}}}_{\to \exp'(0)=1} \cdot \underbrace{\abs{\frac{\epsilon_n}{a_n}}}_{\le 1} \le 1
+      \end{align}
+
+      \noindent Thus $\seq{e^{\epsilon_n}} \in \bigpsi{a_n}$.
+  \end{enumerate}
 \end{proof}
