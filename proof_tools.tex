@@ -14,15 +14,24 @@ In this chapter I will prove the theorems I have stated in the chapter~\ref{chap
         \an[\delta]{a} = \interval{a-\delta}{a+\delta} \subseteq \interval{a-\epsilon,a+\epsilon} = \an[\epsilon]{a}
       \end{align}
 
-    \item Claim $\an[\epsilon]{a} + \an[\delta]{b} \subseteq \an[\epsilon+\delta]{a+b}$:
+    \item Claim $\interval ab + \interval cd \subseteq \interval{a+c}{b+d}$:
 
       \begin{align}
-        x \in \an[\epsilon]{a} \land y \in \an[\delta]{b} & \implies a-\epsilon \le x \le a+\epsilon \land b-\delta \le y \le b+\delta \nl
-        & \implies (a+b)-(\epsilon + \delta) \le x+y \le (a+b)+(\epsilon + \delta) \nl
-        & \implies x+y \in \an[\epsilon+\delta]{a+b}
+        x \in \interval ab \land y \in \interval cd & \implies a \le x \le b \land c \le y \le d \nl
+        & \implies a+c \le x+y \le b+d \nl
+        & \implies x+y \in \interval{a+c}{b+d}
       \end{align}
 
-      Claim $\an[\epsilon+\delta]{a+b} \subseteq \an[\epsilon]{a} + \an[\delta]{b}$: Let $f$ be the function $f: \an[\epsilon]{a} \times \an[\delta]{b} \to \R$ with $f(x,y) =x+y$ so that $\an[\epsilon]{a} + \an[\delta]{b}$ is the image of $f$. The function $f$ attains the maximum $a+b+\epsilon+\delta$ of the interval $\an[\epsilon+\delta]{a+b}$ for $(x,y) = \left(a+\epsilon,b+\delta\right)$ and its minimum $a+b-(\epsilon+\delta)$ for $(x,y)=\left(a-\epsilon,b-\delta\right)$. Because $f$ is continuous, $f$ attains each value between $a+b-(\epsilon+\delta)$ and $a+b+\epsilon+\delta$ and therefore each value of $\an[\epsilon+\delta]{a+b}$ (intermediate value theorem~\cite{wiki:intermediatevaluetheorem}).
+      Claim $\interval{a+c}{b+d} \subseteq \interval ab + \interval cd$: Let $f$ be the function $f: \interval ab \times \interval cd \to \R$ with $f(x,y) =x+y$ so that $\interval ab + \interval cd$ is the image of $f$. The function $f$ attains the maximum $b+d$ of the interval $\interval{a+c}{b+d}$ for $(x,y) = (b,d)$ and its minimum $a+c$ for $(x,y)=(a,c)$. Because $f$ is continuous, $f$ attains each value between $a+c$ and $b+d$ and therefore each value of $\interval{a+c}{b+d}$ (intermediate value theorem~\cite{wiki:intermediatevaluetheorem}).
+
+    \item
+
+      \begin{align}
+        \an[\epsilon]{a} + \an[\delta]{b} & = \interval{a-\epsilon}{a+\epsilon} + \interval{b-\delta}{b+\delta} \nl
+        & = \interval{(a+b)-(\epsilon+\delta)}{(a+b)+(\epsilon+\delta)} \nl
+        & = \an[\epsilon+\delta]{a+b}
+      \end{align}
+
     \item
 
       \begin{align}
