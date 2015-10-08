@@ -192,14 +192,14 @@ In this section we will show that the probability mass function of the standardi
 
   \begin{align}
     \begin{array}{rrl}
-      & \abs{\x} & \le \bigpsi{C} \nl
-      \implies & \abs{\frac{k-np}{\sqrt{npq}}} & \le \bigpsi{C} \nl
-      \implies & \abs{k-np} & \le \bigpsi{C\sqrt{npq}} \nl
-      \implies & \abs{\frac k{np}-1} & \le \bigpsi{\frac{C\sqrt{q}}{\sqrt{np}}} \nl
+      & \abs{\x} & \le \bigpsi{C} \bnl
+      \implies & \abs{\frac{k-np}{\sqrt{npq}}} & \le \bigpsi{C} \bnl
+      \implies & \abs{k-np} & \le \bigpsi{C\sqrt{npq}} \bnl
+      \implies & \abs{\frac k{np}-1} & \le \bigpsi{\frac{C\sqrt{q}}{\sqrt{np}}} \bnl
       && \begin{comment}
        \abs{\frac ab-1} \le \epsilon \implies a \in \ean[\epsilon]{b}
-      \end{comment} \nl
-      \implies & k & \in \ean[\bigpsi{\frac{C\sqrt{q}}{\sqrt{np}}}]{np} \nl
+      \end{comment} \bnl
+      \implies & k & \in \ean[\bigpsi{\frac{C\sqrt{q}}{\sqrt{np}}}]{np} \bnl
       \implies & k & \in \ean[\bigpsi{qCh}]{np}
     \end{array}
   \end{align}
@@ -208,17 +208,59 @@ In this section we will show that the probability mass function of the standardi
 
   \begin{align}
     \begin{array}{rrl}
-      & \abs{\x} & \le \bigpsi{C} \nl
-      \implies & \abs{\frac{k-np}{\sqrt{npq}}} & \le \bigpsi{C} \nl
-      \implies & \abs{np-k} & \le \bigpsi{C\sqrt{npq}} \nl
-      \implies & \abs{n-k-nq} & \le \bigpsi{C\sqrt{npq}} \nl
-      \implies & \abs{\frac {n-k}{nq}-1} & \le \bigpsi{\frac{C\sqrt{p}}{\sqrt{nq}}} \nl
+      & \abs{\x} & \le \bigpsi{C} \bnl
+      \implies & \abs{\frac{k-np}{\sqrt{npq}}} & \le \bigpsi{C} \bnl
+      \implies & \abs{np-k} & \le \bigpsi{C\sqrt{npq}} \bnl
+      \implies & \abs{n-k-nq} & \le \bigpsi{C\sqrt{npq}} \bnl
+      \implies & \abs{\frac {n-k}{nq}-1} & \le \bigpsi{\frac{C\sqrt{p}}{\sqrt{nq}}} \bnl
       && \begin{comment}
        \abs{\frac ab-1} \le \epsilon \implies a \in \ean[\epsilon]{b}
-      \end{comment} \nl
-      \implies & k & \in \ean[\bigpsi{\frac{C\sqrt{p}}{\sqrt{nq}}}]{nq} \nl
+      \end{comment} \bnl
+      \implies & k & \in \ean[\bigpsi{\frac{C\sqrt{p}}{\sqrt{nq}}}]{nq} \bnl
       \implies & k & \in \ean[\bigpsi{pCh}]{nq}
     \end{array}
   \end{align}
-  
+
+  \noindent We have
+
+  \begin{align}
+    \bb{\x} &= \binom nk p^k q^{n-k} \nl
+    &= \frac{n!}{k!(n-k)!} p^k q^{n-k} \nl
+    & \begin{comment} \text{Stirling's formula} \end{comment} \nl
+    &\in \frac{\ean[\frac 1n]{\sqrt{2\pi n}n^n e^{-n}}}{\ean[\frac 1k]{\sqrt{2\pi k}k^k e^{-k}}\cdot \ean[\frac 1n]{\sqrt{2\pi (n-k)}(n-k)^{n-k} e^{-(n-k)}}} \cdot p^k q^{n-k} \bnl
+    & \subseteq \ean[\frac 1n + \frac 1k + \frac 1{n-k}]{\sqrt{\frac{n}{2\pi k (n-k)}} \frac{n^n}{k^k(n-k)^{(n-k)}}\cdot p^k q^{n-k}} \bnl
+    & \subseteq \ean[\frac 1n + \frac 1k + \frac 1{n-k}]{\sqrt{\frac{n}{2\pi k (n-k)}} \left(\frac{np}{k}\right)^k \left(\frac{nq}{n-k}\right)^{n-k}} \bnl
+    &
+    \begin{comment}
+      \begin{aligned}
+        \frac 1k + \frac 1{n-k} & = \frac{n}{k(n-k)} \bnl
+        & \in \frac{n}{\ean[qCh]{np}\cdot \ean[pCh]{nq}} \bnl
+        & = \ean[Ch]{\frac{1}{npq}} \bnl
+        & \subseteq \ean[\littleo{1}]{\frac{1}{npq}} \nl
+        & \subseteq \bigpsi{\frac{1}{npq}} = \bigpsi{h^2}
+      \end{aligned}
+    \end{comment} \bnl
+    & \subseteq \ean[\frac 1n + \bigpsi{h^2}]{\sqrt{\frac{n}{2\pi k (n-k)}} \left(\frac{np}{k}\right)^k \left(\frac{nq}{n-k}\right)^{n-k}} \bnl
+    &
+    \begin{comment}
+      \frac 1n \in \bigpsi{\frac 1n} = \bigpsi{\frac{pq}{npq}} = \bigpsi{pq h^2}
+    \end{comment} \bnl
+    & \subseteq \ean[\bigpsi{(1+pq)h^2}]{\sqrt{\frac{n}{2\pi k (n-k)}} \left(\frac{np}{k}\right)^k \left(\frac{nq}{n-k}\right)^{n-k}} \bnl
+  \end{align}
+
+  Now we first approximate the two main factors of the remaining product. We start with the root $\sqrt{\frac{n}{2\pi k(n-k)}}$: 
+
+  \begin{align}
+    \sqrt{\frac{n}{2\pi k(n-k)}} & \in \sqrt{\frac{n}{2\pi \ean[qCh]{np} \ean[pCh]{nq}}} \nl
+    &
+    \begin{comment}
+      \lambda \cdot \ean[\epsilon]{a} \cdot \ean[\delta]{b} = \ean[\epsilon+\delta]{\lambda ab}
+    \end{comment} \nl
+    & = \sqrt{\ean[Ch]{\frac{1}{2\pi npq}}} \nl
+    &
+    \begin{comment}
+      \ean[\epsilon]{a}^\alpha = \ean[\alpha \cdot \epsilon]{a^\alpha}
+    \end{comment} \nl
+    & = \ean[\frac 12 Ch]{\frac 1{\sqrt{2\pi npq}}}
+  \end{align}
 \end{proof}
