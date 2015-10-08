@@ -126,6 +126,12 @@ In this chapter I will prove the theorems I have stated in the chapter~\ref{chap
     \item
 
       \begin{align}
+        \exp\left(\an[\epsilon]{a}\right) = \left\{ e^x : x \in \an[\epsilon]{a}\right\} = \interval{e^{a-\epsilon}}{e^{a+\epsilon}} = \interval{e^a\cdot e^{-\epsilon}}{e^a\cdot e^\epsilon} = \ean[\epsilon]{a}
+      \end{align}
+
+    \item
+
+      \begin{align}
         \abs{\frac ab - 1} \le \epsilon & \implies 1-\epsilon \le \frac ab \le 1+\epsilon \nl
         & \implies e^{-\epsilon} \le \frac ab \le e^{\epsilon} \nl
         & \implies be^{-\epsilon} \le a \le be^\epsilon \nl
