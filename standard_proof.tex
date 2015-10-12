@@ -248,20 +248,21 @@ In this section we will show that the probability mass function of the standardi
     & \subseteq \ean[\bigpsi{(1+pq)h^2}]{\sqrt{\frac{n}{2\pi k (n-k)}} \left(\frac{np}{k}\right)^k \left(\frac{nq}{n-k}\right)^{n-k}} \bnl
   \end{align}
 
-  Now we first approximate the two main factors of the remaining product. We start with the root $\sqrt{\frac{n}{2\pi k(n-k)}}$: 
+  Now we first approximate the two main factors of the remaining product. We start with the root $\sqrt{\frac{n}{2\pi k(n-k)}}$:
 
   \begin{align}
-    \sqrt{\frac{n}{2\pi k(n-k)}} & \in \sqrt{\frac{n}{2\pi \ean[qCh]{np} \ean[pCh]{nq}}} \nl
+    \sqrt{\frac{n}{2\pi k(n-k)}} & \in \sqrt{\frac{n}{2\pi \ean[\bigpsi{qCh}]{np} \ean[\bigpsi{pCh}]{nq}}} \nl
     &
     \begin{comment}
       \lambda \cdot \ean[\epsilon]{a} \cdot \ean[\delta]{b} = \ean[\epsilon+\delta]{\lambda ab}
     \end{comment} \nl
-    & = \sqrt{\ean[Ch]{\frac{1}{2\pi npq}}} \nl
+    & = \sqrt{\ean[\bigpsi{qCh}+\bigpsi{pCh}]{\frac{1}{2\pi npq}}} \nl
+    & = \sqrt{\ean[\bigpsi{Ch}]{\frac{1}{2\pi npq}}} \nl
     &
     \begin{comment}
       \ean[\epsilon]{a}^\alpha = \ean[\alpha \cdot \epsilon]{a^\alpha}
     \end{comment} \nl
-    & = \ean[\frac 12 Ch]{\frac 1{\sqrt{2\pi npq}}}
+    & = \ean[\bigpsi{\frac 12 Ch}]{\frac 1{\sqrt{2\pi npq}}}
   \end{align}
 
   \noindent In order to approximate $\left(\frac{np}{k}\right)^k \left(\frac{nq}{n-k}\right)^{n-k}$ we investigate its logarithm
@@ -290,5 +291,18 @@ In this section we will show that the probability mass function of the standardi
     h(s) = \frac{1}{2pq} (s-p)^2 + R(s)
   \end{align}
 
-  \noindent with $R(s)=\frac{1}{3!} \left(\frac{1}{(1-\tilde s)^2}-\frac{1}{\tilde s^2}\right) (s-p)^3$ for a $\tilde s$ in the interval bounded by $s$ and $p$. 
+  with $R(s)=\frac{1}{3!} \left(\frac{1}{(1-\tilde s)^2}-\frac{1}{\tilde s^2}\right) (s-p)^3$ for a $\tilde s$ in the interval bounded by $s$ and $p$. To estimate $R\left(\frac kn\right)$ we first estimate $\abs{\frac{1}{(1-\tilde s)^2} - \frac{1}{\tilde s^2}}$. We have $\frac kn \in \ean[\bigpsi{qCh}]{p}$. Because $\tilde s$ is a number of the interval bounded by $p$ and $\frac kn\in\ean[\bigpsi{qCh}]{p}$, we get $\tilde s\in\ean[\bigpsi{qCh}]{p}$ The number $1-\tilde s$ is between $1-p=q$ and $1-\frac kn = \frac{n-k}{n}$. So we can show that $1-\tilde s\in \ean[\bigpsi{phC}]{q}$. Therefore
+
+  \begin{align}
+    \abs{\frac 1{(1-\tilde s)^2}-\frac 1{\tilde s^2}} & \in \abs{\frac 1{\ean[\bigpsi{pCh}]{q}^2} - \frac 1{\ean[\bigpsi{qCh}]{p}^2}} \bnl
+    & = \abs{\ean[\bigpsi{2pCh}]{\frac 1{q^2}} - \ean[\bigpsi{2qCh}]{\frac 1{p^2}}} \nl
+    &
+    \begin{comment}
+      a := \max\{ p, q \}
+    \end{comment} \nl
+    & \subseteq \abs{\ean[\bigpsi{2aCh}]{\frac{1}{q^2}} - \ean[\bigpsi{2aCh}]{\frac 1{p^2}}} \nl
+    & = \abs{\ean[\bigpsi{2aCh}]{\frac 1{p^2}-\frac 1{q^2}}} \nl
+  \end{align}
+
+
 \end{proof}
