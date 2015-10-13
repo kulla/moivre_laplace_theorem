@@ -295,18 +295,22 @@ In this section we will show that the probability mass function of the standardi
 
   \begin{align}
     \abs{\frac 1{(1-\tilde s)^2}-\frac 1{\tilde s^2}} & \le \frac{1}{(1-\tilde s)^2} + \frac{1}{\tilde s^2} \nl
-    & \in \frac 1{\ean[\bigpsi{pCh}]{q}^2} + \frac 1{\ean[\bigpsi{qCh}]{p}^2} \bnl
-    & = \ean[\bigpsi{2pCh}]{\frac 1{q^2}} + \ean[\bigpsi{2qCh}]{\frac 1{p^2}} \nl
+    & \le \fsup{\frac 1{\ean[\bigpsi{pCh}]{q}^2} + \frac 1{\ean[\bigpsi{qCh}]{p}^2}} \bnl
+    & = \fsup{\ean[\bigpsi{2pCh}]{\frac 1{q^2}} + \ean[\bigpsi{2qCh}]{\frac 1{p^2}}} \nl
     &
     \begin{comment}
       a := \max\{ p, q \}
     \end{comment} \nl
-    & \subseteq \ean[\bigpsi{2aCh}]{\frac{1}{q^2}} + \ean[\bigpsi{2aCh}]{\frac 1{p^2}} \nl
-    & = \ean[\bigpsi{2aCh}]{\frac 1{p^2}+\frac 1{q^2}} \nl
-    & = \ean[\bigpsi{2aCh}]{\frac {p^2+q^2}{p^2q^2}} \nl
-    & \forallrel{\le} \frac {p^2+q^2}{p^2q^2} e^{\bigpsi{2aCh}} \nl
+    & \le \fsup{\ean[\bigpsi{2aCh}]{\frac{1}{q^2}} + \ean[\bigpsi{2aCh}]{\frac 1{p^2}}} \nl
+    & = \fsup{\ean[\bigpsi{2aCh}]{\frac 1{p^2}+\frac 1{q^2}}} \nl
+    & = \fsup{\ean[\bigpsi{2aCh}]{\frac {p^2+q^2}{p^2q^2}}} \nl
+    &
+    \begin{comment}
+      \fsup{\ean[\epsilon]{a}} = ae^\epsilon
+    \end{comment} \nl
+    & = \frac {p^2+q^2}{p^2q^2} e^{\bigpsi{2aCh}} \nl
     & \begin{comment}
-    \seq{a_n} \in \littleo{1} \implies e^{\bigpsi{a_n}} \in \bigpsi{1}
+      \seq{a_n} \in \littleo{1} \implies e^{\bigpsi{a_n}} \in \bigpsi{1}
     \end{comment} \nl
     & \subseteq \bigpsi{\frac {p^2+q^2}{p^2q^2}} \nl
   \end{align}

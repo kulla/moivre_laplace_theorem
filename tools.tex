@@ -38,34 +38,6 @@ Now consider a function $\tilde f:D\subseteq\R^n\to \mathcal P(\R)$ which maps $
 
 \noindent Thus $\tilde f(A_1,\ldots,A_n)$ is the union of all possible images of $\tilde f$.
 
-\subsection{Relations with sets}
-
-Given a relation $R \subseteq \R \times \R$ between real numbers we define the following relations between subsets of $\R$:
-
-\begin{align}
-  \existsrel{R} & := \{ (A,B) \in \pot{\R} \times \pot{\R} \mid \exists x\in A\,\exists y\in B : xRy \} \nl
-  \forallrel{R} & := \{ (A,B) \in \pot{\R} \times \pot{\R} \mid \forall x\in A\,\forall y\in B : xRy \}
-\end{align}
-
-\noindent So we have
-
-\begin{align}
-  A \existsrel{R} B & \iff \exists x\in A\,\exists y\in B: xRy \nl
-  A \forallrel{R} B & \iff \forall x\in A\,\forall y\in B: xRy
-\end{align}
-
-If either $A$ or $B$ is a real number $x$, we take $\{x\}$ in the above definitions. For example $\ean{a} \forallrel{\le} x$ means
-
-\begin{align}
-  \forall y \in \ean{a}: y \le x
-\end{align}
-
-\noindent and therefore $x$ is an upper bound of $\ean{a}$. Analogously the statement $\ean{a} \existsrel{\le} x$ means
-
-\begin{align}
-  \exists y \in \ean{a}: y \le x
-\end{align}
-
 \subsection{Arithmetic rules}
 
 In the above section we have seen how the result of an operation involving intervals is defined. Now we need arithmetic rules which help us to calculate or to approximate this result. These arithmetic rules are (cf.~\cite[pp.~19-24.]{kulla})
