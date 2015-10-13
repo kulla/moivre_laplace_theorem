@@ -315,5 +315,62 @@ In this section we will show that the probability mass function of the standardi
     & \subseteq \bigpsi{\frac {p^2+q^2}{p^2q^2}} \nl
   \end{align}
 
+  \noindent For $\abs{\frac kn-p}^3$ we get the estimate
 
+  \begin{align}
+    \abs{\frac kn-p}^3 & \le \fsup{\abs{\ean[\bigpsi{qCh}]{p}-p}^3} \nl
+    & = p^3 \fsup{\abs{\ean[\bigpsi{qCh}]{1}-1}}^3 \nl
+    &
+    \begin{comment}
+      \fsup{\abs{\ean[\epsilon]{a}-1}} = ae^\epsilon - 1
+    \end{comment} \nl
+    & = p^3 \left(e^{\bigpsi{qCh}}-1\right)^3 \nl
+    &
+    \begin{comment}
+      \seq{a_n} \in \littleo{1} \implies e^{\bigpsi{a_n}}-1\subseteq \bigpsi{a_n}
+    \end{comment} \nl
+    & \subseteq p^3 \bigpsi{qCh}^3 \nl
+    & = \bigpsi{p^3q^3C^3h^3}
+  \end{align}
+
+  \noindent Thus
+
+  \begin{align}
+    \h{\frac kn} & = \frac 1{2pq} \left(\frac kn-p\right)^2 + \frac{1}{3!} \left(\frac 1{(1-\tilde s)^2} - \frac 1{\tilde s^2}\right) \left(\frac kn-p\right)^3 \bnl
+    & \subseteq \frac{(k-np)^2}{2pqn^2} + \frac {1}{6} \bigpsi{\frac{p^2+q^2}{p^2q^2}} \bigpsi{p^3q^3C^3h^3} \bnl
+    & \subseteq \frac{(k-np)^2}{2pqn^2} + \bigpsi{\frac{(p^2+q^2)pqC^3h^3}{6}}
+  \end{align}
+
+  \noindent Finally
+
+  \begin{align}
+    \left(\frac{np}{k}\right)^k \left(\frac{nq}{n-k}\right)^{n-k} & = \fexp{-n\h{\frac kn}} \bnl
+    & \in \fexp{-n\left( \frac{(k-np)^2}{2pqn^2} + \bigpsi{\frac{(p^2+q^2)pqC^3h^3}{6}} \right)} \bnl
+    &
+    \begin{comment}
+      h^2 = \frac1{npq}
+    \end{comment} \bnl
+    & \subseteq \fexp{ -\frac{(k-np)^2}{2pqn} + \bigpsi{\frac{p^2+q^2}{6} C^3 h}} \bnl
+    & = \ean[\bigpsi{\frac{p^2+q^2}{6} C^3 h}]{\fexp{-\frac{k-np)^2}{2pqn}}} \bnl
+    & = \ean[\bigpsi{\frac{p^2+q^2}{6} C^3 h}]{\fexp{-\frac{\x^2}{2}}}
+  \end{align}
+
+  \noindent Now we can complete the approximation
+
+  \begin{align}
+    \bb{\x} & \in \ean[\bigpsi{(1+pq)h^2}]{\sqrt{\frac{n}{2\pi k(n-k)}} \left(\frac {np}{k}\right)^k \left(\frac{nq}{n-k}\right)^{n-k}} \bnl
+    &
+    \begin{comment}
+      \begin{aligned}
+        \sqrt{\frac{n}{2\pi k(n-k)}} & = \ean[\bigpsi{\frac 12 Ch}]{\frac 1{\sqrt{2\pi npq}}} \bnl
+        \left(\frac {np}{k}\right)^k \left(\frac{nq}{n-k}\right)^{n-k} &= \ean[\bigpsi{\frac{p^2+q^2}{6} C^3 h}]{\fexp{-\frac{\x^2}{2}}}
+      \end{aligned}
+    \end{comment} \bnl
+    & \subseteq \ean[\bigpsi{\frac 12 Ch}+\bigpsi{\frac{p^2+q^2}{6} C^3 h} + \bigpsi{(1+pq)h^2}]{\frac 1{\sqrt{2\pi npq}} \cdot \fexp{-\frac{\x^2}{2}}} \bnl
+    &
+    \begin{comment}
+      \seq{h^2} \in \littleo{h} \implies \bigpsi{\alpha h} + \bigpsi{\beta h^2} \subseteq \bigpsi{\alpha h}
+    \end{comment} \bnl
+    & \subseteq \ean[\bigpsi{\frac 12 Ch+ \frac{p^2+q^2}{6} C^3 h}]{\frac 1{\sqrt{2\pi npq}} \cdot \fexp{-\frac{\x^2}{2}}} \bnl
+  \end{align}
 \end{proof}
