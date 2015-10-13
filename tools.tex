@@ -68,7 +68,7 @@ If either $A$ or $B$ is a real number $x$, we take $\{x\}$ in the above definiti
 
 \subsection{Arithmetic rules}
 
-In the above section we have seen how the result of an operation involving intervals is defined. Now we need arithmetic rules which help us to calculate this result or to approximate the result with a superset. These arithmetic rules are (cf.~\cite[pp.~19-24.]{kulla})
+In the above section we have seen how the result of an operation involving intervals is defined. Now we need arithmetic rules which help us to calculate or to approximate this result. These arithmetic rules are (cf.~\cite[pp.~19-24.]{kulla})
 
 \input{additive_rules}
 
@@ -86,7 +86,7 @@ Because we will often have to deal with products I introduce a slightly differen
   The interval $\ean{a}$ for $\epsilon,a\in\Rplus$ is defined as $\left[a\cdot e^{-\epsilon},a\cdot e^\epsilon\right]$.
 \end{definition}
 
-This interval definition has the advantage its rule for products is easy (as we will prove in the appendix):
+This interval definition has the advantage that its rule for products is easy (we will prove it in the appendix):
 
 \begin{align}
   \ean[\epsilon]{a}\cdot \ean[\delta]{b} = \ean[\epsilon+\delta]{a+b}
@@ -213,6 +213,8 @@ It is also possible to define order relations such as $a_n \le \bigpsi{b_n}$ for
 So $a_n = \bigpsi{b_n}$ is the same as $\seq{a_n} \in \bigpsi{b_n}$ because $a_n = \bigpsi{b_n}$ means that there is a $\seq{\epsilon_n}\in\bigpsi{b_n}$ with $a_n=\epsilon_n$ for all $n$. This motivates the notation $a_n = \bigo{b_n}$ which is often used. \todo{citation needed}
 
 Be aware that $=$ is no normal equality relation in a notation like $a_n = \bigpsi{b_n}$ because it is not transitive. For example $\frac 1n = \bigpsi{1n}$ and $\frac 1{n^2} = \bigpsi{\frac 1n}$ but we cannot follow $\frac 1n=\frac 1{n^2}$ from this. \todo{citation needed}
+
+\todo{Problem: hier brauchen wir immer ein existenz-relation}
 
 \subsection{Interval arithmetic and the big Psi notation}
 
