@@ -179,90 +179,91 @@ You can find a proof of the Euler-Maclaurin formula in~\cite[pp.~225-226]{koenig
 In this section we will show that the probability mass function of the standardized binomial distribution can be approximated by the density function of the normal distribution. This will be the basis for the global version of de Moivre-Laplace theorem.
 
 \begin{theorem}[Local version of de Moivre-Laplace theorem]
-  Let $C \in \Rplus$. For $\abs{\x} \le \bigpsi{C}$ we have
-
-  \begin{align}
-    \bb{k} = \binom nk p^k q^{n-k} & \in \ean[\bigpsi{\frac{1}{2\sqrt{npq}} \cdot C + \frac{p^2+q^2}{6\sqrt{npq}} \cdot C^3}]{\frac{1}{\sqrt{2\pi npq}} \exp\left(-\frac{(k-np)^2}{2npq}\right)} \nl
-    & = \ean[\bigpsi{\frac{1}{2} Ch + \frac{p^2+q^2}{6} \cdot C^3h}]{\frac{1}{\sqrt{2\pi}} \exp\left(-\frac{\x}{2}\right) h}
-  \end{align}
+  \todo{Formulierung}
 \end{theorem}
 
 \begin{proof}
-  Note that $\abs{\x}\le \bigpsi{C}$ means that there is a sequence $\seq{\epsilon_n}$ with $\limsup_{n\to\infty} \frac{\epsilon_n}{C} \le 1$ and $\abs{\x} \le \epsilon_n$. First we investigate what $\abs{\x} \le \bigpsi{C}$ means for $k$ and $n-k$:
+  Let $\pol{\x}$ the set of all polynomials in $\x$. We have
 
   \begin{align}
-    \begin{array}{rrl}
-      & \abs{\x} & \le \bigpsi{C} \bnl
-      \implies & \abs{\frac{k-np}{\sqrt{npq}}} & \le \bigpsi{C} \bnl
-      \implies & \abs{k-np} & \le \bigpsi{C\sqrt{npq}} \bnl
-      \implies & \abs{\frac k{np}-1} & \le \bigpsi{\frac{C\sqrt{q}}{\sqrt{np}}} \bnl
-      && \begin{comment}
-       \abs{\frac ab-1} \le \epsilon \implies a \in \ean[\epsilon]{b}
-      \end{comment} \bnl
-      \implies & k & \in \ean[\bigpsi{\frac{C\sqrt{q}}{\sqrt{np}}}]{np} \bnl
-      \implies & k & \in \ean[\bigpsi{qCh}]{np}
-    \end{array}
+    k &= np + \x \sqrt{npq} \nl
+    &= np \left( 1 + \x \frac{\sqrt{q}}{\sqrt{np}}\right) \nl
+    &= np \left( 1 + \x q h\right) \nl
+    &
+    \begin{comment}
+      \text{\todo{ }} (1+\epsilon) \in \ean[\epsilon+\bigo{\epsilon^2}]{1}
+    \end{comment} \nl
+    &\in \ean[\x qh + \bigo{\pol{\x }h^2}]{np}
   \end{align}
 
   \noindent For $n-k$ we get
 
   \begin{align}
-    \begin{array}{rrl}
-      & \abs{\x} & \le \bigpsi{C} \bnl
-      \implies & \abs{\frac{k-np}{\sqrt{npq}}} & \le \bigpsi{C} \bnl
-      \implies & \abs{np-k} & \le \bigpsi{C\sqrt{npq}} \bnl
-      \implies & \abs{n-k-nq} & \le \bigpsi{C\sqrt{npq}} \bnl
-      \implies & \abs{\frac {n-k}{nq}-1} & \le \bigpsi{\frac{C\sqrt{p}}{\sqrt{nq}}} \bnl
-      && \begin{comment}
-       \abs{\frac ab-1} \le \epsilon \implies a \in \ean[\epsilon]{b}
-      \end{comment} \bnl
-      \implies & k & \in \ean[\bigpsi{\frac{C\sqrt{p}}{\sqrt{nq}}}]{nq} \bnl
-      \implies & k & \in \ean[\bigpsi{pCh}]{nq}
-    \end{array}
+    n-k &= n-np-\x\sqrt{npq} \nl
+    &= nq -\x \sqrt{npq} \nl
+    &= nq \left( 1 + \x \frac{\sqrt p}{\sqrt{nq}}\right) \nl
+    &= nq \left( 1 - \x p h\right) \nl
+    &\in \ean[-\x ph + \bigo{\pol{\x} h^2}]{nq}
   \end{align}
 
-  \noindent We have
+  \todo{Rule $(1+\epsilon) \in \ean[\epsilon + \bigo{|\epsilon|^2}]{1}$ for all $\epsilon\in\R$}
+  \todo{Is $\bigo{\cdot}$ only for positive sequences defined? Is it necessary?}
+
+  Because \todo{Why? Which premise must be fulfilled?} we have
+
+  \begin{align}
+    k & \in \ean[\littleo{1}]{np} \nl
+    n-k & \in \ean[\littleo{1}]{nq}
+  \end{align}
+
+  \noindent This we can use for the approximation
 
   \begin{align}
     \bb{\x} &= \binom nk p^k q^{n-k} \nl
-    &= \frac{n!}{k!(n-k)!} p^k q^{n-k} \nl
-    & \begin{comment} \text{Stirling's formula} \end{comment} \nl
+    &= \frac{n!}{k!(n-k)!} p^k q^{n-k} \bnl
+    & \begin{comment} \text{Stirling's formula} \end{comment} \bnl
     &\in \frac{\ean[\frac 1n]{\sqrt{2\pi n}n^n e^{-n}}}{\ean[\frac 1k]{\sqrt{2\pi k}k^k e^{-k}}\cdot \ean[\frac 1n]{\sqrt{2\pi (n-k)}(n-k)^{n-k} e^{-(n-k)}}} \cdot p^k q^{n-k} \bnl
     & \subseteq \ean[\frac 1n + \frac 1k + \frac 1{n-k}]{\sqrt{\frac{n}{2\pi k (n-k)}} \frac{n^n}{k^k(n-k)^{(n-k)}}\cdot p^k q^{n-k}} \bnl
     & \subseteq \ean[\frac 1n + \frac 1k + \frac 1{n-k}]{\sqrt{\frac{n}{2\pi k (n-k)}} \left(\frac{np}{k}\right)^k \left(\frac{nq}{n-k}\right)^{n-k}} \bnl
+  \end{align}
+
+  \noindent To estimate the error bound:
+
+  \begin{align}
+    \frac 1k + \frac 1{n-k} & = \frac{n}{k(n-k)} \bnl
+    & \in \frac{n}{\ean[\littleo{1}]{np}\cdot \ean[\littleo{1}]{nq}} \bnl
+    & \subseteq \ean[\littleo{1}]{\frac{1}{npq}} \bnl
     &
     \begin{comment}
-      \begin{aligned}
-        \frac 1k + \frac 1{n-k} & = \frac{n}{k(n-k)} \bnl
-        & \in \frac{n}{\ean[qCh]{np}\cdot \ean[pCh]{nq}} \bnl
-        & = \ean[Ch]{\frac{1}{npq}} \bnl
-        & \subseteq \ean[\littleo{1}]{\frac{1}{npq}} \nl
-        & \subseteq \bigpsi{\frac{1}{npq}} = \bigpsi{h^2}
-      \end{aligned}
+      \text{\todo{Proof?}} \ean[\littleo{1}]{a_n} \subseteq \bigpsi{a_n}
     \end{comment} \bnl
-    & \subseteq \ean[\frac 1n + \bigpsi{h^2}]{\sqrt{\frac{n}{2\pi k (n-k)}} \left(\frac{np}{k}\right)^k \left(\frac{nq}{n-k}\right)^{n-k}} \bnl
+    & \subseteq \bigpsi{\frac{1}{npq}} \bnl
+    & \subseteq \bigo{h^2}
+  \end{align}
+
+  \noindent Therefore
+
+  \begin{align}
+    \bb{\x} & \in \ean[\frac 1n + \frac 1k + \frac 1{n-k}]{\sqrt{\frac{n}{2\pi k (n-k)}} \left(\frac{np}{k}\right)^k \left(\frac{nq}{n-k}\right)^{n-k}} \bnl
+    & \subseteq \ean[\frac 1n + \bigo{h^2}]{\sqrt{\frac{n}{2\pi k (n-k)}} \left(\frac{np}{k}\right)^k \left(\frac{nq}{n-k}\right)^{n-k}} \bnl
     &
     \begin{comment}
-      \frac 1n \in \bigpsi{\frac 1n} = \bigpsi{\frac{pq}{npq}} = \bigpsi{pq h^2}
+      \frac 1n \subseteq \bigo{h^2}
     \end{comment} \bnl
-    & \subseteq \ean[\bigpsi{(1+pq)h^2}]{\sqrt{\frac{n}{2\pi k (n-k)}} \left(\frac{np}{k}\right)^k \left(\frac{nq}{n-k}\right)^{n-k}} \bnl
+    & \subseteq \ean[\bigo{h^2}]{\sqrt{\frac{n}{2\pi k (n-k)}} \left(\frac{np}{k}\right)^k \left(\frac{nq}{n-k}\right)^{n-k}} \bnl
   \end{align}
 
   Now we first approximate the two main factors of the remaining product. We start with the root $\sqrt{\frac{n}{2\pi k(n-k)}}$:
 
   \begin{align}
-    \sqrt{\frac{n}{2\pi k(n-k)}} & \in \sqrt{\frac{n}{2\pi \ean[\bigpsi{qCh}]{np} \ean[\bigpsi{pCh}]{nq}}} \nl
-    &
-    \begin{comment}
-      \lambda \cdot \ean[\epsilon]{a} \cdot \ean[\delta]{b} = \ean[\epsilon+\delta]{\lambda ab}
-    \end{comment} \nl
-    & = \sqrt{\ean[\bigpsi{qCh}+\bigpsi{pCh}]{\frac{1}{2\pi npq}}} \nl
-    & = \sqrt{\ean[\bigpsi{Ch}]{\frac{1}{2\pi npq}}} \nl
+    \sqrt{\frac{n}{2\pi k(n-k)}} & \in \sqrt{\frac{n}{2\pi \ean[\x qh +\bigo{\pol{x}h^2}]{np} \ean[-\x ph + \bigo{\pol{\x}h^2}]{nq}}} \bnl
+    & \subseteq \sqrt{\frac{1}{2\pi \ean[(q-p)\x h +\bigo{\pol{\x}h^2}]{npq}}} \bnl
+    & \subseteq \sqrt{\ean[(p-q) \x h + \bigo{\pol{\x}h^2}]{\frac{1}{2\pi npq}}} \bnl
     &
     \begin{comment}
       \ean[\epsilon]{a}^\alpha = \ean[\alpha \cdot \epsilon]{a^\alpha}
-    \end{comment} \nl
-    & = \ean[\bigpsi{\frac 12 Ch}]{\frac 1{\sqrt{2\pi npq}}}
+    \end{comment} \bnl
+    & \subseteq \ean[\frac{p-q}2 \x h + \bigo{\pol{\x}h^2}]{\frac{1}{\sqrt{2\pi npq}}} \bnl
   \end{align}
 
   \noindent In order to approximate $\left(\frac{np}{k}\right)^k \left(\frac{nq}{n-k}\right)^{n-k}$ we investigate its logarithm
@@ -272,88 +273,90 @@ In this section we will show that the probability mass function of the standardi
     &=-n \left[ \frac kn \ln\left(\frac{k}{np}\right) + \left(1-\frac kn\right) \ln\left(\frac{1-\frac kn}{q}\right)\right] \nl
     &
     \begin{comment}
-      \h{s} := s \ln\left(\frac sp\right) + (1-s) \ln\left(\frac{1-s}{1-p}\right)
+      \h{s} := -n\left[s \ln\left(\frac sp\right) + (1-s) \ln\left(\frac{1-s}{1-p}\right)\right]
     \end{comment} \nl
-    &=-n \h{\frac kn}
+    &= \h{\frac kn}
   \end{align}
 
   \noindent The function $\h{s}$ has the derivatives
 
   \begin{align}
-    h'(s) &= \ln\left(\frac sp\right) - \ln\left(\frac{1-s}{1-p}\right) \nl
-    h''(s) &= \frac 1s + \frac 1{1-s} \nl
-    h^{(3)}(s) &= -\frac 1{s^2} + \frac 1{(1-s)^2}
+    h'(s) &= -n\left[\ln\left(\frac sp\right) - \ln\left(\frac{1-s}{1-p}\right)\right] \nl
+    h''(s) &= -\frac ns - \frac n{1-s} \nl
+    h^{(3)}(s) &= \frac n{s^2} - \frac n{(1-s)^2} \nl
+    h^{(4)}(s) &= -\frac {2n}{s^3} - \frac {2n}{(1-s)^3}
   \end{align}
 
-  \noindent We have $h(p)=h'(p)=0$ and $h''(p) = \frac 1p + \frac 1q = \frac 1{pq}$. Therefore the Taylor series of $\h{s}$ is
+  \noindent We have
 
   \begin{align}
-    h(s) = \frac{1}{2pq} (s-p)^2 + R(s)
+    h(p)& = 0 \nl
+    h'(p)& =0 \nl
+    h''(p) & = -\frac np - \frac nq = -\frac n{pq} \nl
+    h^{(3)}(p) &= \frac n{p^2}-\frac{n}{q^2} = \frac{n\left(q^2-p^2\right)}{p^2q^2}
   \end{align}
 
-  with $R(s)=\frac{1}{3!} \left(\frac{1}{(1-\tilde s)^2}-\frac{1}{\tilde s^2}\right) (s-p)^3$ for a $\tilde s$ in the interval bounded by $s$ and $p$. To estimate $R\left(\frac kn\right)$ we first estimate $\abs{\frac{1}{(1-\tilde s)^2} - \frac{1}{\tilde s^2}}$. We have $\frac kn \in \ean[\bigpsi{qCh}]{p}$. Because $\tilde s$ is a number of the interval bounded by $p$ and $\frac kn\in\ean[\bigpsi{qCh}]{p}$, we get $\tilde s\in\ean[\bigpsi{qCh}]{p}$ The number $1-\tilde s$ is between $1-p=q$ and $1-\frac kn = \frac{n-k}{n}$. So we can show that $1-\tilde s\in \ean[\bigpsi{phC}]{q}$. Therefore
+  \noindent Therefore the Taylor series of $\h{s}$ is
 
   \begin{align}
-    \abs{\frac 1{(1-\tilde s)^2}-\frac 1{\tilde s^2}} & \le \frac{1}{(1-\tilde s)^2} + \frac{1}{\tilde s^2} \nl
-    & \le \fsup{\frac 1{\ean[\bigpsi{pCh}]{q}^2} + \frac 1{\ean[\bigpsi{qCh}]{p}^2}} \bnl
-    & = \fsup{\ean[\bigpsi{2pCh}]{\frac 1{q^2}} + \ean[\bigpsi{2qCh}]{\frac 1{p^2}}} \nl
-    &
-    \begin{comment}
-      a := \max\{ p, q \}
-    \end{comment} \nl
-    & \le \fsup{\ean[\bigpsi{2aCh}]{\frac{1}{q^2}} + \ean[\bigpsi{2aCh}]{\frac 1{p^2}}} \nl
-    & = \fsup{\ean[\bigpsi{2aCh}]{\frac 1{p^2}+\frac 1{q^2}}} \nl
-    & = \fsup{\ean[\bigpsi{2aCh}]{\frac {p^2+q^2}{p^2q^2}}} \nl
-    &
-    \begin{comment}
-      \fsup{\ean[\epsilon]{a}} = ae^\epsilon
-    \end{comment} \nl
-    & = \frac {p^2+q^2}{p^2q^2} e^{\bigpsi{2aCh}} \nl
-    & \begin{comment}
-      \seq{a_n} \in \littleo{1} \implies e^{\bigpsi{a_n}} \in \bigpsi{1}
-    \end{comment} \nl
-    & \subseteq \bigpsi{\frac {p^2+q^2}{p^2q^2}} \nl
+    h(s) = -\frac{n}{2pq} (s-p)^2 + \frac{n(q^2-p^2)}{6p^2q^2} (s-p)^3 + R(s)
   \end{align}
 
-  \noindent For $\abs{\frac kn-p}^3$ we get the estimate
+  with $R(s)=-\frac{2n}{4!} \left(\frac{1}{\tilde s^3}+\frac{1}{(1-\tilde s)^3}\right) (s-p)^4$ for a $\tilde s$ in the interval bounded by $s$ and $p$. We want to evaluate this series for $s=\frac kn$. Here we have $s-p=\x pqh$ and thus
 
   \begin{align}
-    \abs{\frac kn-p}^3 & \le \fsup{\abs{\ean[\bigpsi{qCh}]{p}-p}^3} \nl
-    & = p^3 \fsup{\abs{\ean[\bigpsi{qCh}]{1}-1}}^3 \nl
+    -\frac{n}{2pq} (s-p)^2 &= -\frac{n}{2pq} \x^2 p^2 q^2 h^2 = -\frac{\x^2}{2} \nl
+    \frac{n(q^2-p^2)}{6p^2q^2} (s-p)^3 &= \frac{n(q^2-p^2)}{6p^2q^2} \x^3p^3q^3h^3 = \frac{q^2-p^2}{6} \x^3 h
+  \end{align}
+
+  \todo{Better formulation -> übersichtlicher}
+
+  Because $\tilde s$ is in the interval bounded by $p$ and $s=\frac kn \in \ean[\littleo{1}]{p}$ we deduce $\tilde s \in \ean[\littleo{1}]{p}$, too. Similarly we get $1-\tilde s\in\ean[\littleo{1}]{q}$ because $1-s = \frac{n-k}{n} \in \ean[\littleo{1}]{q}$. From this follows:
+
+  \begin{align}
+    \frac 1{\tilde s^3} + \frac 1{(1-\tilde s)^3} & \in \frac 1{\ean[\littleo{1}]{p}^3} + \frac 1{\ean[\littleo{1}]{q}^3} \bnl
+    & \subseteq \ean[\littleo{1}]{\frac 1{p^3}} + \ean[\littleo{1}]{\frac 1{q^3}} \bnl
     &
     \begin{comment}
-      \fsup{\abs{\ean[\epsilon]{a}-1}} = ae^\epsilon - 1
-    \end{comment} \nl
-    & = p^3 \left(e^{\bigpsi{qCh}}-1\right)^3 \nl
+      \text{\todo{Proof}} \ean[\epsilon]{a} + \ean[\delta]{b} \subseteq \ean[\max\{\epsilon,\delta\}]{a+b}
+    \end{comment} \bnl
+    & \subseteq \ean[\littleo{1}]{\frac 1{p^3} + \frac 1{q^3}} \bnl
     &
     \begin{comment}
-      \seq{a_n} \in \littleo{1} \implies e^{\bigpsi{a_n}}-1\subseteq \bigpsi{a_n}
+      \ean[\littleo{1}]{a_n} \subseteq \bigpsi{a_n} \subseteq \bigo{a_n}
+    \end{comment} \bnl
+    & \subseteq \bigo{\frac 1{p^3} + \frac 1{q^3}} \bnl
+    & \subseteq \bigo{1}
+  \end{align}
+
+  \noindent So
+
+  \begin{align}
+    R(s) & = -\frac{2n}{4!} \left(\frac 1{\tilde s^3} + \frac 1{(1-\tilde s)^3}\right) (s-p)^4 \nl
+    & \in -\frac{2n}{4!} \bigo{1} \x^4 p^4 q^4 h^4 \nl
+    &
+    \begin{comment}
+      n h^2 \in \bigo{1}
     \end{comment} \nl
-    & \subseteq p^3 \bigpsi{qCh}^3 \nl
-    & = \bigpsi{p^3q^3C^3h^3}
+    & \subseteq \bigo{\pol{\x} h^2}
   \end{align}
 
   \noindent Thus
 
   \begin{align}
-    \h{\frac kn} & = \frac 1{2pq} \left(\frac kn-p\right)^2 + \frac{1}{3!} \left(\frac 1{(1-\tilde s)^2} - \frac 1{\tilde s^2}\right) \left(\frac kn-p\right)^3 \bnl
-    & \subseteq \frac{(k-np)^2}{2pqn^2} + \frac {1}{6} \bigpsi{\frac{p^2+q^2}{p^2q^2}} \bigpsi{p^3q^3C^3h^3} \bnl
-    & \subseteq \frac{(k-np)^2}{2pqn^2} + \bigpsi{\frac{(p^2+q^2)pqC^3h^3}{6}}
+    \h{\frac kn} &=-\frac{n}{2pq} (s-p)^2 + \frac{n(q^2-p^2)}{6p^2q^2} (s-p)^3 + R(s) \nl
+    & \in -\frac{\x^2}{2} + \frac{q^2-p^2}{6} \x^3 h + \bigo{\pol{\x} h^2}
   \end{align}
 
   \noindent Finally
 
   \begin{align}
-    \left(\frac{np}{k}\right)^k \left(\frac{nq}{n-k}\right)^{n-k} & = \fexp{-n\h{\frac kn}} \bnl
-    & \in \fexp{-n\left( \frac{(k-np)^2}{2pqn^2} + \bigpsi{\frac{(p^2+q^2)pqC^3h^3}{6}} \right)} \bnl
-    &
-    \begin{comment}
-      h^2 = \frac1{npq}
-    \end{comment} \bnl
-    & \subseteq \fexp{ -\frac{(k-np)^2}{2pqn} + \bigpsi{\frac{p^2+q^2}{6} C^3 h}} \bnl
-    & = \ean[\bigpsi{\frac{p^2+q^2}{6} C^3 h}]{\fexp{-\frac{k-np)^2}{2pqn}}} \bnl
-    & = \ean[\bigpsi{\frac{p^2+q^2}{6} C^3 h}]{\fexp{-\frac{\x^2}{2}}}
+    \left(\frac{np}{k}\right)^k \left(\frac{nq}{n-k}\right)^{n-k} & = \fexp{\h{\frac kn}} \bnl
+    & \in \fexp{-\frac{\x^2}{2} + \frac{q^2-p^2}{6} \x^3 h + \bigo{\pol{\x} h^2}} \bnl
+    & \subseteq \fexp{-\frac{\x^2}{2}} \left( 1 + \frac{q^2-p^2}6 \x^3 h + \bigo{\pol{\x} h^2} \right)
   \end{align}
+
+  \todo{Problem: $\ean[\epsilon]{a}$ ist nicht $ae^\epsilon$!!!}
 
   \noindent Now we can complete the approximation
 
