@@ -436,5 +436,42 @@ In this section we will show that the probability mass function of the standardi
 
   \begin{align}
     \int_{\x-\frac h2}^{\x+\frac h2} \fphi{t} \d{t} & = \int_{-\frac h2}^{+\frac h2} \frac{\fphi{\x+t}+\fphi{\x-t}}2 \d{t} \bnl
+    & = \fphi{\x} \int_{-\frac h2}^{\frac h2} \fcosh{\x t} \fexp{-\frac{t^2}2} \d{t} \bnl
+    &
+    \begin{comment}
+      \fcosh{\x t}\fexp{-\frac{t^2}2} = 1 + \bigo{t^3}
+    \end{comment} \bnl
+    & \in \fphi{\x} h + \bigo{h^3}
   \end{align}
+
+  \noindent we can follow
+
+  \begin{align}
+    \fphi{\x} h \in \int_{\x-\frac h2}^{\x+\frac h2} \fphi{t} \d{t} + \bigo{h^3}
+  \end{align}
+
+  \noindent and thus (let $\tilde a$ and $\tilde b$ as above)
+
+  \begin{align}
+    \sum_{a \le \x \le b} \fphi{\x} h &\in \sum_{a \le \x \le b} \br{\int_{\x-\frac h2}^{\x+\frac h2} \fphi{t} \d{t} + \bigo{h^3}} \bnl
+    &\subseteq \int_{\tilde a - \frac h2}^{\tilde b+\frac h2} \fphi{t} \d{t} + \bigo{h^2} \bnl
+    &= \int_a^b \fphi{t} \d{t} + \snorm{\phi} h + \bigo{h^2}
+  \end{align}
+
+  \noindent So we get
+
+  \begin{align}
+    \sum_{a\le \x \le b} \bb{\x} &\in \sum_{a \le \x \le b} \left(\fphi{\x} h +\frac{q-p}6 \left(\x^3 - \x\right) \fphi{\x} h^2 + \bigo{\fphi{\x}\pol{\x}h^3}\right) \bnl
+    &
+    \begin{comment}
+      \begin{aligned}
+        \sum_{a \le \x \le b} \fphi{\x} h & \in \int_a^b \fphi{t} \d{t} + \snorm{\phi} h + \bigo{h^2} \bnl
+        \sum_{a \le \x \le b} \frac{q-p}6 \br{\x^3-\x} \fphi{\x} h^2 & \in \frac{q-p}6 \int_a^b \br{t^3-t} \fphi{t} \d{t} h + \bigo{h^2} \bnl
+        \sum_{a \le \x \le b} \bigo{\fphi{\x}\pol{x}h^3} &\subseteq \bigo{h^2}
+      \end{aligned}
+    \end{comment} \bnl
+    & \subseteq \int_a^b \fphi{t} \d{t} + \snorm{\phi}h + \frac{q-p}6 \left[\br{b^2-1}\fphi{b}-\br{a^2-1}\fphi{a}\right] h + \bigo{h^2}
+  \end{align}
+
+  \todo{Uspensky: Introduction to probability} \todo{Edgeworth}
 \end{proof}
