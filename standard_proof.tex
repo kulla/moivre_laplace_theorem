@@ -164,7 +164,7 @@ You can find a proof of the Euler-Maclaurin formula in~\cite[pp.~225-226]{koenig
 
 \section{The local version of de Moivre-Laplace theorem}
 
-In this section we will show that the probability mass function of the standardized binomial distribution can be approximated by the density function of the normal distribution. This will be the basis for the global version of de Moivre-Laplace theorem.
+In this section we will show that the probability mass function of the standardized binomial distribution can be approximated by the density function of the normal distribution. This will be the basis for the global version of de Moivre-Laplace theorem. \todo{cite Iosif}
 
 \begin{theorem}[Local version of de Moivre-Laplace theorem]
   \todo{Formulierung}
@@ -433,5 +433,9 @@ In this section we will show that the probability mass function of the standardi
     &= \frac{q-p}6 \left[ \br{b^2-1}\fphi{b} - \br{a^2-1}\fphi{a} \right] h + \bigo{h^2}
   \end{align}
 
+  For $\sum_{a\le b\le b} \fphi{\x}$ we need a better approximation. From the following equation
 
+  \begin{align}
+    \int_{\x-\frac h2}^{\x+\frac h2} \fphi{t} \d{t} & = \int_{-\frac h2}^{+\frac h2} \frac{\fphi{\x+t}+\fphi{\x-t}}2 \d{t} \bnl
+  \end{align}
 \end{proof}
