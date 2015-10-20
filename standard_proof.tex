@@ -336,18 +336,102 @@ In this section we will show that the probability mass function of the standardi
     \begin{comment}
       \fphi{x} = \frac{1}{\sqrt{npq}}\fexp{-\frac{x^2}2}
     \end{comment} \bnl
-    & \subseteq \fphi{\x} h +\frac{p-q}2 \fphi{\x} \left(\x -\frac 13 \x^3\right) h^2 + \bigo{\fphi{\x}\pol{\x}h^3}
+    & \subseteq \fphi{\x} h +\frac{q-p}6 \left(\x^3-\x\right) \fphi{\x} h^2 + \bigo{\fphi{\x}\pol{\x}h^3}
   \end{align}
 \end{proof}
 
 \todo{Folgendes sollte untersucht werden: Vergleich mit numerischen Diagrammen. Vergleich mit Edgeworth Expansion}
 
+\subsection{Relation to the Edgeworth series}
+
+\todo{...}
+
 \section{Global version of de Moivre-Laplace theorem}
+
+\todo{Chernoff bound without proof}
 
 \begin{theorem}
   \todo{Formulierung}
 \end{theorem}
 
 \begin{proof}
+  Let $\seq{c_n}$ be \todo{Was?}. We split the sum $\sum_{a \le \x \le b} \bb{\x}$ into two sums:
+
+  \begin{align}
+    \sum_{a \le \x \le b} \bb{\x} = \sum_{\substack{a \le \x \le b \\ \abs{\x} \le c_n}} \bb{\x} + \sum_{\substack{a \le \x \le b \\ \abs{\x} > c_n}} \bb{\x}
+  \end{align}
+
+  \noindent We first estimate th second sum with the Chernoff bound:
+
+  \begin{align}
+    0 \le \sum_{\substack{a \le \x \le b \\ \abs{\x} > c_n}} \bb{\x} \le \P{\abs{\BBs} > c_n} \le 2\fexp{-\frac{c_n^2}{4}}
+  \end{align}
+
+  \noindent Similarly we get
+
+  \begin{align}
+    0 \le \int_{\substack{a \le t \le b\\\abs{t} > c_n}} \fphi{t}\d{t} \le \int_{\abs{t} > c_n} \fphi{t} \d{t} \le 2\fexp{-\frac{c_n^2}{4}}
+  \end{align}
+
+  \noindent Thus
+
+  \begin{align}
+    \sum_{\substack{a \le \x \le b \\ \abs{\x} > c_n}} \bb{\x} \in \int_{\substack{a \le t \le b\\\abs{t} > c_n}} \fphi{t}\d{t} + \bigabs{2\fexp{-\frac{c_n^2}4}}
+  \end{align}
+
+  \todo{Kontrollieren: Wirklich richtige Formel?!} \todo{$\bigabs{\cdot}$ definieren} \todo{$\bigabs{\cdot}$ überall einbauen}
+
+  \noindent In the following we will only consider those $n\in\N$ with $c_n \ge \max\{|a|,|b|\}$. Because $\lim_{n\to\infty} c_n = \infty$ these are almost all $n\in\N$. We get
+
+  \begin{align}
+    \sum_{\substack{a \le \x \le b \\ \abs{\x} \le c_n}} \bb{\x} & = \sum_{a \le \x \le b} \bb{\x} \bnl
+    &\in \sum_{a \le \x \le b} \left(\fphi{\x} h +\frac{q-p}6 \left(\x^3 - \x\right) \fphi{\x} h^2 + \bigo{\fphi{\x}\pol{\x}h^3}\right)
+  \end{align}
+
+  We have three Riemann sums. Let $\f{x}=\fphi{x}p(x)$ with a polynomial $p(x)$. Note that $f$ is bounded and also its derivative is bounded (i.e. $\snorm{f} < \infty$ and $\snorm{f'}<\infty$). We will approximate $\f{\x}h$ with $\int_{\x-\frac h2}^{\x+\frac h2} \f{t} \d{t}$. The error of this approximation is
+
+  \begin{align}
+    \abs{\int_{\x-\frac h2}^{\x+\frac h2} \f{t} \d{t} - \f{\x} h} &= \abs{\int_{\x-\frac h2}^{\x+\frac h2} (\f{t}-\f{\x}) \d{t}} \bnl
+    &
+    \begin{comment}
+      \forall t\,\exists \epsilon_t: \f{t}-\f{\x}=\fp{\epsilon_t}(t-x)
+    \end{comment} \bnl
+    & \le \int_{\x-\frac h2}^{\x+\frac h2} \abs{\fp{\epsilon_t}} \abs{t-x} \d{t} \bnl
+    & \le \snorm{f'} \int_{-\frac h2}^{\frac h2} \abs{t} \d{t} \bnl
+    & = \frac 14 \snorm{f'} h^2
+  \end{align}
+
+  \noindent From this follows
+
+  \begin{align}
+    \f{\x} h \in \int_{\x-\frac h2}^{\x+\frac h2} \f{t} \d{t} + \bigabs{\frac 14 \snorm{f'} h^2}
+  \end{align}
+
+  Now we can evaluate the Riemann sum $\sum_{a \le \x \le b} \f{\x} h$. We define $\tilde a = \inf \{ \x : \x \ge a \}$ and $\tilde b = \inf \{ \x : \x \le b \}$. Note that the difference of $a$ and $\tilde a$ is less than or equal $h$ and the distance of $a$ and $\tilde a - \frac h2$ can be estimated by $\frac h2$. Similarly we have $\abs{\tilde b-b} \le h$ and $\abs{\br{\tilde b+\frac h2}-b} \le \frac h2$. \todo{better proof of estimates} We have \todo{$\x[0]$ must be smaller $a$ and $\x[n]$ must be greater $b$}
+
+  \begin{align}
+    \sum_{a \le \x \le b} \f{\x} h & \in \sum_{a\le \x\le b} \br{\int_{\x-\frac h2}^{\x+\frac h2} \f{t} \d{t} + \bigabs{\frac 14 \snorm{f'} h^2}} \bnl
+    & \subseteq \int_{\tilde a - \frac h2}^{\tilde b + \frac h2} \f{t} \d{t} + \bigabs{\frac 14 \snorm{f'}\br{\tilde b + h - \tilde a} h}\bnl
+    & \subseteq \int_{a+\bigabs{\frac h2}}^{b+\bigabs{\frac h2}} \f{t} \d{t} + \bigabs{\frac 14\snorm{f'}\br{b-a+\bigabs{h}} h}\bnl
+    & \subseteq \int_a^b \f{t} \d{t} + \bigabs{\snorm{f}h + \frac 14 \snorm{f'} (b-a) h + \frac 14 \snorm{f'} h^2} \bnl
+    & \subseteq  \int_a^b \f{t} \d{t} + \bigo{h}
+  \end{align}
+
+  \todo{Rules: $\bigabs{\bigabs{\epsilon}} = \bigabs{\epsilon}$, $c\cdot \bigabs{\epsilon} = \bigabs{|c|\epsilon}$, $\int_a^{b+\bigabs{\epsilon}} f(t) dt = \int_a^b f(t) dt + \bigabs{\snorm{f} \epsilon}$}
+
+  Now we return two our sum of the three Riemann sums, which we will evaluate. We start with the third one
+
+  \begin{align}
+    \sum_{a \le \x \le b} \bigo{\fphi{\x} \pol{\x} h^3} & \subseteq \bigo{\int_a^b \fphi{t} \pol{t} \d{t} \cdot h^2 + \bigo{h^3}} \subseteq \bigo{h^2}
+  \end{align}
+
+  \noindent For the second term we get
+
+  \begin{align}
+    \sum_{a \le \x \le b} \frac{q-p}6 \br{\x^3 - x} \fphi{\x} h^2 &\in \frac{q-p}6 \int_a^b \br{t^3-t}\fphi{t} \d{t} \cdot h + \bigo{h^2} \bnl
+    &= \frac{q-p}6 \left[ \br{t^2-1}\fphi{t} \right]_a^b h + \bigo{h^2} \bnl
+    &= \frac{q-p}6 \left[ \br{b^2-1}\fphi{b} - \br{a^2-1}\fphi{a} \right] h + \bigo{h^2}
+  \end{align}
+
 
 \end{proof}
