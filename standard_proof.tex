@@ -51,7 +51,7 @@ You can find a proof of the Euler-Maclaurin formula in~\cite[pp.~225-226]{koenig
   The factorial $n!$ fulfills:
 
   \begin{align}
-    n! \in \sqrt{2\pi n} \left(\frac ne\right)^n \fexp{\frac 1{12n} + \interval{-\frac{1}{120n^2} }{\frac{1}{120n^2}} }
+    n! \in \sqrt{2\pi n} \left(\frac ne\right)^n \fexp{\frac 1{12n} + \bigabs{\frac{1}{120n^2}} }
   \end{align}
 
   \noindent Therefore
@@ -151,12 +151,11 @@ You can find a proof of the Euler-Maclaurin formula in~\cite[pp.~225-226]{koenig
   \noindent So
 
   \begin{align}
-    & \abs{\ln\left(\frac{n!}{\sqrt{2\pi n}n^n e^{-n}}\right) - \frac 1{12n}} = \abs{\frac 13 \int_n^\infty \frac{\bp[3]{x}}{x^3} \d{x}} \le \frac{1}{120n^2} \bnl
-    \implies & \fexp{\frac {1}{12n} - \frac 1{120n^2}}  \le \frac{n!}{\sqrt{2\pi n} n^n e^{-n}} \le \fexp{\frac 1{12n} + \frac 1{120n^2}} \bnl
-    \implies & n! \in \sqrt{2\pi n} \left(\frac ne\right)^n \fexp{\frac 1{12n} + \interval{-\frac 1{120n^2}}{\frac 1{120n^2}}} \bnl
+    & \ln\left(\frac{n!}{\sqrt{2\pi n}n^n e^{-n}}\right) = \frac 1{12n} - \frac 13 \int_n^\infty \frac{\bp[3]{x}}{x^3} \d{x} \in \frac 1{12n} + \bigabs{\frac{1}{120n^2}} \bnl
+    \implies & n! \in \sqrt{2\pi n} \left(\frac ne\right)^n \fexp{\frac 1{12n} + \bigabs{\frac 1{120n^2}}} \bnl
     &
     \begin{comment}
-      \frac 1{12n} + \interval{-\frac 1{120n^2}}{\frac 1{120n^2}} \subseteq \bigo{\frac 1n}
+      \frac 1{12n} + \bigabs{\frac 1{120n^2}} \subseteq \bigo{\frac 1n}
     \end{comment} \bnl
     \implies & n! \in \sqrt{2\pi n} \left(\frac ne\right)^n \fexp{\bigo{\frac 1n}}
   \end{align}
