@@ -1,1 +1,65 @@
-\chapter{Alternative proof the De Moivre-Laplace theorem}
+\chapter{Alternative proof via slope approximation}
+
+In this chapter I present an alternative proof of the de Moivre-Laplace theorem which approximates the slope of the probability mass and the density function between the standardized binomial and the normal distribution. The idea of this proof comes from Prof. Peter Pickl and was first described in the thesis by ... \todo{cite}.
+
+\section{Intuition behind the proof}
+
+\section{Necessary prior knowledge from ODE}
+
+In order to formalize the above proof sketch into a valid proof we will need some concepts an theorems from the theory about ordinary differential equations. We will call an equation of the form
+
+\begin{align} \label{ode:def}
+  y'(x) = f(x,y(x))
+\end{align}
+
+with $f:\R^2 \to \R$ an \emph{ordinary differential equation} (of first order)~\cite[p. 465]{stoer}\cite{wiki:ode}\footnote{We may also restrict the domain of $f$ to the set $I\times \Omega$ with $I$ being an interval and $\Omega\subseteq \R$\todo{cite}. For this chapter the more special definition is sufficient.} Instead of the term ``ordinary differential equation'' also its acronym ``ODE'' is often used~\cite[p. 2]{ricardo}\cite{wiki:ode}. Any function $y:\R\to\R$ fulfilling the ODE \eqref{ode:def} is called a \emph{solution for this ordinary differential equation}~\cite[p. 8]{ricardo}\cite{wiki:ode}. For example is the density function $\fphi{x} = \frac{1}{\sqrt{2\pi}} \fexp{-\frac{x^2}2}$ of the normal distribution the solution of the ODE
+
+\begin{align}
+  y'(x) = -xy(x)
+\end{align}
+
+with the initial value $y(0) = \frac{1}{\sqrt{2\pi}}$ \todo{cite}. In general the ordinary differential equation with initial value
+
+\begin{align}
+  y'(x) = -xy(x),\ y(0)=a
+\end{align}
+
+is solved by $y_a(x) = a \fexp{-\frac{x^2}2}$. ODEs can be approximated numerically with \emph{One step methods}~\cite[pp.~471~ff]{stoer}. A one step method is described by a function $M(x,y,h,f)$ with a step size $h>0$~\cite[p.~473]{stoer}. Given an initial value $y(x_0)=y_0$ the approximations $y_k$ at the points $x_k = x_0 + kh$ ($k\in\Z$) can be obtained recursively via the relation~\cite[p. 473]{stoer}
+
+\begin{align}
+  y_{k+1} = y_k + h M(x_k, y_k, h, f)
+\end{align}
+
+One of the most famous one step method is the \emph{Euler method} with $M(x,y,h,f) = f(x,y)$~\cite[p. 473]{stoer}. We will use the concept of one step methods to connect the density function of the normal distribution with the probability mass function of the binomial distribution. To state the theorem of the global truncation error of one step methods we will need the following definitions (see \cite[p. 467]{stoer}\cite{wiki:lipschitz} and \cite[pp. 473-474]{stoer} respectively):
+
+\begin{definition}[Lipschitz condition]
+  The ODE $y'(x) = f(x,y)$ with $f:\R\to\R$ fulfills the Lipschitz condition with the Lipschitz constant $L\ge 0$, iff for all $x,y_1,y_2\in\R$
+
+  \begin{align}
+    \abs{f(x,y_1)-f(x,y_2)} \le L\abs{y_1-y_2}
+  \end{align}
+\end{definition}
+
+\begin{definition}[Local discretization error]
+  The \emph{local discretization error} is the error of the one step method which is produced during a step of approximation. Given an one step method $M(x,y,h,f)$ its local truncation error at the point $x$ is the value
+
+  \begin{align}
+    \tau(x) = \frac{y(x+h)-y(x)}h - M(x,y(x),h,f)
+  \end{align}
+\end{definition}
+
+\noindent Therefore $\tau(x)$ fulfills
+
+\begin{align}
+  \underbrace{y(x+h)}_{\text{exact solution}} = \underbrace{y(x) + M(x,y,h,f)h}_{\text{approximation of one-step method}} + \underbrace{\tau(x)h}_{\text{error}}
+\end{align}
+
+\noindent The error of an one-step method can be estimated as following~\cite[pp. 478-479]{stoer}:
+
+\begin{theorem}[Global error of one-step method]
+  
+\end{theorem}
+
+\section{Local version of de Moivre-Laplace}
+
+
