@@ -198,7 +198,13 @@ $\BBs$ is a discrete random variable with a nonzero probability for each $\x[k]^
   \bb{\x[k]} = \P{\BBs = \x[k]} = \b{k} = \binom nk p^kq^{n-k}
 \end{align}
 
-Here we also set $\bb{\x[k]}=0$ for all $k\notin\{0,1,\ldots,n\}$ to extend $\BBs$ to a random variable on the set $\{\x[k] : k\in\Z\}$.
+Here we also set $\bb{\x[k]}=0$ for all $k\notin\{0,1,\ldots,n\}$ to extend $\BBs$ to a random variable on the set $\{\x[k] : k\in\Z\}$. Sometimes it will be necessary to round a real number $c$ to the closest $x_k$ with $k\in\Z$. Therefore we define
+\begin{align}
+  \xup{c} &= \inf \{ x_k : k\in\Z \land c \le x_k \} \nl
+  \xdown{c} &= \sup \{ x_k : k \in \Z \land c \ge x_k \} \nl
+  \xrnd{c} &= \text{$x_k$ with $\abs{a_k-c}$ minimal}
+\end{align}
+As a convention we define $\xrnd{x_k + \frac h2} = x_{k+1}$ for each $k\in\Z$.
 
 \section{Applications of the binomial distribution}
 
