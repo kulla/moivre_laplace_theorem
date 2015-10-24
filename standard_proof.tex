@@ -406,7 +406,7 @@ In this section we will show that the probability mass function of the standardi
     \f{\x} h \in \int_{\x-\frac h2}^{\x+\frac h2} \f{t} \d{t} + \bigabs{\frac 14 \snorm{f'} h^2}
   \end{align}
 
-  Now we can evaluate the Riemann sum $\sum_{a \le \x \le b} \f{\x} h$. We define $\tilde a = \inf \{ \x : \x \ge a \}$ and $\tilde b = \inf \{ \x : \x \le b \}$. Note that the difference of $a$ and $\tilde a$ is less than or equal $h$ and the distance of $a$ and $\tilde a - \frac h2$ can be estimated by $\frac h2$. Similarly we have $\abs{\tilde b-b} \le h$ and $\abs{\br{\tilde b+\frac h2}-b} \le \frac h2$. \todo{better proof of estimates} We have \todo{$\x[0]$ must be smaller $a$ and $\x[n]$ must be greater $b$}
+  Now we can evaluate the Riemann sum $\sum_{a \le \x \le b} \f{\x} h$. We define $\tilde a = \xup{a} = \inf \{ \x : \x \ge a \}$ and $\tilde b = \xdown{b} = \sup \{ \x : \x \le b \}$. Note that the difference of $a$ and $\tilde a$ is less than or equal $h$ and the distance of $a$ and $\tilde a - \frac h2$ can be estimated by $\frac h2$. Similarly we have $\abs{\tilde b-b} \le h$ and $\abs{\br{\tilde b+\frac h2}-b} \le \frac h2$. \todo{better proof of estimates} We have \todo{$\x[0]$ must be smaller $a$ and $\x[n]$ must be greater $b$}
 
   \begin{align}
     \sum_{a \le \x \le b} \f{\x} h & \in \sum_{a\le \x\le b} \br{\int_{\x-\frac h2}^{\x+\frac h2} \f{t} \d{t} + \bigabs{\frac 14 \snorm{f'} h^2}} \bnl
