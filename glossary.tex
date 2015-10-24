@@ -99,6 +99,36 @@
   description={The probability $p\in(0,1)$ of an outcome}
 }
 
+\newglossaryentry{h}{%
+  name={\ensuremath{h}},
+  sort=h,
+  description={The step size $h=\frac{1}{\sqrt{npq}}$}
+}
+
+\newglossaryentry{xk}{%
+  name={\ensuremath{x_k}},
+  sort=xk,
+  description={The point $x_k=\frac{k-np}{\sqrt{npq}}$ for $k\in\Z$}
+}
+
+\newglossaryentry{xup}{%
+  name={\ensuremath{\xup{\cdot}}},
+  sort={|n},
+  description={Rounding up to the next $x_k$: $\xup{c}=\inf\{ x_k : x_k \ge c\}$}
+}
+
+\newglossaryentry{xdown}{%
+  name={\ensuremath{\xdown{\cdot}}},
+  sort={|up},
+  description={Rounding down to the next $x_k$: $\xup{c}=\inf\{ x_k : x_k \ge c\}$}
+}
+
+\newglossaryentry{xrnd}{%
+  name={\ensuremath{\xrnd{\cdot}}},
+  sort={rndn},
+  description={Rounding to the next $x_k$: $\xrnd{c}=\text{``$x_k$ with $\abs{c-x_k}$ minimal''}$ with $\xrnd{x_k+\frac h2} = x_{k+1}$}
+}
+
 \newglossaryentry{q}{%
   name={\ensuremath{q}},
   sort=q,
