@@ -74,3 +74,117 @@ We may also have an one-step method backwards by setting $h < 0$. The above defi
 
 \section{Local version of de Moivre-Laplace}
 
+We will prove the local version of the de Moivre-Laplace theorem in the following form
+
+\begin{theorem}
+  ...
+\end{theorem}
+
+This proof will heavily bases on the theory of one-step methods for approximating ordinary differential equations. Thereby we will revert the perspective: Whereas in the theory of ODEs one-step methods are approximations of unknown solutions of ODEs, we will consider the probability mass function of the binomial distribution as the result of an one-step method. This one-step method corresponds to an ODE and the solution to this ODE will be an approximation to the probability mass function. Thus we flip the role of the exact solution and the approximation. This makes this proof in particular interesting and my be a method which might be applicable in other proofs, too.
+
+\todo{$\xrnd{}$ über $\rnd{}$ definieren.}
+
+\begin{proof}
+  \newcommand*{\knp}{\tilde k}
+  \newcommand*{\xnp}{\x[\knp]}
+  We start with investigating $\bb{\x[k+1]}-\bb{\x[k]}$ (let $\pol{\x}$ be the set of all polynomials in $\x$):
+
+  \begin{align}
+    \bb{\x[k+1]} - \bb{\x[k]} &= \binom n{k+1} p^{k+1}q^{n-k-1} - \binom nk p^k q^k \nl
+    &= \binom nk p^k q^{n-k} \br{\frac{\binom n{k+1}p}{\binom nk q} -1} \nl
+    &= \bb{\x[k]} \br{\frac{k! (n-k)! p}{(k+1)!(n-k-1)! q} -1} \nl
+    &= \bb{\x[k]} \br{\frac{(n-k)p}{(k+1)q}-1} \nl
+    &
+    \begin{comment}
+      k = np + \x[k]\sqrt{npq}
+    \end{comment} \nl
+    &= \bb{\x[k]} \br{\frac{npq-\x[k]p\sqrt{npq}}{npq + \x[k]q\sqrt{npq}+q}-1} \nl
+    &= \bb{\x[k]} \br{\frac{1-\x[k]ph}{1+\x[k]qh+qh^2}-1} \nl
+    &
+    \begin{comment}
+      \text{\todo{}} \frac1{1+x} = 1 - x+ \bigo{x^2}
+    \end{comment} \nl
+    &= \bb{\x[k]} \br{\br{1-\x[k]ph}\br{1+\x[k]qh + \bigo{\pol{x}h^2}}-1} \nl
+    &= \bb{\x[k]} \br{-\x[k]h + \bigo{\pol{\x}h^2}} \nl
+    &= -\x[k]\bb{\x}h + \bigo{\bb{\x}\pol{\x}h^2}
+  \end{align}
+  Because \todo{Bernstein inequality -> cite + reference}
+  \begin{align}
+    \bb{\x} \le \P{\BBs \ge \abs{x_k}} \le 2\fexp{-\frac{\x^2}4}
+  \end{align}
+  and $\lim_{x\to\pm\infty} p(x)\fexp{-\frac{x^2}4}=0$ for any polynomial $p(x)$, there is for any polynomial $p(\x)\in\pol{\x}$ a constant $A_n$ such that
+  \begin{align}
+    \forall k\in\Z: \abs{\bb{\x}p(\x)} \le A
+  \end{align}
+  so that
+  \begin{align}
+    \bb{\x[k+1]} &= \bb{\x[k]} -\x[k]\bb{\x[k]} h + \bigabs{A h^2} \bnl
+    &
+    \begin{comment}
+      \text{Set } f(x,y) = -xy
+    \end{comment} \bnl
+    &= \bb{\x[k]} - \br{\f{\x[k], \bb{\x[k]}} + \bigabs{A h}}h \bnl
+    &
+    \begin{comment}
+      \text{Set } M(x,y,h,f) = f(x,y) + \bigabs{Ah}
+    \end{comment} \bnl
+    &= \bb{\x[k]} + M(\x[k], \bb{\x[k]}, f, h) h
+  \end{align}
+
+  Therefore we can think about $\bb{\x}$ as the results of the one-step method $M(x,y,f,h)=f(x,y)+\bigabs{Ah}$ whereby we can choose any $\bb{\x}$ as the initial value. We take $\bb{\xnp}$ for $\knp=\rnd{np}$ so that $\xnp$ is the $\x$ which is closest to $0$. The one-step method now corresponds to the ODE with initial condition
+  \newcommand*{\phin}[2][n]{y_{#1}\left({#2}\right)}
+  \newcommand*{\dphin}[2][n]{y_{#1}'\left({#2}\right)}
+  \begin{align}
+    \dphin{x}=f(x,\phin{x})=-x\phin{x},\ \phin{\xnp} = \bb{\xnp}
+  \end{align}
+  Its solution is\todo{proof?!}
+  \begin{align}
+    \phin{x} = \bb{\xnp}\fexp{-\frac{x^2}2+\frac{\xnp^2}2}
+  \end{align}
+
+  In order to estimate the global error of the one-step method with theorem \ref{thm:ode_global_error} we need to estimate the local discretization error. We get by using the taylor series
+  \begin{align}
+    \phin{x+h} = \phin{x} -x\phin{x}h+\br{\tilde x^2-1}\phin{\tilde x} h^2
+  \end{align}
+  with $\tilde x$ being in the interval bounded by $x$ and $x+h$. Because $\lim_{x\to\pm\infty} \br{x^2-1}\phin{x}=0$ ($\phin{x} \in \bigo{\exp{-\frac{x^2}2}}$ for $x\to\pm\infty$) there is a $B > 0$ independent of $x$ with $\abs{\br{x^2-1}\phin{x}} \le B$ for all $x\in\R$. Thus
+  \begin{align}
+    \frac{\phin{x+h}-\phin{x}}h &= -x\phin{x}+\br{\tilde x^2-1}\phin{x} h \\
+    &\in -x\phin{x} + \bigabs{Bh}
+  \end{align}
+  Now we can estimate the local discretization error
+  \begin{align}
+    \abs{\tau(\x)} &= \abs{\frac{\phin{\x[k]+h}-\phin{\x}}h -  M(\x,\phin{\x},f,h)} \nl
+    &\in \abs{-\x\phin{\x} + \bigabs{Ah} +\x\phin{\x} - \bigabs{Bh}} \nl
+    &= \abs{\bigabs{Ah}-\bigabs{Bh}} \nl
+    &\subseteq \bigabs{(A+B)h} \nl
+    &
+    \begin{comment}
+      \text{Set } C=A+B
+    \end{comment} \nl
+    &= \bigabs{Ch}
+  \end{align}
+  from which follows $\abs{\tau(\x)} \le Ch$.
+
+  Besides approximating $\abs{\tau(x)}$ we also need to prove, that $f(x,y)$ is Lipschitz continuous regarding $y$ with finding its Lipschitz constant. We have
+  \begin{align}
+    \abs{f(x,y_1)-f(x,y_2)} &= \abs{-xy_1+xy_2} \nl
+    &= \abs{x} \cdot \abs{y_1-y_2}
+  \end{align}
+  So $f:\R^2\to\R$ is not Lipschitz continuous regarding $y$ because for any $y_1\neq y_2$ we have
+  \begin{align}
+    \lim_{x\to\pm\infty} \frac{\abs{f(x,y_1)-f(x,y_2)}}{\abs{y_1-y_2}} = \infty
+  \end{align}
+  But we can restrict $f$ to the domain $\interval{-\x}{\x}\times \R$. \todo{theorem anpassen}. On this domain the restriction of $f$ is Lipschitz continuous regarding second argument with Lipschitz constant $\abs{\x}$. Because $\x$ might be zero, we will take $L=\max\{\x,1\}$ as Lipschitz constant. From the theorem \ref{thm:ode_global_error} about the global error of one-step methods we can conclude
+  \begin{align}
+    \abs{\bb{\x}-\phin{\x}} &\le \frac{\fe{L\abs{\x-\xnp}}-1}L Ch \nl
+    &
+    \begin{comment}
+      \abs{\x-\xnp} \le \abs{\x}+\abs{\xnp} \le \abs{\x}+h
+    \end{comment} \nl
+    &\le \frac{\fe{L\abs{x}+Lh}-1}L Ch
+  \end{align}
+  Therefore
+  \begin{align}
+    \bb{x} = \phin{\x} + \bigabs{\frac{\fe{L\abs{\x}+Lh}-1}L Ch}
+  \end{align}
+\end{proof}
