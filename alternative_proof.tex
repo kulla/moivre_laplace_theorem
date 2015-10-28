@@ -84,9 +84,12 @@ This proof will heavily bases on the theory of one-step methods for approximatin
 
 \todo{$\xrnd{}$ über $\rnd{}$ definieren.}
 
+\newcommand*{\knp}{\tilde k}
+\newcommand*{\xnp}{\x[\knp]}
+\newcommand*{\phin}[2][n]{y_{#1}\left({#2}\right)}
+\newcommand*{\dphin}[2][n]{y_{#1}'\left({#2}\right)}
+
 \begin{proof}
-  \newcommand*{\knp}{\tilde k}
-  \newcommand*{\xnp}{\x[\knp]}
   We start with investigating $\bb{\x[k+1]}-\bb{\x[k]}$ (let $\pol{\x}$ be the set of all polynomials in $\x$):
 
   \begin{align}
@@ -132,8 +135,6 @@ This proof will heavily bases on the theory of one-step methods for approximatin
   \end{align}
 
   Therefore we can think about $\bb{\x}$ as the results of the one-step method $M(x,y,f,h)=f(x,y)+\bigabs{Ah}$ whereby we can choose any $\bb{\x}$ as the initial value. We take $\bb{\xnp}$ for $\knp=\rnd{np}$ so that $\xnp$ is the $\x$ which is closest to $0$. The one-step method now corresponds to the ODE with initial condition
-  \newcommand*{\phin}[2][n]{y_{#1}\left({#2}\right)}
-  \newcommand*{\dphin}[2][n]{y_{#1}'\left({#2}\right)}
   \begin{align}
     \dphin{x}=f(x,\phin{x})=-x\phin{x},\ \phin{\xnp} = \bb{\xnp}
   \end{align}
@@ -193,4 +194,41 @@ This proof will heavily bases on the theory of one-step methods for approximatin
 
 \section{Global version of de Moivre-Laplace}
 
+In this section we will prove the following theorem
 
+\begin{theorem}
+  ...
+\end{theorem}
+
+\noindent Thereby we will split the proof in several steps. First we prove that
+
+\begin{lemma}
+  For any $a,b \in \R$ we have
+
+  \begin{align}
+    \lim_{n\to\infty} \abs{\frac{\fphi{\xnp}h}{\bb{\xnp}} \sum_{a\le\x\le b} \bb{\x} - \int_a^b \fphi{t}\d{t}} = 0
+  \end{align}
+\end{lemma}
+
+\todo{Nummerierung der Beweise uns so...}
+
+\begin{proof}
+  For $a > b$ we have
+  \begin{align}
+    \sum_{a\le \x \le b}\bb{\x} = \int_a^b \fphi{t}\d{t} = 0
+  \end{align}
+  from which directly the lemma follows. So we fix $a,b\in\R$ with $a\le b$. We have already proven in the previous section that there is a $C > 0$ independent of $n$ and $\x$ satisfying
+  \begin{align}
+    \bb{\x} \in \phin{\x} + \bigabs{\frac{\fe{L\abs{\x}+Lh}-1}L Ch}
+  \end{align}
+  with $L = \max\{\abs{\x},1\}$ and $\phin{x} = \bb{\xnp}\fexp{-\frac{x^2}2+\frac{\xnp^2}2}$. Let $d = \max\{\abs{a},\abs{b}, 1\}$ so that $L \le d$ and $\abs{\x} \le d$ for all $\x$ with $a\le \x \le b$. We have
+  \begin{align}
+    \bb{\x} & \in \phin{\x} + \bigabs{\frac{\fe{L\abs{\x}+Lh}-1}L Ch} \nl
+    &\subseteq \bb{\xnp} \fexp{-\frac{\x^2}2+\frac{\xnp^2}2} + \bigabs{\fe{d^2+dh} C h} \nl
+    &
+    \begin{comment}
+      \bigabs{\lambda h} \subseteq \bigo{h}
+    \end{comment} \nl
+    &\subseteq \bb{\xnp} \fexp{\frac{\xnp^2}2} \br{\exp{-\frac{x^2}2} + \bigo{h^2}}
+  \end{align}
+\end{proof}
