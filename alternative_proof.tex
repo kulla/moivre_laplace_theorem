@@ -1,8 +1,33 @@
 \chapter{Alternative proof via slope approximation}
 
-In this chapter I present an alternative proof of the de Moivre-Laplace theorem which approximates the slope of the probability mass function and the density function between the standardized binomial and the normal distribution. The idea of this proof comes from Prof. Peter Pickl and was first described in the thesis by ... \todo{cite}.
+In this chapter I present an alternative proof of the de Moivre-Laplace theorem which approximates the slope of the probability mass function and the density function between the standardized binomial and the normal distribution. The idea of this proof comes from Prof. Peter Pickl and was first described in the thesis ``Der Zentrale Grenzwertsatz'' by Karolina Fels~\cite{fels}.
 
 \section{Intuition behind the proof}
+
+In this section I want to present the proof idea of Karolina Fels \cite[pp. 16-19]{fels}. Thereby I will slightly change her proof sketch. She started with the function $f(x) = \binom nk p^kq^{n-k}$ with $k=np+x$ and approximated $f'(x)$ by calculating $f(x)-f(x-1)$~\cite[p. 16]{fels}. We will approximate the slope of $\bbs$ between $\bb{\x[k+1]}$ and $\bb{\x[k]}$:
+
+\begin{align}
+  \frac{\bb{\x[k+1]}-\bb{\x[k]}}h &= \frac 1h \br{\binom n{k+1}p^{k+1}q^{n-k-1} - \binom nk p^k q^{n-k}} \nl
+  &= \frac 1h \binom nk p^k q^{n-k} \br{\frac{(n-k)p}{(k+1)q}-1} \nl
+  &= \frac 1h \bb{\x[k]} \frac{np-kp-kq-q}{(k+1)q} \nl
+  &= - \frac 1h \bb{\x[k]} \frac{k-np+q}{(k+1)q} \nl
+  &= - \frac 1h \bb{\x[k]} \br{\frac{k-np}{npq} + \frac{q}{npq}} \frac{np}{k+1} \nl
+  &= - \frac 1h \bb{\x[k]} \br{\x[k]h + q h^2} \frac{np}{k+1} \nl
+  &= -\x[k] \bb{\x[k]} \frac{np}{k+1} + \bb{\x[k]} q h \frac{np}{k+1}
+\end{align}
+
+Let us assume that the cumulative distribution of $\BBs$ can be approximated by a distribution with density function $\phi(x)$ for $n\to\infty$. Under the limit $n\to\infty$ we have $h\to 0$. For a fixed $x\in\R$ we also set $\x = \xrnd{x} = \frac{\rnd{np+ x \sqrt{npq}}-np}{\sqrt{npq}}$ which is the closest $\x$ to $x$. We get
+\begin{align}
+  \frac{\bb{\x[k+1]}-\bb{\x[k]}}h & \to \phi'(x) \nl
+  \bb{\x[k]} \to \fphi{x} \nl
+  \frac{np}{k+1} &= \frac{np}{\rnd{np+x\sqrt{np}}+1} \to 1
+\end{align}
+Therefor $\fphi{x}$ is described by the ODE
+\begin{align}
+  phi'(x) = -x\phi(x)
+\end{align}
+
+This ODE is solved by $\phi_c(x) = c \fexp{-\frac{x^2}2}$. Because $\int_\R \fphi{1} \d{t} = 1$ and $\int_\R \exp{-\frac{t^2}2} d{t} = \sqrt{2\pi}$ we get finally $\fphi{x} = \frac{1}{\sqrt{2\pi}} \fexp{-\frac{x^2}2}$.
 
 \section{Necessary prior knowledge from ODE}
 
