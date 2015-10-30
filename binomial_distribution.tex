@@ -202,9 +202,9 @@ Here we also set $\bb{\x[k]}=0$ for all $k\notin\{0,1,\ldots,n\}$ to extend $\BB
 \begin{align}
   \xup{c} &= \inf \{ x_k : k\in\Z \land c \le x_k \} \nl
   \xdown{c} &= \sup \{ x_k : k \in \Z \land c \ge x_k \} \nl
-  \xrnd{c} &= \text{$x_k$ with $\abs{a_k-c}$ minimal}
+  \xrnd{c} &= \frac{\rnd{np+c\sqrt{npq}}-np}{\sqrt{npq}}
 \end{align}
-As a convention we define $\xrnd{x_k + \frac h2} = x_{k+1}$ for each $k\in\Z$.
+Thus $\xup{c}$ is the closest $\x$ bigger than $c$, $\xdown{c}$ is the closest $\x$ smaller than $c$ and $\xrnd{c}$ is the closest $\x$ to $c$.
 
 \section{Applications of the binomial distribution}
 
