@@ -15,14 +15,30 @@ The first simple approximation to the binomial distribution was found by Abraham
 I want to split this theorem in two parts. With the first part one get an approximation for the probability mass function of a binomial distribution:
 
 \begin{theorem}[Local version of De Moivre-Laplace theorem]
-  Let $p\in(0,1)$. ...
+  Let $\fphi{x}=\frac{1}{\sqrt{2\pi}}\fexp{-\frac{x^2}2}$ be the density function of the standardized normal distribution and $p\in(0,1)$. For $n$ large enough we have
+  \begin{align}
+    \binom nk p^k q^{n-k} \approx \frac 1{\sqrt{2\pi npq}} \fexp{-\frac{(k-np)^2}{2npq}}
+  \end{align}
+  or (with $\x=\frac{k-np}{\sqrt npq}$ and $h=\frac1{\sqrt{npq}}$):
+  \begin{align}
+    \binom nk p^k q^{n-k} \approx \fphi{\x} h
+  \end{align}
 \end{theorem}
 
 In the second part one gets an approximation to the culmulative distribution function which is the actual theorem by De Moivre and Laplace:
 
 \begin{theorem}[De Moivre-Laplace theorem]
-  ...
+  For any $b,a \in \R$ we have for large $n$
+  \begin{align}
+    \sum_{a \le \x\le b} \bb{\x} \approx \int_a^b \fphi{t} \d{t}
+  \end{align}
+  and
+  \begin{align}
+    \sum_{\x \le a} \bb{\x} \approx \int_{-\infty}^a \fphi{t} \d{t}
+  \end{align}
 \end{theorem}
+
+Thus the main statement of the de Moivre-Laplace theorem is that the standardized binomial distribution can be approximated with the standardized normal distribution (for large $n$).
 
 \section{The journey to De Moivre-Laplace theorem}
 
