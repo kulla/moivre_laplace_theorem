@@ -186,10 +186,10 @@ It is also possible to define $\Bs$ on $\Z$ by setting $\b{k}=0$ for each $k\not
 
 \includefig{binomial_distribution_pmf}{The probability mass function of the binomial distribution}{File \href{https://commons.wikimedia.org/wiki/File:Binomial_distribution_pmf.svg}{``Binomial distribution pmf.svg''} from Wikimedia Commons. Upload by user \href{https://commons.wikimedia.org/w/index.php?title=User:Tayste}{Tayste} and licensed under Public Domain.}
 
-The mean of the binomially distributed random variable $\Bs[n]$ is $np$ and its variance is $npq$. \todo{citation or proof needed} Therefore we get after standardizing $\Bs[n]$ the following random variable
+The mean of the binomially distributed random variable $\Bs[n]$ is $np$ and its variance is $npq$ \cite[pp. 8-9]{fels}. Therefore we get after standardizing $\Bs[n]$ the following random variable
 
 \begin{align}
-  \BBs[n] = \frac{\Bs[n]-np}{\sqrt{npq}} 
+  \BBs[n] = \frac{\Bs[n]-np}{\sqrt{npq}}
 \end{align}
 
 $\BBs$ is a discrete random variable with a nonzero probability for each $\x[k]^n = \frac{k-np}{\sqrt{npq}}$ with $0\le k\le n$. The distance between the points $\x[k]^n$  is $h_n = \frac{1}{\sqrt{npq}}$. In this thesis I will omit the dependence of $\x^n$ and $h_n$ for $n$. So I will only write $\x$ for $\frac{k-np}{\sqrt{npq}}$ and $h$ for $\frac 1{\sqrt{npq}}$. Thus $\BBs$ has the probability mass function
