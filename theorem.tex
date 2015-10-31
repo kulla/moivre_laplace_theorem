@@ -65,7 +65,29 @@ In his book \emph{A History of Mathematical Statistics From 1750 to 1930} Hald w
 
 \section{The error in the theorem}
 
-Berry-Esseen
+In the above section we have gotten to know the theorem by de Moivre-Laplace in a qulitative version without an estimate of the approximation error. The global version of de Moivre-Laplace with an error estimation provides the Berry-Esseen theorem. It states~\cite[70-71]{nourdin}\cite{wiki:berry}:
+
+\begin{theorem}[The Berry-Esseen theorem]
+  Let $\seq{X_n}$ be i.i.d. random variables with $\E{X_k}=\mu$ and $\E{(X_k-\mu)^2}=\sigma^2$. Let $Y_n = \frac 1{\sqrt{n}\sigma} \sum_{k=0}^n \br{X_k-\mu}$ be the standardized sum of the first $n$ random variables $X_k$. Let $\rho = \E{\abs{X_k-\mu}^3} < \infty$. Then there is a $C>0$ independent of $n$ and $x$ such that
+
+  \begin{align}
+    \abs{\P{Y_n \le x} - \fPhi{x}} \le \frac{C \rho}{\sqrt n \sigma^3}
+  \end{align}
+\end{theorem}
+
+As we have already seen in the above section, $\BBs$ is the standardized sum of $n$ i.i.d. Binomial trials $\seq{X_n}$. $X_n$ has the two possible outcomes $1$ and $0$ whereby $1$ has the possibility $p$ and $0$ has the possibility $q=1-p$ \cite[p. 32]{georgii}\cite{wiki:bernoulli_distribution}. We have $\E{X_k} = \mu = p$ and $\E{(X_k-p)^2}=\sigma^2=pq$ \cite{wiki:bernoulli_distribution} \todo{georgii citation}. For $\rho$ we get
+\begin{align}
+  \E{\abs{X_k-p}^3} &= p q^3 + q p^3 = pq (p^2+q^2)
+\end{align}
+Thus we can follow from the Berry-Esseen theorem, that there is a $C>0$ with
+\begin{align}
+  \sup_{x\in\R} \abs{\P{\BBs \le x}-\fPhi{x}} \le \frac{C(p^2+q^2)}{\sqrt{npq}}
+\end{align}
+
+We see that $\P{\BBs \le x}$ converges uniformly in $x$ to $\fPhi{x}$ with an error of order $\bigo{\frac 1{\sqrt{n}}}=\bigo{h}$. Because $\P{a\le \BBs \le b} = \P{\BBs \le b} - \P{\BBs < a}$ we can easily show, that also $\P{a \le \BBs \le b}$ converges uniformly in $x$ to $\fPhi{a}-\fPhi{b}$ with an error of the same convergence speed $\bigo{\frac 1{\sqrt{n}}}=\bigo{h}$.
+
+\newcommand*{\Cmaxbin}{0.4215}
+Currently the estimate $\Cmin \le C \le \Cmax$ is proven (see \cite{shevtsova2011} and \cite{esseen1956}). For the special case of the binomial distribution we can make the estimate $C \le \Cmaxbin$~\cite{nagaev}\cite{muaddib}.
 
 \section{Application}
 
