@@ -1,1 +1,257 @@
-\chapter{Alternative proof the De Moivre-Laplace theorem}
+\chapter{Alternative proof via slope approximation}
+
+In this chapter I present an alternative proof of the de Moivre-Laplace theorem which approximates the slope of the probability mass function and the density function between the standardized binomial and the normal distribution. The idea of this proof comes from Prof. Peter Pickl and was first described in the thesis ``Der Zentrale Grenzwertsatz'' by Karolina Fels~\cite{fels}.
+
+\section{Intuition behind the proof}
+
+In this section I want to present the proof idea of Karolina Fels \cite[pp. 16-19]{fels}. Thereby I will slightly change her proof sketch. She started with the function $f(x) = \binom nk p^kq^{n-k}$ with $k=np+x$ and approximated $f'(x)$ by calculating $f(x)-f(x-1)$~\cite[p. 16]{fels}. We will approximate the slope of $\bbs$ between $\bb{\x[k+1]}$ and $\bb{\x[k]}$:
+
+\begin{align}
+  \frac{\bb{\x[k+1]}-\bb{\x[k]}}h &= \frac 1h \br{\binom n{k+1}p^{k+1}q^{n-k-1} - \binom nk p^k q^{n-k}} \nl
+  &= \frac 1h \binom nk p^k q^{n-k} \br{\frac{(n-k)p}{(k+1)q}-1} \nl
+  &= \frac 1h \bb{\x[k]} \frac{np-kp-kq-q}{(k+1)q} \nl
+  &= - \frac 1h \bb{\x[k]} \frac{k-np+q}{(k+1)q} \nl
+  &= - \frac 1h \bb{\x[k]} \br{\frac{k-np}{npq} + \frac{q}{npq}} \frac{np}{k+1} \nl
+  &= - \frac 1h \bb{\x[k]} \br{\x[k]h + q h^2} \frac{np}{k+1} \nl
+  &= -\x[k] \bb{\x[k]} \frac{np}{k+1} + \bb{\x[k]} q h \frac{np}{k+1}
+\end{align}
+
+Let us assume that the cumulative distribution of $\BBs$ can be approximated by a distribution with density function $\phi(x)$ for $n\to\infty$. Under the limit $n\to\infty$ we have $h\to 0$. For a fixed $x\in\R$ we also set $\x = \xrnd{x} = \frac{\rnd{np+ x \sqrt{npq}}-np}{\sqrt{npq}}$ which is the closest $\x$ to $x$. We get
+\begin{align}
+  \frac{\bb{\x[k+1]}-\bb{\x[k]}}h & \to \phi'(x) \nl
+  \bb{\x[k]} \to \fphi{x} \nl
+  \frac{np}{k+1} &= \frac{np}{\rnd{np+x\sqrt{np}}+1} \to 1
+\end{align}
+Therefor $\fphi{x}$ is described by the ODE
+\begin{align}
+  phi'(x) = -x\phi(x)
+\end{align}
+
+This ODE is solved by $\phi_c(x) = c \fexp{-\frac{x^2}2}$. Because $\int_\R \fphi{1} \d{t} = 1$ and $\int_\R \exp{-\frac{t^2}2} d{t} = \sqrt{2\pi}$ we get finally $\fphi{x} = \frac{1}{\sqrt{2\pi}} \fexp{-\frac{x^2}2}$.
+
+\section{Necessary prior knowledge from ODE}
+
+In order to formalize the above proof sketch into a valid proof we will need some concepts and theorems from the theory about ordinary differential equations. An equation of the form
+
+\begin{align} \label{ode:def}
+  y'(x) = f(x,y(x))
+\end{align}
+
+with $f:\R^2 \to \R$ will be called an \emph{ordinary differential equation} (of first order)~\cite[p. 465]{stoer}\cite{wiki:ode}\footnote{We may also restrict the domain of $f$ to the set $I\times \Omega$ with $I$ being an interval and $\Omega\subseteq \R$\todo{cite}. For this chapter the more special definition is sufficient.} Instead of the term ``ordinary differential equation'' also its acronym ``ODE'' is often used~\cite[p. 2]{ricardo}\cite{wiki:ode}. Any function $y:\R\to\R$ fulfilling the ODE \eqref{ode:def} is called a \emph{solution of the ordinary differential equation}~\cite[p. 8]{ricardo}\cite{wiki:ode}. For example the density function $\fphi{x} = \frac{1}{\sqrt{2\pi}} \fexp{-\frac{x^2}2}$ of the normal distribution is the solution of the ODE
+
+\begin{align}
+  y'(x) = -xy(x)
+\end{align}
+
+with the initial value $y(0) = \frac{1}{\sqrt{2\pi}}$ \todo{cite}. In general the ordinary differential equation with initial value
+
+\begin{align}
+  y'(x) = -xy(x),\ y(0)=a
+\end{align}
+
+is solved by $y_a(x) = a \fexp{-\frac{x^2}2}$. ODEs can be approximated numerically with \emph{one-step methods}~\cite[pp.~471~ff]{stoer}. A one-step method is described by a function $M(x,y,h,f)$ with a step size $h>0$~\cite[p.~473]{stoer}. Given an initial value $y(x_0)=y_0$ the approximations $y_k$ at the points $x_k = x_0 + kh$ ($k\in\N$) can be obtained recursively via the relation
+
+\begin{align}
+  y_{k+1} = y_k + h M(x_k, y_k, h, f)
+\end{align}
+
+for $k \le 0$~\cite[p. 473]{stoer}. One of the most famous one-step method is the \emph{Euler method} with $M(x,y,h,f) = f(x,y)$~\cite[p. 473]{stoer}. We will use the concept of one-step methods to connect the density function of the normal distribution with the probability mass function of the binomial distribution. To state the theorem of the global error of one-step methods we will need the following definition of the local discretization error (see \cite[pp. 473-474]{stoer}):
+
+\begin{definition}[Local discretization error]
+  The \emph{local discretization error} is the error of the one-step method which is produced during a step of approximation. Given an one-step method $M(x,y,h,f)$ its local discretization error at the point $x_k$ is the value
+
+  \begin{align}
+    \tau(x_k) = \frac{y(x_{k+1})-y(x_k)}h - M(x_k,y(x_k),h,f)
+  \end{align}
+\end{definition}
+
+\noindent Therefore $\tau$ fulfills:
+
+\begin{align}
+  \underbrace{y(x_{k+1})}_{\text{exact solution}} = \underbrace{y(x_k) + M(x_k,y(x_k),h,f)h}_{\text{approximation of one-step method}} + \underbrace{\tau(x_k)h}_{\text{error}}
+\end{align}
+
+\noindent The error of an one-step method can be estimated as following~\cite[pp. 478-479]{stoer}:
+
+\begin{theorem}[Global error of one-step method] \label{thm:ode_global_error}
+  Given an ODE with initial value
+
+  \begin{align}
+    y'(x)=f(x,y(x)),\ y'(x_0)=y_0
+  \end{align}
+
+  which has the exact solution $y(x)$. Let $M(x,y,h,f)$ be a continuous one-step method for this ODE with step size $h > 0$. Let $M(x,y,h,f)$ fulfill the Lipschitz condition\footnote{See \cite[p. 467]{stoer} and \cite{wiki:lipschitz} for more details about Lipschitz continuity.} regarding the variable $y$ with the Lipschitz constant $L > 0$, i.e. for all $x,y_1,y_2\in\R$ we have
+  \begin{align}
+    \abs{M(x,y_1,h,f)-M(x,y_2,h,f)} \le L \abs{y_1-y_2}
+  \end{align}
+  Let the absolute value of the local discretization error be bounded by $C h^p$ for a $C > 0$ and $p\in \N$:
+  \begin{align}
+    \abs{\tau(x_k)} = \abs{\frac{y(x_{k+1})-y(x_k)}h - M(x_k,y(x_k),h,f)} \le Ch^p
+  \end{align}
+  Then the global error $\abs{y(x_k)-y_k}$ is bounded by $\frac 1L \br{\fe{L\abs{x_k-x_0}}-1} C h^p$:
+  \begin{align}
+    \abs{y(x_k)-y_k} \le \frac{\fe{L\abs{x_k-x_0}}-1}{L} \cdot Ch^p
+  \end{align}
+\end{theorem}
+\todo{premises all right?!}
+
+We may also have an one-step method backwards by setting $h < 0$. The above definitions and the  above theorem \ref{thm:ode_global_error} are applicable in this case.
+
+\section{Local version of de Moivre-Laplace}
+
+We will prove the local version of the de Moivre-Laplace theorem in the following form
+
+\begin{theorem}
+  ...
+\end{theorem}
+
+This proof will heavily bases on the theory of one-step methods for approximating ordinary differential equations. Thereby we will revert the perspective: Whereas in the theory of ODEs one-step methods are approximations of unknown solutions of ODEs, we will consider the probability mass function of the binomial distribution as the result of an one-step method. This one-step method corresponds to an ODE and the solution to this ODE will be an approximation to the probability mass function. Thus we flip the role of the exact solution and the approximation. This makes this proof in particular interesting and my be a method which might be applicable in other proofs, too.
+
+\newcommand*{\knp}{\tilde k}
+\newcommand*{\xnp}{\x[\knp]}
+\newcommand*{\phin}[2][n]{y_{#1}\left({#2}\right)}
+\newcommand*{\dphin}[2][n]{y_{#1}'\left({#2}\right)}
+
+\begin{proof}
+  We start with investigating $\bb{\x[k+1]}-\bb{\x[k]}$ (let $\pol{\x}$ be the set of all polynomials in $\x$):
+
+  \begin{align}
+    \bb{\x[k+1]} - \bb{\x[k]} &= \binom n{k+1} p^{k+1}q^{n-k-1} - \binom nk p^k q^k \nl
+    &= \binom nk p^k q^{n-k} \br{\frac{\binom n{k+1}p}{\binom nk q} -1} \nl
+    &= \bb{\x[k]} \br{\frac{k! (n-k)! p}{(k+1)!(n-k-1)! q} -1} \nl
+    &= \bb{\x[k]} \br{\frac{(n-k)p}{(k+1)q}-1} \nl
+    &
+    \begin{comment}
+      k = np + \x[k]\sqrt{npq}
+    \end{comment} \nl
+    &= \bb{\x[k]} \br{\frac{npq-\x[k]p\sqrt{npq}}{npq + \x[k]q\sqrt{npq}+q}-1} \nl
+    &= \bb{\x[k]} \br{\frac{1-\x[k]ph}{1+\x[k]qh+qh^2}-1} \nl
+    &
+    \begin{comment}
+      \text{\todo{}} \frac1{1+x} = 1 - x+ \bigo{x^2}
+    \end{comment} \nl
+    &= \bb{\x[k]} \br{\br{1-\x[k]ph}\br{1+\x[k]qh + \bigo{\pol{x}h^2}}-1} \nl
+    &= \bb{\x[k]} \br{-\x[k]h + \bigo{\pol{\x}h^2}} \nl
+    &= -\x[k]\bb{\x}h + \bigo{\bb{\x}\pol{\x}h^2}
+  \end{align}
+  Because \todo{Bernstein inequality -> cite + reference}
+  \begin{align}
+    \bb{\x} \le \P{\BBs \ge \abs{x_k}} \le 2\fexp{-\frac{\x^2}4}
+  \end{align}
+  and $\lim_{x\to\pm\infty} p(x)\fexp{-\frac{x^2}4}=0$ for any polynomial $p(x)$, there is for any polynomial $p(\x)\in\pol{\x}$ a constant $A_n$ such that
+  \begin{align}
+    \forall k\in\Z: \abs{\bb{\x}p(\x)} \le A
+  \end{align}
+  so that
+  \begin{align}
+    \bb{\x[k+1]} &= \bb{\x[k]} -\x[k]\bb{\x[k]} h + \bigabs{A h^2} \bnl
+    &
+    \begin{comment}
+      \text{Set } f(x,y) = -xy
+    \end{comment} \bnl
+    &= \bb{\x[k]} - \br{\f{\x[k], \bb{\x[k]}} + \bigabs{A h}}h \bnl
+    &
+    \begin{comment}
+      \text{Set } M(x,y,h,f) = f(x,y) + \bigabs{Ah}
+    \end{comment} \bnl
+    &= \bb{\x[k]} + M(\x[k], \bb{\x[k]}, f, h) h
+  \end{align}
+
+  Therefore we can think about $\bb{\x}$ as the results of the one-step method $M(x,y,f,h)=f(x,y)+\bigabs{Ah}$ whereby we can choose any $\bb{\x}$ as the initial value. We take $\bb{\xnp}$ for $\knp=\rnd{np}$ so that $\xnp$ is the $\x$ which is closest to $0$. The one-step method now corresponds to the ODE with initial condition
+  \begin{align}
+    \dphin{x}=f(x,\phin{x})=-x\phin{x},\ \phin{\xnp} = \bb{\xnp}
+  \end{align}
+  Its solution is\todo{proof?!}
+  \begin{align}
+    \phin{x} = \bb{\xnp}\fexp{-\frac{x^2}2+\frac{\xnp^2}2}
+  \end{align}
+
+  In order to estimate the global error of the one-step method with theorem \ref{thm:ode_global_error} we need to estimate the local discretization error. We get by using the taylor series
+  \begin{align}
+    \phin{x+h} = \phin{x} -x\phin{x}h+\br{\tilde x^2-1}\phin{\tilde x} h^2
+  \end{align}
+  with $\tilde x$ being in the interval bounded by $x$ and $x+h$. Because $\lim_{x\to\pm\infty} \br{x^2-1}\phin{x}=0$ ($\phin{x} \in \bigo{\exp{-\frac{x^2}2}}$ for $x\to\pm\infty$) there is a $B > 0$ independent of $x$ with $\abs{\br{x^2-1}\phin{x}} \le B$ for all $x\in\R$. Thus
+  \begin{align}
+    \frac{\phin{x+h}-\phin{x}}h &= -x\phin{x}+\br{\tilde x^2-1}\phin{x} h \\
+    &\in -x\phin{x} + \bigabs{Bh}
+  \end{align}
+  Now we can estimate the local discretization error
+  \begin{align}
+    \abs{\tau(\x)} &= \abs{\frac{\phin{\x[k]+h}-\phin{\x}}h -  M(\x,\phin{\x},f,h)} \nl
+    &\in \abs{-\x\phin{\x} + \bigabs{Ah} +\x\phin{\x} - \bigabs{Bh}} \nl
+    &= \abs{\bigabs{Ah}-\bigabs{Bh}} \nl
+    &\subseteq \bigabs{(A+B)h} \nl
+    &
+    \begin{comment}
+      \text{Set } C=A+B
+    \end{comment} \nl
+    &= \bigabs{Ch}
+  \end{align}
+  from which follows $\abs{\tau(\x)} \le Ch$.
+
+  Besides approximating $\abs{\tau(x)}$ we also need to prove, that $f(x,y)$ is Lipschitz continuous regarding $y$ with finding its Lipschitz constant. We have
+  \begin{align}
+    \abs{f(x,y_1)-f(x,y_2)} &= \abs{-xy_1+xy_2} \nl
+    &= \abs{x} \cdot \abs{y_1-y_2}
+  \end{align}
+  So $f:\R^2\to\R$ is not Lipschitz continuous regarding $y$ because for any $y_1\neq y_2$ we have
+  \begin{align}
+    \lim_{x\to\pm\infty} \frac{\abs{f(x,y_1)-f(x,y_2)}}{\abs{y_1-y_2}} = \infty
+  \end{align}
+  But we can restrict $f$ to the domain $\interval{-\x}{\x}\times \R$. \todo{theorem anpassen}. On this domain the restriction of $f$ is Lipschitz continuous regarding second argument with Lipschitz constant $\abs{\x}$. Because $\x$ might be zero, we will take $L=\max\{\x,1\}$ as Lipschitz constant. From the theorem \ref{thm:ode_global_error} about the global error of one-step methods we can conclude
+  \begin{align}
+    \abs{\bb{\x}-\phin{\x}} &\le \frac{\fe{L\abs{\x-\xnp}}-1}L Ch \nl
+    &
+    \begin{comment}
+      \abs{\x-\xnp} \le \abs{\x}+\abs{\xnp} \le \abs{\x}+h
+    \end{comment} \nl
+    &\le \frac{\fe{L\abs{x}+Lh}-1}L Ch
+  \end{align}
+  Therefore
+  \begin{align}
+    \bb{\x} = \phin{\x} + \bigabs{\frac{\fe{L\abs{\x}+Lh}-1}L Ch}
+  \end{align}
+\end{proof}
+
+\todo{Auswertung mit Fehler}
+
+\section{Global version of de Moivre-Laplace}
+
+In this section we will prove the following theorem
+
+\begin{theorem}
+  ...
+\end{theorem}
+
+\noindent Thereby we will split the proof in several steps. First we prove that
+
+\begin{lemma}
+  For any $a,b \in \R$ we have
+
+  \begin{align}
+    \lim_{n\to\infty} \abs{\frac{\fphi{\xnp}h}{\bb{\xnp}} \sum_{a\le\x\le b} \bb{\x} - \int_a^b \fphi{t}\d{t}} = 0
+  \end{align}
+\end{lemma}
+
+\todo{Nummerierung der Beweise uns so...}
+
+\begin{proof}
+  For $a > b$ we have
+  \begin{align}
+    \sum_{a\le \x \le b}\bb{\x} = \int_a^b \fphi{t}\d{t} = 0
+  \end{align}
+  from which directly the lemma follows. So we fix $a,b\in\R$ with $a\le b$. We have already proven in the previous section that there is a $C > 0$ independent of $n$ and $\x$ satisfying
+  \begin{align}
+    \bb{\x} \in \phin{\x} + \bigabs{\frac{\fe{L\abs{\x}+Lh}-1}L Ch}
+  \end{align}
+  with $L = \max\{\abs{\x},1\}$ and $\phin{x} = \bb{\xnp}\fexp{-\frac{x^2}2+\frac{\xnp^2}2}$. Let $d = \max\{\abs{a},\abs{b}, 1\}$ so that $L \le d$ and $\abs{\x} \le d$ for all $\x$ with $a\le \x \le b$. We have
+  \begin{align}
+    \bb{\x} & \in \phin{\x} + \bigabs{\frac{\fe{L\abs{\x}+Lh}-1}L Ch} \nl
+    &\subseteq \bb{\xnp} \fexp{-\frac{\x^2}2+\frac{\xnp^2}2} + \bigabs{\fe{d^2+dh} C h} \nl
+    &
+    \begin{comment}
+      \bigabs{\lambda h} \subseteq \bigo{h}
+    \end{comment} \nl
+    &\subseteq \bb{\xnp} \fexp{\frac{\xnp^2}2} \br{\exp{-\frac{x^2}2} + \bigo{h^2}}
+  \end{align}
+\end{proof}

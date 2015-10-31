@@ -1,9 +1,17 @@
 \begin{theorem} \label{thm:bigpsi:rules}
-  Let $\seq{\epsilon_n}$ and $\seq{a_n}$ be sequences whereby $a_n > 0$ for all $n\in\N$. The big Psi notation has the following arithmetic rules:
+  Let $\seq{\epsilon_n}$ be a sequence. Let $\seq{a_n}$ and $\seq{b_n}$ be sequences with $a_n,b_n > 0$ for all $n\in\N$. Let $\lambda, \mu \in \Rplus$. The big Psi notation has the following arithmetic rules:
 
   \begin{enumerate}
+    \item $\seq{a_n} \in \bigpsi{a_n}$
     \item $\seq{\epsilon_n} \in \bigo{a_n} \land \seq{a_n} \in \littleo{b_n} \implies \seq{\epsilon_n} \in \littleo{b_n}$
     \item $\bigpsi{a_n} \subseteq \bigo{a_n}$
     \item $\bigpsi{a_n} + \littleo{a_n} \subseteq \bigpsi{a_n}$
+    \item $\bigpsi{a_n}\cdot \bigpsi{b_n} \subseteq \bigpsi{a_n b_n}$
+    \item $b_n \cdot \bigpsi{a_n} \subseteq \bigpsi{b_n \cdot a_n}$
+    \item $\frac{\bigpsi{a_n}}{b_n} \subseteq \bigpsi{\frac{a_n}{b_n}}$
+    \item $\bigpsi{\lambda a_n} + \bigpsi{\mu a_n} \subseteq \bigpsi{(\lambda+\mu)a_n}$
+    \item $e^{\littleo{1}} \subseteq \bigpsi{1}$
+    \item $\seq{a_n} \in o(1) \implies e^{\bigpsi{a_n}}-1 \subseteq \bigpsi{a_n}$
+    \item $\ean[\littleo{1}]{a_n} \subseteq \bigpsi{a_n}$
   \end{enumerate}
 \end{theorem}

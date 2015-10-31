@@ -14,6 +14,8 @@
 \newtheorem{remark}{Remark}
 \newtheorem{example}{Example}
 
+\renewcommand*{\epsilon}{\varepsilon}
+
 \newcommand*{\Cmax}{0.4748}
 \newcommand*{\Cmin}{0.40973}
 
@@ -21,6 +23,8 @@
 
 \newcommand*{\includefig}[4][0.5\textwidth]{\begin{figure}[h] \begin{center} \includegraphics[width={#1}]{figures/{#2}} \caption[#4]{#3} \end{center} \end{figure}}
 \newcommand*{\includewrapfig}[4][0.33\textwidth]{\begin{wrapfigure}{R}{#1} \vspace{-10pt} \begin{center} \includegraphics[width=#1 - 0.02\textwidth]{figures/{#2}} \caption[#4]{#3} \end{center} \vspace{-15pt} \end{wrapfigure}}
+
+\newcommand*{\interval}[2]{\left[{#1},{#2}\right]}
 
 \newcommand*{\seq}[2][n]{\left({#2}\right)_{{#1}\in\N}}
 \newcommand*{\abs}[1]{\left|{#1}\right|}
@@ -31,13 +35,29 @@
 \newcommand*{\e}[1]{e^{#1}}
 \newcommand*{\floor}[1]{\left\lfloor {#1} \right\rfloor}
 \newcommand*{\bigo}[1]{O\left( {#1} \right)}
+\newcommand*{\bigabs}[1]{\Delta\left( {#1} \right)}
 \newcommand*{\littleo}[1]{o\left( {#1} \right)}
 \newcommand*{\bigpsi}[1]{\Psi\left( {#1} \right)}
+\newcommand*{\fsup}[1]{\sup\left( {#1} \right)}
+\newcommand*{\fln}[1]{\ln\left( {#1} \right)}
+\newcommand*{\fexp}[1]{\exp\left( {#1} \right)}
+\newcommand*{\fcosh}[1]{\cosh\left( {#1} \right)}
+\newcommand*{\fphi}[1]{\phi\left( {#1} \right)}
+\newcommand*{\fPhi}[1]{\Phi\left( {#1} \right)}
+\newcommand*{\br}[1]{\left( {#1} \right)}
+\newcommand*{\fe}[1]{e^{#1}}
+\newcommand*{\pol}[1]{\mathfrak P\left( {#1} \right)}
+
+\newcommand*{\xup}[1]{\left\lceil {#1} \right\rceil_n}
+\newcommand*{\xdown}[1]{\left\lfloor {#1} \right\rfloor_n}
+\newcommand*{\xrnd}[1]{\operatorname{rnd}_n\left( {#1} \right)}
+\newcommand*{\rnd}[1]{\operatorname{rnd}\left( {#1} \right)}
 
 \newcommand*{\f}[1]{f\left({#1}\right)}
 \newcommand*{\h}[1]{h\left({#1}\right)}
 \newcommand*{\fp}[1]{f'\left({#1}\right)}
 \newcommand*{\ft}[1]{\tilde f\left({#1}\right)}
+\newcommand*{\pot}[1]{\mathcal P\left({#1}\right)}
 
 \newcommand*{\cfs}[2][-\infty]{\mathds{1}_{\left[{#1},{#2}\right]}}
 \newcommand*{\cf}[3][-\infty]{ \mathds{1}_{\left[{#1},{#2}\right]}\left({#3}\right)}
@@ -52,9 +72,14 @@
 \newcommand*{\Bs}[1][n]{B_{#1}}
 \newcommand*{\bs}[1][n]{b_{#1}}
 \renewcommand*{\b}[2][n]{\bs[#1]\left({#2}\right)}
+\newcommand*{\BBs}[1][n]{\tilde B_{#1}}
+\newcommand*{\bbs}[1][n]{\tilde b_{#1}}
+\newcommand*{\bb}[2][n]{\bbs[#1]\left({#2}\right)}
+\newcommand*{\x}[1][k]{x_{#1}}
 
 \newcommand*{\R}{\mathbb R}
 \newcommand*{\Rplus}{\mathbb R^{+}}
+\newcommand*{\Rplusnull}{\mathbb R^{+}_0}
 \newcommand*{\Q}{\mathbb Q}
 \newcommand*{\N}{\mathbb N}
 \newcommand*{\Z}{\mathbb Z}
@@ -66,4 +91,4 @@
 
 \newenvironment{comment}{\color{OliveGreen} \ \left\downarrow\ }{\right. \color{Black} \nonumber}
 
-\newcommand*{\todo}[1]{{\color{Black} \footnotesize{TODO: #1}}}
+\newcommand*{\todo}[1]{{\color{RedOrange} \footnotesize{TODO: #1}}}

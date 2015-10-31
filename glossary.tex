@@ -92,3 +92,45 @@
   sort={ae},
   description={The interval $\ean[\epsilon]{a} = \left[ae^{-\epsilon},ae^\epsilon\right]$}
 }
+
+\newglossaryentry{pv}{%
+  name={\ensuremath{p}},
+  sort=pv,
+  description={The probability $p\in(0,1)$ of an outcome}
+}
+
+\newglossaryentry{h}{%
+  name={\ensuremath{h}},
+  sort=h,
+  description={The step size $h=\frac{1}{\sqrt{npq}}$}
+}
+
+\newglossaryentry{xk}{%
+  name={\ensuremath{x_k}},
+  sort=xk,
+  description={The point $x_k=\frac{k-np}{\sqrt{npq}}$ for $k\in\Z$}
+}
+
+\newglossaryentry{xup}{%
+  name={\ensuremath{\xup{\cdot}}},
+  sort={|n},
+  description={Rounding up to the next $x_k$: $\xup{c}=\inf\{ x_k : x_k \ge c\}$}
+}
+
+\newglossaryentry{xdown}{%
+  name={\ensuremath{\xdown{\cdot}}},
+  sort={|up},
+  description={Rounding down to the next $x_k$: $\xup{c}=\inf\{ x_k : x_k \ge c\}$}
+}
+
+\newglossaryentry{xrnd}{%
+  name={\ensuremath{\xrnd{\cdot}}},
+  sort={rndn},
+  description={Rounding to the next $x_k$: $\xrnd{c}=\frac{\rnd{np+c\sqrt{npq}}-np}{\sqrt{npq}}$}
+}
+
+\newglossaryentry{q}{%
+  name={\ensuremath{q}},
+  sort=q,
+  description={$q=1-p$}
+}

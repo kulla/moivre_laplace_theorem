@@ -126,7 +126,7 @@ Because the total number of outcomes is $a^n$ and because all outcomes are equal
   \P{\text{player looses}} = \frac{1}{a^n} \sum_{k=0}^{m-1} \binom nk b^k c^{n-k}
 \end{align}
 
-This is the same formula Bernoulli derived in the end of the above quoted section. He ended his discussion of Huygens' problem with two corollaries which he named ``Rule for knowing the lot of a player to whom several throws of a die have given and who is held to archieving something precisely on some certain throws and not on others''~\cite[p. 170]{bernoulli}:
+This is the same formula Bernoulli derived in the end of the above quoted section. He ended his discussion of Huygens' problem with two corollaries which he named ``Rule for knowing the lot of a player to whom several throws of a die have given and who is held to achieving something precisely on some certain throws and not on others''~\cite[p. 170]{bernoulli}:
 
 \begin{quotation}
   \emph{Corollary 1.} If there are the same numbers of cases in all games [...] the expectation found to be [...] $b^mc^{n-m}/a^n$, taking $n$ for the number of all the throws, and $m$ for the number in which what is to be achieved ought to be achieved.
@@ -152,7 +152,7 @@ So we finally get a formula for calculating the odds of having $m$ favorable cas
 
 In the previous section I presented you the historical derivation and motivation of the binomial distribution. In this section I want to introduce the binomial distribution in a way contemporary textbooks define it. \todo{cite}
 
-Take $n$ independent random variables $X_1, X_2, \ldots, X_n$. Each of them has two possible outcomes $\alpha$ and $\beta$. These random variables with two possible outcomes are called ``Bernoulli trials'' named after Jacob Bernoulli. \todo{cite} Let $p$ be the probability for the outcome $\alpha$ and $q=1-p$ the probability for the outcome $\beta$ for each random variable $X_i$.
+Take $n$ independent random variables $X_1, X_2, \ldots, X_n$. Each of them has two possible outcomes $\alpha$ and $\beta$. These random variables with two possible outcomes are called ``Bernoulli trials'' named after Jacob Bernoulli~\cite{wiki:bernoulli_distribution}. \todo{citation Uspensky} Let $p$ be the probability for the outcome $\alpha$ and $q=1-p$ the probability for the outcome $\beta$ for each random variable $X_i$\footnote{When I use $p$ in the following chapters, this variable will also mean the probability $p\in(0,1)$ of an outcome of the Binomial trial. Thus $q=1-p$ will be the probability of the other outcome of the Binomial trial.}.
 
 The binomial distribution is the probability distribution which assigns for each $k\in \{0,1,\ldots,n\}$ the probability of having exactly $k$ times the outcome $\alpha$ among all random variables $X_1,X_2,\ldots,X_n$. A typical way to define the binomial distribution is to set $\alpha=1$ and $\beta=0$. The random variable $\Bs=\sum_{i=1}^n X_i$ is then binomially distributed.
 
@@ -178,7 +178,33 @@ As already mentioned, this distribution is called ``binomial distribution'':
   \end{align}
 \end{definition}
 
+It is also possible to define $\Bs$ on $\Z$ by setting $\b{k}=0$ for each $k\notin \{0,1,\ldots,n\}$. So we declare
+
+\begin{align}
+\b[n]{k} = \P{\Bs[n] = k} = \begin{cases} \binom nk p^k q^{n-k} & ;\ k \in \{0,1,\ldots,n\} \\ 0 & ;\  \text{otherwise} \end{cases}
+\end{align}
+
 \includefig{binomial_distribution_pmf}{The probability mass function of the binomial distribution}{File \href{https://commons.wikimedia.org/wiki/File:Binomial_distribution_pmf.svg}{``Binomial distribution pmf.svg''} from Wikimedia Commons. Upload by user \href{https://commons.wikimedia.org/w/index.php?title=User:Tayste}{Tayste} and licensed under Public Domain.}
+
+The mean of the binomially distributed random variable $\Bs[n]$ is $np$ and its variance is $npq$ \cite[pp. 8-9]{fels}\cite{wiki:binomial_distribution}. Therefore we get after standardizing $\Bs[n]$ the following random variable
+
+\begin{align}
+  \BBs[n] = \frac{\Bs[n]-np}{\sqrt{npq}}
+\end{align}
+
+$\BBs$ is a discrete random variable with a nonzero probability for each $\x[k]^n = \frac{k-np}{\sqrt{npq}}$ with $0\le k\le n$. The distance between the points $\x[k]^n$  is $h_n = \frac{1}{\sqrt{npq}}$. In this thesis I will omit the dependence of $\x^n$ and $h_n$ for $n$. So I will only write $\x$ for $\frac{k-np}{\sqrt{npq}}$ and $h$ for $\frac 1{\sqrt{npq}}$. Thus $\BBs$ has the probability mass function
+
+\begin{align}
+  \bb{\x[k]} = \P{\BBs = \x[k]} = \b{k} = \binom nk p^kq^{n-k}
+\end{align}
+
+Here we also set $\bb{\x[k]}=0$ for all $k\notin\{0,1,\ldots,n\}$ to extend $\BBs$ to a random variable on the set $\{\x[k] : k\in\Z\}$. Sometimes it will be necessary to round a real number $c$ to the closest $x_k$ with $k\in\Z$. Therefore we define
+\begin{align}
+  \xup{c} &= \inf \{ x_k : k\in\Z \land c \le x_k \} \nl
+  \xdown{c} &= \sup \{ x_k : k \in \Z \land c \ge x_k \} \nl
+  \xrnd{c} &= \frac{\rnd{np+c\sqrt{npq}}-np}{\sqrt{npq}}
+\end{align}
+Thus $\xup{c}$ is the closest $\x$ bigger than $c$, $\xdown{c}$ is the closest $\x$ smaller than $c$ and $\xrnd{c}$ is the closest $\x$ to $c$.
 
 \section{Applications of the binomial distribution}
 
@@ -231,7 +257,7 @@ In the following many mathematicians were inspired by Graunt's book to describe 
     This Equality of [adult] Males and Females is not the Effect of Chance but Divine Providence.
 \end{quotation}
 
-To prove his assumptions Arbuthnott made the first test of significance in history~\cite[p. 276]{hald1}. He identified the determination of the birth's sex with the throw of a two sided die~\cite[pp. 275-276]{hald1}. Let the chances of a male birth be $p$ and thus let $q$ be the chances of the female birth\footnote{Here we ignore the possibility of an intersex birth. \todo{ausbauen}}. The yearly numbers of male and female births are then binomially distributed.
+To prove his assumptions Arbuthnott made the first test of significance in history~\cite[p. 276]{hald1}. He identified the determination of the birth's sex with the throw of a two sided die~\cite[pp. 275-276]{hald1}. Let the chances of a male birth be $p$ and thus let $q$ be the chances of the female birth\footnote{Here we ignore the possibility of an intersex birth (see \cite{wiki:intersex} and \cite{wiki:transgender}).}. The yearly numbers of male and female births are then binomially distributed.
 
 As Anders Hald summarized in \cite[p. 278]{hald1}, Arbuthnott then estimated the probability that the number of male births exceeded the number of female births for 82 consecutive years under the binomial model for $p=\tfrac 12$. He argued that because of the symmetry of the binomial distribution for $p=\tfrac 12$ the probability for having more boys born than girls in one year is less or equal to $\tfrac 12$. Thus the probability that this happens for 82 consecutive years must be less than or equal $\left(\tfrac 12\right)^{82}$ which is less than $2.1\cdot 10^{-25}$. Because this probability is so low the assumption $p=\tfrac 12$ must be rejected for the alternative $p > \tfrac 12$~\cite[p. 278]{hald1}.
 
