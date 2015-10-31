@@ -15,11 +15,11 @@ The first simple approximation to the binomial distribution was found by Abraham
 I want to split this theorem in two parts. With the first part one get an approximation for the probability mass function of a binomial distribution:
 
 \begin{theorem}[Local version of De Moivre-Laplace theorem]
-  Let $\fphi{x}=\frac{1}{\sqrt{2\pi}}\fexp{-\frac{x^2}2}$ be the density function of the standardized normal distribution and $p\in(0,1)$. For $n$ large enough we have
+  Let $\fphi{x}=\frac{1}{\sqrt{2\pi}}\fexp{-\frac{x^2}2}$ be the density function of the standardized normal distribution~\cite[p. 48]{georgii} and $p\in(0,1)$. For $n$ large enough we have~\cite[p. 65]{irle}
   \begin{align}
     \binom nk p^k q^{n-k} \approx \frac 1{\sqrt{2\pi npq}} \fexp{-\frac{(k-np)^2}{2npq}}
   \end{align}
-  or (with $\x=\frac{k-np}{\sqrt npq}$ and $h=\frac1{\sqrt{npq}}$):
+  or (with $\x=\frac{k-np}{\sqrt npq}$ and $h=\frac1{\sqrt{npq}}$)~\cite[p. 133]{georgii}:
   \begin{align}
     \binom nk p^k q^{n-k} \approx \fphi{\x} h
   \end{align}
@@ -28,14 +28,15 @@ I want to split this theorem in two parts. With the first part one get an approx
 In the second part one gets an approximation to the culmulative distribution function which is the actual theorem by De Moivre and Laplace:
 
 \begin{theorem}[De Moivre-Laplace theorem]
-  For any $b,a \in \R$ we have for large $n$
+  For any $b,a \in \R$ we have for large $n$~\cite[p. 136]{georgii}\cite[p. 67]{irle}
   \begin{align}
     \sum_{a \le \x\le b} \bb{\x} \approx \int_a^b \fphi{t} \d{t}
   \end{align}
   and
   \begin{align}
-    \sum_{\x \le a} \bb{\x} \approx \int_{-\infty}^a \fphi{t} \d{t}
+    \sum_{\x \le a} \bb{\x} \approx \fPhi{a}
   \end{align}
+  with $\fPhi{a} = \int_{-\infty}^a \fphi{t} \d{t}$ being the cumulative distribution function of the standardized normal distribution~\cite[p. 134]{georgii}.
 \end{theorem}
 
 Thus the main statement of the de Moivre-Laplace theorem is that the standardized binomial distribution can be approximated with the standardized normal distribution (for large $n$).
