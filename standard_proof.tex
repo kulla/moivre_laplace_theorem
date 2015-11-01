@@ -344,7 +344,7 @@ In this section we will show that the probability mass function of the standardi
 \end{theorem}
 
 \begin{proof}
-  Let $\seq{c_n}$ be a sequence with $\seq{c_nh}\in\littleo{1}$. We split the sum $\sum_{a \le \x \le b} \bb{\x}$ into two sums:
+  Let $\seq{c_n}$ be a sequence with $\seq{c_nh}\in\littleo{1}$ and $\lim_{n\to\infty} c_n=\infty$ (e.g. $c_n =\sqrt[4]{n}$). We split the sum $\sum_{a \le \x \le b} \bb{\x}$ into two sums:
 
   \begin{align}
     \sum_{a \le \x \le b} \bb{\x} = \sum_{\substack{a \le \x \le b \\ \abs{\x} \le c_n}} \bb{\x} + \sum_{\substack{a \le \x \le b \\ \abs{\x} > c_n}} \bb{\x}
