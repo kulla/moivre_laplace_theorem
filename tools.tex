@@ -68,8 +68,7 @@ We will also use the little-o notation which is defined as~\cite[pp.~99,~103]{ai
 
 \section{Calculations with sets} \label{sec:calculations_sets}
 
-Because we will use notations such as $\bigo{\cdot}$ or $\bigabs{\cdot}$, we will have to deal with expressions containing sets of sequences instead of members of a concrete sequence. Thus we have to define rules what how to operate with sets. Here we need to find a definition so that the result is the best approximation for the result of the considered number\footnote{cf. \cite[pp. 17-18]{kulla}}.
-
+The main idea of the above notations is that we can calculate a final error estimation. Instead of stating the concrete error $\epsilon_n$ of an approximation at the $n$-th step, we use one of the above notations whereby $\seq{\epsilon_n}$ is an element of the stated set. Because we will have to deal with expressions containing sets of sequences, we need rules how we shall interpret such expressions. These rules are \cite{bigo_rules1}\cite[pp. 17-18]{kulla}:
 
 \begin{enumerate}
   \item Let $f:D\subseteq\R^n\to\R$ be an $n$-ary operation of real numbers and let $A_1,A_2,\ldots,A_n$ be $n$ subsets of $\R$ such that $A_1\times A_2\times \dots\times A_n\subseteq D$. The result  $f\left(A_1,\ldots,A_n\right)$ of the operation with all $n$ sets is defined as the image of $f$ \footnote{The extended version of $f$ on sets calls Ramon E. Moore in his book about interval analysis the ``unit extension''~\cite[p. 18]{moore}}
@@ -89,12 +88,27 @@ Thus $\tilde f(A_1,\ldots,A_n)$ is the union of all possible images of $\tilde f
 \begin{align}
   \littleo{\bigo{a_n}} = \bigcup_{\seq{\epsilon_n}\in\bigo{a_n}} \littleo{\epsilon_n}
 \end{align}
+
+  \item If in the above rules one of the $A_k$ is a sequence $\epsilon_n$ (and not a set), we have to interpret $A_k$ as the singleton $\{\seq{\epsilon_n}\}$. Exceptions are expressions such as $\bigo{\epsilon_n}$ which are defined as in the above sections.
 \end{enumerate}
 
-\todo{Notation with $\epsilon_n$ instead of $\seq{\epsilon_n}$?! Explanation for $\epsilon_n \in \bigo{a_n}$ necessary?}
-\section{Arithmetic rules}
+It is also possible to use the rules stated by Henning Makholm\cite{bigo_rules2} (which he only formulated for the big O notation).
 
-I will use variables like $h=\frac{1}{\sqrt{npq}}$ where I drop the dependence on $n$ in the name of the variable. When I state something like $\littleo{h}$ I will always mean $\littleo{h_n}$, e.g.
+\begin{quote}
+  ``Whenever you see an equation $t=u$ where $t$ or $u$ contain one or more $\bigo{\ldots}$, you're supposed to mentally do the following expansion:
+  \begin{itemize}
+    \item Replace \emph{each textual occurrence} of $O(\cdots)$ with $\phi(n)$ where $\phi$ is a \emph{fresh} function letter that ranges over $\mathcal O(\cdots)$. Different [occurrences] of $O(\cdots)$ in the formula should get separate function letters, even if the "$\cdots$" are the same.
+    \item Every fresh $\phi$ that arises from an $O(\cdots)$ on the \emph{left} side of the equals sign should be \emph{universally} quantified.
+    \item Every fresh $\phi$ that arises from an $O(\cdots)$ on the \emph{right} side of the equals sign should be \emph{existentially} quantified.
+    \item The universal quantifiers on $\phi$s come before the existential ones.
+    \item The variable $n$ that tends to a limit should be universally quantified \emph{after} all of the quantifiers on $\phi$s.''
+  \end{itemize}
+\end{quote}
+
+Be aware that I will use variables like $h=\frac{1}{\sqrt{npq}}$ where I drop the dependence on $n$ in the name of the variable. When I state something like $\littleo{h}$ I will always mean $\littleo{h_n}$, e.g.
 \begin{align}
   \seq{\epsilon_n} \in \littleo{h} \iff \lim_{n\to\infty} \abs{\frac{\epsilon_n}{h}} = \lim_{n\to\infty} \abs{\epsilon_n \sqrt{npq}} = 0
 \end{align}
+
+\section{Arithmetic rules}
+
