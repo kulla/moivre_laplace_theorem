@@ -14,7 +14,7 @@ Without proof the following theorem\footnote{cf.~\cite[pp. 505, 63]{heuser}} wil
   \end{align}
 \end{theorem}
 
-\noindent A proof of this equality can be found in~\cite[pp. 504-505]{heuser}. From this equation directly follows: 
+\noindent A proof of this equality can be found in~\cite[pp. 504-505]{heuser}. From this equation directly follows:
 
 \begin{align} \label{wallis}
   \lim_{n\to\infty} \frac{2^{2n}}{\sqrt n \binom{2n}{n}} = \lim_{n\to\infty} \sqrt{\frac 1n \cdot \frac{2^{4n}}{\binom{2n}{n}^2}} = \sqrt \pi
@@ -188,14 +188,11 @@ In this section we will show that the probability mass function of the standardi
     k & \in np \cdot \bigo{1} \nl
     n-k & \in nq \cdot \bigo{1}
   \end{align}
-  Because \todo{$1+a_n \in \fexp{a_n + \bigo{a_n^2}}$} we have
-
+  Because $\seq{1+a_n} \in \fexp{a_n + \bigo{a_n^2}}$ we can also conclude
   \begin{align}
     k &\in np \cdot \fexp{\x q h + \bigo{\pol{\x}h^2}} \nl
     n-k &\in nq \cdot \fexp{\x p h + \bigo{\pol{\x}h^2}}
   \end{align}
-
-  \todo{Rule $(1+\epsilon) \in \ean[\epsilon + \bigo{|\epsilon|^2}]{1}$ for all $\epsilon\in\R$}
 
   \noindent This we can use for the approximation
 
@@ -321,7 +318,7 @@ In this section we will show that the probability mass function of the standardi
     & \subseteq \frac 1{\sqrt{2\pi npq}} \cdot \fexp{-\frac{\x^2}{2}} \fexp{\frac{p-q}2 \left(\x  - \frac 13 \x^3\right) h + \bigo{\pol{\x}h^2}} \bnl
     &
     \begin{comment}
-      \text{\todo{}} \fexp{a_n} \subseteq \left(1+a_n+\bigo{a_n^2}\right)
+      \fexp{a_n} \in \left(1+a_n+\bigo{a_n^2}\right)
     \end{comment} \bnl
     & \subseteq \frac 1{\sqrt{2\pi npq}} \cdot \fexp{-\frac{\x^2}{2}} \left(1 +\frac{p-q}2 \left(\x - \frac 13 \x^3 \right) h + \bigo{\pol{\x}h^2}\right) \bnl
     &
@@ -347,7 +344,7 @@ In this section we will show that the probability mass function of the standardi
 \end{theorem}
 
 \begin{proof}
-  Let $\seq{c_n}$ be \todo{Was?}. We split the sum $\sum_{a \le \x \le b} \bb{\x}$ into two sums:
+  Let $\seq{c_n}$ be a sequence with $\seq{c_nh}\in\littleo{1}$. We split the sum $\sum_{a \le \x \le b} \bb{\x}$ into two sums:
 
   \begin{align}
     \sum_{a \le \x \le b} \bb{\x} = \sum_{\substack{a \le \x \le b \\ \abs{\x} \le c_n}} \bb{\x} + \sum_{\substack{a \le \x \le b \\ \abs{\x} > c_n}} \bb{\x}
@@ -370,8 +367,6 @@ In this section we will show that the probability mass function of the standardi
   \begin{align}
     \sum_{\substack{a \le \x \le b \\ \abs{\x} > c_n}} \bb{\x} \in \int_{\substack{a \le t \le b\\\abs{t} > c_n}} \fphi{t}\d{t} + \bigabs{2\fexp{-\frac{c_n^2}4}}
   \end{align}
-
-  \todo{Kontrollieren: Wirklich richtige Formel?!} \todo{$\bigabs{\cdot}$ definieren} \todo{$\bigabs{\cdot}$ überall einbauen}
 
   \noindent In the following we will only consider those $n\in\N$ with $c_n \ge \max\{|a|,|b|\}$. Because $\lim_{n\to\infty} c_n = \infty$ these are almost all $n\in\N$. We get
 
@@ -399,7 +394,7 @@ In this section we will show that the probability mass function of the standardi
     \f{\x} h \in \int_{\x-\frac h2}^{\x+\frac h2} \f{t} \d{t} + \bigabs{\frac 14 \snorm{f'} h^2}
   \end{align}
 
-  Now we can evaluate the Riemann sum $\sum_{a \le \x \le b} \f{\x} h$. We define $\tilde a = \xup{a} = \inf \{ \x : \x \ge a \}$ and $\tilde b = \xdown{b} = \sup \{ \x : \x \le b \}$. Note that the difference of $a$ and $\tilde a$ is less than or equal $h$ and the distance of $a$ and $\tilde a - \frac h2$ can be estimated by $\frac h2$. Similarly we have $\abs{\tilde b-b} \le h$ and $\abs{\br{\tilde b+\frac h2}-b} \le \frac h2$. \todo{better proof of estimates} We have \todo{$\x[0]$ must be smaller $a$ and $\x[n]$ must be greater $b$}
+  Now we can evaluate the Riemann sum $\sum_{a \le \x \le b} \f{\x} h$. We define $\tilde a = \xup{a} = \inf \{ \x : \x \ge a \}$ and $\tilde b = \xdown{b} = \sup \{ \x : \x \le b \}$. Note that the difference of $a$ and $\tilde a$ is less than or equal $h$ and the distance of $a$ and $\tilde a - \frac h2$ can be estimated by $\frac h2$. Similarly we have $\abs{\tilde b-b} \le h$ and $\abs{\br{\tilde b+\frac h2}-b} \le \frac h2$. We have
 
   \begin{align}
     \sum_{a \le \x \le b} \f{\x} h & \in \sum_{a\le \x\le b} \br{\int_{\x-\frac h2}^{\x+\frac h2} \f{t} \d{t} + \bigabs{\frac 14 \snorm{f'} h^2}} \bnl
@@ -408,8 +403,6 @@ In this section we will show that the probability mass function of the standardi
     & \subseteq \int_a^b \f{t} \d{t} + \bigabs{\snorm{f}h + \frac 14 \snorm{f'} (b-a) h + \frac 14 \snorm{f'} h^2} \bnl
     & \subseteq  \int_a^b \f{t} \d{t} + \bigo{h}
   \end{align}
-
-  \todo{Rules: $\bigabs{\bigabs{\epsilon}} = \bigabs{\epsilon}$, $c\cdot \bigabs{\epsilon} = \bigabs{|c|\epsilon}$, $\int_a^{b+\bigabs{\epsilon}} f(t) dt = \int_a^b f(t) dt + \bigabs{\snorm{f} \epsilon}$}
 
   Now we return two our sum of the three Riemann sums, which we will evaluate. We start with the third one
 
