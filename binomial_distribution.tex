@@ -8,9 +8,9 @@ Probability theory emerged from and was highly influenced by investigations of g
 
 From this economic and recreational importance arose a demand in calculating the odds of a game or the value of the expected winnings~\cite[p. 34]{hald1}. These studies started in 1654 when Fermat and Pascal solved in a correspondence the problem of division~\cite[pp. 42-64]{hald1} which marked the foundation of probability theory~\cite[p. 4]{hald1}\footnote{In the 16th century Cardano already discussed several problems about games of chance in his work \emph{Liber de ludo aleae} (Book on Games of Chance)~\todo{cite, name des Buchs}\cite[pp. 33-41]{hald1}. However his book was first published posthumously 1663 and thus did not influenced Fermat, Pascal or Huygens~\cite[p. vii]{bernoulli}.}. Christiaan Huygens, who (according to himself) heard from the letters by Pascal and Fermat but did not know their methods~\cite[p. 67]{hald1}, wrote a short treatise \emph{De Ratiociniis in Ludo Aleae} (On Reckoning in Games of Chance) which was published 1657~\cite[p. vii]{bernoulli}\footnote{Huygens wrote his treatise in Dutch. His mathematics teacher Frans van Schooten translated it in Latin and published it at the end of his book \emph{Exercitationes Mathematicae}~\cite[pp. 65-68]{hald1}.}. Among the different problems, Huygens solved in his work, was the following~\cite[p. 163]{bernoulli}:
 
-\begin{quotation}
-  To find with how many dice one may undertake to throw two sixes on the first try.
-\end{quotation}
+\begin{quote}
+  ``To find with how many dice one may undertake to throw two sixes on the first try.''
+\end{quote}
 
 \includewrapfig[0.5\textwidth]{tavern1658}{Men gambling in a tavern (image section of a Flemish painting from 1658)}{Painting \href{https://commons.wikimedia.org/wiki/File:Tavern_Scene-1658-David_Teniers_II.jpg}{``Tavern Scene''} by \href{https://en.wikipedia.org/wiki/David_Teniers_the_Younger}{David Teniers the Younger} from 1658. Cropped version of picture which was uploaded at Wikimedia Commons and which was taken by National Gallery of Art, Washington, D.C., USA. Picture is licensed under Public Domain.}
 
@@ -18,21 +18,23 @@ The problem is to calculate the number of dices one need to throw such that the 
 
 To solve this problem one first need to calculate the probability two throw exactly $m$ sixes with $n$ dices. If you are already familiar with the binomial distribution you see how this distribution can be used in the solution of the problem. This was later done by Jacob Bernoulli who reprinted Huygens' work in the first part of his book \emph{Ars Conjectandi} (The Art of Conjecturing) where he also added additional comments~\cite[p. 63]{bernoulli}. Before we will have a look at Bernoulli's solution with a derivation of the binomial distribution I want to show how Huygens dealt with the problem to have a comparison of both attempts. Huygens first noted~\cite[p. 163]{bernoulli}:
 
-\begin{quotation}
-  Now this is just the same as asking in how many throws a person may undertake to throw one die in order to get two sixes.
-\end{quotation}
+\begin{quote}
+  ``Now this is just the same as asking in how many throws a person may undertake to throw one die in order to get two sixes.''
+\end{quote}
 
 So it does not make any difference whether $n$ dices are thrown at once or whether there is one die which is thrown $n$ times. Jacob Bernoulli gave a good explanation for this circumstance in his reprint of Huygens' work~\cite[p. 163]{bernoulli}:
 
-\begin{quotation}
-  If, for example, one throw of ten dice is allowed, then it is certainly evident that it makes no difference whether those ten dice are thrown onto the gaming board altogether at one time or successively one after another. And if it is done successively, then it is equally clear that it makes no difference whether the ten dice thrown are ten different dice or one and the same die retrieved from the board and thrown ten times.
-\end{quotation}
+\begin{quote}
+  ``If, for example, one throw of ten dice is allowed, then it is certainly evident that it makes no difference whether those ten dice are thrown onto the gaming board altogether at one time or successively one after another. And if it is done successively, then it is equally clear that it makes no difference whether the ten dice thrown are ten different dice or one and the same die retrieved from the board and thrown ten times.''
+\end{quote}
 
 After noting that it does not matter how the dices are thrown, Huygens showed how to calculate the expected winning recursively. Let $a$ be the stake one wins for throwing at least two sixes in a certain number of throws. Huygens wrote~\cite[p. 163]{bernoulli}:
 
-\begin{quotation}
-  If someone undertook to do this in two throws, there would fall to him $a/36$, by what was shown before. If he is given three throws, then, if his first throw is a six, he will still have two throws, both of which must be sixes, and we said this is worth the same as $a/36$. But if his first throw is not a six, then he needs only to get one six on the remaining two throws. By proposition X this is worth of having $11a/36$. But there is certainly one case in which he throws a six th first time and five cases in which something else happens. So in the beginning there is one case for $11a/36$ and five cases for $a/36$. By proposition III\todo{typo untersuchen}, this is worth as much as $16a/127$ or $2a/27$. In repeatedly considering one more throw, we find that there is an advantage in undertaking to throw two sixes in ten throws with one die or in one throw with ten dice.
-\end{quotation}
+\begin{quote}
+  ``If someone undertook to do this in two throws, there would fall to him $a/36$, by what was shown before. If he is given three throws, then, if his first throw is a six, he will still have two throws, both of which must be sixes, and we said this is worth the same as $a/36$. But if his first throw is not a six, then he needs only to get one six on the remaining two throws. By proposition X this is worth of having $11a/36$. But there is certainly one case in which he throws a six th first time and five cases in which something else happens. So in the beginning there is one case for $11a/36$ and five cases for $a/36$. By proposition III, this is worth as much as $16a/127$ or $2a/27$. In repeatedly considering one more throw, we find that there is an advantage in undertaking to throw two sixes in ten throws with one die or in one throw with ten dice.''
+\end{quote}
+
+\todo{Typos untersuchen}
 
 The argumentation of Huygens is the following: First he looked at the case when two dices a thrown. In proposition XI he already had calculated the expected value for this case to be $\tfrac 1{36}a$. Then he investigated the case of three throws. There are five cases in which the first throw is not a six and the remaining expected value is $\tfrac 1{36}a$ in these cases because the two remaining throws must be a six respectively. In one case the first throw is a six. Huygens already had shown in proposition X that the expected value of throwing at least one six in two throws is $\tfrac{11}{36}a$. So in total there are five cases with a remaining expected value of $\tfrac 1{36}a$ and one case with the remaining value of $\tfrac{11}{36} a$. Thus the total expected value for three throws is
 
@@ -42,9 +44,9 @@ The argumentation of Huygens is the following: First he looked at the case when 
 
 \noindent Thereby Huygens used his proposition III which states~\cite[p. 135]{bernoulli}:
 
-\begin{quotation}
-  If the number of cases in which $a$ falls to me is $p$ and the number of cases in which $b$ falls to me is $q$, and if all the cases can happen equally easily, then my expectation will be worth $(pa+qb)/(p+q)$.\footnote{The final formula can be rewritten as $\tfrac{p}{p+q} a+\tfrac q{p+q} b$ which is the definition of the expected value for the Bernoulli trial, a distribution with two possible outcomes. \todo{verbessern}}
-\end{quotation}
+\begin{quote}
+  ``If the number of cases in which $a$ falls to me is $p$ and the number of cases in which $b$ falls to me is $q$, and if all the cases can happen equally easily, then my expectation will be worth $(pa+qb)/(p+q)$.\footnote{The final formula can be rewritten as $\tfrac{p}{p+q} a+\tfrac q{p+q} b$ which is the definition of the expected value for the Bernoulli trial, a distribution with two possible outcomes \cite{wiki:bernoulli_distribution}.}''
+\end{quote}
 
 Without writing it explicitly down in his book, Huygens now calculated recursively the odds of having two sixes in $n$ throws. His calculation might have looked like the following: Let $O_n$ be the expected winning of having at least one six in $n$ throws. In proposition X Huygens already had demonstrated by looking at several examples that $O_n = \tfrac 1{1+5} \left( 1 \cdot a + 5 \cdot O_{n-1} \right)=\tfrac 16 \left( a + 5 \cdot O_{n-1} \right)$. If the first throw is a six, then the player gets the whole stack $a$. In the remaining five cases the player still has the opportunity to throw a six in the remaining $n-1$ throws and thus have an expected winning of $O_{n-1}$ to win. The calculated values by Huygens are:
 
@@ -83,9 +85,9 @@ So starting with $10$ dices the odds for the player to win is higher than $\tfra
 
 As we have seen in the previous sectioni, Christiaan Huygens found a solution for his proposed problem. From this solution also an algorithm can be extracted with which similar problems can be solved too. But he only investigated a special case although a more general formulation of his method is possible. For example one may be interested in a game with dices which have more or less than six faces. Also the number of favorable faces or the number of necessary favorable throws may differ. To the previous and similar problem Jacob Bernoulli wrote~\cite[p. 157]{bernoulli}:
 
-\begin{quotation}
-  If the Author [Christiaan Huygens, S.K.]\todo{richtig?} had substituted letters for numbers, he could have expressed this and the preceding proposition as one problem and investigated its general solution with equal ease [...]\todo{richtig?}
-\end{quotation}
+\begin{quote}
+  ``If the Author [Christiaan Huygens] had substituted letters for numbers, he could have expressed this and the preceding proposition as one problem and investigated its general solution with equal ease [...]''
+\end{quote}
 
 We also have seen that Huygens' recursive method needs a lot of computational effort for finding the final solution. Hence the following question arises: Is there a more direct and general solution for Huygens' problem?
 
@@ -96,7 +98,7 @@ Jacob Bernoulli addressed this question with the binomial distribution as an ans
 In his comments to the above problem Bernoulli first derived the binomial distribution by incomplete induction with an argumentation similar to Huygens' solution. Afterwards he derived the binomial distribution with a combinatorial argumentation~\cite[pp. 165-167]{bernoulli}:
 
 \begin{quotation}
-  [Consider] $n$ dice A, B, C, D, etc., each constructed with $a$ faces, $b$ of which match the purpose of the player, and the other $c$ of which do not. And ask in how many cases it may happen that what was undertaken is accomplished on none of the dice, on just one of the dice, or on only 2, 3, or 4 of them, and so on; finally, in how many cases the person undertaking the game fails in his purpose and his opponent wins. But it was shown in the Note to the preceding Proposition that there are $C^n$ cases in which what was undertaken is accomplished on none of the dice. And it may be concluded in a similar way that there are $b$ cases, or $bb$, or $b^3$, etc., in which one of the dice, for instance A, or two, A and B, or three, A, B, and C, and so on, meet the purpose of the person undertaking the game. Similarly, there are $c^{n-1}$ cases, or $c^{n-2}$ cases, and so on, in which $n-1$ dice, or $n-2$ dice, or $n-3$ dice, and so on, fail to fulfill his hopes. Therefore, since each of these cases can be joined with any of the preceding, multiplication of the latter by the former produces $bc^{n-1}$ cases, or $bbc{n-2}$ cases, or $b^3c^{n-3}$ cases, and so on. And since the die or dice that favor the person undertaking the game might be either A or B or C, and so on, if there is one, or, if there are two, either A and B, or A and C, or B and C, and so on, or, if there are three, either A, B, and C, or A, B and D, and so on, these number of cases must again be multiplied by the number of units, pairs, triples, and so son that can be drawn from all $n$ dice. But by the theory of combinations developed in Part II, this number is $n$, or $n(n-1)/(1\cdot 2)$, or $n(n-1)(n-2)/(1\cdot 2\cdot 3)$, etc. So from this multiplication we obtain $nbc^{n-1}$, or
+  ``[Consider] $n$ dice A, B, C, D, etc., each constructed with $a$ faces, $b$ of which match the purpose of the player, and the other $c$ of which do not. And ask in how many cases it may happen that what was undertaken is accomplished on none of the dice, on just one of the dice, or on only 2, 3, or 4 of them, and so on; finally, in how many cases the person undertaking the game fails in his purpose and his opponent wins. But it was shown in the Note to the preceding Proposition that there are $C^n$ cases in which what was undertaken is accomplished on none of the dice. And it may be concluded in a similar way that there are $b$ cases, or $bb$, or $b^3$, etc., in which one of the dice, for instance A, or two, A and B, or three, A, B, and C, and so on, meet the purpose of the person undertaking the game. Similarly, there are $c^{n-1}$ cases, or $c^{n-2}$ cases, and so on, in which $n-1$ dice, or $n-2$ dice, or $n-3$ dice, and so on, fail to fulfill his hopes. Therefore, since each of these cases can be joined with any of the preceding, multiplication of the latter by the former produces $bc^{n-1}$ cases, or $bbc{n-2}$ cases, or $b^3c^{n-3}$ cases, and so on. And since the die or dice that favor the person undertaking the game might be either A or B or C, and so on, if there is one, or, if there are two, either A and B, or A and C, or B and C, and so on, or, if there are three, either A, B, and C, or A, B and D, and so on, these number of cases must again be multiplied by the number of units, pairs, triples, and so son that can be drawn from all $n$ dice. But by the theory of combinations developed in Part II, this number is $n$, or $n(n-1)/(1\cdot 2)$, or $n(n-1)(n-2)/(1\cdot 2\cdot 3)$, etc. So from this multiplication we obtain $nbc^{n-1}$, or
 
   \begin{align*}
       & \frac{n(n-1)}{1\cdot 2}bbc^{n-2}, \nl
@@ -111,7 +113,7 @@ In his comments to the above problem Bernoulli first derived the binomial distri
   +\frac{n(n-1)(n-2)\ldots(n-m+2)}{1\cdot 2\cdot 3\cdot 4\ldots(m-1)} b^{m-1}c^{n-m+1} : a^n,\text{\footnote{The notation $x_1+x_2+\ldots+x_n:y$ means $\tfrac 1y (x_1+x_2+\ldots+x_n)$.\todo{cite}}}
   \end{multline*}
 
-  as above.
+  as above.''
 \end{quotation}
 
 Bernoulli considered a die with $a$ faces which has $b$ faces being favorable for the player and $c=a-b$ faces being unfavorable. In order to win the player has to throw at least $m$ times one of the $b$ favorable faces in a total of $n$ throws. What is the probability of winning / loosing?
@@ -253,22 +255,21 @@ The first statistical analysis of this data were made by John Graunt~\cite[p. 83
 
 In the following many mathematicians were inspired by Graunt's book to describe the reported phenomenas with probabilistic models~\cite[p. 275]{hald1}. One of these mathematicians was John Arbuthnott. He used the yearly number of male and female births for 82 years in the period 1629-1710 and observed that for each year there are more boys than girls born. In this disproportion he saw a sign of the Divine Design and an evidence of the existence of God~\cite[p. 277]{hald1}\footnote{Arbuthnott's belief was common in the beginning of the 18th century among statisticians and theologians~\cite[p.~285]{hald1}. This may have motivated the investigations about the sex ratio during this time.}. He argued that the chance for a boy to die during growing up is slightly higher than for girls. So the bigger chance for a male birth compensates this higher mortality rate in childhood. Thus the number of males and females in adulthood is equal~\cite[p. 277]{hald1}. John Arbuthnott wrote~\cite[p. 275]{hald1}:
 
-\begin{quotation}
-    This Equality of [adult] Males and Females is not the Effect of Chance but Divine Providence.
-\end{quotation}
+\begin{quote}
+    ``This Equality of [adult] Males and Females is not the Effect of Chance but Divine Providence.''
+\end{quote}
 
 To prove his assumptions Arbuthnott made the first test of significance in history~\cite[p. 276]{hald1}. He identified the determination of the birth's sex with the throw of a two sided die~\cite[pp. 275-276]{hald1}. Let the chances of a male birth be $p$ and thus let $q$ be the chances of the female birth\footnote{Here we ignore the possibility of an intersex birth (see \cite{wiki:intersex} and \cite{wiki:transgender}).}. The yearly numbers of male and female births are then binomially distributed.
 
 As Anders Hald summarized in \cite[p. 278]{hald1}, Arbuthnott then estimated the probability that the number of male births exceeded the number of female births for 82 consecutive years under the binomial model for $p=\tfrac 12$. He argued that because of the symmetry of the binomial distribution for $p=\tfrac 12$ the probability for having more boys born than girls in one year is less or equal to $\tfrac 12$. Thus the probability that this happens for 82 consecutive years must be less than or equal $\left(\tfrac 12\right)^{82}$ which is less than $2.1\cdot 10^{-25}$. Because this probability is so low the assumption $p=\tfrac 12$ must be rejected for the alternative $p > \tfrac 12$~\cite[p. 278]{hald1}.
 
-\includewrapfig{Gravesande}{Willem Jacob 's Gravesande}{File \href{https://en.wikipedia.org/wiki/File:Gravesande.jpg}{``Gravesande.jpg''} from Wikimedia Commons. Uploaded by user Vysotsky and licensed under Public Domain}
+\includefig{Gravesande}{Willem Jacob 's Gravesande}{File \href{https://en.wikipedia.org/wiki/File:Gravesande.jpg}{``Gravesande.jpg''} from Wikimedia Commons. Uploaded by user Vysotsky and licensed under Public Domain}
 
 The Dutch mathematician Willem Jacob 's Gravesande further improved the test made by Arbuthnott in his 1712 published paper \emph{Dèmonstration Mathèmatique du soin que Dieu prend de diriger ce qui se passe dans ce monde, tirèe du nombre des Garcons et des Filles qui naissent journellement} (A mathematical demonstration of the care, which God takes in governing that which happens in this world, drawn from the daily numbers of male and female birth)~\cite[p. 279]{hald1}. He first observed that the relative frequencies of male birth varies between $0.5027$ and $0.5362$ for the whole period of 82 years and that the average number of total births per year is $n=11,429$~\cite[p. 279]{hald1}. 's Gravesande then postulated a binomial model with $n=11,429$ and $p=\tfrac 12$ and calculated the probability that the number of male births lies between $0.5027n=5745$ and $0.5362n=6128$~\cite[p. 280]{hald1}. Hence he calculated
 
-\begin{multline}
-    \P{5745 < \text{number male birth} < 6128|p=\tfrac 12} \nl
-    = \sum_{k=5745}^{6128} \binom{11429} k 2^{-11429}
-\end{multline}
+\begin{align}
+    \P{5745 < \text{number male birth} < 6128|p=\tfrac 12} = \sum_{k=5745}^{6128} \binom{11429} k 2^{-11429}
+\end{align}
 
 After adding a little value to his final result because he omitted all terms smaller than $0.5\cdot 10^{-5}$ he got the probability $0.292$~\cite[p. 280]{hald1}. Then he computed the 82th power of his result to get the probability that this event occurs in 82 years consecutively~\cite[p. 280]{hald1}. His final result was $1.3\cdot10^{-44}$ which is only a small fraction of the probability Arbuthnott computed~\cite[p. 280]{hald1}.
 
