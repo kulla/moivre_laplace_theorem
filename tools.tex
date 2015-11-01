@@ -2,83 +2,18 @@
 
 In this chapter I will introduce and explain the tools necessary for the upcoming proofs. To keep this chapter short I will prove all following theorems in the appendix.
 
-\section{Interval arithmetic}
+\section{The big O notation}
 
-\subsection{Additive interval definition}
+To describe the asymptotic behavior of an error, the big O notation can be used. It declares the convergence speed with which the error converges at least to zero. It means~\cite[p.~444]{graham}\cite[p.~100]{aigner}
 
-In this thesis we will need to derive besides to an approximation for the binomial distribution also an estimate for its error. Therefore we will use interval arithmetic\footnote{A good introduction into the field of interval analysis gives Ramon E. Moore in his book ``Interval analysis''\cite{moore}. The Wikipedia article ``Interval arithmetic''\cite{wikipedia:interval_arithmetic} also gives a good overview.} because it allows an error propagation calculation alongside the derivation of the approximation.
-
-The main idea of interval arithmetic is to replace numbers in a calculation with intervals. These intervals represent the range where one can be sure to find the considered number. Whereas interval arithmetic often deals with intervals of the form $[a,b]$ defined by their lower and upper bounds\footnote{For example \cite[p.~5~ff.]{moore}, \cite[p.~9~ff.]{moore:methods}, \cite[p. 84 ff.]{kulisch} and \cite{wikipedia:interval_arithmetic}.} we will use the notation $\an{a}$ which is defined as\footnote{This notation is similar to the form (2.26) in \cite[p. 14]{moore:methods}. I also defined such a notation in my bachelor thesis \cite[p. 19]{kulla}.}
-
-\begin{definition}
-  The interval $\an{a}$ for $\epsilon \in \Rplus$ and $a\in \R$ is defined as $[a-\epsilon,a+\epsilon]$.
+\begin{definition}[Big O notation]
+  Let $\seq{a_n}$ be a sequence with positive members. $\bigo{a_n}$ is the set of all sequences defined via
+  \begin{align} \label{bigo_def1}
+    \seq{\epsilon_n} \in \bigo{a_n} :\iff \exists C > 0\, \exists N\in\N\,\forall n\ge N: \abs{\epsilon_n} \le C \cdot \abs{a_n}
+  \end{align}
 \end{definition}
-
-So $\an{a}$ represents a number $x$ which is approximated by $a$ with an absolute error $\abs{x-a}$ less then or equal $\epsilon$~\cite[p.~5]{moore:methods}. One purpose of interval arithmetic is to offer arithmetic rules to calculate with intervals such as~\cite[pp.~19-20]{kulla}
-
-\begin{align}
-  \an{a}+\an[\delta]{b} = \an[\epsilon+\delta]{a+b}
-\end{align}
-
-\subsection{Calculations with sets} \label{sec:calculations_sets}
-
-In interval arithmetic one calculates with sets instead of real numbers. So we have to define, what the result of an operation with sets shall be. Here we need to find a definition so that the result is the best approximation for the result of the considered number\footnote{cf. \cite[pp. 17-18]{kulla}}.
-
-Let $f:D\subseteq\R^n\to\R$ be an $n$-ary operation of real numbers and let $A_1,A_2,\ldots,A_n$ be $n$ subsets of $\R$ such that $A_1\times A_2\times \dots\times A_n\subseteq D$. The result  $f\left(A_1,\ldots,A_n\right)$ of the operation with all $n$ sets is defined as the image of $f$ \footnote{The extended version of $f$ on sets calls Ramon E. Moore in his book about interval analysis the ``unit extension''~\cite[p. 18]{moore}}
-
-\begin{align}
-  f\left(A_1,\ldots A_n\right)=\left\{f(x_1,\ldots,x_n):x_1\in A_1,x_2\in A_2,\ldots,x_n\in A_n\right\}
-\end{align}
-
-Now consider a function $\tilde f:D\subseteq\R^n\to \mathcal P(\R)$ which maps $n$ numbers to a set of real numbers (for example $[a,b]$ can be a binary operation which maps two numbers $a$ and $b$ to the interval $[a,b]$). The result of $\tilde f\left(A_1,A_2,\ldots,A_n\right)$ for $A_1\times\dots\times A_n\subseteq D$ shall be
-
-\begin{align}
-  \tilde f\left(A_1,A_2,\ldots,A_n\right) = \bigcup_{x_1\in A_1, \ldots, x_n \in A_n} f(x_1,\ldots,x_n)
-\end{align}
-
-\noindent Thus $\tilde f(A_1,\ldots,A_n)$ is the union of all possible images of $\tilde f$.
-
-\subsection{Arithmetic rules}
-
-In the above section we have seen how the result of an operation involving intervals is defined. Now we need arithmetic rules which help us to calculate or to approximate this result. These arithmetic rules are (cf.~\cite[pp.~19-24.]{kulla})
-
-\input{additive_rules}
-
-\subsection{Multiplicative interval definition}
-
-The multiplicative rule for intervals defined as $\an{a}$ is not simple~\cite[p.~22]{kulla}:
-
-\begin{align}
-  \an[\epsilon]{a} \cdot \an[\delta]{b} \subseteq \an[\abs{a}\delta+\abs{b}\epsilon+\epsilon\delta]{a\cdot b}
-\end{align}
-
-Because we will often have to deal with products I introduce a slightly different definition of an interval\footnote{It is likely that this kind of interval definition is already used in mathematical literature. Unfortunately I could not find a reference for it, cf.~\cite{tampis:ean}.}
-
-\begin{definition}
-  The interval $\ean{a}$ for $\epsilon,a\in\Rplus$ is defined as $\left[a\cdot e^{-\epsilon},a\cdot e^\epsilon\right]$.
-\end{definition}
-
-This interval definition has the advantage that its rule for products is easy (we will prove it in the appendix):
-
-\begin{align}
-  \ean[\epsilon]{a}\cdot \ean[\delta]{b} = \ean[\epsilon+\delta]{a+b}
-\end{align}
-
-\noindent In the following chapters we will use the following arithmetic rules:
-
-\input{multiplicative_interval_rules}
-
-\section{The big Psi notation}
-
-\subsection{Definition of the big Psi notation}
-To describe the asymptotic behavior of an error, the big O notation can be used. It declares the convergence speed with which the error converges at least to zero. Given an error $\epsilon_n$ for the $n$-th step of an approximation the big O notation $\epsilon_n \in \bigo{a_n}$ means~\cite[p.~444]{graham}\cite[p.~100]{aigner}
-
-\begin{align} \label{bigo_def1}
-  \seq{\epsilon_n} \in \bigo{a_n} :\iff \exists C > 0\, \exists N\in\N\,\forall n\ge N: \abs{\epsilon_n} \le C \cdot \abs{a_n}
-\end{align}
 
 \noindent This definition is equivalent to~\cite[p.~383]{hachenberger}\cite{wiki:bigo}
-
 \begin{align} \label{bigo_def_limsup}
   \seq{\epsilon_n} \in \bigo{a_n} :\iff \exists C_\infty > 0: \limsup_{n\to\infty} \abs{\frac{\epsilon_n}{a_n}} \le C_\infty
 \end{align}
@@ -88,140 +23,78 @@ So $\epsilon_n \in \bigo{\frac 1n}$ means that $\epsilon_n$ approaches zero at l
 \begin{align}
   \bigo{\frac 1n} + \bigo{\frac 1{n^2}} \subseteq \bigo{\frac 1n}
 \end{align}
+These arithmetic rules (which we will discuss in the end of this section) simplify error estimations.
 
-These arithmetic rules simplify error estimations. Unfortunately the big O notation does only provide an estimate of the convergence speed but no estimation of the error's value since the constants $C$ and $C_\infty$ in \eqref{bigo_def1} and \eqref{bigo_def_limsup} are not known\footnote{cf.~\cite[p.~444]{graham},~\cite{hurkyl_bigo} and \cite{templatetypedef_bigo}}.
+\section{The big Delta and the big Psi notation}
+Unfortunately the big O notation does only provide an estimate of the convergence speed but no estimation of the error's value since the constants $C$ and $C_\infty$ in \eqref{bigo_def1} and \eqref{bigo_def_limsup} are not known\footnote{cf.~\cite[p.~444]{graham},~\cite{hurkyl_bigo} and \cite{templatetypedef_bigo}}.
 
-Therefore I want to introduce the big Psi notation with which besides to the convergence speed also an estimate for the asymptotic error can be stated. The big Psi notation is defined as\footnote{Although it is likely that this notation is already used in mathematical literature I could not find a reference for it, cf.~\cite{tampis_bigpsi}}:
+Therefore I want to introduce the big Delta and the big Psi notation with which besides to the convergence speed also an estimate for the absolute error and the asymptotic error respectively can be stated. Both notations are defined as\footnote{Although it is likely that this notation is already used in mathematical literature I could not find a reference for it, cf.~\cite{tampis_bigpsi} and~\cite{tampis_bigabs}}:
+
+\begin{definition}[Big Delta notation]
+  Let $\seq{a_n}$ be a sequence. $\bigabs{a_n}$ is the set of all sequences $\seq{\epsilon_n}$ with $\abs{\epsilon_n} \le \abs{a_n}$ for all $n\in\N$:
+  \begin{align}
+    \seq{\epsilon_n} \in \bigabs{a_n} \iff \forall n\in\N: \abs{\epsilon_n} \le \abs{a_n}
+  \end{align}
+\end{definition}
 
 \begin{definition}[Big Psi notation]
   Let $\seq{a_n}$ be a sequence with $a_n > 0$ for all $n\in\N$. $\bigpsi{a_n}$ is the set of all sequences $\seq{\epsilon_n}$ fulfilling $\limsup_{n\to\infty} \abs{\frac{\epsilon_n}{a_n}} \le 1$. Thus
-
   \begin{align}
     \seq{\epsilon_n} \in \bigpsi{a_n} :\iff \limsup_{n\to\infty} \abs{\frac{\epsilon_n}{a_n}} \le 1
   \end{align}
-
-  \todo{Notation with $\epsilon_n$ instead of $\seq{\epsilon_n}$?! Explanation for $\epsilon_n \in \bigo{a_n}$ necessary?}
 \end{definition}
 
-Note that the definition of the big Psi notation is the same as the limes superior definition \eqref{bigo_def_limsup} of the big O notation whereby $C_\infty$ has the concrete value $1$. Thus we directly see
-
+With the big Delta notation the absolute error of an approximation can be estimated whereas the big Psi notation provides an estimate of the asymptotic error. Note that the definition of the big Psi notation is the same as the limes superior definition \eqref{bigo_def_limsup} of the big O notation whereby $C_\infty$ has the concrete value $1$ and the big Delta notation is the same as \eqref{bigo_def1} with $C=1$. Thus we directly see that both notations are specializations of the big O notation:
 \begin{align}
-  \seq{\epsilon_n} \in \bigpsi{a_n} \implies \seq{\epsilon_n} \in \bigo{a_n}
+  \seq{\epsilon_n} \in \bigabs{a_n} & \implies \seq{\epsilon_n} \in \bigo{a_n} \nl
+  \seq{\epsilon_n} \in \bigpsi{a_n} & \implies \seq{\epsilon_n} \in \bigo{a_n}
 \end{align}
 
-\noindent Due to the properties of the limes superior we may also define the big Psi notation as\footnote{This definition has the advantage that it also allows $a_n=0$ for any $n\in\N$.}
-
-\todo{Is here a proof necessary?}
-
-\begin{align}
-  \seq{\epsilon_n} \in \bigpsi{a_n} \iff \forall \epsilon > 0\, \exists N \in \N\, \forall n\ge N: \abs{\epsilon_n} \le (1+\epsilon)\abs{a_n}
-\end{align}
-
-So $\seq{\epsilon_n}\in\bigpsi{a_n}$ iff for each $\epsilon > 0$ almost all $\abs{\epsilon_n}$ are less then or equal $(1+\epsilon)\abs{a_n}$. Because an estimation is only stated for almost all $n\in\N$ the big Psi notation provides an upper bound for the asymptotic error. Note that $\epsilon_n\in\bigpsi{a_n}$ does not imply $\abs{\epsilon_n}\le\abs{a_n}$ for any $n\in\N$. Take for example $\epsilon_n = \frac 1n + \frac 1{n^2}$. We have $\epsilon_n \in \bigpsi{\frac 1n}$ although $\epsilon_n > \frac 1n$ for all $n\in\N$\footnote{Proof for $\seq{\epsilon_n} \in \bigpsi{\frac 1n}$: $\limsup_{n\to\infty} \frac{\frac 1n + \frac 1{n^2}}{\frac 1n} = \limsup_{n\to\infty} \left(1+\frac 1n\right) = 1 \le 1$}.
-
-I will use variables like $h=\frac{1}{\sqrt{npq}}$ where I drop the dependence on $n$ in the name of the variable. When I state something like $\bigpsi{h}$ I will always mean $\bigpsi{h_n}$, e.g.
-
-\begin{align}
-  \seq{\epsilon_n} \in \bigpsi{h} \iff \limsup_{n\to\infty} \abs{\frac{\epsilon_n}{h}} = \limsup_{n\to\infty} \abs{\epsilon_n \sqrt{npq}} \le 1
-\end{align}
-
-\subsection{The little-o notation}
+\section{The little-o notation}
 
 We will also use the little-o notation which is defined as~\cite[pp.~99,~103]{aigner}\cite[p.~385]{hachenberger}\cite{wiki:bigo}
 
 \begin{definition}
   Let $\seq{a_n}$ be a sequence with $a_n > 0$ for all $n\in\N$\footnote{To allow $a_n=0$ it is also possible to define the little-notation via~\cite[pp.~448]{graham}\cite{wiki:bigo}
-
   \begin{align}
     \seq{\epsilon_n}\in\littleo{a_n} :\iff \forall \epsilon > 0\, \exists N\in\N\, \forall n \ge N: \abs{\epsilon_n} \le \epsilon \abs{a_n}
   \end{align}
-
-  \noindent In this work we will only deal with sequences $\seq{a_n}$ with $a_n > 0$ for all $n\in\N$.
+   In this work we will only deal with sequences $\seq{a_n}$ with $a_n > 0$ for all $n\in\N$.
 }. $\littleo{a_n}$ is the set of all sequences $\seq{\epsilon_n}$ with $\lim_{n\to\infty} \abs{\frac{\epsilon_n}{a_n}} = 0$. Thus
-
   \begin{align}
     \seq{\epsilon_n}\in\littleo{a_n} \iff \lim_{n\to\infty} \abs{\frac{\epsilon_n}{a_n}} = 0
   \end{align}
 \end{definition}
 
-\subsection{Arithmetic rules}
+\section{Calculations with sets} \label{sec:calculations_sets}
 
-The big Psi notation shares with the big O notation a set of easy arithmetic rules. For example we have\footnote{I will prove this statement in theorem \ref{thm:bigpsi:rules}.}
+Because we will use notations such as $\bigo{\cdot}$ or $\bigabs{\cdot}$, we will have to deal with expressions containing sets of sequences instead of members of a concrete sequence. Thus we have to define rules what how to operate with sets. Here we need to find a definition so that the result is the best approximation for the result of the considered number\footnote{cf. \cite[pp. 17-18]{kulla}}.
 
-\begin{align} \label{bigpsi_rule_example}
-  \bigpsi{\frac an}+\bigpsi{\frac b{n^2}} \subseteq \bigpsi{\frac an}
-\end{align}
 
-That's the reason why we will use the big Psi notation in this thesis. If we would estimate the error $\epsilon_n$ for each $n\in\N$ and not its limit behavior, we could not neglect the term $\bigpsi{\frac b{n^2}}$ in the above equation \eqref{bigpsi_rule_example}. Thus the error term would become more complicated. We also cannot apply simplifications which are only true for almost all $n\in\N$ (and false for finitely many $n\in\N$). This is the reason why I will only consider the asymptotic error in this thesis.
-
-The following theorem contains all arithmetic rules for the big Psi notation which we will use in this thesis. You will find a proof in the appendix.
-
-\input{bigpsi_rules}
-
-\section{Interval arithmetic}
-
-\subsection{Additive interval definition}
-
-In this thesis we will need to derive besides to an approximation for the binomial distribution also an estimate for the error of this approximation. Therefore we will use the interval arithmetic \todo{footnote with references to books about interval arithmetic} because it allows an error propagation calculation alongside the derivation of the approximation.
-
-The main idea of interval arithmetic is to replace numbers in a calculation with intervals. These intervals represent the range where one can be sure to find the considered number. Whereas interval arithmetic normally deals with intervals of the form $[a,b]$ defined by their lower and upper bounds \todo{footnote references} we will use the notation $\an{a}$ which is defined as \todo{ref auf Bachelorarbeit}
-
-\begin{definition}
-  The interval $\an{a}$ for $\epsilon \in \Rplus$ and $a\in \R$ is defined as $[a-\epsilon,a+\epsilon]$.
-\end{definition}
-
-So $\an{a}$ represents a number $x$ which is approximated by $a$ with an absolute error $\abs{x-a}$ less then or equal $\epsilon$.
-
-One purpose of interval arithmetic is to offer arithmetic rules to calculate with intervals such as \todo{cite bachelor thesis}
-
+\begin{enumerate}
+  \item Let $f:D\subseteq\R^n\to\R$ be an $n$-ary operation of real numbers and let $A_1,A_2,\ldots,A_n$ be $n$ subsets of $\R$ such that $A_1\times A_2\times \dots\times A_n\subseteq D$. The result  $f\left(A_1,\ldots,A_n\right)$ of the operation with all $n$ sets is defined as the image of $f$ \footnote{The extended version of $f$ on sets calls Ramon E. Moore in his book about interval analysis the ``unit extension''~\cite[p. 18]{moore}}
 \begin{align}
-  \an{a}+\an[\delta]{b} = \an[\epsilon+\delta]{a+b}
+  f\left(A_1,\ldots A_n\right)=\left\{f(x_1,\ldots,x_n):x_1\in A_1,x_2\in A_2,\ldots,x_n\in A_n\right\}
 \end{align}
-
-These rules are defined in a way, that the resulting interval is a superset of all possible outcomes of the operation. Let $f:D\subseteq\R^n\to\R$ be an $n$-ary operation of real numbers and let $\an[\epsilon_1]{a_1},\ldots,\an[\epsilon_2]{a_2}$ be $n$ intervals, then $f\left(\an[\epsilon_1]{a_1},\ldots,\an[\epsilon_n]{a_n}\right)$ is defined in a way that \todo{Fußnote -> vergleiche mit Satz aus Lehrbuch}
-
-\begin{align}
-  \bigpsi{a_n} + \littleo{b_n} = \left\{ \seq{\epsilon_n+\delta_n} : \epsilon_n \in \bigpsi{a_n} \land \seq{\delta_n} \in \littleo{b_n} \right\}
-\end{align}
-
-The big Psi notation shares with the big O notation a set of easy arithmetic rules. For example we have\footnote{With the rules proved in theorem \ref{thm:bigpsi:rules} this statement can be shown in the following way:
-
+  For example
   \begin{align}
-    \bigpsi{\frac an}+\bigpsi{\frac{b}{n^2}} & \subseteq \bigpsi{\frac an} + \bigo{\frac b{n^2}} \nl
-    & \begin{comment}
-      \frac b{n^2} \in \littleo{\frac an}
-    \end{comment} \nl
-    & \subseteq \bigpsi{\frac an} + \littleo{\frac an} \nl
-    & \subseteq \bigpsi{\frac an}
+    \bigo{a_n} + \bigabs{b_n} = \{ \seq{\epsilon_n+\delta_n} : \seq{\epsilon_n}\in \bigo{a_n} \land \seq{\delta_n}\in\bigabs{b_n}\}
   \end{align}
-}
 
-\begin{align} \label{bigpsi_rule_example}
-  \bigpsi{\frac an}+\bigpsi{\frac b{n^2}} \subseteq \bigpsi{\frac an}
-\end{align}
-
-That's the reason why we will use the big Psi notation in this thesis. If we would estimate the error $\epsilon_n$ for each $n\in\N$ and not its limit behavior, we could not neglect the term $\bigpsi{\frac b{n^2}}$ in the above equation \eqref{bigpsi_rule_example}. Thus the error term would become more complicated. We also cannot apply simplifications which are only true for almost all $n\in\N$ (and false for finitely many $n\in\N$). This is the reason why I will only consider the asymptotic error in this thesis.
-
-The following theorem contains all arithmetic rules for the big Psi notation which we will use in this thesis. You will find a proof in the appendix.
-
-\input{bigpsi_rules}
-
-\subsection{Relations with the big Psi notation}
-
-It is also possible to define order relations such as $a_n \le \bigpsi{b_n}$ for the big Psi notation. This relation is defined as
-
+  \item Now consider a function $\tilde f:D\subseteq\R^n\to \mathcal P(\R)$ which maps $n$ numbers to a set of real numbers (for example $[a,b]$ can be a binary operation which maps two numbers $a$ and $b$ to the interval $[a,b]$). The result of $\tilde f\left(A_1,A_2,\ldots,A_n\right)$ for $A_1\times\dots\times A_n\subseteq D$ shall be
 \begin{align}
-  a_n \le \bigpsi{b_n} \iff \exists \seq{\epsilon_n} \in \bigpsi{b_n}\,\forall n\in\N: a_n \le \epsilon_n
+  \tilde f\left(A_1,A_2,\ldots,A_n\right) = \bigcup_{x_1\in A_1, \ldots, x_n \in A_n} f(x_1,\ldots,x_n)
 \end{align}
+Thus $\tilde f(A_1,\ldots,A_n)$ is the union of all possible images of $\tilde f$. For example
+\begin{align}
+  \littleo{\bigo{a_n}} = \bigcup_{\seq{\epsilon_n}\in\bigo{a_n}} \littleo{\epsilon_n}
+\end{align}
+\end{enumerate}
 
-So $a_n = \bigpsi{b_n}$ is the same as $\seq{a_n} \in \bigpsi{b_n}$ because $a_n = \bigpsi{b_n}$ means that there is a $\seq{\epsilon_n}\in\bigpsi{b_n}$ with $a_n=\epsilon_n$ for all $n$. This motivates the notation $a_n = \bigo{b_n}$ which is often used. \todo{citation needed}
+\todo{Notation with $\epsilon_n$ instead of $\seq{\epsilon_n}$?! Explanation for $\epsilon_n \in \bigo{a_n}$ necessary?}
+\section{Arithmetic rules}
 
-Be aware that $=$ is no normal equality relation in a notation like $a_n = \bigpsi{b_n}$ because it is not transitive. For example $\frac 1n = \bigpsi{1n}$ and $\frac 1{n^2} = \bigpsi{\frac 1n}$ but we cannot follow $\frac 1n=\frac 1{n^2}$ from this. \todo{citation needed}
-
-\todo{Problem: hier brauchen wir immer ein existenz-relation}
-
-\subsection{Interval arithmetic and the big Psi notation}
-
-\section{Finite difference calculus}
-
-\todo{wirklich notwendig?!}
+I will use variables like $h=\frac{1}{\sqrt{npq}}$ where I drop the dependence on $n$ in the name of the variable. When I state something like $\littleo{h}$ I will always mean $\littleo{h_n}$, e.g.
+\begin{align}
+  \seq{\epsilon_n} \in \littleo{h} \iff \lim_{n\to\infty} \abs{\frac{\epsilon_n}{h}} = \lim_{n\to\infty} \abs{\epsilon_n \sqrt{npq}} = 0
+\end{align}

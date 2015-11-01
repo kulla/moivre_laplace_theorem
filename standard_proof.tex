@@ -85,17 +85,13 @@ You can find a proof of the Euler-Maclaurin formula in~\cite[pp.~225-226]{koenig
   \begin{align}
     b_n = \frac{n!}{n^n e^{-n} \sqrt{n}}
   \end{align}
-
-  \noindent This sequence converges because
-
+  This sequence converges because
   \begin{align}
     \lim_{n\to\infty} \ln(b_n) & = \lim_{n\to\infty} \Big( \ln(n!) -n \ln(n) + n - \frac 12\ln(n) \Big) \nl
     & = \lim_{n\to\infty} \left( \frac{11}{12} + \frac{1}{12n} + \frac 13\int_1^n \frac{\bp[3]{x}}{x^3} \d{x}\right) \nl
     & = \frac{11}{12} + \frac 13\int_1^{\infty} \frac{\bp[3]{x}}{x^3} \d{x}
   \end{align}
-
-  \noindent Let $b=\lim_{n\to\infty} b_n$. To calculate this limit we investigate $\tfrac{b_n^2}{b_{2n}}$:
-
+  Let $b=\lim_{n\to\infty} b_n$. To calculate this limit we investigate $\tfrac{b_n^2}{b_{2n}}$:
   \begin{align}
     \lim_{n\to\infty} \frac{b_n^2}{b_{2n}} &= \lim_{n\to\infty} \frac{(n!)^2}{n^{2n}e^{-2n} n} \cdot \frac{(2n)^{2n} e^{-2n} \sqrt{2n}}{(2n)!} \nl
     &= \lim_{n\to\infty} \sqrt{2} \frac{2^{2n}}{\sqrt{n}\binom{2n}{n}} \nl
@@ -166,27 +162,32 @@ You can find a proof of the Euler-Maclaurin formula in~\cite[pp.~225-226]{koenig
 In this section we will show that the probability mass function of the standardized binomial distribution can be approximated by the density function of the normal distribution. This will be the basis for the global version of de Moivre-Laplace theorem. The following proof is based on the ideas given by Iosif Pinelis\cite{iosif}.
 
 \begin{theorem}[Local version of de Moivre-Laplace theorem]
-  \todo{Formulierung}
+  Let $\pol{\x}$ be the set of all polynomials in $\x$. Let $\seq{c_n}$ be a sequence with $\seq{c_nh} \in \littleo{1}$. For all $\abs{x_k} \le c_n$ we have
+  \begin{align}
+    \bb{x_k} &= \binom nk p^k q^{n-k} \nl
+    &\in \fphi{\x} h +\frac{q-p}6 \left(\x^3-\x\right) \fphi{\x} h^2 + \bigo{\fphi{\x}\pol{\x}h^3}
+  \end{align}
 \end{theorem}
 
 \begin{proof}
-  Let $\pol{\x}$ the set of all polynomials in $\x$. We have
-
+  We have
   \begin{align}
     k &= np + \x \sqrt{npq} \nl
     &= np \left( 1 + \x \frac{\sqrt{q}}{\sqrt{np}}\right) \nl
     &= np \left( 1 + \x q h\right)
   \end{align}
-
-  \noindent For $n-k$ we get
-
+  For $n-k$ we get
   \begin{align}
     n-k &= n-np-\x\sqrt{npq} \nl
     &= nq -\x \sqrt{npq} \nl
     &= nq \left( 1 + \x \frac{\sqrt p}{\sqrt{nq}}\right) \nl
     &= nq \left( 1 - \x p h\right)
   \end{align}
-
+  Because $\x h \in \littleo{1}$ we have
+  \begin{align}
+    k & \in np \cdot \bigo{1} \nl
+    n-k & \in nq \cdot \bigo{1}
+  \end{align}
   Because \todo{$1+a_n \in \fexp{a_n + \bigo{a_n^2}}$} we have
 
   \begin{align}
@@ -195,14 +196,6 @@ In this section we will show that the probability mass function of the standardi
   \end{align}
 
   \todo{Rule $(1+\epsilon) \in \ean[\epsilon + \bigo{|\epsilon|^2}]{1}$ for all $\epsilon\in\R$}
-  \todo{Is $\bigo{\cdot}$ only for positive sequences defined? Is it necessary?}
-
-  Because \todo{Why? Which premise must be fulfilled?} we have
-
-  \begin{align}
-    k & \in np \cdot \fe{\littleo{1}} \nl
-    n-k & \in nq \cdot \fe{\littleo{1}}
-  \end{align}
 
   \noindent This we can use for the approximation
 
@@ -215,8 +208,8 @@ In this section we will show that the probability mass function of the standardi
     &
     \begin{comment}
       \begin{array}{rll}
-        \frac 1k & \in \frac1{np} \fe{\littleo{1}} & \subseteq \bigo{\frac 1n} \bnl
-        \frac 1{n-k} & \in \frac1{nq} \fe{\littleo{1}} & \subseteq \bigo{\frac 1n} \bnl
+        \frac 1k & \in \frac1{np} \cdot \bigo{1} & \subseteq \bigo{\frac 1n} \bnl
+        \frac 1{n-k} & \in \frac1{nq} \cdot \bigo{1} & \subseteq \bigo{\frac 1n} \bnl
         \frac 1n & \in \bigo{h^2}
       \end{array}
     \end{comment} \bnl
@@ -275,11 +268,11 @@ In this section we will show that the probability mass function of the standardi
   with $R(s)=-\frac{2n}{4!} \left(\frac{1}{\tilde s^3}+\frac{1}{(1-\tilde s)^3}\right) (s-p)^4$ for a $\tilde s$ in the interval bounded by $s$ and $p$. We want to evaluate this series for $s=\frac kn$. Here we have $s-p=\x pqh$ and thus
 
   \begin{align}
-    -\frac{n}{2pq} (s-p)^2 &= -\frac{n}{2pq} \x^2 p^2 q^2 h^2 = -\frac{\x^2}{2} \nl
-    -\frac{n(p-q)}{6p^2q^2} (s-p)^3 &= -\frac{n(p-q)}{6p^2q^2} \x^3p^3q^3h^3 = -\frac{p-q}{6} \x^3 h
+    \begin{array}{rll}
+      -\frac{n}{2pq} (s-p)^2 &= -\frac{n}{2pq} \x^2 p^2 q^2 h^2 & = -\frac{\x^2}{2} \nl
+      -\frac{n(p-q)}{6p^2q^2} (s-p)^3 &= -\frac{n(p-q)}{6p^2q^2} \x^3p^3q^3h^3 & = -\frac{p-q}{6} \x^3 h
+    \end{array}
   \end{align}
-
-  \todo{Better formulation -> übersichtlicher}
 
   Because $\tilde s$ is in the interval bounded by $p$ and $s=\frac kn \in p\fe{\littleo{1}}$ we deduce $\tilde s \in p\fe{\littleo{1}}\subseteq \bigo{1}$, too. Similarly we get $1-\tilde s\in q\fe{\littleo{1}} \subseteq \bigo{1}$ because $1-s = \frac{n-k}{n} \in q\fe{\littleo{1}}$. From this follows:
 
