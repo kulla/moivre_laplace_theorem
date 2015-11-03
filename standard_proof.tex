@@ -353,7 +353,7 @@ In this section we will show that the probability mass function of the standardi
   In the following we will only consider those $n\in\N$ with $\x[0] \le a \le b \le \x[n]$. Because $\lim_{n\to\infty} \x[0] = -\infty$ and $\lim_{n\to\infty} \x[n] = \infty$ these are almost all $n\in\N$. Because $c_n=\max\{\abs{a},\abs{b}\}$ is a sequence with $c_n\in\littleo{\frac 1h}$ and for all $\x$ with $a \le \x \le b$ we have $\abs{\x} \le c_n$ we can apply the local version of de Moivre-Laplace and we get
 
   \begin{align}
-    \sum_{a \le \x \le b} \bb{\x} \in \sum_{a \le \x \le b} \left(\fphi{\x} h +\frac{q-p}6 \left(\x^3 - \x\right) \fphi{\x} h^2 + \bigo{\fphi{\x}\pol{\x}h^3}\right)
+    \sum_{a \le \x \le b} \bb{\x} \in \sum_{a \le \x \le b} \br{\fphi{\x} h +\frac{q-p}6 \left(\x^3 - \x\right) \fphi{\x} h^2 + \bigo{\fphi{\x}\pol{\x}h^3}}
   \end{align}
 
   We have three Riemann sums. For any $\f{x}=\fphi{x}p(x)$ with a polynomial $p(x)$ we have $\snorm{f} < \infty$ and $\snorm{f'}<\infty$. So we apply the following rule from theorem \ref{thm:arithmetic_rules}
@@ -424,7 +424,12 @@ In this section we will show that the probability mass function of the standardi
 \todo{Chernof bound}
 
 \begin{theorem}
+  For any $z\in\R$ we find
 
+  \begin{align}
+    \P{\BBs \le z} &= \sum_{\x \le z} \bb{\x} \bnl
+    & \in \int_{-\infty}^z \fphi{t} \d{t} + \frac{q-p}6 \br{z^2-1}\fphi{z} h + \bigabs{\snorm{\phi}h} + \littleo{h}
+  \end{align}
 \end{theorem}
 
 \begin{proof}
@@ -448,8 +453,70 @@ In this section we will show that the probability mass function of the standardi
     \begin{comment}
       \text{\todo{}} 
     \end{comment} \nl
-    & \subseteq \int_{t < c_n} \fphi{t}\d{t} + \bigo{h^2}
+    & \subseteq \int_{t < c_n} \fphi{t}\d{t} + \littleo{h}
   \end{align}
-  The second sum can be approximated as in the above theorem:
 
+  The second sum can be approximated as in the above theorem. Because $\abs{\x} \le \max\{\abs{c_n},z\} \in \littleo{\frac 1h}$ we can apply the local version of de Moivre-Laplace and we get
+  \begin{align}
+    \sum_{c_n \le \x \le z} \bb{\x} = \sum_{c_n \le \x \le z} \br{\fphi{\x} h +\frac{q-p}6 \left(\x^3 - \x\right) \fphi{\x} h^2 + \bigo{\fphi{\x}\pol{\x}h^3}}
+  \end{align}
+  Now we have for any $f(x)=\fphi{x}p(x)$ with $p(x)$ being a polynomial:
+  \begin{align}
+    \sum_{c_n \le \x \le b} \f{\x} h & \in \int_{c_n}^b \f{t} \d{t} + \bigabs{\snorm{f}h + \frac 14 \snorm{f'} (b-c_n) h + \frac 14 \snorm{f'} h^2} \nl
+    &
+    \begin{comment}
+      (b-c_n)h \in \littleo{1}
+    \end{comment} \nl
+    & \subseteq  \int_{c_n}^b \f{t} \d{t} + \littleo{1}
+  \end{align}
+  Therefore
+  \begin{align}
+    \sum_{c_n \le \x \le z} \bigo{\fphi{\x}\pol{\x}h^3} \in \bigo{\int_{c_n}^z \fphi{t} \d{t} \cdot h^2 + \littleo{h^2}} \subseteq \littleo{h}
+  \end{align}
+  and
+  \begin{align}
+    \sum_{c_n \le \x \le z} \frac{q-p}6 \br{\x^3-\x} \fphi{\x} h^2 &\in \frac{q-p}6 \int_{c_n}^z \br{t^3-t} \fphi{t} \d{t} \cdot h + \littleo{h} \bnl
+    &
+    \begin{multlined}
+      = \frac{q-p}6 \int_{-\infty}^z \br{t^3-t} \fphi{t} \d{t} \cdot h \bnl
+      - \frac{q-p}6 \int_{-\infty}^{c_n} \br{t^3-t} \fphi{t} \d{t} \cdot h + \littleo{h}
+    \end{multlined} \bnl
+    &
+    \begin{comment}
+      \lim_{n\to\infty} c_n = -\infty \implies \lim_{n\to\infty} \int_{-\infty}^{c_n} \br{t^3-t} \fphi{t} \d{t} = 0
+    \end{comment} \bnl
+    & = \frac{q-p}6 \int_{-\infty}^z \br{t^3-t} \fphi{t} \d{t} \cdot h + \littleo{h} \bnl
+    & = \frac{q-p}6 \left[\br{t^2-1} \fphi{t}\right]_{-\infty}^{z} \cdot h + \littleo{h} \bnl
+    & = \frac{q-p}6 \br{z^2-1} \fphi{z} \cdot h + \littleo{h}
+  \end{align}
+  As in the previous proof we have
+  \begin{align}
+    \sum_{c_n \le \x \le z} \fphi{\x} h &\in \sum_{c_n \le \x \le z} \br{\int_{\x-\frac h2}^{\x+\frac h2} \fphi{t}\d{t} + \bigo{h^3}} \bnl
+    &
+    \begin{comment}
+      (z-c_n)h \in \littleo{1}
+    \end{comment} \bnl
+    &\subseteq \int_{c_n}^z \fphi{t} \d{t} + \bigabs{\snorm{\phi} h} + \littleo{h}
+  \end{align}
+  So we can summarize
+  \begin{align}
+    \sum_{c_n \le \x \le z} \bb{\x} & \in \sum_{c_n \le \x \le z} \br{\fphi{\x} h +\frac{q-p}6 \br{\x^3 - \x} \fphi{\x} h^2 + \bigo{\fphi{\x}\pol{\x}h^3}} \bnl
+    &
+    \begin{comment}
+      \begin{aligned}
+        \sum_{c_n \le \x \le z} \fphi{\x} h &\in \int_{c_n}^z \fphi{t} \d{t} + \bigabs{\snorm{\phi} h} + \littleo{h} \bnl
+        \sum_{c_n \le \x \le z} \frac{q-p}6 \br{\x^3-\x} \fphi{\x} h^2 &\in \frac{q-p}6 \br{z^2-1} \fphi{z} \cdot h + \littleo{h} \bnl
+        \sum_{c_n \le \x \le z} \bigo{\fphi{\x}\pol{\x}h^3} & \in \littleo{h}
+      \end{aligned}
+    \end{comment} \bnl
+    & \subseteq \int_{c_n}^z \fphi{t} \d{t} + \frac{q-p}6 \br{z^2-1}\fphi{z} h + \bigabs{\snorm{\phi}h} + \littleo{h}
+  \end{align}
+
+  \noindent So we can finish the proof
+
+  \begin{align}
+    \sum_{\x \le z} \bb{\x} & = \sum_{\x < c_n} \bb{\x} + \sum_{c_n \le \x \le z} \bb{\x} \bnl
+    & \in \int_{t < c_n} \fphi{t} \d{t} + \int_{c_n}^z \fphi{t} \d{t} + \frac{q-p}6 \br{z^2-1}\fphi{z} h + \bigabs{\snorm{\phi}h} + \littleo{h} \bnl
+    & \in \int_{-\infty}^z \fphi{t} \d{t} + \frac{q-p}6 \br{z^2-1}\fphi{z} h + \bigabs{\snorm{\phi}h} + \littleo{h}
+  \end{align}
 \end{proof}
