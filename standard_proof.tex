@@ -157,12 +157,12 @@ You can find a proof of the Euler-Maclaurin formula in~\cite[pp.~225-226]{koenig
   \end{align}
 \end{proof}
 
-\section{The local version of de Moivre-Laplace theorem}
+\section{Local version of de Moivre-Laplace theorem}
 
 In this section we will show that the probability mass function of the standardized binomial distribution can be approximated by the density function of the normal distribution. This will be the basis for the global version of de Moivre-Laplace theorem. The following proof is based on the ideas given by Iosif Pinelis\cite{iosif}.
 
 \begin{theorem}[Local version of de Moivre-Laplace theorem]
-  Let $\pol{\x}$ be the set of all polynomials in $\x$. Let $\seq{c_n}$ be a sequence with $\seq{c_nh} \in \littleo{1}$. For all $\abs{x_k} \le c_n$ we have
+  Let $\pol{\x}$ be the set of all polynomials in $\x$. Let $\seq{c_n}$ be a sequence with $\seq{c_n} \in \littleo{\frac 1h}$. For all $\x$ with $0\le k\le n$ and $\abs{x_k} \le c_n$ we have
   \begin{align}
     \bb{x_k} &= \binom nk p^k q^{n-k} \nl
     &\in \fphi{\x} h +\frac{q-p}6 \left(\x^3-\x\right) \fphi{\x} h^2 + \bigo{\fphi{\x}\pol{\x}h^3}
@@ -337,42 +337,18 @@ In this section we will show that the probability mass function of the standardi
 
 \section{Global version of de Moivre-Laplace theorem}
 
-\todo{Chernoff bound without proof}
-
 \begin{theorem}
-  \todo{Formulierung}
+  Let $a,b\in \R$ with $a \le b$. We have
+  \begin{align}
+    \sum_{a \le \x \le b} \bb{\x} \in \int_a^b \fphi{t} \d{t} + \snorm{\phi}h + \frac{q-p}6 \left[\br{b^2-1}\fphi{b}-\br{a^2-1}\fphi{a}\right] + \bigo{h^2}
+  \end{align}
 \end{theorem}
 
 \begin{proof}
-  Let $\seq{c_n}$ be a sequence with $\seq{c_nh}\in\littleo{1}$ and $\lim_{n\to\infty} c_n=\infty$ (e.g. $c_n =\sqrt[4]{n}$). We split the sum $\sum_{a \le \x \le b} \bb{\x}$ into two sums:
+  In the following we will only consider those $n\in\N$ with $\x[0] \le a \le b \le \x[n]$. Because $\lim_{n\to\infty} \x[0] = -\infty$ and $\lim_{n\to\infty} \x[n] = \infty$ these are almost all $n\in\N$. Because $c_n=\max\{\abs{a},\abs{b}\}$ is a sequence with $c_n\in\littleo{\frac 1h}$ and for all $\x$ with $a \le \x \le b$ we have $\abs{\x} \le c_n$ we can apply the local version of de Moivre-Laplace and we get
 
   \begin{align}
-    \sum_{a \le \x \le b} \bb{\x} = \sum_{\substack{a \le \x \le b \\ \abs{\x} \le c_n}} \bb{\x} + \sum_{\substack{a \le \x \le b \\ \abs{\x} > c_n}} \bb{\x}
-  \end{align}
-
-  \noindent We first estimate th second sum with the Chernoff bound:
-
-  \begin{align}
-    0 \le \sum_{\substack{a \le \x \le b \\ \abs{\x} > c_n}} \bb{\x} \le \P{\abs{\BBs} > c_n} \le 2\fexp{-\frac{c_n^2}{4}}
-  \end{align}
-
-  \noindent Similarly we get
-
-  \begin{align}
-    0 \le \int_{\substack{a \le t \le b\\\abs{t} > c_n}} \fphi{t}\d{t} \le \int_{\abs{t} > c_n} \fphi{t} \d{t} \le 2\fexp{-\frac{c_n^2}{4}}
-  \end{align}
-
-  \noindent Thus
-
-  \begin{align}
-    \sum_{\substack{a \le \x \le b \\ \abs{\x} > c_n}} \bb{\x} \in \int_{\substack{a \le t \le b\\\abs{t} > c_n}} \fphi{t}\d{t} + \bigabs{2\fexp{-\frac{c_n^2}4}}
-  \end{align}
-
-  \noindent In the following we will only consider those $n\in\N$ with $c_n \ge \max\{|a|,|b|\}$. Because $\lim_{n\to\infty} c_n = \infty$ these are almost all $n\in\N$. We get
-
-  \begin{align}
-    \sum_{\substack{a \le \x \le b \\ \abs{\x} \le c_n}} \bb{\x} & = \sum_{a \le \x \le b} \bb{\x} \bnl
-    &\in \sum_{a \le \x \le b} \left(\fphi{\x} h +\frac{q-p}6 \left(\x^3 - \x\right) \fphi{\x} h^2 + \bigo{\fphi{\x}\pol{\x}h^3}\right)
+    \sum_{a \le \x \le b} \bb{\x} \in \sum_{a \le \x \le b} \left(\fphi{\x} h +\frac{q-p}6 \left(\x^3 - \x\right) \fphi{\x} h^2 + \bigo{\fphi{\x}\pol{\x}h^3}\right)
   \end{align}
 
   We have three Riemann sums. Let $\f{x}=\fphi{x}p(x)$ with a polynomial $p(x)$. Note that $f$ is bounded and also its derivative is bounded (i.e. $\snorm{f} < \infty$ and $\snorm{f'}<\infty$). We will approximate $\f{\x}h$ with $\int_{\x-\frac h2}^{\x+\frac h2} \f{t} \d{t}$. The error of this approximation is
@@ -417,9 +393,7 @@ In this section we will show that the probability mass function of the standardi
     &= \frac{q-p}6 \left[ \br{t^2-1}\fphi{t} \right]_a^b h + \bigo{h^2} \bnl
     &= \frac{q-p}6 \left[ \br{b^2-1}\fphi{b} - \br{a^2-1}\fphi{a} \right] h + \bigo{h^2}
   \end{align}
-
-  For $\sum_{a\le b\le b} \fphi{\x}$ we need a better approximation. From the following equation
-
+  For $\sum_{a\le b\le b} \fphi{\x}h$ we need a better approximation. From the following equation
   \begin{align}
     \int_{\x-\frac h2}^{\x+\frac h2} \fphi{t} \d{t} & = \int_{-\frac h2}^{+\frac h2} \frac{\fphi{\x+t}+\fphi{\x-t}}2 \d{t} \bnl
     & = \fphi{\x} \int_{-\frac h2}^{\frac h2} \fcosh{\x t} \fexp{-\frac{t^2}2} \d{t} \bnl
@@ -458,10 +432,41 @@ In this section we will show that the probability mass function of the standardi
     \end{comment} \bnl
     & \subseteq \int_a^b \fphi{t} \d{t} + \snorm{\phi}h + \frac{q-p}6 \left[\br{b^2-1}\fphi{b}-\br{a^2-1}\fphi{a}\right] h + \bigo{h^2}
   \end{align}
-
-  \todo{Uspensky: Introduction to probability} \todo{Edgeworth}
 \end{proof}
+
+\todo{Uspensky: Introduction to probability} \todo{Edgeworth}
 
 \section{Global version of de Moivre-Laplace 2.0}
 
-\todo{...}
+\todo{Chernof bound}
+
+\begin{theorem}
+
+\end{theorem}
+
+\begin{proof}
+  We consider only those $n\in\N$ with $\x[0] \le z \le \x[n]$. Because $\lim_{n\to\infty} \x[0] = -\infty$ and $\lim_{n\to\infty} \x[n] = \infty$ these are almost all $n\in\N$. Let $\seq{c_n}$ be a sequence with $\x[0] \le c_n \le \min\{z,0\}$, $\seq{\abs{c_n}}\in\littleo{\frac 1h}$ and $\lim_{n\to\infty} c_n=-\infty$. We split the sum $\sum_{\x \le z} \bb{\x}$ into two sums:
+
+  \begin{align}
+    \sum_{\x \le z} \bb{\x} = \sum_{\x < c_n} \bb{\x} + \sum_{c_n \le \x \le z} \bb{\x}
+  \end{align}
+  The first sum can be estimated with the \todo{Chernoff bound}:
+  \begin{align}
+    0 \le \sum_{\x < c_n} \bb{\x} \le \P{\abs{\BBs} > \abs{c_n}} \le 2\fexp{-\frac{c_n^2}{4}}
+  \end{align}
+  Similarly we get
+  \begin{align}
+    0 \le \int_{t < c_n} \fphi{t}\d{t} \le \int_{\abs{t} > \abs{c_n}} \fphi{t} \d{t} \le 2\fexp{-\frac{c_n^2}{4}}
+  \end{align}
+  Thus
+  \begin{align}
+    \sum_{\x < c_n} \bb{\x} & \in \int_{t < c_n} \fphi{t}\d{t} + \bigabs{2\fexp{-\frac{c_n^2}4}} \nl
+    &
+    \begin{comment}
+      \text{\todo{}} 
+    \end{comment} \nl
+    & \subseteq \int_{t < c_n} \fphi{t}\d{t} + \bigo{h^2}
+  \end{align}
+  The second sum can be approximated as in the above theorem:
+
+\end{proof}
