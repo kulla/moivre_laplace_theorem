@@ -37,7 +37,7 @@ In order to formalize the above proof sketch into a valid proof we will need som
   y'(x) = f(x,y(x))
 \end{align}
 
-with $f:\R^2 \to \R$ will be called an \emph{ordinary differential equation} (of first order)~\cite[p. 465]{stoer}\cite{wiki:ode}\footnote{We may also restrict the domain of $f$ to the set $I\times \Omega$ with $I$ being an interval and $\Omega\subseteq \R$\todo{cite}. For this chapter the more special definition is sufficient.} Instead of the term ``ordinary differential equation'' also its acronym ``ODE'' is often used~\cite[p. 2]{ricardo}\cite{wiki:ode}. Any function $y:\R\to\R$ fulfilling the ODE \eqref{ode:def} is called a \emph{solution of the ordinary differential equation}~\cite[p. 8]{ricardo}\cite{wiki:ode}. For example the density function $\fphi{x} = \frac{1}{\sqrt{2\pi}} \fexp{-\frac{x^2}2}$ of the normal distribution is the solution of the ODE
+with $f:I \times \R \to \R$ and $I$ being a connected subset of $\R$ will be called an \emph{ordinary differential equation} (of first order)~\cite[p. 465]{stoer}\cite{wiki:ode}. Instead of the term ``ordinary differential equation'' also its acronym ``ODE'' is often used~\cite[p. 2]{ricardo}\cite{wiki:ode}. Any function $y:\R\to\R$ fulfilling the ODE \eqref{ode:def} is called a \emph{solution of the ordinary differential equation}~\cite[p. 8]{ricardo}\cite{wiki:ode}. For example the density function $\fphi{x} = \frac{1}{\sqrt{2\pi}} \fexp{-\frac{x^2}2}$ of the normal distribution is the solution of the ODE
 
 \begin{align}
   y'(x) = -xy(x)
@@ -71,20 +71,20 @@ for $k \le 0$~\cite[p. 473]{stoer}. One of the most famous one-step method is th
   \underbrace{y(x_{k+1})}_{\text{exact solution}} = \underbrace{y(x_k) + M(x_k,y(x_k),h,f)h}_{\text{approximation of one-step method}} + \underbrace{\tau(x_k)h}_{\text{error}}
 \end{align}
 
-\noindent The error of an one-step method can be estimated as following~\cite[pp. 478-479]{stoer}:
+\noindent The error of an one-step method can be estimated as~\cite[pp. 478-479]{stoer}:
 
 \begin{theorem}[Global error of one-step method] \label{thm:ode_global_error}
-  Given an ODE with initial value
+  Let $f:I\times \R\to\R$ and let $y(x)$ be the solution to the following ODE with initial value
 
   \begin{align}
-    y'(x)=f(x,y(x)),\ y'(x_0)=y_0
+    y'(x)=f(x,y(x)),\ y'(x_0)=y_0,\ x_0 \in I
   \end{align}
 
-  which has the exact solution $y(x)$. Let $M(x,y,h,f)$ be a continuous one-step method for this ODE with step size $h > 0$. Let $M(x,y,h,f)$ fulfill the Lipschitz condition\footnote{See \cite[p. 467]{stoer} and \cite{wiki:lipschitz} for more details about Lipschitz continuity.} regarding the variable $y$ with the Lipschitz constant $L > 0$, i.e. for all $x,y_1,y_2\in\R$ we have
+  Let $M(x,y,h,f)$ be a continuous one-step method for this ODE with step size $h > 0$. Let $M(x,y,h,f)$ fulfill the Lipschitz condition\footnote{See \cite[p. 467]{stoer} and \cite{wiki:lipschitz} for more details about Lipschitz continuity.} regarding the variable $y$ with the Lipschitz constant $L > 0$, i.e. for all $x\in I$ and $y_1,y_2\in\R$ we find
   \begin{align}
     \abs{M(x,y_1,h,f)-M(x,y_2,h,f)} \le L \abs{y_1-y_2}
   \end{align}
-  Let the absolute value of the local discretization error be bounded by $C h^p$ for a $C > 0$ and $p\in \N$:
+  Let the absolute value of the local discretization error be bounded by $C h^p$ for a $C > 0$ and $p\in \N$, i.e. for all $x_k \in I$:
   \begin{align}
     \abs{\tau(x_k)} = \abs{\frac{y(x_{k+1})-y(x_k)}h - M(x_k,y(x_k),h,f)} \le Ch^p
   \end{align}
@@ -93,9 +93,8 @@ for $k \le 0$~\cite[p. 473]{stoer}. One of the most famous one-step method is th
     \abs{y(x_k)-y_k} \le \frac{\fe{L\abs{x_k-x_0}}-1}{L} \cdot Ch^p
   \end{align}
 \end{theorem}
-\todo{premises all right?!}
 
-We may also have an one-step method backwards by setting $h < 0$. The above definitions and the  above theorem \ref{thm:ode_global_error} are applicable in this case.
+We may also have an one-step method backwards by setting $h < 0$. The above definitions and the  above theorem \ref{thm:ode_global_error} are applicable in this case, too.
 
 \section{Local version of de Moivre-Laplace}
 
@@ -107,7 +106,7 @@ We will prove the local version of the de Moivre-Laplace theorem in the followin
 
 This proof will heavily bases on the theory of one-step methods for approximating ordinary differential equations. Thereby we will revert the perspective: Whereas in the theory of ODEs one-step methods are approximations of unknown solutions of ODEs, we will consider the probability mass function of the binomial distribution as the result of an one-step method. This one-step method corresponds to an ODE and the solution to this ODE will be an approximation to the probability mass function. Thus we flip the role of the exact solution and the approximation. This makes this proof in particular interesting and my be a method which might be applicable in other proofs, too.
 
-\newcommand*{\knp}{\tilde k}
+\newcommand*{\knp}{m}
 \newcommand*{\xnp}{\x[\knp]}
 \newcommand*{\phin}[2][n]{y_{#1}\left({#2}\right)}
 \newcommand*{\dphin}[2][n]{y_{#1}'\left({#2}\right)}
@@ -217,13 +216,58 @@ This proof will heavily bases on the theory of one-step methods for approximatin
 
 \section{Global version of de Moivre-Laplace}
 
-In this section we will prove the following theorem
+In this section we will prove the following theorem. Thereby we will split the proof in several steps.
 
 \begin{theorem}
   ...
 \end{theorem}
 
-\noindent Thereby we will split the proof in several steps. First we prove that
+
+\noindent We start the proof with
+
+\newcommand*{\bnp}{\bb{\xnp}}
+
+\begin{lemma}
+  For $\bnp$ we have $\bnp \in \bigo{h}$.
+\end{lemma}
+
+\begin{proof}
+  We first show, that $\bb{\xdown{1}}\in\bigo{h}$:
+  \begin{align}
+    &
+    \begin{aligned}
+      1 & = \sum_{\x} \bb{\x} \bnl
+      &\ge \sum_{0 \le \x \le 1} \bb{\x} \bnl
+      & \ge \bb{\xdown{1}} \sum_{0 \le \x \le 1} 1 \bnl
+      &= \bb{\xdown{1}} \br{\xdown{1}-\xup{0}} \sqrt{npq}
+    \end{aligned} \bnl
+    \implies & h \ge \bb{\xdown{1}} \br{\xdown{1}-\xup{0}} \bnl
+    &
+    \begin{comment}
+      \lim_{n\to\infty} \br{\xdown{1}-\xup{0}} = 1-0 = 1 < \infty
+    \end{comment} \bnl
+    \implies & \bb{\xdown{1}} \in \bigo{h}
+  \end{align}
+
+  \noindent Now we can use the already proved local version of de Moivre-Laplace:
+
+  \begin{align}
+    &
+    \begin{aligned}
+      \bb{\xdown{1}} &= \phin{\xdown{1}} + \bigabs{\frac{\fe{L\xdown{1}+Lh}-1}L Ch} \nl
+      &= \bb{\xnp} \fexp{-\frac{\xdown{1}^2}2+\frac{\xnp^2}2} + \bigo{h}
+    \end{aligned} \bnl
+    \implies & \bnp = \fexp{\frac{\xdown{1}^2}2-\frac{\xnp^2}2} \br{\bb{\xdown{1}}+\bigo{h}} \bnl
+    &
+    \begin{comment}
+      \begin{aligned}
+        \bb{\xdown{1}} & \in \bigo{h} \nl
+        \lim_{n\to\infty} \fexp{\frac{\xdown{1}^2}2-\frac{\xnp^2}2} & = \fexp{\frac 12} < \infty 
+      \end{aligned}
+    \end{comment} \bnl
+    \implies & \bnp \in \bigo{h}
+  \end{align}
+\end{proof}
 
 \begin{lemma}
   For any $a,b \in \R$ we have
@@ -246,10 +290,11 @@ In this section we will prove the following theorem
   \begin{align}
     \bb{\x} & \in \phin{\x} + \bigabs{\frac{\fe{L\abs{\x}+Lh}-1}L Ch} \nl
     &\subseteq \bb{\xnp} \fexp{-\frac{\x^2}2+\frac{\xnp^2}2} + \bigabs{\fe{d^2+dh} C h} \nl
+    &\subseteq \frac{\bnp}{\fphi{\xnp}h}  \fphi{\x}h + \bigo{h} \nl
     &
     \begin{comment}
-      \bigabs{\lambda h} \subseteq \bigo{h}
+      \bnp \in \bigo{h} \land \fphi{\xnp} \in \bigo{1} \implies \frac{\bnp}{\fphi{\xnp}h} \in \bigo{1}
     \end{comment} \nl
-    &\subseteq \bb{\xnp} \fexp{\frac{\xnp^2}2} \br{\exp{-\frac{x^2}2} + \bigo{h^2}}
+    & \subseteq
   \end{align}
 \end{proof}
