@@ -209,58 +209,13 @@ This proof will heavily bases on the theory of one-step methods for approximatin
 
 \section{Global version of de Moivre-Laplace}
 
-In this section we will prove the following theorem. Thereby we will split the proof in several steps.
-
-\begin{theorem}
-  ...
-\end{theorem}
-
-
-\noindent We start the proof with
+In this section we will prove the statement:
+\begin{align}
+  \text{\todo{...}}
+\end{align}
+Thereby we will split the proof in several steps. We start with the following lemma:
 
 \newcommand*{\bnp}{\bb{\xnp}}
-
-\begin{lemma}
-  For $\bnp$ we have $\bnp \in \bigo{h}$.
-\end{lemma}
-
-\begin{proof}
-  We first show, that $\bb{\xdown{1}}\in\bigo{h}$:
-  \begin{align}
-    &
-    \begin{aligned}
-      1 & = \sum_{\x} \bb{\x} \bnl
-      &\ge \sum_{0 \le \x \le 1} \bb{\x} \bnl
-      & \ge \bb{\xdown{1}} \sum_{0 \le \x \le 1} 1 \bnl
-      &= \bb{\xdown{1}} \br{\xdown{1}-\xup{0}} \sqrt{npq}
-    \end{aligned} \bnl
-    \implies & h \ge \bb{\xdown{1}} \br{\xdown{1}-\xup{0}} \bnl
-    &
-    \begin{comment}
-      \lim_{n\to\infty} \br{\xdown{1}-\xup{0}} = 1-0 = 1 < \infty
-    \end{comment} \bnl
-    \implies & \bb{\xdown{1}} \in \bigo{h}
-  \end{align}
-
-  \noindent Now we can use the already proved local version of de Moivre-Laplace:
-
-  \begin{align}
-    &
-    \begin{aligned}
-      \bb{\xdown{1}} &= \phin{\xdown{1}} + \bigabs{\frac{\fe{L\xdown{1}+Lh}-1}L Ch} \nl
-      &= \bb{\xnp} \fexp{-\frac{\xdown{1}^2}2+\frac{\xnp^2}2} + \bigo{h}
-    \end{aligned} \bnl
-    \implies & \bnp = \fexp{\frac{\xdown{1}^2}2-\frac{\xnp^2}2} \br{\bb{\xdown{1}}+\bigo{h}} \bnl
-    &
-    \begin{comment}
-      \begin{aligned}
-        \bb{\xdown{1}} & \in \bigo{h} \nl
-        \lim_{n\to\infty} \fexp{\frac{\xdown{1}^2}2-\frac{\xnp^2}2} & = \fexp{\frac 12} < \infty 
-      \end{aligned}
-    \end{comment} \bnl
-    \implies & \bnp \in \bigo{h}
-  \end{align}
-\end{proof}
 
 \begin{lemma}
   For any $a,b \in \R$ we have
