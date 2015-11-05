@@ -24,7 +24,7 @@ Let us assume that the cumulative distribution of $\BBs$ can be approximated by 
 \end{align}
 Therefor $\fphi{x}$ is described by the ODE
 \begin{align}
-  phi'(x) = -x\phi(x)
+  \phi'(x) = -x\phi(x)
 \end{align}
 
 This ODE is solved by $\phi_c(x) = c \fexp{-\frac{x^2}2}$. Because $\int_\R \fphi{1} \d{t} = 1$ and $\int_\R \fexp{-\frac{t^2}2} d{t} = \sqrt{2\pi}$~\cite[p. 47]{georgii} we get finally $\fphi{x} = \frac{1}{\sqrt{2\pi}} \fexp{-\frac{x^2}2}$.
@@ -131,24 +131,24 @@ This proof will heavily bases on the theory of one-step methods for approximatin
     \end{comment} \nl
     &= \bb{\x[k]} \br{\br{1-\x[k]ph}\br{1+\x[k]qh + \bigo{\pol{x}h^2}}-1} \nl
     &= \bb{\x[k]} \br{-\x[k]h + \bigo{\pol{\x}h^2}} \nl
-    &= -\x[k]\bb{\x}h + \bigo{\bb{\x}\pol{\x}h^2}
+    &= -\x[k]\bb{\x}h + \bb{\x[k]} \cdot \bigo{\pol{\x}h^2}
   \end{align}
   So we can conclude
   \begin{align}
-    \bb{\x[k+1]} &= \bb{\x[k]} -\x[k]\bb{\x[k]} h + \bigo{\bb{\x}\pol{\x}h^2} \bnl
+    \bb{\x[k+1]} &= \bb{\x[k]} -\x[k]\bb{\x[k]} h + \bb{\x[k]} \cdot \bigo{\pol{\x}h^2} \bnl
     &
     \begin{comment}
       \text{Set } f(x,y) = -xy
     \end{comment} \bnl
-    &= \bb{\x[k]} - \br{\f{\x[k], \bb{\x[k]}} + \bigo{\bb{\x}\pol{\x}h}}h \bnl
+    &= \bb{\x[k]} - \br{\f{\x[k], \bb{\x[k]}} + \bb{\x[k]} \cdot \bigo{\pol{\x}h}}h \bnl
     &
     \begin{comment}
-      \text{Set } M(x,y,h,f) = f(x,y) + \bigo{\bb{\x}\pol{\x}h}
+      \text{Set } M(x,y,h,f) = f(x,y) + \bb{\x[k]} \cdot \bigo{\pol{\x}h}
     \end{comment} \bnl
     &= \bb{\x[k]} + M(\x[k], \bb{\x[k]}, f, h) h
   \end{align}
 
-  Therefore we can think about $\bb{\x}$ as the results of the one-step method $M(x,y,f,h)=f(x,y)+\bigo{\bb{\x}\pol{\x}h}$ whereby we can choose any $\bb{\x}$ as the initial value. We take $\bb{\xnp}$ for $\knp=\rnd{np}$ so that $\xnp$ is the $\x$ which is closest to $0$. The one-step method now corresponds to the ODE with initial condition
+  Therefore we can think about $\bb{\x}$ as the results of the one-step method $M(x,y,f,h)=f(x,y)+\bb{\x[k]} \cdot \bigo{\pol{\x}h}$ whereby we can choose any $\bb{\x}$ as the initial value. We take $\bb{\xnp}$ for $\knp=\rnd{np}$ so that $\xnp$ is the $\x$ which is closest to $0$. The one-step method now corresponds to the ODE with initial condition
   \begin{align}
     \dphin{x}=f(x,\phin{x})=-x\phin{x},\ \phin{\xnp} = \bb{\xnp}
   \end{align}
@@ -157,7 +157,7 @@ This proof will heavily bases on the theory of one-step methods for approximatin
     \phin{x} = \bb{\xnp}\fexp{-\frac{x^2}2+\frac{\xnp^2}2} = \frac{\bb{\xnp}}{\fphi{\xnp}} \fphi{x}
   \end{align}
 
-  In order to estimate the error $\abs{\bb{\x}-\phin{\x}}$ with theorem \ref{thm:ode_global_error} we need restrict $f$ to the domain $I\times \R$ with $I=\interval{-\abs{\x}}{\abs{\x}}$ so that each polynomial on $I$ is bounded. We find by using the Taylor series
+  In order to estimate the error $\abs{\bb{\x}-\phin{\x}}$ with theorem \ref{thm:ode_global_error} we need restrict $f$ to the domain $I\times \R$ with $I=\interval{-\abs{\x}}{\abs{\x}}$ so that each polynomial on $I$ is bounded and $\x$ as well as $\xnp$ are elements of $I$. We find by using the Taylor series
   \begin{align}
     & \phin{x+h} = \phin{x} -x\phin{x}h+\br{\tilde x^2-1}\phin{\tilde x} h^2
   \end{align}
