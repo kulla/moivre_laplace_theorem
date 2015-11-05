@@ -133,43 +133,36 @@ This proof will heavily bases on the theory of one-step methods for approximatin
     &= \bb{\x[k]} \br{-\x[k]h + \bigo{\pol{\x}h^2}} \nl
     &= -\x[k]\bb{\x}h + \bigo{\bb{\x}\pol{\x}h^2}
   \end{align}
-  Because \todo{Bernstein inequality -> cite + reference}
+  So we can conclude
   \begin{align}
-    \bb{\x} \le \P{\BBs \ge \abs{x_k}} \le 2\fexp{-\frac{\x^2}4}
-  \end{align}
-  and $\lim_{x\to\pm\infty} p(x)\fexp{-\frac{x^2}4}=0$ for any polynomial $p(x)$, there is for any polynomial $p(\x)\in\pol{\x}$ a constant $A_n$ such that
-  \begin{align}
-    \forall k\in\Z: \abs{\bb{\x}p(\x)} \le A
-  \end{align}
-  so that
-  \begin{align}
-    \bb{\x[k+1]} &= \bb{\x[k]} -\x[k]\bb{\x[k]} h + \bigabs{A h^2} \bnl
+    \bb{\x[k+1]} &= \bb{\x[k]} -\x[k]\bb{\x[k]} h + \bigo{\bb{\x}\pol{\x}h^2} \bnl
     &
     \begin{comment}
       \text{Set } f(x,y) = -xy
     \end{comment} \bnl
-    &= \bb{\x[k]} - \br{\f{\x[k], \bb{\x[k]}} + \bigabs{A h}}h \bnl
+    &= \bb{\x[k]} - \br{\f{\x[k], \bb{\x[k]}} + \bigo{\bb{\x}\pol{\x}h}}h \bnl
     &
     \begin{comment}
-      \text{Set } M(x,y,h,f) = f(x,y) + \bigabs{Ah}
+      \text{Set } M(x,y,h,f) = f(x,y) + \bigo{\bb{\x}\pol{\x}h}
     \end{comment} \bnl
     &= \bb{\x[k]} + M(\x[k], \bb{\x[k]}, f, h) h
   \end{align}
 
-  Therefore we can think about $\bb{\x}$ as the results of the one-step method $M(x,y,f,h)=f(x,y)+\bigabs{Ah}$ whereby we can choose any $\bb{\x}$ as the initial value. We take $\bb{\xnp}$ for $\knp=\rnd{np}$ so that $\xnp$ is the $\x$ which is closest to $0$. The one-step method now corresponds to the ODE with initial condition
+  Therefore we can think about $\bb{\x}$ as the results of the one-step method $M(x,y,f,h)=f(x,y)+\bigo{\bb{\x}\pol{\x}h}$ whereby we can choose any $\bb{\x}$ as the initial value. We take $\bb{\xnp}$ for $\knp=\rnd{np}$ so that $\xnp$ is the $\x$ which is closest to $0$. The one-step method now corresponds to the ODE with initial condition
   \begin{align}
     \dphin{x}=f(x,\phin{x})=-x\phin{x},\ \phin{\xnp} = \bb{\xnp}
   \end{align}
   Its solution is\todo{proof?!}
   \begin{align}
-    \phin{x} = \bb{\xnp}\fexp{-\frac{x^2}2+\frac{\xnp^2}2}
+    \phin{x} = \bb{\xnp}\fexp{-\frac{x^2}2+\frac{\xnp^2}2} = \frac{\bb{\xnp}}{\fphi{\xnp}} \fphi{x}
   \end{align}
 
-  In order to estimate the global error of the one-step method with theorem \ref{thm:ode_global_error} we need to estimate the local discretization error. We get by using the taylor series
+  In order to estimate the error $\abs{\bb{\x}-\phin{\x}}$ with theorem \ref{thm:ode_global_error} we need restrict $f$ to the domain $I\times \R$ with $I=\interval{-\abs{\x}}{\abs{\x}}$ so that each polynomial on $I$ is bounded. We find by using the Taylor series
   \begin{align}
-    \phin{x+h} = \phin{x} -x\phin{x}h+\br{\tilde x^2-1}\phin{\tilde x} h^2
+    & \phin{x+h} = \phin{x} -x\phin{x}h+\br{\tilde x^2-1}\phin{\tilde x} h^2
   \end{align}
-  with $\tilde x$ being in the interval bounded by $x$ and $x+h$. Because $\lim_{x\to\pm\infty} \br{x^2-1}\phin{x}=0$ ($\phin{x} \in \bigo{\exp{-\frac{x^2}2}}$ for $x\to\pm\infty$) there is a $B > 0$ independent of $x$ with $\abs{\br{x^2-1}\phin{x}} \le B$ for all $x\in\R$. Thus
+  whereas $\tilde x$ is a number in the interval bounded by $x$ and $x+h$.
+
   \begin{align}
     \frac{\phin{x+h}-\phin{x}}h &= -x\phin{x}+\br{\tilde x^2-1}\phin{x} h \\
     &\in -x\phin{x} + \bigabs{Bh}
