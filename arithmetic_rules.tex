@@ -1,0 +1,12 @@
+\begin{theorem}[Arithmetic rules] \label{thm:arithmetic_rules}
+  Let $h > 0$ and $\x[k]$ be defined via $\x[k] = \x[0] + kh$ for $k\in\Z$ and any $\x[0]\in\R$. Let $f:\R\to\R$ with $\snorm{f} < \infty$ and $\snorm{f'} < \infty$. Let $a,b\in\R$.
+
+  \begin{enumerate}
+    \item $\f{\x} h \in \int_{\x-\frac h2}^{\x + \frac h2} \f{t}\d{t} + \bigabs{\frac 14 \snorm{f'} h^2}$
+    \item For $a \le b$ we have
+
+      \begin{align}
+        \sum_{a \le \x \le b} \f{\x} h \in \int_a^b \f{t}\d{t} + \bigabs{\snorm{f} h + \frac 14 \snorm{f'}(b-a)h + \frac 14 \snorm{f'}h^2}
+      \end{align}
+  \end{enumerate}
+\end{theorem}
