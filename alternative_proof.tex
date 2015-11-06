@@ -38,18 +38,31 @@ In order to formalize the above proof sketch into a valid proof we will need som
 \end{align}
 
 with $f:I \times \R \to \R$ and $I$ being a connected subset of $\R$ will be called an \emph{ordinary differential equation} (of first order)~\cite[p. 465]{stoer}\cite{wiki:ode}. Instead of the term ``ordinary differential equation'' also its acronym ``ODE'' is often used~\cite[p. 2]{ricardo}\cite{wiki:ode}. Any function $y:\R\to\R$ fulfilling the ODE \eqref{ode:def} is called a \emph{solution of the ordinary differential equation}~\cite[p. 8]{ricardo}\cite{wiki:ode}. For example the density function $\fphi{x} = \frac{1}{\sqrt{2\pi}} \fexp{-\frac{x^2}2}$ of the normal distribution is the solution of the ODE
-
 \begin{align}
   y'(x) = -xy(x)
 \end{align}
+with the initial value $y(0) = \frac{1}{\sqrt{2\pi}}$. This follows from the theorem:
 
-with the initial value $y(0) = \frac{1}{\sqrt{2\pi}}$ \todo{cite}. In general the ordinary differential equation with initial value
+\begin{theorem} \label{chr_ode}
+  The solution to the ODE $y'(x) = -xy(x)$ with the initial value $y(a)=b$ for $a\in\R$ and $b\in \R\setminus\{0\}$ is
+  \begin{align}
+    y(x) = b \fexp{-\frac{x^2}2+\frac{a^2}2} = \frac{b}{\fphi{a}} \fphi{x}
+  \end{align}
+\end{theorem}
 
-\begin{align}
-  y'(x) = -xy(x),\ y(0)=a
-\end{align}
+\begin{proof}
+  The ODE $y'(x)=-xy(x)$ can be solved by separation of variables (see \cite[p. 28]{ricardo} and \cite{wiki:separation}). We can derive:
 
-is solved by $y_a(x) = a \fexp{-\frac{x^2}2}$. ODEs can be approximated numerically with \emph{one-step methods}~\cite[pp.~471~ff]{stoer}. A one-step method is described by a function $M(x,y,h,f)$ with a step size $h>0$~\cite[p.~473]{stoer}. Given an initial value $y(x_0)=y_0$ the approximations $y_k$ at the points $x_k = x_0 + kh$ ($k\in\N$) can be obtained recursively via the relation
+  \begin{align}
+      && y'(x)& =-xy(x) \bnl
+      &\implies & \int_{y(a)}^{y(x)} \frac 1y \d{y} & = \int_a^x -t \d{t} \bnl
+      &\implies & \left[\ln{y}\right]^{y(x)}_{y(a)=b} & = \left[-\frac{t^2}2\right]_a^x \bnl
+      &\implies & \ln(y(x))-\ln(b) &= -\frac{t^2}2 + \frac{a^2}2 \bnl
+      &\implies & y(x) &= b \fexp{-\frac{x^2}2 + \frac{a^2}2} = \frac b{\fphi{a}}\fphi{x}
+  \end{align}
+\end{proof}
+    
+ODEs can be approximated numerically with \emph{one-step methods}~\cite[pp.~471~ff]{stoer}. A one-step method is described by a function $M(x,y,h,f)$ with a step size $h>0$~\cite[p.~473]{stoer}. Given an initial value $y(x_0)=y_0$ the approximations $y_k$ at the points $x_k = x_0 + kh$ ($k\in\N$) can be obtained recursively via the relation
 
 \begin{align}
   y_{k+1} = y_k + h M(x_k, y_k, h, f)
@@ -175,7 +188,7 @@ This proof will heavily bases on the theory of one-step methods for approximatin
   \begin{align}
     \dphin{x}=f(x,\phin{x})=-x\phin{x},\ \phin{\xnp} = \bb{\xnp}
   \end{align}
-  Its solution is\todo{proof?!}
+  Its solution is (see theorem \ref{chr_ode})
   \begin{align}
     \phin{x} = \bb{\xnp}\fexp{-\frac{x^2}2+\frac{\xnp^2}2} = \frac{\bb{\xnp}}{\fphi{\xnp}} \fphi{x}
   \end{align}
