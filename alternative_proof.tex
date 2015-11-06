@@ -107,15 +107,22 @@ We will prove the local version of the de Moivre-Laplace theorem in the followin
 \newcommand*{\dphin}[2][n]{y_{#1}'\left({#2}\right)}
 
 \begin{theorem}
-  Let $I$ be a bounded interval and let $\xnp$ be the mode of $\bbs$ (i.e. the $\x$ where $\bb{\x}$ attains its maximum). Let $L = \sup\{\abs{x}: x \in I\}$. Then there is a $C > 0$ independent of $\x$ such that
+  Let $I$ be a bounded interval and let $\xnp$ be the mode of $\bbs$ (i.e. the $\x$ where $\bb{\x}$ attains its maximum). Let $L = \sup\{\abs{x}: x \in I\}$. Then there is a $C > 0$ independent of $\x$ and $n$ such that
 
   \begin{align}
     \bb{\x} = \frac{\bnp}{\fphi{\xnp}}\fphi{\x} + \bigabs{{\bnp}\cdot \frac{\fe{L\abs{\x-\xnp}}-1}L Ch}
   \end{align}
 \end{theorem}
 
-\begin{remark}
-  The mode of $\xnp$ is the $\x[k]$ with $k = \lfloor (n+1)p \rfloor$ \cite{nicolas}\cite{wiki:binomial_distribution}. Thus we have $\abs{\xnp} \le h$ so that $\lim_{n\to\infty} \xnp = 0$.We may also generalize the theorem to each bounded set $I \subset \R$. \todo{richtig?}
+\begin{remark} \label{remark:alt_local}
+  The mode of $\xnp$ is the $\x[k]$ with $k = \lfloor (n+1)p \rfloor$ \cite{nicolas}\cite{wiki:binomial_distribution}. Thus we have $\abs{\xnp} \le h$ so that $\lim_{n\to\infty} \xnp = 0$. We may also generalize the theorem to each bounded set $I \subset \R$. \todo{richtig?} Because
+  \begin{align}
+    \abs{\x[k]-\xnp} \le \abs{\x[k]}+\abs{\xnp} \le L + h \le L + \frac{1}{\sqrt{pq}}
+  \end{align}
+  we can directly deduce that there is a $\tilde C > 0$ independent of $\x$ and $n$ with
+  \begin{align}
+    \bb{\x} \in \frac{\bnp}{\fphi{\xnp}}\fphi{\x} + \bigabs{{\bnp}\cdot \tilde Ch}
+  \end{align}
 \end{remark}
 
 This proof will heavily bases on the theory of one-step methods for approximating ordinary differential equations. Thereby we will revert the perspective: Whereas in the theory of ODEs one-step methods are approximations of unknown solutions of ODEs, we will consider the probability mass function of the binomial distribution as the result of an one-step method. This one-step method corresponds to an ODE and the solution to this ODE will be an approximation to the probability mass function. Thus we flip the role of the exact solution and the approximation. This makes this proof in particular interesting and my be a method which might be applicable in other proofs, too.
@@ -211,12 +218,16 @@ This proof will heavily bases on the theory of one-step methods for approximatin
 
 In this section we will prove the statement:
 \begin{align}
-  \text{\todo{...}}
+  \lim_{n\to\infty} \abs{\sum_{a \le \x \le b} \bb{\x[k]}- \int_a^b \fphi{t} \d{t}} = 0
 \end{align}
-Thereby we will split the proof in several steps. We start with the following lemma:
+and
+\begin{align}
+  \lim_{n\to\infty} \abs{\sum_{\x \le z} \bb{\x[k]} - \int_{-\infty}^z \fphi{t} \d{t}} = 0
+\end{align}
+for any $a,b,z\in\R$. Thereby we will split the proof in several steps. We start with the following lemma:
 
-\begin{lemma}
-  For any $a,b \in \R$ we have
+\begin{lemma} \label{alt:lemma1}
+  For any $a,b \in \R$ with $a \le b$ we have
 
   \begin{align}
     \lim_{n\to\infty} \abs{\frac{\fphi{\xnp}h}{\bb{\xnp}} \sum_{a\le\x\le b} \bb{\x} - \int_a^b \fphi{t}\d{t}} = 0
@@ -224,23 +235,148 @@ Thereby we will split the proof in several steps. We start with the following le
 \end{lemma}
 
 \begin{proof}
-  For $a > b$ we have
+  From the local version of de Moivre-Laplace with $I=[a,b]$ we can deduce that there is a $C > 0$ independent of $\x$ and $n$ with (see remark \ref{remark:alt_local})
   \begin{align}
-    \sum_{a\le \x \le b}\bb{\x} = \int_a^b \fphi{t}\d{t} = 0
+    \bb{\x} \in \frac{\bnp}{\fphi{\xnp}}\fphi{\x} + \bigabs{{\bnp}\cdot Ch} \subseteq \frac{\bnp}{\fphi{\xnp}}\fphi{\x} + \bnp \cdot \bigo{h}
   \end{align}
-  from which directly the lemma follows. So we fix $a,b\in\R$ with $a\le b$. We have already proven in the previous section that there is a $C > 0$ independent of $n$ and $\x$ satisfying
+  With this equation follows
   \begin{align}
-    \bb{\x} \in \phin{\x} + \bigabs{\frac{\fe{L\abs{\x}+Lh}-1}L Ch}
-  \end{align}
-  with $L = \max\{\abs{\x},1\}$ and $\phin{x} = \bb{\xnp}\fexp{-\frac{x^2}2+\frac{\xnp^2}2}$. Let $d = \max\{\abs{a},\abs{b}, 1\}$ so that $L \le d$ and $\abs{\x} \le d$ for all $\x$ with $a\le \x \le b$. We have
-  \begin{align}
-    \bb{\x} & \in \phin{\x} + \bigabs{\frac{\fe{L\abs{\x}+Lh}-1}L Ch} \nl
-    &\subseteq \bb{\xnp} \fexp{-\frac{\x^2}2+\frac{\xnp^2}2} + \bigabs{\fe{d^2+dh} C h} \nl
-    &\subseteq \frac{\bnp}{\fphi{\xnp}h}  \fphi{\x}h + \bigo{h} \nl
+    \frac{\fphi{\xnp}h}{\bnp} \sum_{a \le \x \le b} \bb{\x} &\in \frac{\fphi{\xnp}h}{\bnp} \sum_{a \le \x \le b}\br{\frac{\bnp}{\fphi{\xnp}}\fphi{\x} + \bnp \cdot \bigo{h}} \bnl
     &
     \begin{comment}
-      \bnp \in \bigo{h} \land \fphi{\xnp} \in \bigo{1} \implies \frac{\bnp}{\fphi{\xnp}h} \in \bigo{1}
-    \end{comment} \nl
-    & \subseteq
+      \lim_{n\to\infty} \xnp = \frac{1}{\sqrt{2\pi}} \implies \seq{\xnp} \in \bigo{1}
+    \end{comment} \bnl
+    &\subseteq \sum_{a \le \x \le b}\br{\fphi{\x}h + \bigo{h^2}}\bnl
+    &
+    \begin{comment}
+      \begin{aligned}
+        \sum_{a \le \x \le b} \fphi{\x}h &\in \int_a^b \fphi{t} \d{t} + \bigo{h} \bnl
+        \sum_{a \le \x \le b} \bigo{h^2} &\subseteq \bigo{h}
+      \end{aligned}
+    \end{comment} \bnl
+    &\subseteq \int_a^b \fphi{t} \d{t} + \bigo{h}
   \end{align}
+\end{proof}
+
+\begin{lemma}
+  All $x\in\R$ with $0 < x \le \frac 12$ fulfill the inequality $\frac{1+x}{1-x} \le 1+4x$.
+\end{lemma}
+
+\begin{proof}
+  \begin{align}
+    \begin{array}{rrl}
+      & x & \le \frac 12 \nl
+      \implies & 4x^2 & \le 2x \nl
+      \implies & 0 & \le  2x - 4x^2 \nl
+      \implies & 1+x & \le  1+3x-4x^2 = (1+4x)(1-x) \nl
+      &&
+      \begin{comment}
+        1-x > 0
+      \end{comment} \nl
+      \implies & \frac{1+x}{1-x} & \le 1+4x
+    \end{array}
+  \end{align}
+\end{proof}
+
+\begin{lemma}
+  We find $\lim_{n\to\infty} \frac{\fphi{\xnp}h}{\bnp} = 1$.
+\end{lemma}
+
+\begin{remark}
+  This lemma implies $\bnp \sim \frac{1}{\sqrt{2\pi npq}}$ because $\lim_{n\to\infty} \fphi{\xnp} = \sqrt{2\pi}$ as we already know from the standard proof of de Moivre-Laplace which bases on Stirling's formula. Therefore this lemma can be shown with Stirling's formula but I want to omit this approximation because it is only applicable for the binomial distribution and a use of Stirling's formula at this point contradicts the attempt to find a new proof of de Moivre-Laplace (which does not depend on methods of the standard proof).
+\end{remark}
+
+\begin{proof}
+  Let $c_n = \frac{\fphi{\xnp}h}{\bnp}$. Let $\epsilon > 0$ be arbitrary with $\epsilon < 2$. From the Chebyshev's inequality we can get $\P{\abs{X}> R} \le \frac{1}{R^2}$ for any $R > 0$ and any standardized random variable $X$ \cite{wiki:chebyshev}. Thus there is a $R >0$ such that
+  \begin{align}\label{eq1}
+    1 -\frac{\epsilon}4 \le \sum_{-R \le \x \le R} \bb{\x[k]} \le 1
+  \end{align}
+  and
+  \begin{align}\label{eq2}
+    1-\frac{\epsilon}4 \le \int_{-R}^R \fphi{t}\d{t} \le 1
+  \end{align}
+
+  From the above lemma \ref{alt:lemma1} we know that there is a $N\in\N$ so that for each $n\in\N$ with $n\ge N$ we find
+  \begin{align} \label{eq3}
+    \abs{c_n \sum_{-R\le\x\le R}\bb{\x} - \int_{-R}^R \fphi{t}\d{t}} \le \frac{\epsilon}4
+  \end{align}
+  The inequalities \eqref{eq2} and \eqref{eq3} imply
+  \begin{align}
+    1-\frac{\epsilon}2 \le c_n \sum_{-R \le \x \le R} \bb{\x} \le 1+\frac{\epsilon}4
+  \end{align}
+  Together with the first inequality \eqref{eq1} we can conclude
+  \begin{align}
+    1-\frac \epsilon2 \le c_n \sum_{-R \le \x \le R} \bb{\x} \le c_n
+  \end{align}
+  and
+  \begin{align}
+    & 1+\frac \epsilon4 \ge c_n \sum_{-R \le \x \le R} \bb{\x} \ge c_n \br{1-\frac \epsilon4} \bnl
+    \implies & c_n \le \frac{1+\frac \epsilon4}{1-\frac\epsilon4} \bnl
+    &
+    \begin{comment}
+      0 < \frac \epsilon 4 \le \frac 12
+    \end{comment} \bnl
+    \implies & c_n \le 1+4\cdot \frac \epsilon 4 = 1+\epsilon
+  \end{align}
+  So we get
+  \begin{align}
+    1-\frac \epsilon 2 \le c_n \le 1+\epsilon
+  \end{align}
+  which proves $\abs{c_n-1} \le \epsilon$ and thus that $\lim_{n\to\infty} c_n = 1$.
+\end{proof}
+
+\begin{theorem}[First global version of de Moivre-Laplace]
+  For any $a,b\in\R$ we find
+
+  \begin{align}
+    \lim_{n\to\infty} \abs{\sum_{a \le \x \le b} \bb{\x} - \int_{a \le t \le b} \fphi{t} \d{t} } = 0
+  \end{align}
+\end{theorem}
+
+\begin{proof}
+  For $a > b$ the theorem can be directly proven, because then
+  \begin{align}
+    \sum_{a \le \x \le b} \bb{\x} = \int_{a \le t \le b} \fphi{t} \d{t} = 0
+  \end{align}
+  So we consider only the case $a\le b$. In lemma \ref{alt:lemma1} we have already shown that
+  \begin{align}
+    \frac{\fphi{\xnp}h}{\bnp} \sum_{a\le \x \le b} \bb{\x} \in \int_a^b \fphi{t} \d{t} + \bigo{h}
+  \end{align}
+  Therefore
+  \begin{align}
+    \sum_{a\le \x \le b} \bb{\x} & \in \frac{\bnp}{\fphi{\xnp}h} \br{\int_a^b \fphi{t} \d{t} + \bigo{h}} \bnl
+    &
+    \begin{comment}
+      \lim_{n\to\infty} \frac{\bnp}{\fphi{\xnp}h} = 1 \implies \frac{\bnp}{\fphi{\xnp}h} = 1+\littleo{1}
+    \end{comment} \bnl
+    & \subseteq \br{1+\littleo{1}}\cdot \br{\int_a^b \fphi{t} \d{t} + \bigo{h}} \bnl
+    & = \int_a^b \phi{t}\d{t} + \littleo{1} \cdot \int_a^b \fphi{t} \d{t} + \bigo{h} + \littleo{1} \cdot \bigo{h} \bnl
+    &
+    \begin{comment}
+      \begin{aligned}
+        \int_a^b \fphi{t} \d{t} & \le 1 \nl
+        \bigo{h} & \subseteq \littleo{1}
+      \end{aligned}
+    \end{comment} \bnl
+    & \subseteq \int_a^b \fphi{t} \d{t} + \littleo{1}
+  \end{align}
+\end{proof}
+
+\begin{theorem}[Second global version of de Moivre-Laplace]
+  For any $z\in\R$ we have
+
+  \begin{align}
+    \lim_{n\to\infty} \abs{\sum_{\x \le z} \bb{\x} - \int_{-\infty}^z \fphi{t}\d{t} } = 0
+  \end{align}
+\end{theorem}
+
+\begin{proof}
+  For any $c \le z$ we have the estimation
+
+  \begin{multline}
+    \abs{\sum_{\x \le z} \bb{\x} - \int_{-\infty}^z \fphi{t}\d{t} } \le
+    \underbrace{\abs{\sum_{\x \le c} \bb{\x} - \int_{-\infty}^c \fphi{t}\d{t} }}_\text{term I} + \nl \underbrace{\abs{\sum_{c\le \x \le z} \bb{\x} - \int_c^z \fphi{t}\d{t} }}_\text{term II}
+  \end{multline}
+
+  First we take $c$ small enough such that term I is smaller than $\frac \epsilon 2$. Due to the Chebyshev's inequality \cite{wiki:chebyshev} we know that such a $c$ must exist. From the first global version of de Moivre-Laplace we know that there is a $N \in\N$ such that the term II is smaller then $\frac \epsilon 2$ for all $n\ge N$.
 \end{proof}
