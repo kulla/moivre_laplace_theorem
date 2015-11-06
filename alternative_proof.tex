@@ -100,19 +100,28 @@ We may also have an one-step method backwards by setting $h < 0$. The above defi
 
 We will prove the local version of the de Moivre-Laplace theorem in the following form
 
-\begin{theorem}
-  ...
-\end{theorem}
-
-This proof will heavily bases on the theory of one-step methods for approximating ordinary differential equations. Thereby we will revert the perspective: Whereas in the theory of ODEs one-step methods are approximations of unknown solutions of ODEs, we will consider the probability mass function of the binomial distribution as the result of an one-step method. This one-step method corresponds to an ODE and the solution to this ODE will be an approximation to the probability mass function. Thus we flip the role of the exact solution and the approximation. This makes this proof in particular interesting and my be a method which might be applicable in other proofs, too.
-
+\newcommand*{\bnp}{\bb{\xnp}}
 \newcommand*{\knp}{m}
 \newcommand*{\xnp}{\x[\knp]}
 \newcommand*{\phin}[2][n]{y_{#1}\left({#2}\right)}
 \newcommand*{\dphin}[2][n]{y_{#1}'\left({#2}\right)}
 
+\begin{theorem}
+  Let $I$ be a bounded interval and let $\xnp$ be the mode of $\bbs$ (i.e. the $\x$ where $\bb{\x}$ attains its maximum). Let $L = \sup\{\abs{x}: x \in I\}$. Then there is a $C > 0$ independent of $\x$ such that
+
+  \begin{align}
+    \bb{\x} = \frac{\bnp}{\fphi{\xnp}}\fphi{\x} + \bigabs{{\bnp}\cdot \frac{\fe{L\abs{\x-\xnp}}-1}L Ch}
+  \end{align}
+\end{theorem}
+
+\begin{remark}
+  The mode of $\xnp$ is the $\x[k]$ with $k = \lfloor (n+1)p \rfloor$ \cite{nicolas}\cite{wiki:binomial_distribution}. Thus we have $\abs{\xnp} \le h$ so that $\lim_{n\to\infty} \xnp = 0$.We may also generalize the theorem to each bounded set $I \subset \R$. \todo{richtig?}
+\end{remark}
+
+This proof will heavily bases on the theory of one-step methods for approximating ordinary differential equations. Thereby we will revert the perspective: Whereas in the theory of ODEs one-step methods are approximations of unknown solutions of ODEs, we will consider the probability mass function of the binomial distribution as the result of an one-step method. This one-step method corresponds to an ODE and the solution to this ODE will be an approximation to the probability mass function. Thus we flip the role of the exact solution and the approximation. This makes this proof in particular interesting and my be a method which might be applicable in other proofs, too.
+
 \begin{proof}
-  We start with investigating $\bb{\x[k+1]}-\bb{\x[k]}$ (let $\pol{\x}$ be the set of all polynomials in $\x$):
+  We prove this theorem by extending $I$ to $\interval{-L}{L}$ \todo{richtig?} so that $\xnp \in I$. We start with investigating $\bb{\x[k+1]}-\bb{\x[k]}$ (let $\pol{\x}$ be the set of all polynomials in $\x$):
 
   \begin{align}
     \bb{\x[k+1]} - \bb{\x[k]} &= \binom n{k+1} p^{k+1}q^{n-k-1} - \binom nk p^k q^k \nl
@@ -131,24 +140,31 @@ This proof will heavily bases on the theory of one-step methods for approximatin
     \end{comment} \nl
     &= \bb{\x[k]} \br{\br{1-\x[k]ph}\br{1+\x[k]qh + \bigo{\pol{x}h^2}}-1} \nl
     &= \bb{\x[k]} \br{-\x[k]h + \bigo{\pol{\x}h^2}} \nl
-    &= -\x[k]\bb{\x}h + \bb{\x[k]} \cdot \bigo{\pol{\x}h^2}
+    &= -\x[k]\bb{\x}h +  \bigo{\bb{\x[k]}\pol{\x}h^2}
   \end{align}
-  So we can conclude
+
+  For any $\seq{\epsilon_n} \in \bigo{\bb{\x[k]}\pol{\x[k]}h^2}$ there is a polynomial $p(\x[k])$ and a $A_1 > 0$ with
   \begin{align}
-    \bb{\x[k+1]} &= \bb{\x[k]} -\x[k]\bb{\x[k]} h + \bb{\x[k]} \cdot \bigo{\pol{\x}h^2} \bnl
+    \abs{\epsilon_n} \le \bb{\x[k]} \abs{p(\x[k])} \cdot A_1 h^2
+  \end{align}
+  By the definition of $\xnp$ as the mode of $\bbs$ we can follow $\bb{\x[k]} \le \bnp$. The polynomial $p(\x)$ is bounded on $I$ too so that there is a $A_2>0$ independent of $\x$ with $\abs{p(x)} \le A_2$. We set $A=A_1\cdot A_2$ and we get $\abs{\epsilon_n} \le \bnp \cdot A h^2$ or $\seq{\epsilon_n}\in \bigabs{\bnp \cdot A h^2}$. So we can conclude
+
+  \begin{align}
+    \bb{\x[k+1]} &= \bb{\x[k]} -\x[k]\bb{\x[k]} h + \bigabs{\bnp \cdot A h^2}\bnl
     &
     \begin{comment}
       \text{Set } f(x,y) = -xy
     \end{comment} \bnl
-    &= \bb{\x[k]} - \br{\f{\x[k], \bb{\x[k]}} + \bb{\x[k]} \cdot \bigo{\pol{\x}h}}h \bnl
+    &= \bb{\x[k]} - \br{\f{\x[k], \bb{\x[k]}} + \bigabs{\bnp \cdot A h}}h \bnl
     &
     \begin{comment}
-      \text{Set } M(x,y,h,f) = f(x,y) + \bb{\x[k]} \cdot \bigo{\pol{\x}h}
+      \text{Set } M(x,y,h,f) = f(x,y) + \bigabs{\bnp \cdot A h}
     \end{comment} \bnl
     &= \bb{\x[k]} + M(\x[k], \bb{\x[k]}, f, h) h
   \end{align}
 
-  Therefore we can think about $\bb{\x}$ as the results of the one-step method $M(x,y,f,h)=f(x,y)+\bb{\x[k]} \cdot \bigo{\pol{\x}h}$ whereby we can choose any $\bb{\x}$ as the initial value. We take $\bb{\xnp}$ for $\knp=\rnd{np}$ so that $\xnp$ is the $\x$ which is closest to $0$. The one-step method now corresponds to the ODE with initial condition
+  Therefore we can think about $\bb{\x}$ as the results of the one-step method $M(x,y,f,h)=f(x,y)+\bigabs{\bnp \cdot A h}$ whereby we take $\bnp$ for $\xnp$ as the initial value. This one-step method corresponds to the ODE with initial condition
+
   \begin{align}
     \dphin{x}=f(x,\phin{x})=-x\phin{x},\ \phin{\xnp} = \bb{\xnp}
   \end{align}
@@ -156,52 +172,36 @@ This proof will heavily bases on the theory of one-step methods for approximatin
   \begin{align}
     \phin{x} = \bb{\xnp}\fexp{-\frac{x^2}2+\frac{\xnp^2}2} = \frac{\bb{\xnp}}{\fphi{\xnp}} \fphi{x}
   \end{align}
-
-  In order to estimate the error $\abs{\bb{\x}-\phin{\x}}$ with theorem \ref{thm:ode_global_error} we need restrict $f$ to the domain $I\times \R$ with $I=\interval{-\abs{\x}}{\abs{\x}}$ so that each polynomial on $I$ is bounded and $\x$ as well as $\xnp$ are elements of $I$. We find by using the Taylor series
+  We find by using the Taylor series
   \begin{align}
     & \phin{x+h} = \phin{x} -x\phin{x}h+\br{\tilde x^2-1}\phin{\tilde x} h^2
   \end{align}
-  whereas $\tilde x$ is a number in the interval bounded by $x$ and $x+h$.
+  whereas $\tilde x$ is a number in the interval bounded by $x$ and $x+h$. Because $\phin{\tilde x} = \frac{\bnp}{\fphi{\xnp}} \fphi{\tilde x}$ and $\frac{1}{\fphi{\xnp}} \br{\tilde x^2-1} \fphi{\tilde x}$ is bounded on $I$ there is a $B > 0$ with $\abs{\tilde x^2-1} \phin{\tilde x} h^2 \le \bnp \cdot B h^2$ independent of $\x[k]$. Thus
 
   \begin{align}
-    \frac{\phin{x+h}-\phin{x}}h &= -x\phin{x}+\br{\tilde x^2-1}\phin{x} h \\
-    &\in -x\phin{x} + \bigabs{Bh}
+    \frac{\phin{x+h}-\phin{x}}h &= -x\phin{x}+\br{\tilde x^2-1}\phin{x} h \in -x\phin{x} + \bigabs{\bnp \cdot Bh}
   \end{align}
   Now we can estimate the local discretization error
   \begin{align}
     \abs{\tau(\x)} &= \abs{\frac{\phin{\x[k]+h}-\phin{\x}}h -  M(\x,\phin{\x},f,h)} \nl
-    &\in \abs{-\x\phin{\x} + \bigabs{Ah} +\x\phin{\x} - \bigabs{Bh}} \nl
-    &= \abs{\bigabs{Ah}-\bigabs{Bh}} \nl
-    &\subseteq \bigabs{(A+B)h} \nl
+    &\in \abs{-\x\phin{\x} + \bigabs{\bnp \cdot Ah} +\x\phin{\x} - \bigabs{\bnp \cdot Bh}} \nl
+    &= \abs{\bigabs{\bnp \cdot Ah}-\bigabs{\bnp \cdot Bh}} \nl
+    &\subseteq \bigabs{\bnp \cdot (A+B)h} \nl
     &
     \begin{comment}
       \text{Set } C=A+B
     \end{comment} \nl
-    &= \bigabs{Ch}
+    &= \bigabs{\bnp \cdot Ch}
   \end{align}
-  from which follows $\abs{\tau(\x)} \le Ch$.
+  from which follows $\abs{\tau(\x)} \le \bnp \cdot Ch$. Besides approximating $\abs{\tau(x)}$ we also need to prove, that $f(x,y)$ is Lipschitz continuous regarding $y$. We have
+  \begin{align}
+    \abs{f(x,y_1)-f(x,y_2)} &= \abs{-xy_1+xy_2} = \abs{x} \cdot \abs{y_1-y_2} \le L \abs{y_1-y_2}
+  \end{align}
 
-  Besides approximating $\abs{\tau(x)}$ we also need to prove, that $f(x,y)$ is Lipschitz continuous regarding $y$ with finding its Lipschitz constant. We have
+  \noindent From the theorem \ref{thm:ode_global_error} about the global error of one-step methods we can conclude
   \begin{align}
-    \abs{f(x,y_1)-f(x,y_2)} &= \abs{-xy_1+xy_2} \nl
-    &= \abs{x} \cdot \abs{y_1-y_2}
-  \end{align}
-  So $f:\R^2\to\R$ is not Lipschitz continuous regarding $y$ because for any $y_1\neq y_2$ we have
-  \begin{align}
-    \lim_{x\to\pm\infty} \frac{\abs{f(x,y_1)-f(x,y_2)}}{\abs{y_1-y_2}} = \infty
-  \end{align}
-  But we can restrict $f$ to the domain $\interval{-\x}{\x}\times \R$. \todo{theorem anpassen}. On this domain the restriction of $f$ is Lipschitz continuous regarding second argument with Lipschitz constant $\abs{\x}$. Because $\x$ might be zero, we will take $L=\max\{\x,1\}$ as Lipschitz constant. From the theorem \ref{thm:ode_global_error} about the global error of one-step methods we can conclude
-  \begin{align}
-    \abs{\bb{\x}-\phin{\x}} &\le \frac{\fe{L\abs{\x-\xnp}}-1}L Ch \nl
-    &
-    \begin{comment}
-      \abs{\x-\xnp} \le \abs{\x}+\abs{\xnp} \le \abs{\x}+h
-    \end{comment} \nl
-    &\le \frac{\fe{L\abs{x}+Lh}-1}L Ch
-  \end{align}
-  Therefore
-  \begin{align}
-    \bb{\x} = \phin{\x} + \bigabs{\frac{\fe{L\abs{\x}+Lh}-1}L Ch}
+    & \abs{\bb{\x}-\phin{\x}} \le \frac{\fe{L\abs{\x-\xnp}}-1}L \bnp \cdot Ch \bnl
+    \implies & \bb{\x} = \phin{\x} + \bigabs{\bnp \cdot \frac{\fe{L\abs{\x-\xnp}}-1}L Ch}
   \end{align}
 \end{proof}
 
@@ -214,8 +214,6 @@ In this section we will prove the statement:
   \text{\todo{...}}
 \end{align}
 Thereby we will split the proof in several steps. We start with the following lemma:
-
-\newcommand*{\bnp}{\bb{\xnp}}
 
 \begin{lemma}
   For any $a,b \in \R$ we have
