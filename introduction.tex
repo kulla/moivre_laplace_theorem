@@ -1,6 +1,17 @@
 \chapter{Introduction}
 
+In this thesis I present a new proof of the theorem by de Moivre and Laplace. This theorem states that the standardized binomial distribution given by the probability mass function
+\begin{align}
+  \bb{\x} = \binom nk p^k q^{n-k}
+\end{align}
+with $\x[k] = \frac{k-np}{\sqrt npq}$ for $p\in (0,1)$, $q=1-p$, $k,n\in\N$, and $k\le n$ can be approximated by the standardized normal distribution whose density function is $\fphi{x} = \frac{1}{\sqrt 2\pi} \fexp{-\frac{x^2}2}$.
+
+The new proof approximates the slope between neighboring probabilities of the binomial distribution and derives from it an ordinary differential equation (ODE) whose solution is the normal distribution. So the presented proof will give an interesting application of the theory of ODEs (especially one-step methods to compute numerical solutions for ODEs) to probability theory.
+
+There are two possible advantages of the new proof which we will investigate in this thesis
+
 \begin{enumerate}
-  \item Present each chapter
-  \item Present goal of thesis
+  \item We will compare the error estimate of the standard proof using Stirling's formula with the error estimation provided by the new proof. It may be the case that we can show tighter error estimations of the de Moivre-Laplace theorem with the new proof or that even a better approximation of the binomial distribution is possible.
+
+  \item The new proof may be easier to understand then the standard proof and thus may be used in a course or a textbook of statistics or probability theory.
 \end{enumerate}
