@@ -120,7 +120,7 @@ We will prove the local version of the de Moivre-Laplace theorem in the followin
 \newcommand*{\dphin}[2][n]{y_{#1}'\left({#2}\right)}
 
 \begin{theorem}
-  Let $I$ be a bounded interval and let $\xnp$ be the mode of $\bbs$ (i.e. the $\x$ where $\bb{\x}$ attains its maximum). Let $L = \sup\{\abs{x}: x \in I\}$. Then there is a $C > 0$ independent of $\x$ and $n$ such that
+  Let $I$ be a bounded interval and let $\xnp$ be the mode of $\bbs$ (i.e. the $\x$ where $\bb{\x}$ attains its maximum). Let $L$ be the maximum of $h$ and $\sup\{\abs{x}: x \in I\}$. Then there is a $C > 0$ independent of $\x$ and $n$ such that
 
   \begin{align}
     \bb{\x} = \frac{\bnp}{\fphi{\xnp}}\fphi{\x} + \bigabs{{\bnp}\cdot \frac{\fe{L\abs{\x-\xnp}}-1}L Ch}
@@ -146,7 +146,7 @@ We will prove the local version of the de Moivre-Laplace theorem in the followin
 This proof will heavily bases on the theory of one-step methods for approximating ordinary differential equations. Thereby we will revert the perspective: Whereas in the theory of ODEs one-step methods are approximations of unknown solutions of ODEs, we will consider the probability mass function of the binomial distribution as the result of an one-step method. This one-step method corresponds to an ODE and the solution to this ODE will be an approximation to the probability mass function. Thus we flip the role of the exact solution and the approximation. This makes this proof in particular interesting and my be a method which might be applicable in other proofs, too.
 
 \begin{proof}
-  We prove this theorem by extending $I$ to $\interval{-L}{L}$ \todo{richtig?} so that $\xnp \in I$. We start with investigating $\bb{\x[k+1]}-\bb{\x[k]}$ (let $\pol{\x}$ be the set of all polynomials in $\x$):
+  We prove this theorem by extending $I$ to $\interval{-L}{L}$ so that $\xnp \in I$ because $L \ge h$. We start with investigating $\bb{\x[k+1]}-\bb{\x[k]}$ (let $\pol{\x}$ be the set of all polynomials in $\x$):
 
   \begin{align}
     \bb{\x[k+1]} - \bb{\x[k]} &= \binom n{k+1} p^{k+1}q^{n-k-1} - \binom nk p^k q^k \nl
