@@ -28,7 +28,7 @@ These arithmetic rules (which we will discuss in the end of this section) simpli
 \section{The big Delta and the big Psi notation}
 Unfortunately the big O notation does only provide an estimate of the convergence speed but no estimation of the error's value since the constants $C$ and $C_\infty$ in \eqref{bigo_def1} and \eqref{bigo_def_limsup} are not known\footnote{cf.~\cite[p.~444]{graham},~\cite{hurkyl_bigo} and \cite{templatetypedef_bigo}}.
 
-Therefore I want to introduce the big Delta and the big Psi notation with which besides to the convergence speed also an estimate for the absolute error and the asymptotic error respectively can be stated. Both notations are defined as\footnote{Although it is likely that this notation is already used in mathematical literature I could not find a reference for it, cf.~\cite{tampis_bigpsi} and~\cite{tampis_bigabs}}:
+Therefore I want to introduce the big Delta and the big Psi notation with which besides to the convergence speed also an estimate for the absolute error and the asymptotic error respectively can be stated. Both notations are defined as\footnote{Donald Knuth uses the term ``A notation'' for the big Delta notation \cite{anotation}. Please compare also \cite{tampis_bigpsi} and~\cite{tampis_bigabs} respectively for the usage of the big Psi notation and big Delta notation in mathematics.}:
 
 \begin{definition}[Big Delta notation]
   Let $\seq{a_n}$ be a sequence. $\bigabs{a_n}$ is the set of all sequences $\seq{\epsilon_n}$ with $\abs{\epsilon_n} \le \abs{a_n}$ for all $n\in\N$:
