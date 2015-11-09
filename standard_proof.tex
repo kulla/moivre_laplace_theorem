@@ -193,9 +193,7 @@ In this section we will show that the probability mass function of the standardi
     k &\in np \cdot \fexp{\x q h + \bigo{\pol{\x}h^2}} \nl
     n-k &\in nq \cdot \fexp{\x p h + \bigo{\pol{\x}h^2}}
   \end{align}
-
-  \noindent This we can use for the approximation
-
+  Now we can begin with the approximation
   \begin{align}
     \bb{\x} &= \binom nk p^k q^{n-k} \nl
     &= \frac{n!}{k!(n-k)!} p^k q^{n-k} \bnl
@@ -214,7 +212,6 @@ In this section we will show that the probability mass function of the standardi
   \end{align}
 
   Now we first approximate the two main factors of the remaining product. We start with the root $\sqrt{\frac{n}{2\pi k(n-k)}}$:
-
   \begin{align}
     \sqrt{\frac{n}{2\pi k(n-k)}} & \in \sqrt{\frac{n}{2\pi \cdot np \fexp{\x qh +\bigo{\pol{x}h^2}} \cdot nq \fexp{-\x ph + \bigo{\pol{\x}h^2}}}} \bnl
     & \subseteq \sqrt{\frac{1}{2\pi npq \fexp{(q-p)\x h +\bigo{\pol{x}h^2}}}} \bnl
@@ -271,7 +268,7 @@ In this section we will show that the probability mass function of the standardi
     \end{array}
   \end{align}
 
-  Because $\tilde s$ is in the interval bounded by $p$ and $s=\frac kn \in p\fe{\littleo{1}}$ we deduce $\tilde s \in p\fe{\littleo{1}}\subseteq \bigo{1}$, too. Similarly we get $1-\tilde s\in q\fe{\littleo{1}} \subseteq \bigo{1}$ because $1-s = \frac{n-k}{n} \in q\fe{\littleo{1}}$. From this follows:
+  Because $\tilde s$ is in the interval bounded by $p$ and $s=\frac kn \in p \cdot \bigo{1} \subseteq \bigo{1}$ we deduce $\tilde s \in \bigo{1}$, too. Similarly we get $1-\tilde s\in \bigo{1}$ because $1-s = \frac{n-k}{n} \in q \cdot \bigo{1}$. From this follows:
 
   \begin{align}
     \frac 1{\tilde s^3} + \frac 1{(1-\tilde s)^3} & \in \bigo{1}
@@ -323,7 +320,7 @@ In this section we will show that the probability mass function of the standardi
     & \subseteq \frac 1{\sqrt{2\pi npq}} \cdot \fexp{-\frac{\x^2}{2}} \left(1 +\frac{p-q}2 \left(\x - \frac 13 \x^3 \right) h + \bigo{\pol{\x}h^2}\right) \bnl
     &
     \begin{comment}
-      \fphi{x} = \frac{1}{\sqrt{npq}}\fexp{-\frac{x^2}2}
+      \fphi{x} = \frac{1}{\sqrt{2\pi}}\fexp{-\frac{x^2}2} \land h = \frac{1}{\sqrt{npq}}
     \end{comment} \bnl
     & \subseteq \fphi{\x} h +\frac{q-p}6 \left(\x^3-\x\right) \fphi{\x} h^2 + \bigo{\fphi{\x}\pol{\x}h^3}
   \end{align}

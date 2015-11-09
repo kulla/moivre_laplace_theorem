@@ -61,7 +61,7 @@ with the initial value $y(0) = \frac{1}{\sqrt{2\pi}}$. This follows from the the
       &\implies & y(x) &= b \fexp{-\frac{x^2}2 + \frac{a^2}2} = \frac b{\fphi{a}}\fphi{x}
   \end{align}
 \end{proof}
-    
+
 ODEs can be approximated numerically with \emph{one-step methods}~\cite[pp.~471~ff]{stoer}. A one-step method is described by a function $M(x,y,h,f)$ with a step size $h>0$~\cite[p.~473]{stoer}. Given an initial value $y(x_0)=y_0$ the approximations $y_k$ at the points $x_k = x_0 + kh$ ($k\in\N$) can be obtained recursively via the relation
 
 \begin{align}
@@ -120,7 +120,7 @@ We will prove the local version of the de Moivre-Laplace theorem in the followin
 \newcommand*{\dphin}[2][n]{y_{#1}'\left({#2}\right)}
 
 \begin{theorem}
-  Let $I$ be a bounded interval and let $\xnp$ be the mode of $\bbs$ (i.e. the $\x$ where $\bb{\x}$ attains its maximum). Let $L = \sup\{\abs{x}: x \in I\}$. Then there is a $C > 0$ independent of $\x$ and $n$ such that
+  Let $I$ be a bounded interval and let $\xnp$ be the mode of $\bbs$ (i.e. the $\x$ where $\bb{\x}$ attains its maximum). Let $L$ be the maximum of $h$ and $\sup\{\abs{x}: x \in I\}$. Then there is a $C > 0$ independent of $\x$ and $n$ such that
 
   \begin{align}
     \bb{\x} = \frac{\bnp}{\fphi{\xnp}}\fphi{\x} + \bigabs{{\bnp}\cdot \frac{\fe{L\abs{\x-\xnp}}-1}L Ch}
@@ -128,7 +128,11 @@ We will prove the local version of the de Moivre-Laplace theorem in the followin
 \end{theorem}
 
 \begin{remark} \label{remark:alt_local}
-  The mode of $\xnp$ is the $\x[k]$ with $k = \lfloor (n+1)p \rfloor$ \cite{nicolas}\cite{wiki:binomial_distribution}. Thus we have $\abs{\xnp} \le h$ so that $\lim_{n\to\infty} \xnp = 0$. We may also generalize the theorem to each bounded set $I \subset \R$. \todo{richtig?} Because
+  The mode of $\xnp$ is the $\x[k]$ with $k = \lfloor (n+1)p \rfloor$ \cite{nicolas}\cite{wiki:binomial_distribution}. Thus we have
+  \begin{align}
+    np+p-1 \le \knp \le np+p \implies \abs{\knp-np} \le 1 \implies \abs{\xnp} \le h \implies \lim_{n\to\infty} \xnp = 0
+  \end{align}
+  We may also generalize the theorem to each bounded set $I \subset \R$. Because
   \begin{align}
     \abs{\x[k]-\xnp} \le \abs{\x[k]}+\abs{\xnp} \le L + h \le L + \frac{1}{\sqrt{pq}}
   \end{align}
@@ -136,12 +140,13 @@ We will prove the local version of the de Moivre-Laplace theorem in the followin
   \begin{align}
     \bb{\x} \in \frac{\bnp}{\fphi{\xnp}}\fphi{\x} + \bigabs{{\bnp}\cdot \tilde Ch}
   \end{align}
+  Please note that we get the right convergence order $\bigo{h^2}$ of the remaining error because $\bnp \in \bigo{h}$ as we will prove later. However the error estimation of this theorem is worse than in the standard proof with Stirling's formula. So we cannot use this kind of proof to get a better error estimation.
 \end{remark}
 
 This proof will heavily bases on the theory of one-step methods for approximating ordinary differential equations. Thereby we will revert the perspective: Whereas in the theory of ODEs one-step methods are approximations of unknown solutions of ODEs, we will consider the probability mass function of the binomial distribution as the result of an one-step method. This one-step method corresponds to an ODE and the solution to this ODE will be an approximation to the probability mass function. Thus we flip the role of the exact solution and the approximation. This makes this proof in particular interesting and my be a method which might be applicable in other proofs, too.
 
 \begin{proof}
-  We prove this theorem by extending $I$ to $\interval{-L}{L}$ \todo{richtig?} so that $\xnp \in I$. We start with investigating $\bb{\x[k+1]}-\bb{\x[k]}$ (let $\pol{\x}$ be the set of all polynomials in $\x$):
+  We prove this theorem by extending $I$ to $\interval{-L}{L}$ so that $\xnp \in I$ because $L \ge h$. We start with investigating $\bb{\x[k+1]}-\bb{\x[k]}$ (let $\pol{\x}$ be the set of all polynomials in $\x$):
 
   \begin{align}
     \bb{\x[k+1]} - \bb{\x[k]} &= \binom n{k+1} p^{k+1}q^{n-k-1} - \binom nk p^k q^k \nl
@@ -224,8 +229,6 @@ This proof will heavily bases on the theory of one-step methods for approximatin
     \implies & \bb{\x} = \phin{\x} + \bigabs{\bnp \cdot \frac{\fe{L\abs{\x-\xnp}}-1}L Ch}
   \end{align}
 \end{proof}
-
-\todo{Auswertung mit Fehler}
 
 \section{Global version of de Moivre-Laplace}
 
@@ -363,7 +366,7 @@ for any $a,b,z\in\R$. Thereby we will split the proof in several steps. We start
       \lim_{n\to\infty} \frac{\bnp}{\fphi{\xnp}h} = 1 \implies \frac{\bnp}{\fphi{\xnp}h} = 1+\littleo{1}
     \end{comment} \bnl
     & \subseteq \br{1+\littleo{1}}\cdot \br{\int_a^b \fphi{t} \d{t} + \bigo{h}} \bnl
-    & = \int_a^b \phi{t}\d{t} + \littleo{1} \cdot \int_a^b \fphi{t} \d{t} + \bigo{h} + \littleo{1} \cdot \bigo{h} \bnl
+    & = \int_a^b \fphi{t}\d{t} + \littleo{1} \cdot \int_a^b \fphi{t} \d{t} + \bigo{h} + \littleo{1} \cdot \bigo{h} \bnl
     &
     \begin{comment}
       \begin{aligned}

@@ -89,6 +89,10 @@ We see that $\P{\BBs \le x}$ converges uniformly in $x$ to $\fPhi{x}$ with an er
 \newcommand*{\Cmaxbin}{0.4215}
 Currently the estimate $\Cmin \le C \le \Cmax$ is proven (see \cite{shevtsova2011} and \cite{esseen1956}). For the special case of the binomial distribution we can make the estimate $C \le \Cmaxbin$~\cite{nagaev}\cite{muaddib}.
 
+\begin{remark}
+  The estimate of the error's convergence speed provided by the Berry-Esseen theorem cannot be improved \cite{tampis:speed}. As we will see is $\bb{\xdown{c}}\sim h$ for each $c\in\R$\footnote{See the later proved local version of de Moivre-Laplace.}. Thus $\P{\BBs \le z}$ has steps with heights of order $h$ \cite{tampis:speed}. Because $\fPhi{z}$ is continuous, also $\abs{\P{\BBs \le z} - \fPhi{z}}$ has steps of order $h$ which shows that the best convergence speed is $\bigo{h}$ \cite{tampis:speed}.
+\end{remark}
+
 \section{Application}
 
 Graunt + sex ratio, Computerprogramme

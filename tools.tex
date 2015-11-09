@@ -28,23 +28,23 @@ These arithmetic rules (which we will discuss in the end of this section) simpli
 \section{The big Delta and the big Psi notation}
 Unfortunately the big O notation does only provide an estimate of the convergence speed but no estimation of the error's value since the constants $C$ and $C_\infty$ in \eqref{bigo_def1} and \eqref{bigo_def_limsup} are not known\footnote{cf.~\cite[p.~444]{graham},~\cite{hurkyl_bigo} and \cite{templatetypedef_bigo}}.
 
-Therefore I want to introduce the big Delta and the big Psi notation with which besides to the convergence speed also an estimate for the absolute error and the asymptotic error respectively can be stated. Both notations are defined as\footnote{Although it is likely that this notation is already used in mathematical literature I could not find a reference for it, cf.~\cite{tampis_bigpsi} and~\cite{tampis_bigabs}}:
+Therefore I want to introduce the big Delta and the big Psi notation with which besides to the convergence speed also an estimate for the absolute error and the asymptotic error respectively can be stated. Both notations are defined as\footnote{Donald Knuth uses the term ``A notation'' for the big Delta notation \cite{anotation}. Please compare also \cite{tampis_bigpsi} and~\cite{tampis_bigabs} respectively for the usage of the big Psi notation and big Delta notation in mathematics.}:
 
-\begin{definition}[Big Delta notation]
+\begin{definition}[Big Delta notation for the absolute error]
   Let $\seq{a_n}$ be a sequence. $\bigabs{a_n}$ is the set of all sequences $\seq{\epsilon_n}$ with $\abs{\epsilon_n} \le \abs{a_n}$ for all $n\in\N$:
   \begin{align}
     \seq{\epsilon_n} \in \bigabs{a_n} \iff \forall n\in\N: \abs{\epsilon_n} \le \abs{a_n}
   \end{align}
 \end{definition}
 
-\begin{definition}[Big Psi notation]
+\begin{definition}[Big Psi notation for the asymptotic error]
   Let $\seq{a_n}$ be a sequence with $a_n > 0$ for all $n\in\N$. $\bigpsi{a_n}$ is the set of all sequences $\seq{\epsilon_n}$ fulfilling $\limsup_{n\to\infty} \abs{\frac{\epsilon_n}{a_n}} \le 1$. Thus
   \begin{align}
     \seq{\epsilon_n} \in \bigpsi{a_n} :\iff \limsup_{n\to\infty} \abs{\frac{\epsilon_n}{a_n}} \le 1
   \end{align}
 \end{definition}
 
-With the big Delta notation the absolute error of an approximation can be estimated whereas the big Psi notation provides an estimate of the asymptotic error. Note that the definition of the big Psi notation is the same as the limes superior definition \eqref{bigo_def_limsup} of the big O notation whereby $C_\infty$ has the concrete value $1$ and the big Delta notation is the same as \eqref{bigo_def1} with $C=1$. Thus we directly see that both notations are specializations of the big O notation:
+Note that the definition of the big Psi notation is the same as the limes superior definition \eqref{bigo_def_limsup} of the big O notation whereby $C_\infty$ has the concrete value $1$ and the big Delta notation is the same as \eqref{bigo_def1} with $C=1$. Thus we directly see that both notations are specializations of the big O notation:
 \begin{align}
   \seq{\epsilon_n} \in \bigabs{a_n} & \implies \seq{\epsilon_n} \in \bigo{a_n} \nl
   \seq{\epsilon_n} \in \bigpsi{a_n} & \implies \seq{\epsilon_n} \in \bigo{a_n}
@@ -68,7 +68,7 @@ We will also use the little-o notation which is defined as~\cite[pp.~99,~103]{ai
 
 \section{Calculations with sets} \label{sec:calculations_sets}
 
-The main idea of the above notations is that we can calculate a final error estimation. Instead of stating the concrete error $\epsilon_n$ of an approximation at the $n$-th step, we use one of the above notations whereby $\seq{\epsilon_n}$ is an element of the stated set. Because we will have to deal with expressions containing sets of sequences, we need rules how we shall interpret such expressions. These rules are \cite{bigo_rules1}\cite[pp. 17-18]{kulla}:
+With the above notations we can simplify the error estimation. Instead of stating the concrete error $\epsilon_n$ of an approximation at the $n$-th step, we use one of the above notations in the form $S(a_n)$ with $S\in\{O, \Delta, \Psi, o\}$. These statements mean that $\seq{\epsilon_n}$ is an element of the set $S(a_n)$. Because we will have to deal with expressions containing sets of sequences, we need rules for interpreting these expressions. These rules are \cite{bigo_rules1}\cite[pp. 17-18]{kulla}:
 
 \begin{enumerate}
   \item Let $f:D\subseteq\R^n\to\R$ be an $n$-ary operation of real numbers and let $A_1,A_2,\ldots,A_n$ be $n$ subsets of $\R$ such that $A_1\times A_2\times \dots\times A_n\subseteq D$. The result  $f\left(A_1,\ldots,A_n\right)$ of the operation with all $n$ sets is defined as the image of $f$ \footnote{The extended version of $f$ on sets calls Ramon E. Moore in his book about interval analysis the ``unit extension''~\cite[p. 18]{moore}}
@@ -105,10 +105,12 @@ It is also possible to use the rules stated by Henning Makholm\cite{bigo_rules2}
   \end{itemize}
 \end{quote}
 
-Be aware that I will use variables like $h=\frac{1}{\sqrt{npq}}$ where I drop the dependence on $n$ in the name of the variable. When I state something like $\littleo{h}$ I will always mean $\littleo{h_n}$, e.g.
-\begin{align}
-  \seq{\epsilon_n} \in \littleo{h} \iff \lim_{n\to\infty} \abs{\frac{\epsilon_n}{h}} = \lim_{n\to\infty} \abs{\epsilon_n \sqrt{npq}} = 0
-\end{align}
+\begin{remark}
+  Be aware that I will use variables like $h=\frac{1}{\sqrt{npq}}$ where I drop the dependence on $n$ in the name of the variable. When I state something like $\littleo{h}$ I will always mean $\littleo{h_n}$, e.g.
+  \begin{align}
+    \seq{\epsilon_n} \in \littleo{h} \iff \lim_{n\to\infty} \abs{\frac{\epsilon_n}{h}} = \lim_{n\to\infty} \abs{\epsilon_n \sqrt{npq}} = 0
+  \end{align}
+\end{remark}
 
 \section{Arithmetic rules}
 
