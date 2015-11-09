@@ -1,6 +1,6 @@
-\chapter{Tools for this thesis} \label{chapter:tools}
+\chapter{Asymptotic notations} \label{chapter:tools}
 
-In this chapter I will introduce and explain the tools necessary for the upcoming proofs. To keep this chapter short I will prove all following theorems in the appendix.
+In this chapter I will introduce and explain the asymptotic notations like $\bigo{\cdot}$ and $\littleo{\cdot}$ we will use in the proofs of this thesis.
 
 \section{The big O notation}
 
@@ -114,6 +114,57 @@ It is also possible to use the rules stated by Henning Makholm\cite{bigo_rules2}
 
 \section{Arithmetic rules}
 
-The advantage of the presented notations is, that they admit simple arithmetic rules. These rules are (I will prove the following theorem in the appendix):
+All the presented notations share a common property which is in the case of the bit O notation \cite{tampis:general}:
+\begin{align}
+  \seq{\epsilon_n} \in \bigo{a_n} \iff \seq{\abs{\frac{\epsilon_n}{a_n}}} \in \bigo{1}
+\end{align}
+This property of $\bigo{\cdot}$ can be condensed to the equation $\bigo{a_n} = a_n \cdot \bigo{1}$ because
+\begin{align}
+  \seq{\epsilon_n} \in \bigo{a_n} & \iff \seq{\abs{\frac{\epsilon_n}{a_n}}} \in \bigo{1} \bnl
+  & \iff \exists \seq{\delta_n} \in \bigo{1} : \abs{\epsilon_n} = \abs{a_n} \cdot \delta n \bnl
+  &
+  \begin{comment}
+    \seq{a_n} \in \bigo{b_n} \implies \forall \seq{c_n} \in \R^{\N} : \seq{(-1)^{c_n} a_n} \in \bigo{b_n}
+  \end{comment} \bnl
+  & \iff \exists \seq{\delta_n} \in \bigo{1} : \epsilon_n = a_n \cdot \delta n \bnl
+  & \iff \seq{\epsilon_n} \in a_n \cdot \bigo{1} \bnl
+\end{align}
+
+So $\bigo{a_n}$ is fully determined by knowing $\bigo{1}$ (cf. \cite{tampis:char}). For $\bigabs{\cdot}$ and $\littleo{\cdot}$ we get the analogous equation. Because $A(1)$ for $A\in\{O, o, \Psi, \Delta\}$ determines $A(a_n)$ we can deduce all arithmetic rules for asymptotic notation from the arithmetic rules for sets of the form $A(1)$. For example there are the rules \cite{tampis:rules}
+
+\begin{enumerate}
+  \item $(1)_{n\in\mathbb N} \in A(1) \implies (a_n)_{n\in\mathbb N} \in A(a_n)$
+  \item $A(1) \subseteq B(1) \implies A(a_n) \subseteq B(a_n)$
+  \item $A(1)\cdot B(1) \subseteq C(1) \implies A(a_n)\cdot B(b_n) \subseteq C(a_n\cdot b_n)$ \label{rule:example}
+  \item $A(1)\cdot B(1) \subseteq C(1) \implies A(B(a_n)) \subseteq C(a_n)$ \label{rule:toproof}
+  \item $A(1)+ B(1) \subseteq C(1) \implies A(a_n) + B(a_n) \subseteq C(a_n)$ \label{rule:demo}
+\end{enumerate}
+
+These rules can be mostly proven by using the equation $A(a_n) = a_n \cdot A(1)$. For example when we assume the premise $A(1) + B(1)\subseteq C(1)$ we can demonstrate rule \label{rule:demo} via
+
+\begin{align}
+  A(a_n) + B(a_n) = a_n (A(1)+B(1)) \subseteq a_n C(1) = C(a_n)
+\end{align}
+Only the rule \ref{rule:toproof} is not obvious. However we find by assuming $A(1) \cdot B(1) \subseteq C(1)$ that
+\begin{align}
+  \seq{\epsilon_n} \in A(\delta_n) \land \seq{\delta_n} \in B(a_n) & \implies \seq{\abs{\frac{\epsilon_n}{\delta_n}}} \in A(1) \land \seq{\abs{\frac{\delta_n}{a_n}}} \in B(1) \bnl
+  &
+  \begin{comment}
+    A(1) \cdot B(1) \subseteq C(1)
+  \end{comment} \bnl
+  & \implies \seq{\abs{\frac{\epsilon_n}{\delta_n}} \cdot \abs{\frac{\delta_n}{a_n}}} = \seq{\abs{\frac{\epsilon_n}{a_n}}} \in C(1) \bnl
+  & \implies \seq{\epsilon_n} \in C(a_n)
+\end{align}
+and thus $A(B(a_n))\subseteq C(a_n)$. The arithmetic rules for sets $A(1)$ are mostly easy to prove or are already known theorems. For example $\littleo(1)\cdot\bigabs{1} \subseteq \littleo{1}$ is the well known proposition
+
+\begin{align}
+  \lim_{n\to\infty} \epsilon_n = 0 \land \sup_{n\in\N} \abs{\delta_n} \le 1 \implies \lim_{n\to\infty} \epsilon_n \delta_n = 0
+\end{align}
+
+From rule \ref{rule:example} and \ref{rule:toproof} we can now conclude that $\littleo{a_n} \cdot \bigabs{b_n} \subseteq \littleo{a_n \cdot b_n}$ and that $\littleo{\bigabs{a_n}} \subseteq \littleo{a_n}$. We see that most of the arithmetic rules for asymptotic notations are corollaries from already known theorems about sequences and their limit behavior.
+
+\section{Asymptotic behavior of Riemann sums}
+
+Because we will have to deal with Riemann sums we need the following theorem:
 
 \input{arithmetic_rules}
