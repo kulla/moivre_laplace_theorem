@@ -410,8 +410,6 @@ In this section we will show that the probability mass function of the standardi
 
 \section{Second global version of the de Moivre-Laplace theorem}
 
-\todo{Chernof bound}
-
 \begin{theorem}[Second global version of the de Moivre-Laplace theorem]
   For any $z\in\R$ we find
 
@@ -422,26 +420,29 @@ In this section we will show that the probability mass function of the standardi
 \end{theorem}
 
 \begin{proof}
-  We consider only those $n\in\N$ with $\x[0] \le z \le \x[n]$. Because $\lim_{n\to\infty} \x[0] = -\infty$ and $\lim_{n\to\infty} \x[n] = \infty$ these are almost all $n\in\N$. Let $\seq{c_n}$ be a sequence with $\x[0] \le c_n \le \min\{z,0\}$, $\seq{\abs{c_n}}\in\littleo{\frac 1h}$ and $\lim_{n\to\infty} c_n=-\infty$. We split the sum $\sum_{\x \le z} \bb{\x}$ into two sums:
+  We consider only those $n\in\N$ with $\x[0] \le z \le \x[n]$. Because $\lim_{n\to\infty} \x[0] = -\infty$ and $\lim_{n\to\infty} \x[n] = \infty$ these are almost all $n\in\N$. Let $\seq{c_n}$ be a sequence with
+  \begin{itemize}
+    \item $\x[0] \le c_n \le \min\{z,0\}$
+    \item $\seq{\abs{c_n}}\in\littleo{\frac 1h}$
+    \item $\seq{\frac{1}{c_n^2}} \in \littleo{h}$
+    \item $\lim_{n\to\infty} c_n=-\infty$
+  \end{itemize}
+  For example one may take $c_n = \min\left\{z, 0, \xdown{- \sqrt[3]{n}\sqrt{\frac pq}}\right\}$. We split the sum $\sum_{\x \le z} \bb{\x}$ into two sums:
 
   \begin{align}
     \sum_{\x \le z} \bb{\x} = \sum_{\x < c_n} \bb{\x} + \sum_{c_n \le \x \le z} \bb{\x}
   \end{align}
-  The first sum can be estimated with the \todo{Chernoff bound}:
+  The first sum can be estimated with the Chebyshev's inequality:
   \begin{align}
-    0 \le \sum_{\x < c_n} \bb{\x} \le \P{\abs{\BBs} > \abs{c_n}} \le 2\fexp{-\frac{c_n^2}{4}}
+    0 \le \sum_{\x < c_n} \bb{\x} \le \P{\abs{\BBs} > \abs{c_n}} \le \frac{1}{c_n^2}
   \end{align}
   Similarly we get
   \begin{align}
-    0 \le \int_{t < c_n} \fphi{t}\d{t} \le \int_{\abs{t} > \abs{c_n}} \fphi{t} \d{t} \le 2\fexp{-\frac{c_n^2}{4}}
+    0 \le \int_{t < c_n} \fphi{t}\d{t} \le \int_{\abs{t} > \abs{c_n}} \fphi{t} \d{t} \le \frac{1}{c_n^2}
   \end{align}
   Thus
   \begin{align}
-    \sum_{\x < c_n} \bb{\x} & \in \int_{t < c_n} \fphi{t}\d{t} + \bigabs{2\fexp{-\frac{c_n^2}4}} \nl
-    &
-    \begin{comment}
-      \text{\todo{}} 
-    \end{comment} \nl
+    \sum_{\x < c_n} \bb{\x} & \in \int_{t < c_n} \fphi{t}\d{t} + \bigabs{\frac{1}{c_n^2}} \nl
     & \subseteq \int_{t < c_n} \fphi{t}\d{t} + \littleo{h}
   \end{align}
 
