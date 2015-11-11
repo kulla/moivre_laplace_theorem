@@ -3,6 +3,7 @@ SOURCES  = $(wildcard *.tex)
 
 FIGURES  = $(patsubst %.svg,%.pdf,$(wildcard ./figures/*.svg)) \
 	   $(patsubst %.jpg,%.pdf,$(wildcard ./figures/*.jpg)) \
+	   $(patsubst %.py,%.pdf,$(wildcard ./plots/*.py)) \
 	   $(patsubst %.png,%.pdf,$(wildcard ./figures/*.png))
 
 latex = pdflatex -halt-on-error -synctex=1 -interaction=nonstopmode $(1).tex < /dev/null;
@@ -23,6 +24,9 @@ figures/%.pdf: figures/%.svg
 
 figures/%.pdf: figures/%.jpg
 	convert $< $@
+
+plots/%.pdf: plots/%.py
+	python $<
 
 figures/%.pdf: figures/%.png
 	convert $< $@
