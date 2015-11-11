@@ -14,6 +14,8 @@ The first simple approximation to the binomial distribution was found by Abraham
 
 I want to split this theorem in two parts. With the first part one get an approximation for the probability mass function of a binomial distribution:
 
+\includeplot{ml_pmf}{The probability mass function of $\BBs$ for $n=20$ and $p=\frac 14$ and the density function of the standardized normal distribution.}
+
 \begin{theorem}[Local version of De Moivre-Laplace theorem]
   Let $\fphi{x}=\frac{1}{\sqrt{2\pi}}\fexp{-\frac{x^2}2}$ be the density function of the standardized normal distribution~\cite[p. 48]{georgii} and $p\in(0,1)$. For $n$ large enough we have~\cite[p. 65]{irle}
   \begin{align}
@@ -26,6 +28,8 @@ I want to split this theorem in two parts. With the first part one get an approx
 \end{theorem}
 
 In the second part one gets an approximation to the culmulative distribution function which is the actual theorem by De Moivre and Laplace:
+
+\includeplot{ml_cdf}{The cumulative distribution function of $\BBs$ for $n=20$ and $p=\frac 14$ and the cumulative distribution function of the standardized normal distribution.}
 
 \begin{theorem}[De Moivre-Laplace theorem]
   For any $b,a \in \R$ we have for large $n$~\cite[p. 136]{georgii}\cite[p. 67]{irle}
