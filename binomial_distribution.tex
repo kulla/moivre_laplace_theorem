@@ -186,7 +186,9 @@ It is also possible to define $\Bs$ on $\Z$ by setting $\b{k}=0$ for each $k\not
 \b[n]{k} = \P{\Bs[n] = k} = \begin{cases} \binom nk p^k q^{n-k} & ;\ k \in \{0,1,\ldots,n\} \\ 0 & ;\  \text{otherwise} \end{cases}
 \end{align}
 
-\includefig{binomial_distribution_pmf}{The probability mass function of the binomial distribution}{File \href{https://commons.wikimedia.org/wiki/File:Binomial_distribution_pmf.svg}{``Binomial distribution pmf.svg''} from Wikimedia Commons. Upload by user \href{https://commons.wikimedia.org/w/index.php?title=User:Tayste}{Tayste} and licensed under Public Domain.}
+\includeplot{pmf}{The probability mass function of the binomial distribution for $p=\tfrac 14$ and $n=20$.}
+
+\includeplot{cdf}{The cumulative distribution of the binomial distribution for $p=\tfrac 14$ and $n=20$.}
 
 The mean of the binomially distributed random variable $\Bs[n]$ is $np$ and its variance is $npq$ \cite[p. 112]{georgii}\cite[pp. 8-9]{fels}\cite{wiki:binomial_distribution}. Therefore we get after standardizing $\Bs[n]$ the following random variable
 
