@@ -1,6 +1,6 @@
 \chapter{Alternative proof via slope approximation}
 
-In this chapter I present an alternative proof of the de Moivre-Laplace theorem which approximates the slope of the probability mass function and the density function between the standardized binomial and the normal distribution. The idea of this proof comes from Prof. Peter Pickl and was first described in the thesis ``Der Zentrale Grenzwertsatz'' by Karolina Fels~\cite{fels}.
+In this chapter I present an alternative proof of the de Moivre-Laplace theorem which approximates the slope of the probability mass function and the density function between the standardized binomial and the normal distribution. The idea of this proof comes from Prof. Peter Pickl and was first described in the thesis ``Der Zentrale Grenzwertsatz'' by Karolina Fels~\cite{fels}. However the idea to derive an ODE in order to find an approximation for the binomial distribution occurs already in two papers by Daniel Bernoulli in 1770 and 1771~\cite{hald1}.
 
 \section{Intuition behind the proof}
 
@@ -19,7 +19,7 @@ In this section I want to present the proof idea of Karolina Fels \cite[pp. 16-1
 Let us assume that the cumulative distribution of $\BBs$ can be approximated by a distribution with density function $\phi(x)$ for $n\to\infty$. Under the limit $n\to\infty$ we have $h\to 0$. For a fixed $x\in\R$ we also set $\x = \xrnd{x} = \frac{\rnd{np+ x \sqrt{npq}}-np}{\sqrt{npq}}$ which is the closest $\x$ to $x$. We get
 \begin{align}
   \frac{\bb{\x[k+1]}-\bb{\x[k]}}h & \to \phi'(x) \nl
-  \bb{\x[k]} \to \fphi{x} \nl
+  \bb{\x[k]} &\to \fphi{x} \nl
   \frac{np}{k+1} &= \frac{np}{\rnd{np+x\sqrt{np}}+1} \to 1
 \end{align}
 Therefor $\fphi{x}$ is described by the ODE
