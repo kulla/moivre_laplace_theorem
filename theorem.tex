@@ -69,6 +69,8 @@ In his book \emph{A History of Mathematical Statistics From 1750 to 1930} Hald w
 
 \section{The error in the theorem}
 
+\includeplot{berry_diff}{The function $f(x) = \P{\BBs \le x} - \fPhi{x}$ for $n=1000$ and $p=\frac = 14$. You see that the maximum error occurs for $x\approx 0$. The function shape reminds the shape of $g(x)=\br{x^2-1} e^{-x^2}$ which leads to the first term of the Edgeworth expansion as we will see in the next chapter.}
+
 In the above section we have gotten to know the theorem by de Moivre-Laplace in a qulitative version without an estimate of the approximation error. The global version of de Moivre-Laplace with an error estimation provides the Berry-Esseen theorem. It states~\cite[70-71]{nourdin}\cite{wiki:berry}:
 
 \begin{theorem}[The Berry-Esseen theorem]
@@ -78,6 +80,9 @@ In the above section we have gotten to know the theorem by de Moivre-Laplace in 
     \abs{\P{Y_n \le x} - \fPhi{x}} \le \frac{C \rho}{\sqrt n \sigma^3}
   \end{align}
 \end{theorem}
+
+\includeplot{berry_line}{For $p=\frac 14$ the logarithm of $n$ is plotted against the logarithm of $f(n) = \sup_{x\in\R} \abs{\P{\BBs \le x}-\fPhi{x}}$. That this curve has an asymptote shows that $f(n)$ can be approximated by $cn^\alpha$ with $\alpha$ being the slope of the asymptote.}
+\includeplot{berry_slope}{$f(n) = \sup_{x\in\R} \abs{\P{\BBs \le x}-\fPhi{x}}$ can be approximated by $cn^\alpha$ for large $n$. $\alpha$ can be approximated by applying a linear fit to plot of $\ln(n)$ against $\ln(f(n))$. This plot shows the graph of $p$ plotted against the approximation of $\alpha$. This diagram demonstrates that $f(n) \sim n^{-\frac 12}$ is a plausible statement.}
 
 As we have already seen in the above section, $\BBs$ is the standardized sum of $n$ i.i.d. Binomial trials $\seq{X_n}$. $X_n$ has the two possible outcomes $1$ and $0$ whereby $1$ has the possibility $p$ and $0$ has the possibility $q=1-p$ \cite[p. 32]{georgii}\cite{wiki:bernoulli_distribution}. We have $\E{X_k} = \mu = p$ and $\E{(X_k-p)^2}=\sigma^2=pq$ \cite{wiki:bernoulli_distribution}\cite[p. 112]{georgii}. For $\rho$ we get
 \begin{align}
