@@ -334,11 +334,25 @@ In this section we will show that the probability mass function of the standardi
     \P{a \le \BBs \le b} & = \sum_{a \le \x \le b} \bb{\x} \nl
     &
     \begin{multlined}
-      \in \int_a^b \fphi{t} \d{t} + \frac{q-p}6 \left[\br{b^2-1}\fphi{b}-\br{a^2-1}\fphi{a}\right] \nl
+      \in \int_a^b \fphi{t} \d{t} + \frac{q-p}6 \left[\br{b^2-1}\fphi{b}-\br{a^2-1}\fphi{a}\right] h\nl
       +\bigabs{\snorm{\phi}h}+ \bigo{h^2}
     \end{multlined}
   \end{align}
 \end{theorem}
+
+\todo{Vorzeichenfehler}
+
+\begin{remark}
+  With the above theorem we can establish the same approximation Uspensky found in his textbook ``Introduction to mathematical probability'' of 1937 where he stated \cite[p. 129]{uspensky}
+  \begin{align}
+    \P{a+\frac 12h \le \BBs \le b-\frac 12h} = \int_a^b \fphi{x} \d{x} + \frac{q-p}6 \br{\br{1-b^2}\fphi{b} - \br{1-a^2}\fphi{a}} h + \epsilon
+  \end{align}
+  whereby the error term $\epsilon$ fulfills for $npq \ge 25$ the inequality
+  \begin{align} \label{uspensky:error}
+    \abs{\epsilon} < \frac{0.13+0.18\abs{p-q}}{npq} + \fexp{-\frac 32 \sqrt{npq}}
+  \end{align}
+  Thereby Uspensky uses the characteristic function of the binomial distribution to prove his theorem \cite[pp. 119-129]{uspensky}. With the following proof we show that the same approximation is possible with Stirling's formula which demonstrates the power of this proof method. However we cannot establish the same error bounds Uspensky found with \eqref{uspensky:error}.
+\end{remark}
 
 \begin{proof}
   In the following we will only consider those $n\in\N$ with $\x[0] \le a \le b \le \x[n]$. Because $\lim_{n\to\infty} \x[0] = -\infty$ and $\lim_{n\to\infty} \x[n] = \infty$ these are almost all $n\in\N$. Because $c_n=\max\{\abs{a},\abs{b}\}$ is a sequence with $c_n\in\littleo{\frac 1h}$ and for all $\x$ with $a \le \x \le b$ we have $\abs{\x} \le c_n$ we can apply the local version of de Moivre-Laplace and we get
