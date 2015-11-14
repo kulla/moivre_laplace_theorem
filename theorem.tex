@@ -104,4 +104,12 @@ Currently the estimate $\Cmin \le C \le \Cmax$ is proven (see \cite{shevtsova201
 
 \section{Application}
 
-Graunt + sex ratio, Computerprogramme
+The huge advantage of the theorem by de Moivre and Laplace is that the binomial distribution can be approximated by the standardized normal distribution which does not depend on $n$ or $p$ \cite[p. 492]{hald1}. Therefore probabilities of the limiting distribution can be calculated beforehand an tabulated \cite[p. 21]{hald2}. De Moivre used numerical methods such as the expansion into a power series and termwise integration or Newton's three-eight's rule to compute certain probabilities like $\int_{-1}^1 \fphi{t} \d{t}$ \cite[p. 21]{hald2}. Anders Hald wrote \cite[p. 492]{hald1}
+
+\begin{quote}
+  ``De Moivre did not consider the normal distribution as a distribution in its own right (the error distribution) but only as a convenient means for approximating the binomial. [...] For de Moivre's purpose it was inessential what form the limiting distribution had if only its sum could be evaluated.''
+\end{quote}
+
+Laplace gave in his treatise only one application of his theorem: He demonstrated that the probability $\P{7037 \le \Bs \le 7363}$ for $n=14000$ and $p=\frac{18}{35}$ can be approximated with $0.994303$ (the correct value is $0.994306$) \cite[.497]{hald1}\cite[p. 25]{hald2}. This is precisely the same computation Nicolas Bernoulli did in his investigations of the sex ratio\footnote{However Laplace did not mention Nicolas Bernoulli in his work \cite[p. 25]{hald2}} \cite[p. 25]{hald2}. This shows one of the first usage of de Moivre's and Laplace's theorem in statistics.
+
+Today is the theorem of de Moivre and Laplace taught in many courses and occurs in many textbooks (such as ...). It serves as an example of the central limit theorem and it is used in many exercises for students. Computerprogramme
