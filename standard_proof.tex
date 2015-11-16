@@ -541,9 +541,9 @@ We see that the standard proof of the de Moivre-Laplace theorem with Stirling's 
 
 These extensions of the normal approximation are precisely the first two terms of the Edgeworth Expansion \cite[pp. 39 ff.]{hall}\cite{wiki:edgeworth}. The Edgeworth Expansion is a series which approximates the cumulative distribution function of a random variable \cite{wiki:edgeworth}. In the case of the binomial distribution the Edgeworth Expansion is
 \begin{align}
-  \P{\BBs \le z} & \approx \int_{-\infty}^z \fphi{t} \d{t} + \frac{q-p}6 \br{z^2-1}\fphi{z} h + R\left(\frac{\sqrt n z - n \x[m]}h\right)\frac{\fphi{z}}{\sqrt n}h + \bigo{h^2}
+  \P{\BBs \le z} & \approx \int_{-\infty}^z \fphi{t} \d{t} + \frac{q-p}6 \br{z^2-1}\fphi{z} h + R\left(np + z \sqrt{npq}\right)\fphi{z}h + \bigo{h^2}
 \end{align}
-with $R(x)=\lfloor x \rfloor -x+\frac 12$ and $\x[m]$ is any of the $\x$ (for example the mode of $\bbs$). By comparing the above equation with our second global version of de Moivre-Laplace we see that we can provide the same first term of the Edgeworth Expansion, but with a worse error estimation of the remaining error ($\littleo{h}$ instead of $\bigo{h^2}$). This demonstrates the power of the standard proof with Stirling's formula.
+with $R(x)=\lfloor x \rfloor -x+\frac 12$ \cite[p. 46]{hall}. By comparing the above equation with our second global version of de Moivre-Laplace we see that we can provide the same first term of the Edgeworth Expansion, but with a worse estimation of the remaining error ($\littleo{h}$ instead of $\bigo{h^2}$). This demonstrates the power of the standard proof with Stirling's formula.
 
 \todo{Folgendes sollte untersucht werden: Vergleich mit numerischen Diagrammen.}
 
