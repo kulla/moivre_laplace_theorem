@@ -16,7 +16,7 @@ def slope(p):
 
     return np.polyfit( np.log(ns), np.log(np.vectorize(error)(ns)), 1 )[0]
 
-ps = (0.02, 0.99, 0.02)
+ps = np.arange(0.02, 0.99, 0.02)
 
 plt.plot(ps, np.vectorize(slope)(ps))
 plt.ylim([-0.8,-0.2])
