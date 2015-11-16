@@ -1,12 +1,12 @@
 \chapter{The Berry-Esseen theorem}
 
-In this chapter I present you the Berry-Essen theorem which not only proves the central limit but also gives an upper bound for the maximal error of the normal approximation. In the proof of this theorem I will mainly follow Nourdin and Peccati\cite[p. 71 ff.]{nourdin}\todo{Bessere Referenz - Originalquelle?}, who use the Method of Stein.
+In this chapter I present you the Berry-Essen theorem which not only proves the central limit but also gives an upper bound for the maximal error of the normal approximation. In the proof of this theorem I will mainly follow Nourdin and Peccati\cite[p. 71 ff.]{nourdin}, who use the Method of Stein.
 
 \section{CLT and Berry-Esseen bounds}
 
 From the central limit theorem we know, that each standardized sum $S_n = \tfrac 1{\sqrt n\sigma} \left(\sum_{k=1}^n x_k - n\mu\right)$ of i.i.d real valued random variables $\seq{X_n}$ with finite expected value $\mu=\E{X_1}$ and finite variance $\sigma^2=\E{X_1^2}-\E{X_1}^2$ converges in distribution to the standard normal distribution \refneeded. So we have $\lim_{n\to\infty} \P{S_n\le x} = \Phi(x)$ for all $x\in\R$. Thus we can use the normal distribution to approximate the cumulative distribution function of $S_n$.
 
-Unfortunately not each proof of the central limit theorem provides an estimate of the error $\abs{\P{S_n\le x}-\Phi(x)}$ \refneeded. Here comes the Berry-Esseen theorem into play. It provides an upper bound for the maximal error between $\P{S_n \le x}$ and $\Phi(x)$ \todo{$\Phi$ muss eingeführt werden}. Therefore the Berry-Esseen theorem needs the finiteness of the third moment for each $X_n$ as an additional premise compared to the central limit theorem. The Berry-Esseen theorem states\cite[p. 71]{nourdin}:
+Unfortunately not each proof of the central limit theorem provides an estimate of the error $\abs{\P{S_n\le x}-\Phi(x)}$ \refneeded. Here comes the Berry-Esseen theorem into play. It provides an upper bound for the maximal error between $\P{S_n \le x}$ and $\Phi(x)$. Therefore the Berry-Esseen theorem needs the finiteness of the third moment for each $X_n$ as an additional premise compared to the central limit theorem. The Berry-Esseen theorem states\cite[p. 71]{nourdin}:
 
 \begin{theorem}[CLT and Berry-Esseen bounds]
   Let $\seq{X_n}$ be a sequence of standardized i.i.d real valued random variables with finite third moment. Thus we have $\E{X_1}=0$, $\E{X_1^2}=1$ and $\E{|X_1|^3} < \infty$. Let $S_n$ be the associated sequence of normalized partial sums, i.e
@@ -113,7 +113,7 @@ The following proposition shows that the Stein's equation always has a solution 
 \end{proposition}
 
 \begin{proof}
-   Because $\E{h(N)}$ exists \todo{bessere Formulierung}, the function $y\mapsto h(y)\e{-\frac{y^2}{2}}$ is integrable so that also for each $x\in\R$ the integral ${\int_{-\infty}^x \Big[h(y)-\E{h(N)}\Big]\e{-\frac{y^2}{2}}\d{y}}$ exists. Thus $f_h$ is well defined. From the Stein's equation follows
+   Because $\E{h(N)}$ exists, the function $y\mapsto h(y)\e{-\frac{y^2}{2}}$ is integrable so that also for each $x\in\R$ the integral ${\int_{-\infty}^x \Big[h(y)-\E{h(N)}\Big]\e{-\frac{y^2}{2}}\d{y}}$ exists. Thus $f_h$ is well defined. From the Stein's equation follows
 
   \begin{align}
     &      & f'(x)-xf(x) & = h(x) - \E{h(N)} \nl
@@ -153,7 +153,7 @@ In the proof of the Berry-Esseen theorem we will need a estimate of $\snorm{f_h}
     \int_{-\infty}^x \Big[h(y)-\E{h(N)}\Big] \e{-\frac{y^2}{2}} \d{y} = -\int_{x}^\infty \Big[h(y)-\E{h(N)}\Big] \e{-\frac{y^2}{2}} \d{y}
   \end{align}
 
-  \noindent because $\int_{\R} \Big[h(y)-\E{h(N)}\Big] \e{-\frac{y^2}{2}} \d{y}=0$ \todo{$\d{N(y)}$ richtig?}:
+  \noindent because $\int_{\R} \Big[h(y)-\E{h(N)}\Big] \e{-\frac{y^2}{2}} \d{y}=0$:
 
   \begin{align} \label{eq:estimate2}
     \int_{\R} \Big[ h(y)-\E{h(N)} \Big] \e{-\frac{y^2}{2}} \d{y} & = \int_{\R} h(y) \e{-\frac{y^2}{2}} \d{y} - \int_{\R} \E{h(N)} \e{-\frac{y^2}2} \d{y} \nl
@@ -257,7 +257,7 @@ In the proof of the Berry-Esseen theorem we will need a estimate of $\snorm{f_h}
 
 \section{Proof of the Berry-Esseen theorem}
 
-\subsection{First steps of the proof\todo{better title}}
+\subsection{First steps of the proof}
 
 Let's recall the Berry-Esseen theorem: For the standardized partial sum $S_n$ of i.i.d random variables $\seq{X_n}$ with finite third moment $\E{\abs{X_n}^3}<\infty$ there is a $C > 0$ such that
 
