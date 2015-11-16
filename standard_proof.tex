@@ -180,13 +180,13 @@ In this section we will show that the probability mass function of the standardi
   \begin{align}
     n-k &= n-np-\x\sqrt{npq} \nl
     &= nq -\x \sqrt{npq} \nl
-    &= nq \left( 1 + \x \frac{\sqrt p}{\sqrt{nq}}\right) \nl
+    &= nq \left( 1 - \x \frac{\sqrt p}{\sqrt{nq}}\right) \nl
     &= nq \left( 1 - \x p h\right)
   \end{align}
   Because $\x h \in \littleo{1}$ we have
   \begin{align}
-    k & \in np \cdot \bigo{1} \nl
-    n-k & \in nq \cdot \bigo{1}
+    k & \in \bigo{np} \nl
+    n-k & \in \bigo{nq}
   \end{align}
   Because $\seq{1+a_n} \in \fexp{a_n + \bigo{a_n^2}}$ we can also conclude
   \begin{align}
