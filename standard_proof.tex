@@ -531,6 +531,8 @@ In this section we will show that the probability mass function of the standardi
 
 \includeplot{edgeworth_diff_pdf}{This plot shows $f(\x) = \bb{\x}-\fphi{\x}h$ and $g(\x)=\frac{q-p}6 \left(\x^3-3\x\right) \fphi{\x} h^2$ for $n=1000$ and $p=\frac 14$. It demonstrates that our correction term $\frac{q-p}6 \left(\x^3-3\x\right) \fphi{\x} h^2$ describes very well the error $\bb{\x}-\fphi{\x}$ in the normal approximation.}
 
+\includeplot{pdf_convergence_order}{The approximated convergence order $\alpha$ of $\sup_{\x} \abs{\P{\BBs = \x}-\fphi{\x} h}$ in terms of $n$. We see that $\sup_{\x} \abs{\P{\BBs = \x}-\fphi{\x} h}\sim n^{-1}$ unless $p=q=\tfrac 12$. In this case we have the convergence order $\sup_{\x} \abs{\P{\BBs = \x}-\fphi{\x} h}\sim n^{-3/2}$. This can be explained with our approximation of the probability mass function whose correction term $\frac{q-p}6 \left(\x^3-3\x\right) \fphi{\x} h^2$ vanishes for $p=q=\tfrac 12$.}
+
 We see that the standard proof of the de Moivre-Laplace theorem with Stirling's formula yield a good estimation of the approximation's error. We do not only get the right order $\bigo{h}$ of the error's convergence as it is shown by the Berry-Esseen theorem, we also derived a better approximation for the binomial distribution which is
 
 \begin{align}
@@ -544,6 +546,3 @@ These extensions of the normal approximation are precisely the first two terms o
   \P{\BBs \le z} & \approx \int_{-\infty}^z \fphi{t} \d{t} + \frac{q-p}6 \br{z^2-1}\fphi{z} h + R\left(np + z \sqrt{npq}\right)\fphi{z}h + \bigo{h^2}
 \end{align}
 with $R(x)=\lfloor x \rfloor -x+\frac 12$ \cite[p. 46]{hall}. By comparing the above equation with our second global version of de Moivre-Laplace we see that we can provide the same first term of the Edgeworth Expansion, but with a worse estimation of the remaining error ($\littleo{h}$ instead of $\bigo{h^2}$). This demonstrates the power of the standard proof with Stirling's formula.
-
-\todo{Folgendes sollte untersucht werden: Vergleich mit numerischen Diagrammen.}
-
