@@ -82,6 +82,7 @@ In the above section we have gotten to know the theorem by de Moivre-Laplace in 
 \end{theorem}
 
 \includeplot{berry_line}{For $p=\frac 14$ the logarithm of $n$ is plotted against the logarithm of $f(n) = \sup_{x\in\R} \abs{\P{\BBs \le x}-\fPhi{x}}$. That this curve has an asymptote shows that $f(n)$ can be approximated by $cn^\alpha$ with $\alpha$ being the slope of the asymptote.}
+
 \includeplot{berry_slope}{$f(n) = \sup_{x\in\R} \abs{\P{\BBs \le x}-\fPhi{x}}$ can be approximated by $cn^\alpha$ for large $n$. $\alpha$ can be approximated by applying a linear fit to plot of $\ln(n)$ against $\ln(f(n))$. This plot shows the graph of $p$ plotted against the approximation of $\alpha$. This diagram demonstrates that $f(n) \sim n^{-\frac 12}$ is a plausible statement.}
 
 As we have already seen in the above section, $\BBs$ is the standardized sum of $n$ i.i.d. Binomial trials $\seq{X_n}$. $X_n$ has the two possible outcomes $1$ and $0$ whereby $1$ has the possibility $p$ and $0$ has the possibility $q=1-p$ \cite[p. 32]{georgii}\cite{wiki:bernoulli_distribution}. We have $\E{X_k} = \mu = p$ and $\E{(X_k-p)^2}=\sigma^2=pq$ \cite{wiki:bernoulli_distribution}\cite[p. 112]{georgii}. For $\rho$ we get
@@ -97,6 +98,8 @@ We see that $\P{\BBs \le x}$ converges uniformly in $x$ to $\fPhi{x}$ with an er
 
 \newcommand*{\Cmaxbin}{0.4215}
 Currently the estimate $\Cmin \le C \le \Cmax$ is proven (see \cite{shevtsova2011} and \cite{esseen1956}). For the special case of the binomial distribution we can make the estimate $C \le \Cmaxbin$~\cite{nagaev}\cite{muaddib}.
+
+\includeplot{max_error}{This diagram shows $f(p) = \sup_{1 \le n \le 1000} \sqrt{n} \cdot \br{\sup_{x\in\R} \abs{\P{\BBs \le x} - \fPhi{x}}}$ and its upper bound $g(p) = C \frac{p^2+q^2}{\sqrt{pq}}$ provided by the Berry-Esseen theorem with $C=\Cmaxbin$.}
 
 \begin{remark}
   The estimate of the error's convergence speed provided by the Berry-Esseen theorem cannot be improved \cite{tampis:speed}. As we will see is $\bb{\xdown{c}}\sim h$ for each $c\in\R$\footnote{See the later proved local version of de Moivre-Laplace.}. Thus $\P{\BBs \le z}$ has steps with heights of order $h$ \cite{tampis:speed}. Because $\fPhi{z}$ is continuous, also $\abs{\P{\BBs \le z} - \fPhi{z}}$ has steps of order $h$ which shows that the best convergence speed is $\bigo{h}$ \cite{tampis:speed}.
