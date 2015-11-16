@@ -165,7 +165,7 @@ In this section we will show that the probability mass function of the standardi
   Let $\pol{\x}$ be the set of all polynomials in $\x$. Let $\seq{c_n}$ be a sequence with $\seq{c_n} \in \littleo{\frac 1h}$. For all $\x$ with $0\le k\le n$ and $\abs{x_k} \le c_n$ we have
   \begin{align}
     \bb{x_k} &= \binom nk p^k q^{n-k} \nl
-    &\in \fphi{\x} h +\frac{q-p}6 \left(\x^3-\x\right) \fphi{\x} h^2 + \bigo{\fphi{\x}\pol{\x}h^3}
+    &\in \fphi{\x} h +\frac{q-p}6 \left(\x^3-3\x\right) \fphi{\x} h^2 + \bigo{\fphi{\x}\pol{\x}h^3}
   \end{align}
 \end{theorem}
 
@@ -203,8 +203,8 @@ In this section we will show that the probability mass function of the standardi
     &
     \begin{comment}
       \begin{array}{rll}
-        \frac 1k & \in \frac1{np} \cdot \bigo{1} & \subseteq \bigo{\frac 1n} \bnl
-        \frac 1{n-k} & \in \frac1{nq} \cdot \bigo{1} & \subseteq \bigo{\frac 1n} \bnl
+        \frac 1k & \in \bigo{\frac 1{np}} & \subseteq \bigo{h^2} \bnl
+        \frac 1{n-k} & \in \bigo{\frac 1{nq}} & \subseteq \bigo{h^2} \bnl
         \frac 1n & \in \bigo{h^2}
       \end{array}
     \end{comment} \bnl
@@ -322,7 +322,8 @@ In this section we will show that the probability mass function of the standardi
     \begin{comment}
       \fphi{x} = \frac{1}{\sqrt{2\pi}}\fexp{-\frac{x^2}2} \land h = \frac{1}{\sqrt{npq}}
     \end{comment} \bnl
-    & \subseteq \fphi{\x} h +\frac{q-p}6 \left(\x^3-\x\right) \fphi{\x} h^2 + \bigo{\fphi{\x}\pol{\x}h^3}
+    & \subseteq \fphi{\x} h \left(1 +\frac{q-p}6 \left(\x^3-3\x \right) h + \bigo{\pol{\x}h^2}\right) \bnl
+    & \subseteq \fphi{\x} h +\frac{q-p}6 \left(\x^3-3\x\right) \fphi{\x} h^2 + \bigo{\fphi{\x}\pol{\x}h^3}
   \end{align}
 \end{proof}
 
