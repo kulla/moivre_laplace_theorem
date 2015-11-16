@@ -12,7 +12,7 @@ def max_error(p):
         return np.abs( binom.cdf(ks, n, p) - norm.cdf(xs) ).max()
 
 
-    ns = np.arange(100, 1000, 1)
+    ns = np.arange(1, 1001, 1)
     return (np.vectorize(error)(ns) * np.sqrt(ns)).max()
 
 ps = np.arange(0.02, 0.99, 0.02)
