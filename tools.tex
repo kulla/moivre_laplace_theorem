@@ -163,6 +163,29 @@ and thus $A(B(a_n))\subseteq C(a_n)$. The arithmetic rules for sets $A(1)$ are m
 
 From rule \ref{rule:example} and \ref{rule:toproof} we can now conclude that $\littleo{a_n} \cdot \bigabs{b_n} \subseteq \littleo{a_n \cdot b_n}$ and that $\littleo{\bigabs{a_n}} \subseteq \littleo{a_n}$. We see that most of the arithmetic rules for asymptotic notations are corollaries from already known theorems about sequences and their limit behavior.
 
+\section{Taylor series}
+
+\begin{theorem}
+  Let $f:D\to\R$ be a two times continuously differentiable function with an open domain $D$. Let $x_0\in D$. Then
+
+  \begin{align}
+    f(x_0+h) = f(x_0) + f'(x_0) h + \bigo{h^2}
+  \end{align}
+\end{theorem}
+
+\begin{proof}
+  From the Lagrange form of the remainder for the Taylor polynomial we know \cite[p. 284]{koenigsberger}
+  \begin{align}
+    f(x_0+h)=f(x_0)+f'(x_0)h + \frac 12 f''(\tilde x) h^2
+  \end{align}
+  with $\tilde x$ being in the interval bounded by $x_0$ and $x_0+h$. We fix a connected and compact neighborhood $U$ of $x_0$. Because $f''$ is continuous, the function $f''$ is bounded on $U$. Thus we find a $C > 0$ such that for all $h$ with $x_0+h\in U$ we find $\abs{f''(\tilde x)} \le C$. Thus for all $h$ with $x_0+h\in U$:
+  \begin{align}
+    f(x_0+h)& =f(x_0)+f'(x_0)h + \frac 12 f''(\tilde x) h^2 \nl
+    & \in f(x_0)+f'(x_0)h + \bigabs{\frac 12 C h^2} \nl
+    & \subseteq f(x_0)+f'(x_0)h + \bigo{h^2}
+  \end{align}
+\end{proof}
+
 \section{Asymptotic behavior of Riemann sums}
 
 Because we will have to deal with Riemann sums we need the following theorem:
