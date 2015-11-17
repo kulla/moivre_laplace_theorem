@@ -194,6 +194,7 @@ Because we will have to deal with Riemann sums we need the following theorem:
   Let $h > 0$ and $\x[k]$ be defined via $\x[k] = \x[0] + kh$ for $k\in\Z$ and any $\x[0]\in\R$. Let $f:\R\to\R$ with $\snorm{f} < \infty$ and $\snorm{f'} < \infty$. Let $a,b\in\R$.
 
   \begin{enumerate}
+    \item $\int_x^{x+h} f(t) \d{t} = f(x) + \bigabs{\frac 12 \snorm{f'} h^2}$ and $\int_{x-h}^x f(t) \d{t} = f(x) h + \bigabs{\frac 12 \snorm{f'} h^2}$
     \item $\f{\x} h \in \int_{\x-\frac h2}^{\x + \frac h2} \f{t}\d{t} + \bigabs{\frac 14 \snorm{f'} h^2}$
     \item For $a \le b$ we have
 
@@ -205,20 +206,24 @@ Because we will have to deal with Riemann sums we need the following theorem:
 
 \begin{proof}~
   \begin{enumerate}
-    \item We have
+    \item We find
       \begin{align}
-        \abs{\int_{\x-\frac h2}^{\x+\frac h2} \f{t} \d{t} - \f{\x} h} &= \abs{\int_{\x-\frac h2}^{\x+\frac h2} (\f{t}-\f{\x}) \d{t}} \bnl
+        \abs{\int_x^{x+h} \f{t} \d{t} - f(x)h} &= \abs{\int_x^{x+h} \br{\f{t}-\f{x}} \d{t} } \bnl
         &
         \begin{comment}
           \forall t\,\exists \epsilon_t: \f{t}-\f{\x}=\fp{\epsilon_t}(t-x)
         \end{comment} \bnl
-        & \le \int_{\x-\frac h2}^{\x+\frac h2} \abs{\fp{\epsilon_t}} \abs{t-x} \d{t} \bnl
-        & \le \snorm{f'} \int_{-\frac h2}^{\frac h2} \abs{t} \d{t} \bnl
-        & = \frac 14 \snorm{f'} h^2
+        & \le \int_{x}^{x+h} \abs{\fp{\epsilon_t}} \abs{t-x} \d{t} \bnl
+        & \le \snorm{f'} \int_{0}^{h} \abs{t} \d{t} \bnl
+        & = \frac 12 \snorm{f'} h^2
       \end{align}
-      From this follows
+      Analogously we can demonstrate that $\int_{x-h}^x f(t) \d{t} = f(x) h + \bigabs{\frac 12 \snorm{f'} h^2}$.
+
+    \item We have
       \begin{align}
-        \f{\x} h \in \int_{\x-\frac h2}^{\x+\frac h2} \f{t} \d{t} + \bigabs{\frac 14 \snorm{f'} h^2}
+        \f{\x} h & = \f{x} \frac h2 + \f{x} \frac h2 \bnl
+        &\in \int_{\x}^{\x+\frac h2} \f{t}\d{t} + \bigabs{\frac 18 \snorm{f'} h^2} + \int_{\x-\frac h2}^{\x} \f{t}\d{t} + \bigabs{\frac 18 \snorm{f'} h^2} \bnl
+        &\in \int_{\x-\frac h2}^{\x+\frac h2} \f{t}\d{t} + \bigabs{\frac 14 \snorm{f'} h^2}
       \end{align}
 
     \item Let $\tilde a = \inf \{ \x : \x \ge a \}$ and $\tilde b = \sup \{ \x : \x \le b \}$. The difference of $a$ and $\tilde a$ is less than or equal $h$ and the distance of $a$ and $\tilde a - \frac h2$ can be estimated by $\frac h2$. Similarly we have $\abs{\tilde b-b} \le h$ and $\abs{\br{\tilde b+\frac h2}-b} \le \frac h2$. We have

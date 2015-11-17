@@ -161,6 +161,9 @@ You can find a proof of the Euler-Maclaurin formula in~\cite[pp.~225-226]{koenig
 
 In this section we will show that the probability mass function of the standardized binomial distribution can be approximated by the density function of the normal distribution. This will be the basis for the global version of de Moivre-Laplace theorem. The following proof is based on the ideas given by Iosif Pinelis\cite{iosif}.
 
+\newcommand*{\Ro}[1]{R_1\left({#1}\right)}
+\newcommand*{\Rt}[1]{R_2\left({#1}\right)}
+
 \begin{theorem}[Local version of de Moivre-Laplace theorem]
   Let $\pol{\x}$ be the set of all polynomials in $\x$. Let $\seq{c_n}$ be a sequence with $\seq{c_n} \in \littleo{\frac 1h}$. For all $\x$ with $0\le k\le n$ and $\abs{x_k} \le c_n$ we have
   \begin{align}
@@ -336,9 +339,10 @@ In this section we will show that the probability mass function of the standardi
     &
     \begin{multlined}
       \in \int_a^b \fphi{t} \d{t} + \frac{q-p}6 \left[\br{1-b^2}\fphi{b}-\br{1-a^2}\fphi{a}\right] h\nl
-      +\bigabs{\snorm{\phi}h}+ \bigo{h^2}
+      +\Big[\Ro{np + b\sqrt{npq}}\fphi{b} - \Rt{np + a \sqrt{npq}}\fphi{a}\Big]h+ \bigo{h^2}
     \end{multlined}
   \end{align}
+  with $\Ro{x} = \lfloor x \rfloor - x + \frac 12$ and $\Rt{x} = \lceil x \rceil - x - \frac 12$.
 \end{theorem}
 
 \begin{remark}
@@ -393,12 +397,28 @@ In this section we will show that the probability mass function of the standardi
     \fphi{\x} h \in \int_{\x-\frac h2}^{\x+\frac h2} \fphi{t} \d{t} + \bigo{h^3}
   \end{align}
 
-  \noindent and thus (let $\tilde a=\xup{a}$ and $\tilde b=\xdown{b}$)
+  \noindent and thus
 
   \begin{align}
     \sum_{a \le \x \le b} \fphi{\x} h &\in \sum_{a \le \x \le b} \br{\int_{\x-\frac h2}^{\x+\frac h2} \fphi{t} \d{t} + \bigo{h^3}} \bnl
-    &\subseteq \int_{\tilde a - \frac h2}^{\tilde b+\frac h2} \fphi{t} \d{t} + \bigo{h^2} \bnl
-    &\subseteq \int_a^b \fphi{t} \d{t} + \bigabs{\snorm{\phi} h} + \bigo{h^2}
+    &\subseteq \int_{\xup{a} - \frac h2}^{\xdown{b}+\frac h2} \fphi{t} \d{t} + \bigo{h^2} \bnl
+    &\subseteq \int_a^b \fphi{t} \d{t} + \int_{\xup{a} - \frac h2}^a \fphi{t} \d{t} + \int_b^{\xdown{b} + \frac h2} \fphi{t}\d{t} + \bigo{h^2} \bnl
+    &\subseteq \int_a^b \fphi{t} \d{t} + \fphi{a} \br{a-\xup a+\frac h2} + \fphi{b} \br{\xdown b +\frac h2 - b} + \bigo{h^2} \bnl
+    &\subseteq \int_a^b \fphi{t} \d{t} + \fphi{b} \br{\xdown b - b + \frac h2} - \fphi{a} \br{\xup a - a -\frac h2} + \bigo{h^2} \bnl
+    &
+    \begin{comment}
+      \text{Set } k_x = np + x \sqrt{npq}
+    \end{comment} \bnl
+    &
+    \begin{multlined}
+      \subseteq \int_a^b \fphi{t} \d{t} + \fphi{b} \br{k_{\xdown b} - k_b + \frac 12} h - \fphi{a} \br{k_{\xup a} - k_a  - \frac 12} h \nl
+      + \bigo{h^2}
+    \end{multlined} \bnl
+    &
+    \begin{comment}
+      \text{Set } R_1(x) = \lfloor x \rfloor - x + \frac 12 \text{ and } R_2(x) = \lceil x \rceil -x - \frac 12
+    \end{comment} \bnl
+    &\subseteq \int_a^b \fphi{t} \d{t} + \br{R_1(k_b)\fphi{b} - R_2(k_a)\fphi{a}} h + \bigo{h^2}
   \end{align}
 
   \noindent So we get
@@ -408,15 +428,15 @@ In this section we will show that the probability mass function of the standardi
     &
     \begin{comment}
       \begin{aligned}
-        \sum_{a \le \x \le b} \fphi{\x} h & \in \int_a^b \fphi{t} \d{t} + \bigabs{\snorm{\phi} h} + \bigo{h^2} \bnl
-        \sum_{a \le \x \le b} \frac{q-p}6 \br{\x^3-3\x} \fphi{\x} h^2 & \in \frac{q-p}6 \int_a^b \br{t^3-t} \fphi{t} \d{t}\cdot h + \bigo{h^2} \bnl
-        \sum_{a \le \x \le b} \bigo{\fphi{\x}\pol{x}h^3} &\subseteq \bigo{h^2}
+        & \sum_{a \le \x \le b} \fphi{\x} h \in \int_a^b \fphi{t} \d{t} + \br{R_1(k_b)\fphi{b} - R_2(k_a)\fphi{a}} h + \bigo{h^2} \bnl
+        & \sum_{a \le \x \le b} \frac{q-p}6 \br{\x^3-3\x} \fphi{\x} h^2 \in \frac{q-p}6 \int_a^b \br{t^3-t} \fphi{t} \d{t}\cdot h + \bigo{h^2} \bnl
+        & \sum_{a \le \x \le b} \bigo{\fphi{\x}\pol{x}h^3} \subseteq \bigo{h^2}
       \end{aligned}
     \end{comment} \bnl
     &
     \begin{multlined}
       \subseteq \int_a^b \fphi{t} \d{t} + \frac{q-p}6 \left[\br{1-b^2}\fphi{b}-\br{1-a^2}\fphi{a}\right] h \nl
-      + \bigabs{\snorm{\phi}h} + \bigo{h^2}
+      + \Big[\Ro{np + b\sqrt{npq}}\fphi{b} - \Rt{np + a \sqrt{npq}}\fphi{a}\Big]h + \bigo{h^2}
     \end{multlined}
   \end{align}
 \end{proof}
@@ -428,7 +448,7 @@ In this section we will show that the probability mass function of the standardi
 
   \begin{align}
     \P{\BBs \le z} &= \sum_{\x \le z} \bb{\x} \bnl
-    & \in \int_{-\infty}^z \fphi{t} \d{t} + \frac{q-p}6 \br{1-z^2}\fphi{z} h + \littleo{h}
+    & \in \int_{-\infty}^z \fphi{t} \d{t} + \frac{q-p}6 \br{1-z^2}\fphi{z} h + \Ro{np+z\sqrt{npq}} \fphi{z} h + \littleo{h}
   \end{align}
 \end{theorem}
 
@@ -492,15 +512,22 @@ In this section we will show that the probability mass function of the standardi
     & = \frac{q-p}6 \left[\br{1-t^2} \fphi{t}\right]_{-\infty}^{z} \cdot h + \littleo{h} \bnl
     & = \frac{q-p}6 \br{1-z^2} \fphi{z} \cdot h + \littleo{h}
   \end{align}
-  As in the previous proof we have
+  As in the previous proof we find
   \begin{align}
     \sum_{c_n \le \x \le z} \fphi{\x} h &\in \sum_{c_n \le \x \le z} \br{\int_{\x-\frac h2}^{\x+\frac h2} \fphi{t}\d{t} + \bigo{h^3}} \bnl
     &
     \begin{comment}
       (z-c_n)h \in \littleo{1}
     \end{comment} \bnl
-    &\subseteq \int_{c_n}^z \fphi{t} \d{t} + \bigabs{\snorm{\phi} h} + \littleo{h} \bnl
-    &\subseteq \int_{c_n}^z \fphi{t} \d{t} + \littleo{h}
+    &
+    \begin{multlined}
+      \subseteq \int_{c_n}^z \fphi{t} \d{t} + \Ro{np+z\sqrt{npq}} \fphi{z} h \nl
+      - \Rt{np+c_n\sqrt{npq}} \fphi{c_n} h + \littleo{h}
+    \end{multlined} \bnl
+    & \begin{comment}
+      \lim_{n\to\infty} \fphi{c_n} = 0
+    \end{comment} \bnl
+    &\subseteq \int_{c_n}^z \fphi{t} \d{t} + \Ro{np+z\sqrt{npq}} \fphi{z} h + \littleo{h}
   \end{align}
   So we can summarize
   \begin{align}
@@ -508,20 +535,24 @@ In this section we will show that the probability mass function of the standardi
     &
     \begin{comment}
       \begin{aligned}
-        \sum_{c_n \le \x \le z} \fphi{\x} h &\in \int_{c_n}^z \fphi{t} \d{t} + \littleo{h} \bnl
-        \sum_{c_n \le \x \le z} \frac{q-p}6 \br{\x^3-3\x} \fphi{\x} h^2 &\in \frac{q-p}6 \br{1-z^2} \fphi{z} \cdot h + \littleo{h} \bnl
-        \sum_{c_n \le \x \le z} \bigo{\fphi{\x}\pol{\x}h^3} & \in \littleo{h}
+        & \sum_{c_n \le \x \le z} \fphi{\x} h \in \int_{c_n}^z \fphi{t} \d{t} + \Ro{np+z\sqrt{npq}} \fphi{z} h +\littleo{h} \bnl
+        & \sum_{c_n \le \x \le z} \frac{q-p}6 \br{\x^3-3\x} \fphi{\x} h^2 \in \frac{q-p}6 \br{1-z^2} \fphi{z} \cdot h + \littleo{h} \bnl
+        & \sum_{c_n \le \x \le z} \bigo{\fphi{\x}\pol{\x}h^3} \in \littleo{h}
       \end{aligned}
     \end{comment} \bnl
-    & \subseteq \int_{c_n}^z \fphi{t} \d{t} + \frac{q-p}6 \br{1-z^2}\fphi{z} h + \littleo{h}
+    & \subseteq \int_{c_n}^z \fphi{t} \d{t} + \frac{q-p}6 \br{1-z^2}\fphi{z} h + \Ro{np+z\sqrt{npq}} \fphi{z} h +\littleo{h}
   \end{align}
 
   \noindent So we can finish the proof
 
   \begin{align}
     \sum_{\x \le z} \bb{\x} & = \sum_{\x < c_n} \bb{\x} + \sum_{c_n \le \x \le z} \bb{\x} \bnl
-    & \in \int_{t < c_n} \fphi{t} \d{t} + \int_{c_n}^z \fphi{t} \d{t} + \frac{q-p}6 \br{1-z^2}\fphi{z} h + \littleo{h} \bnl
-    & \in \int_{-\infty}^z \fphi{t} \d{t} + \frac{q-p}6 \br{1-z^2}\fphi{z} h + \littleo{h}
+    &
+    \begin{multlined}
+      \in \int_{t < c_n} \fphi{t} \d{t} + \int_{c_n}^z \fphi{t} \d{t} + \frac{q-p}6 \br{1-z^2}\fphi{z} h \nl
+      + \Ro{np+z\sqrt{npq}} \fphi{z} h+\littleo{h}
+    \end{multlined} \bnl
+    & \subseteq \int_{-\infty}^z \fphi{t} \d{t} + \frac{q-p}6 \br{1-z^2}\fphi{z} h + \Ro{np+z\sqrt{npq}} \fphi{z} h+\littleo{h}
   \end{align}
 \end{proof}
 
@@ -536,11 +567,12 @@ We see that the standard proof of the de Moivre-Laplace theorem with Stirling's 
 \begin{align}
   \P{\BBs = \x}& \approx \fphi{\x} h +\frac{q-p}6 \left(\x^3-3\x\right) \fphi{\x} h^2 \nl
   \P{a \le \BBs \le b} & \approx  \int_a^b \fphi{t} \d{t} + \frac{q-p}6 \left[\br{1-b^2}\fphi{b}-\br{1-a^2}\fphi{a}\right] h \nl
-  \P{\BBs \le z} & \approx \int_{-\infty}^z \fphi{t} \d{t} + \frac{q-p}6 \br{1-z^2}\fphi{z} h
+  & \quad +\Big[\Ro{np + b\sqrt{npq}}\fphi{b} - \Rt{np + a \sqrt{npq}}\fphi{a}\Big]h \nl
+  \P{\BBs \le z} & \approx \int_{-\infty}^z \fphi{t} \d{t} + \frac{q-p}6 \br{1-z^2}\fphi{z} h + \Ro{np+z\sqrt{npq}} \fphi{z} h 
 \end{align}
 
-These extensions of the normal approximation are precisely the first two terms of the Edgeworth Expansion \cite[pp. 39 ff.]{hall}\cite{wiki:edgeworth}. The Edgeworth Expansion is a series which approximates the cumulative distribution function of a random variable \cite{wiki:edgeworth}. In the case of the binomial distribution the Edgeworth Expansion is
+These extensions of the normal approximation are precisely the first two terms of the Edgeworth Expansion \cite[pp. 39 ff.]{hall}\cite{wiki:edgeworth}. The Edgeworth Expansion is a series which approximates the cumulative distribution function of a random variable \cite{wiki:edgeworth}. In the case of the binomial distribution the Edgeworth Expansion is \cite[p. 46]{hall}
 \begin{align}
-  \P{\BBs \le z} & \approx \int_{-\infty}^z \fphi{t} \d{t} + \frac{q-p}6 \br{1-z^2}\fphi{z} h + R\left(np + z \sqrt{npq}\right)\fphi{z}h + \bigo{h^2}
+  \P{\BBs \le z} & \approx \int_{-\infty}^z \fphi{t} \d{t} + \frac{q-p}6 \br{1-z^2}\fphi{z} h + \Ro{np + z \sqrt{npq}}\fphi{z}h + \bigo{h^2}
 \end{align}
-with $R(x)=\lfloor x \rfloor -x+\frac 12$ \cite[p. 46]{hall}. By comparing the above equation with our second global version of de Moivre-Laplace we see that we can provide the same first term of the Edgeworth Expansion, but with a worse estimation of the remaining error ($\littleo{h}$ instead of $\bigo{h^2}$). This demonstrates the power of the standard proof with Stirling's formula.
+By comparing the above equation with our second global version of de Moivre-Laplace we see that we can provide the same first term of the Edgeworth Expansion, but with a worse estimation of the remaining error ($\littleo{h}$ instead of $\bigo{h^2}$). This demonstrates the power of the standard proof with Stirling's formula.
