@@ -560,6 +560,8 @@ In this section we will show that the probability mass function of the standardi
 
 \includeplot{edgeworth_diff_pdf}{This plot shows $f(\x) = \bb{\x}-\fphi{\x}h$ and $g(\x)=\frac{q-p}6 \left(\x^3-3\x\right) \fphi{\x} h^2$ for $n=1000$ and $p=\frac 14$. It demonstrates that our correction term $\frac{q-p}6 \left(\x^3-3\x\right) \fphi{\x} h^2$ describes very well the error $\bb{\x}-\fphi{\x}$ in the normal approximation.}
 
+\includeplot{edgeworth_diff_cdf}{This plot shows some values of $f(z) = \P{\BBs \le z} -\fPhi{z}$ and $g(z)=\frac{q-p}6 \br{1-z^2}\fphi{z} h + \Ro{np+z\sqrt{npq}} \fphi{z} h $ for $n=1000$ and $p=\frac 14$. The fact that the values of both functions coincide demonstrates that we have found a good approximation.}
+
 \includeplot{pdf_convergence_order}{The approximated convergence order $\alpha$ of $\sup_{\x} \abs{\P{\BBs = \x}-\fphi{\x} h}$ in terms of $n$. We see that $\sup_{\x} \abs{\P{\BBs = \x}-\fphi{\x} h}\sim n^{-1}$ unless $p=q=\tfrac 12$. In this case we have the convergence order $\sup_{\x} \abs{\P{\BBs = \x}-\fphi{\x} h}\sim n^{-3/2}$. This can be explained with our approximation of the probability mass function whose correction term $\frac{q-p}6 \left(\x^3-3\x\right) \fphi{\x} h^2$ vanishes for $p=q=\tfrac 12$.}
 
 We see that the standard proof of the de Moivre-Laplace theorem with Stirling's formula yield a good estimation of the approximation's error. We do not only get the right order $\bigo{h}$ of the error's convergence as it is shown by the Berry-Esseen theorem, we also derived a better approximation for the binomial distribution which is
