@@ -33,3 +33,6 @@ figures/%.pdf: figures/%.png
 
 clean:
 	git clean -fx
+
+upload:
+	scp moivre_laplace_theorem.pdf hp:~/masterarbeit.pdf
