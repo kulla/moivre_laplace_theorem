@@ -69,7 +69,7 @@ In his book \emph{A History of Mathematical Statistics From 1750 to 1930} Hald w
 
 \section{The error in the theorem}
 
-\includeplot{berry_diff}{The function $f(x) = \P{\BBs \le x} - \fPhi{x}$ for $n=1000$ and $p=\frac = 14$. You see that the maximum error occurs for $x\approx 0$. The function shape reminds the shape of $g(x)=\br{x^2-1} e^{-x^2}$ which leads to the first term of the Edgeworth expansion as we will see in the next chapter.}
+\includeplot{berry_diff}{The function $f(x) = \P{\BBs \le x} - \fPhi{x}$ for $n=50$ and $p=\frac 14$. The oscillations are caused by the fact that $\P{\BBs \le x}$ is a step function with step size $h$ and $\fPhi{x}$ is continuous. $g(x)$ shows the same function with the restriction that it is only evaluated at the points $\x[k]$.}
 
 In the above section we have gotten to know the theorem by de Moivre-Laplace in a qulitative version without an estimate of the approximation error. The global version of de Moivre-Laplace with an error estimation provides the Berry-Esseen theorem. It states~\cite[70-71]{nourdin}\cite{wiki:berry}:
 
