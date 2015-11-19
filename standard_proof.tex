@@ -4,10 +4,10 @@ In this chapter I want to prove the theorem by de Moivre and Laplace whereby I w
 
 \section{Stirling's formula}
 
-Without proof the following theorem\footnote{cf.~\cite[pp. 505, 63]{heuser}} will be used in this section:
+Without proof the following theorem will be used in this section:
 
 \begin{theorem}[Wallis' product]
-  It is:
+  We have \cite[pp. 505, 63]{heuser}:
 
   \begin{align}
     \lim_{n\to\infty} \frac{2^2\cdot4^2\cdot6^2\dots(2n)^2}{1^2\cdot3^2\cdot5^2\dots(2n-1)^2}\cdot \frac{1}{2n} = \lim_{n\to\infty} \frac{1}{2n} \cdot \frac{2^{4n}}{\binom{2n}{n}^2} = \frac{\pi}{2}
@@ -23,7 +23,7 @@ Without proof the following theorem\footnote{cf.~\cite[pp. 505, 63]{heuser}} wil
 \noindent Besides we will also need the Euler–Maclaurin formula~\cite[p. 226]{koenigsberger}:
 
 \begin{theorem}[Euler–Maclaurin formula]
-  Let $f:[1,n]\to\R$ be a $2n+1$-times continuously differentiable function. Let $\bn$ be the $n$th Bernoulli number and let $\bp{x}$ be the $n$th periodic Bernoulli polynomial. It is
+  Let $f:[1,n]\to\R$ be a $2n+1$-times continuously differentiable function. Let $\bn$ be the $n$th Bernoulli number and let $\bp{x}$ be the $n$th periodic Bernoulli polynomial. We find
 
   \begin{multline} \label{euler-maclaurin-formula}
     \sum_{k=1}^n f(k) = \int_1^n f(x)\d{x} + \frac{f(1)+f(n)}{2} + \sum_{k=1}^n \frac{\bn[2k]}{(2k)!} \Big[f^{(2k-1)}(n) - f^{(2k-1)}(1)\Big] \nl
@@ -53,13 +53,14 @@ You can find a proof of the Euler-Maclaurin formula in~\cite[pp.~225-226]{koenig
   \begin{align}
     n! \in \sqrt{2\pi n} \left(\frac ne\right)^n \fexp{\frac 1{12n} + \bigabs{\frac{1}{120n^2}} }
   \end{align}
+\end{theorem}
 
-  \noindent Therefore
-
+\begin{remark}
+  Stirling's formula implies
   \begin{align}
      n! \in \sqrt{2\pi n} \left(\frac ne\right)^n \fexp{\bigo{\frac 1n}}
   \end{align}
-\end{theorem}
+\end{remark}
 
 \begin{proof}
   In the proof we will follow~\cite[pp. 227-228]{koenigsberger}. First we apply the Euler-Maclaurin formula~\eqref{euler-maclaurin-formula} to $\ln(n!)=\sum_{k=1}^n \ln(k)$:
@@ -80,7 +81,7 @@ You can find a proof of the Euler-Maclaurin formula in~\cite[pp.~225-226]{koenig
     \ln(n!) - n\ln(n) + n - \frac 12 \ln(n) = \frac{11}{12} + \frac{1}{12n} + \frac 13 \int_1^n \frac{\bp[3]{x}}{x^3} \d{x}
   \end{align}
 
-  $\bps[3]$ is on $[0,1)$ as part of a polynomial bounded. Because $\bps[3]$ is $1$-periodic, $\bps[3]$ is bounded on the whole domain $\R$. Thus $\int_1^\infty \frac{\bp[3]{x}}{x^3} \d{x}$ exists because $\int_1^\infty \frac 1{x^3} d{x} < \infty$. Now we define $\seq{b_n}$ via
+  $\bps[3]$ is on $[0,1)$ a polynomial and thus bounded. Because $\bps[3]$ is $1$-periodic, $\bps[3]$ is bounded on the whole domain $\R$. Thus $\int_1^\infty \frac{\bp[3]{x}}{x^3} \d{x}$ exists, because $\int_1^\infty \frac 1{x^3} d{x} < \infty$. Now we define $\seq{b_n}$ via
 
   \begin{align}
     b_n = \frac{n!}{n^n e^{-n} \sqrt{n}}
@@ -113,7 +114,7 @@ You can find a proof of the Euler-Maclaurin formula in~\cite[pp.~225-226]{koenig
     \lim_{n\to\infty} \frac{n!}{\sqrt{2\pi n}n^n e^{-n}} = \lim_{n\to\infty} \frac{b_n}{\sqrt{2\pi}} = 1
   \end{align}
 
-  This proves that $n!$ can be approximated by $\sqrt{2\pi n}n^n e^{-n}$ for large $n$. To estimate the error of this approximation we first calculate $\ln(n!)-\ln\left(\sqrt{2\pi n}n^n e^{-n}\right)$:
+  This proves that $n!$ can be approximated by $\sqrt{2\pi n}n^n e^{-n}$ for large $n$. To estimate the error we first calculate $\ln(n!)-\ln\left(\sqrt{2\pi n}n^n e^{-n}\right)$:
 
   \begin{align}
     \ln\left(\frac{n!}{\sqrt{2\pi n}n^n e^{-n}}\right) & = \ln\left(\frac{b_n}{\sqrt{2\pi}}\right) \nl
