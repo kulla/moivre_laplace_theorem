@@ -130,7 +130,9 @@ You can find a proof of the Euler-Maclaurin formula in~\cite[pp.~225-226]{koenig
     &= \frac{1}{12n}-\frac 13\int_n^\infty \frac{\bp[3]{x}}{x^3} \d{x}
   \end{align}
 
-  On $[0,1)$ the periodic Bernoulli polynomial has the form $\bp[3]{x} = x^3-\frac 32 x^2 + \frac 12 x$~\cite[p.~290]{koenigsberger}. It has roots at $x=0$ and $x=1$. Its derivative $\bps[3]'(x) = 3x^2-3x+\tfrac 12$ has two distinct roots at $x = \frac 12 \pm \sqrt{\frac 1{12}}$. Thus $\bps[3]$ has local extrema at $x=\frac 12 \pm \sqrt{1{12}}$. Because $\bp[3]{0}=\bp[3]{1}=0$ and $\bps[3]$ is 1-periodic its supremum is
+  \includeplot{beta3}{The function $\bp[3]{x}$ on the domain $[0,1)$.}
+
+  On $[0,1)$ the periodic Bernoulli polynomial has the form $\bp[3]{x} = x^3-\frac 32 x^2 + \frac 12 x$~\cite[p.~290]{koenigsberger}. It has roots at $x=0$ and $x=1$. Its derivative $\bps[3]'(x) = 3x^2-3x+\tfrac 12$ has two distinct roots at $x = \frac 12 \pm \sqrt{\frac 1{12}}$. Thus $\bps[3]$ has local extrema at $x=\frac 12 \pm \sqrt{\frac 1{12}}$. Because $\bp[3]{0}=\bp[3]{1}=0$ and $\bps[3]$ is 1-periodic its supremum is
 
   \begin{align}
     \snorm{\bps[3]} = \max\left\{\abs{\bp[3]{\frac 12 + \sqrt{\frac{1}{12}}}}, \abs{\bp[3]{\frac 12 - \sqrt{\frac{1}{12}}}}\right\} \approx 0.0481 \le 0.05 = \frac{1}{20}
@@ -160,7 +162,7 @@ You can find a proof of the Euler-Maclaurin formula in~\cite[pp.~225-226]{koenig
 
 \section{Local version of the de Moivre-Laplace theorem}
 
-In this section we will show that the probability mass function of the standardized binomial distribution can be approximated by the density function of the normal distribution. This will be the basis for the global version of de Moivre-Laplace theorem. The following proof is based on the ideas given by Iosif Pinelis\cite{iosif}.
+In this section we will show that the probability mass function of the standardized binomial distribution can be approximated by the density function of the normal distribution. This will be the basis for the global version of the de Moivre-Laplace theorem. The following proof is based on the ideas given by Iosif Pinelis\cite{iosif}.
 
 \newcommand*{\Ro}[1]{R_1\left({#1}\right)}
 \newcommand*{\Rt}[1]{R_2\left({#1}\right)}
