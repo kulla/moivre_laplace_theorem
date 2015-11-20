@@ -183,6 +183,7 @@ In this section we will show that the probability mass function of the standardi
     &= np \left( 1 + \x q h\right)
   \end{align}
   For $n-k$ we get
+  
   \begin{align}
     n-k &= n-np-\x\sqrt{npq} \nl
     &= nq -\x \sqrt{npq} \nl
@@ -190,16 +191,19 @@ In this section we will show that the probability mass function of the standardi
     &= nq \left( 1 - \x p h\right)
   \end{align}
   Because $\x h \in \littleo{1}$ we have
+  
   \begin{align}
     k & \in \bigo{np} \nl
     n-k & \in \bigo{nq}
   \end{align}
   Because $\seq{1+a_n} \in \fexp{a_n + \bigo{a_n^2}}$ we can also conclude
+  
   \begin{align}
     k &\in np \cdot \fexp{\x q h + \bigo{\pol{\x}h^2}} \nl
-    n-k &\in nq \cdot \fexp{\x p h + \bigo{\pol{\x}h^2}}
+    n-k &\in nq \cdot \fexp{-\x p h + \bigo{\pol{\x}h^2}}
   \end{align}
   Now we can begin with the approximation
+  
   \begin{align}
     \bb{\x} &= \binom nk p^k q^{n-k} \nl
     &= \frac{n!}{k!(n-k)!} p^k q^{n-k} \bnl
@@ -217,7 +221,7 @@ In this section we will show that the probability mass function of the standardi
     & \subseteq \sqrt{\frac{n}{2\pi k (n-k)}} \left(\frac{np}{k}\right)^k \left(\frac{nq}{n-k}\right)^{n-k} \fe{\bigo{h^2}}
   \end{align}
 
-  Now we first approximate the two main factors of the remaining product. We start with the root $\sqrt{\frac{n}{2\pi k(n-k)}}$:
+  Now we approximate the two main factors of the remaining product. We start with the root $\sqrt{\frac{n}{2\pi k(n-k)}}$:
   \begin{align}
     \sqrt{\frac{n}{2\pi k(n-k)}} & \in \sqrt{\frac{n}{2\pi \cdot np \fexp{\x qh +\bigo{\pol{x}h^2}} \cdot nq \fexp{-\x ph + \bigo{\pol{\x}h^2}}}} \bnl
     & \subseteq \sqrt{\frac{1}{2\pi npq \fexp{(q-p)\x h +\bigo{\pol{x}h^2}}}} \bnl
@@ -274,10 +278,10 @@ In this section we will show that the probability mass function of the standardi
     \end{array}
   \end{align}
 
-  Because $\tilde s$ is in the interval bounded by $p$ and $s=\frac kn \in p \cdot \bigo{1} \subseteq \bigo{1}$ we deduce $\tilde s \in \bigo{1}$, too. Similarly we get $1-\tilde s\in \bigo{1}$ because $1-s = \frac{n-k}{n} \in q \cdot \bigo{1}$. From this follows:
+  Because $\tilde s$ is in the interval bounded by $p$ and $s=\frac kn = p + \littleo{1}$ we deduce $\tilde s \in p + \littleo{1}$, too. Similarly we get $1-\tilde s\in q+\littleo{1}$ because $1-s = \frac{n-k}{n} \in q+\littleo{1}$. From this follows:
 
   \begin{align}
-    \frac 1{\tilde s^3} + \frac 1{(1-\tilde s)^3} & \in \bigo{1}
+    \frac 1{\tilde s^3} + \frac 1{(1-\tilde s)^3} & \in \frac1{p^3} + \frac{1}{q^3} + \littleo{1} \subseteq \bigo{1}
   \end{align}
 
   \noindent So
@@ -318,12 +322,12 @@ In this section we will show that the probability mass function of the standardi
         \left(\frac {np}{k}\right)^k \left(\frac{nq}{n-k}\right)^{n-k} & \in \fexp{-\frac{\x^2}2} \fexp{-\frac{p-q}6 \x^3 h + \bigo{\pol{\x}h^2}}
       \end{aligned}
     \end{comment} \bnl
-    & \subseteq \frac 1{\sqrt{2\pi npq}} \cdot \fexp{-\frac{\x^2}{2}} \fexp{\frac{p-q}2 \left(\x  - \frac 13 \x^3\right) h + \bigo{\pol{\x}h^2}} \bnl
+    & \subseteq \frac 1{\sqrt{2\pi npq}} \cdot \fexp{-\frac{\x^2}{2}} \fexp{\frac{p-q}6 \left(3\x  - \x^3\right) h + \bigo{\pol{\x}h^2}} \bnl
     &
     \begin{comment}
       \fexp{a_n} \in \left(1+a_n+\bigo{a_n^2}\right)
     \end{comment} \bnl
-    & \subseteq \frac 1{\sqrt{2\pi npq}} \cdot \fexp{-\frac{\x^2}{2}} \left(1 +\frac{p-q}2 \left(\x - \frac 13 \x^3 \right) h + \bigo{\pol{\x}h^2}\right) \bnl
+    & \subseteq \frac 1{\sqrt{2\pi npq}} \cdot \fexp{-\frac{\x^2}{2}} \left(1 +\frac{q-p}6 \left(\x^3 - 3\x \right) h + \bigo{\pol{\x}h^2}\right) \bnl
     &
     \begin{comment}
       \fphi{x} = \frac{1}{\sqrt{2\pi}}\fexp{-\frac{x^2}2} \land h = \frac{1}{\sqrt{npq}}
@@ -333,10 +337,10 @@ In this section we will show that the probability mass function of the standardi
   \end{align}
 \end{proof}
 
-\section{First global version of de Moivre-Laplace}
+\section{First global version of the de Moivre-Laplace theorem}
 
-\begin{theorem}[First global version of de Moivre-Laplace]
-  Let $a,b\in \R$ with $a \le b$. We have
+\begin{theorem}[First global version of the de Moivre-Laplace theorem]
+  Let $a,b\in \R$ with $a \le b$. We get
   \begin{align}
     \P{a \le \BBs \le b} & = \sum_{a \le \x \le b} \bb{\x} \nl
     &
@@ -351,23 +355,23 @@ In this section we will show that the probability mass function of the standardi
 \begin{remark}
   With the above theorem we can establish the same approximation Uspensky found in his textbook ``Introduction to mathematical probability'' of 1937 where he stated \cite[p. 129]{uspensky}
   \begin{align}
-    \P{a+\frac 12h \le \BBs \le b-\frac 12h} = \int_a^b \fphi{x} \d{x} + \frac{q-p}6 \br{\br{1-b^2}\fphi{b} - \br{1-a^2}\fphi{a}} h + \epsilon
+    \P{a+\frac 12h \le \BBs \le b-\frac 12h} = \int_a^b \fphi{x} \d{x} + \frac{q-p}6 \left[\br{1-b^2}\fphi{b} - \br{1-a^2}\fphi{a}\right] h + \epsilon
   \end{align}
   whereby the error term $\epsilon$ fulfills for $npq \ge 25$ the inequality
   \begin{align} \label{uspensky:error}
     \abs{\epsilon} < \frac{0.13+0.18\abs{p-q}}{npq} + \fexp{-\frac 32 \sqrt{npq}}
   \end{align}
-  Thereby Uspensky uses the characteristic function of the binomial distribution to prove his theorem \cite[pp. 119-129]{uspensky}. With the following proof we show that the same approximation is possible with Stirling's formula which demonstrates the power of this proof method. However we cannot establish the same error bound Uspensky found with \eqref{uspensky:error}.
+  Uspensky uses the characteristic function of the binomial distribution to prove his theorem \cite[pp. 119-129]{uspensky}. With the following proof we show that the same approximation is possible with Stirling's formula which demonstrates the power of this proof method. However we cannot establish the same error bound Uspensky found with \eqref{uspensky:error}.
 \end{remark}
 
 \begin{proof}
-  In the following we will only consider those $n\in\N$ with $\x[0] \le a \le b \le \x[n]$. Because $\lim_{n\to\infty} \x[0] = -\infty$ and $\lim_{n\to\infty} \x[n] = \infty$ these are almost all $n\in\N$. Because $c_n=\max\{\abs{a},\abs{b}\}$ is a sequence with $c_n\in\littleo{\frac 1h}$ and for all $\x$ with $a \le \x \le b$ we have $\abs{\x} \le c_n$ we can apply the local version of de Moivre-Laplace and we get
+  In the following we will only consider those $n\in\N$ with $\x[0] \le a \le b \le \x[n]$. Because $\lim_{n\to\infty} \x[0] = -\infty$ and $\lim_{n\to\infty} \x[n] = \infty$ these are almost all $n\in\N$. Because $c_n=\max\{\abs{a},\abs{b}\}$ is a sequence with $c_n\in\littleo{\frac 1h}$ and for all $\x$ with $a \le \x \le b$ we have $\abs{\x} \le c_n$ we can apply the local version of de Moivre-Laplace and get
 
   \begin{align}
     \sum_{a \le \x \le b} \bb{\x} \in \sum_{a \le \x \le b} \br{\fphi{\x} h +\frac{q-p}6 \left(\x^3 - 3\x\right) \fphi{\x} h^2 + \bigo{\fphi{\x}\pol{\x}h^3}}
   \end{align}
 
-  We have three Riemann sums. For any $\f{x}=\fphi{x}p(x)$ with a polynomial $p(x)$ we have $\snorm{f} < \infty$ and $\snorm{f'}<\infty$. So we apply the following rule from theorem \ref{thm:arithmetic_rules}
+  We have three Riemann sums. For any $\f{x}=\fphi{x}p(x)$ with a polynomial $p(x)$ we have $\snorm{f} < \infty$ and $\snorm{f'}<\infty$. So we apply the following rule from theorem \ref{thm:asymptotics_riemann}
 
   \begin{align}
     \sum_{a \le \x \le b} \f{\x} h & \in \int_a^b \f{t} \d{t} + \bigabs{\snorm{f}h + \frac 14 \snorm{f'} (b-a) h + \frac 14 \snorm{f'} h^2} \bnl
@@ -389,9 +393,10 @@ In this section we will show that the probability mass function of the standardi
     & = \fphi{\x} \int_{-\frac h2}^{\frac h2} \fcosh{\x t} \fexp{-\frac{t^2}2} \d{t} \bnl
     &
     \begin{comment}
-      \fcosh{\x t}\fexp{-\frac{t^2}2} = 1 + \bigo{t^3}
+      \fcosh{\x t}\fexp{-\frac{t^2}2} = 1 + \bigo{t^2}
     \end{comment} \bnl
-    & \in \fphi{\x} h + \bigo{h^3}
+    & \in \fphi{\x} \int_{-\frac h2}^{\frac h2} \br{1+\bigo{t^2}} \d{t} \bnl
+    & \subseteq \fphi{\x} h + \bigo{h^3}
   \end{align}
 
   \noindent we can follow
@@ -406,6 +411,13 @@ In this section we will show that the probability mass function of the standardi
     \sum_{a \le \x \le b} \fphi{\x} h &\in \sum_{a \le \x \le b} \br{\int_{\x-\frac h2}^{\x+\frac h2} \fphi{t} \d{t} + \bigo{h^3}} \bnl
     &\subseteq \int_{\xup{a} - \frac h2}^{\xdown{b}+\frac h2} \fphi{t} \d{t} + \bigo{h^2} \bnl
     &\subseteq \int_a^b \fphi{t} \d{t} + \int_{\xup{a} - \frac h2}^a \fphi{t} \d{t} + \int_b^{\xdown{b} + \frac h2} \fphi{t}\d{t} + \bigo{h^2} \bnl
+    &
+    \begin{comment}
+      \begin{aligned}
+        \int_c^d \f{t}\d{t} & \in \f{c}(d-c) + \bigabs{\frac 12 \snorm{f'} (d-c)^2} \bnl
+        \int_c^d \f{t} \d{t} & \in \f{d} (d-c) + \bigabs{\frac 12 \snorm{f'} (d-c)^2}
+      \end{aligned}
+    \end{comment} \bnl
     &\subseteq \int_a^b \fphi{t} \d{t} + \fphi{a} \br{a-\xup a+\frac h2} + \fphi{b} \br{\xdown b +\frac h2 - b} + \bigo{h^2} \bnl
     &\subseteq \int_a^b \fphi{t} \d{t} + \fphi{b} \br{\xdown b - b + \frac h2} - \fphi{a} \br{\xup a - a -\frac h2} + \bigo{h^2} \bnl
     &
@@ -421,7 +433,7 @@ In this section we will show that the probability mass function of the standardi
     \begin{comment}
       \text{Set } R_1(x) = \lfloor x \rfloor - x + \frac 12 \text{ and } R_2(x) = \lceil x \rceil -x - \frac 12
     \end{comment} \bnl
-    &\subseteq \int_a^b \fphi{t} \d{t} + \br{R_1(k_b)\fphi{b} - R_2(k_a)\fphi{a}} h + \bigo{h^2}
+  &\subseteq \int_a^b \fphi{t} \d{t} + \Big[R_1(k_b)\fphi{b} - R_2(k_a)\fphi{a}\Big] h + \bigo{h^2}
   \end{align}
 
   \noindent So we get
@@ -431,7 +443,7 @@ In this section we will show that the probability mass function of the standardi
     &
     \begin{comment}
       \begin{aligned}
-        & \sum_{a \le \x \le b} \fphi{\x} h \in \int_a^b \fphi{t} \d{t} + \br{R_1(k_b)\fphi{b} - R_2(k_a)\fphi{a}} h + \bigo{h^2} \bnl
+      & \sum_{a \le \x \le b} \fphi{\x} h \in \int_a^b \fphi{t} \d{t} + \Big[R_1(k_b)\fphi{b} - R_2(k_a)\fphi{a}\Big] h + \bigo{h^2} \bnl
         & \sum_{a \le \x \le b} \frac{q-p}6 \br{\x^3-3\x} \fphi{\x} h^2 \in \frac{q-p}6 \int_a^b \br{t^3-t} \fphi{t} \d{t}\cdot h + \bigo{h^2} \bnl
         & \sum_{a \le \x \le b} \bigo{\fphi{\x}\pol{x}h^3} \subseteq \bigo{h^2}
       \end{aligned}
@@ -463,12 +475,12 @@ In this section we will show that the probability mass function of the standardi
     \item $\seq{\frac{1}{c_n^2}} \in \littleo{h}$
     \item $\lim_{n\to\infty} c_n=-\infty$
   \end{itemize}
-  For example one may take $c_n = \min\left\{z, 0, \xdown{- \sqrt[3]{n}\sqrt{\frac pq}}\right\}$. We split the sum $\sum_{\x \le z} \bb{\x}$ into two sums:
+  For example we can take $c_n = \min\left\{z, 0, \xdown{- \sqrt[3]{n}\sqrt{\frac pq}}\right\}$. We split the sum $\sum_{\x \le z} \bb{\x}$ into two sums:
 
   \begin{align}
     \sum_{\x \le z} \bb{\x} = \sum_{\x < c_n} \bb{\x} + \sum_{c_n \le \x \le z} \bb{\x}
   \end{align}
-  The first sum can be estimated with the Chebyshev's inequality:
+  The first sum can be estimated with the Chebyshev's inequality \cite{wiki:chebyshev}:
   \begin{align}
     0 \le \sum_{\x < c_n} \bb{\x} \le \P{\abs{\BBs} > \abs{c_n}} \le \frac{1}{c_n^2}
   \end{align}
@@ -482,7 +494,7 @@ In this section we will show that the probability mass function of the standardi
     & \subseteq \int_{t < c_n} \fphi{t}\d{t} + \littleo{h}
   \end{align}
 
-  The second sum can be approximated as in the above theorem. Because $\abs{\x} \le \max\{\abs{c_n},z\} \in \littleo{\frac 1h}$ we can apply the local version of de Moivre-Laplace and we get
+  The second sum can be approximated as in the above theorem. Because $\abs{\x} \le \max\{\abs{c_n},\abs{z}\} \in \littleo{\frac 1h}$ we can apply the local version of de Moivre-Laplace and get
   \begin{align}
     \sum_{c_n \le \x \le z} \bb{\x} = \sum_{c_n \le \x \le z} \br{\fphi{\x} h +\frac{q-p}6 \left(\x^3 - 3\x\right) \fphi{\x} h^2 + \bigo{\fphi{\x}\pol{\x}h^3}}
   \end{align}
@@ -546,7 +558,7 @@ In this section we will show that the probability mass function of the standardi
     & \subseteq \int_{c_n}^z \fphi{t} \d{t} + \frac{q-p}6 \br{1-z^2}\fphi{z} h + \Ro{np+z\sqrt{npq}} \fphi{z} h +\littleo{h}
   \end{align}
 
-  \noindent So we can finish the proof
+  \noindent Finally we get
 
   \begin{align}
     \sum_{\x \le z} \bb{\x} & = \sum_{\x < c_n} \bb{\x} + \sum_{c_n \le \x \le z} \bb{\x} \bnl
@@ -561,11 +573,6 @@ In this section we will show that the probability mass function of the standardi
 
 \section{Conclusion}
 
-\includeplot{edgeworth_diff_pdf}{This plot shows $f(\x) = \bb{\x}-\fphi{\x}h$ and $g(\x)=\frac{q-p}6 \left(\x^3-3\x\right) \fphi{\x} h^2$ for $n=1000$ and $p=\frac 14$. It demonstrates that our correction term $\frac{q-p}6 \left(\x^3-3\x\right) \fphi{\x} h^2$ describes very well the error $\bb{\x}-\fphi{\x}$ in the normal approximation.}
-
-\includeplot{edgeworth_diff_cdf}{This plot shows some values of $f(z) = \P{\BBs \le z} -\fPhi{z}$ and $g(z)=\frac{q-p}6 \br{1-z^2}\fphi{z} h + \Ro{np+z\sqrt{npq}} \fphi{z} h $ for $n=1000$ and $p=\frac 14$. The fact that the values of both functions coincide demonstrates that we have found a good approximation.}
-
-\includeplot{pdf_convergence_order}{The approximated convergence order $\alpha$ of $\sup_{\x} \abs{\P{\BBs = \x}-\fphi{\x} h}$ in terms of $n$. We see that $\sup_{\x} \abs{\P{\BBs = \x}-\fphi{\x} h}\sim n^{-1}$ unless $p=q=\tfrac 12$. In this case we have the convergence order $\sup_{\x} \abs{\P{\BBs = \x}-\fphi{\x} h}\sim n^{-3/2}$. This can be explained with our approximation of the probability mass function whose correction term $\frac{q-p}6 \left(\x^3-3\x\right) \fphi{\x} h^2$ vanishes for $p=q=\tfrac 12$.}
 
 We see that the standard proof of the de Moivre-Laplace theorem with Stirling's formula yield a good estimation of the approximation's error. We do not only get the right order $\bigo{h}$ of the error's convergence as it is shown by the Berry-Esseen theorem, we also derived a better approximation for the binomial distribution which is
 
@@ -576,8 +583,14 @@ We see that the standard proof of the de Moivre-Laplace theorem with Stirling's 
   \P{\BBs \le z} & \approx \int_{-\infty}^z \fphi{t} \d{t} + \frac{q-p}6 \br{1-z^2}\fphi{z} h + \Ro{np+z\sqrt{npq}} \fphi{z} h 
 \end{align}
 
-These extensions of the normal approximation are precisely the first two terms of the Edgeworth Expansion \cite[pp. 39 ff.]{hall}\cite{wiki:edgeworth}. The Edgeworth Expansion is a series which approximates the cumulative distribution function of a random variable \cite{wiki:edgeworth}. In the case of the binomial distribution the Edgeworth Expansion is \cite[p. 46]{hall}
+\includeplot{edgeworth_diff_pdf}{This plot shows $f(\x) = \bb{\x}-\fphi{\x}h$ and $g(\x)=\frac{q-p}6 \left(\x^3-3\x\right) \fphi{\x} h^2$ for $n=1000$ and $p=\frac 14$. It demonstrates that our correction term $\frac{q-p}6 \left(\x^3-3\x\right) \fphi{\x} h^2$ describes very well the error $\bb{\x}-\fphi{\x}$ in the normal approximation.}
+
+\includeplot{edgeworth_diff_cdf}{This plot shows some values of $f(z) = \P{\BBs \le z} -\fPhi{z}$ and $g(z)=\frac{q-p}6 \br{1-z^2}\fphi{z} h + \Ro{np+z\sqrt{npq}} \fphi{z} h $ for $n=1000$ and $p=\frac 14$. The fact that the values of both functions coincide demonstrates that we have found a good approximation.}
+
+These extensions of the normal approximation are precisely the first two terms of the Edgeworth Expansion  which is a series to approximates the cumulative distribution function of a random variable \cite[pp. 39 ff.]{hall}\cite{wiki:edgeworth}. In the case of the binomial distribution the Edgeworth Expansion is \cite[p. 46]{hall}
 \begin{align}
   \P{\BBs \le z} & \approx \int_{-\infty}^z \fphi{t} \d{t} + \frac{q-p}6 \br{1-z^2}\fphi{z} h + \Ro{np + z \sqrt{npq}}\fphi{z}h + \bigo{h^2}
 \end{align}
-By comparing the above equation with our second global version of de Moivre-Laplace we see that we can provide the same first term of the Edgeworth Expansion, but with a worse estimation of the remaining error ($\littleo{h}$ instead of $\bigo{h^2}$). This demonstrates the power of the standard proof with Stirling's formula.
+By comparing the above equation with our second global version of the de Moivre-Laplace theorem we see that we can provide the same approximation terms. Only the estimation of the remaining error is worse ($\littleo{h}$ instead of $\bigo{h^2}$). This demonstrates the power of the standard proof with Stirling's formula.
+
+\includeplot{pdf_convergence_order}{The value $p$ is plotted against the approximated convergence order $\alpha$ of $\sup_{\x} \abs{\P{\BBs = \x}-\fphi{\x} h}$ in terms of $n$. We see that $\sup_{\x} \abs{\P{\BBs = \x}-\fphi{\x} h}\sim n^{-1}$ unless $p=q=\tfrac 12$. In this case we have the convergence order $\sup_{\x} \abs{\P{\BBs = \x}-\fphi{\x} h}\sim n^{-3/2}$. This can be explained with our approximation of the probability mass function whose correction term $\frac{q-p}6 \left(\x^3-3\x\right) \fphi{\x} h^2$ vanishes for $p=q=\tfrac 12$.}
