@@ -47,24 +47,24 @@ Thus the main statement of the de Moivre-Laplace theorem is that the standardize
 
 \section{The journey to de Moivre-Laplace theorem}
 
-In \emph{A history of propability and statistics and their applications before 1750} Anders Hald gave a good summarize how de Moivre and Laplace found their theorem. In \cite[pp. 469-470]{hald1} he wrote:
+In \emph{A history of probability and statistics and their applications before 1750} Anders Hald gave a good summarize how de Moivre and Laplace found their theorem. In \cite[pp. 469-470]{hald1} he wrote:
 
 \begin{quotation}
   ``In 1721 de Moivre began his investigations od the binomial distribution for $p=\tfrac 12$. He first found an approximation to the maximum term and next an approximation to the ratio of the maximum to the term at a distance of $d$ from the maximum. [...] From 1725 onward James Stirling (1692-1770) worked on the same problem and found that the constant entering de Moivre's formula equals $\sqrt{2\pi}$. After having obtained these results they realized that it would be simpler to begin with an approximation to $\ln n!$, and they both proved Stirling's formula, $n! \sim \sqrt{2\pi n}n^ne^{-n}$. De Moivre's proofs are given in the \emph{Miscellanea Analytica} (MA)(1730), Stirling's in his \emph{Methodus Differentialis} (1730).
 
-  [...] Three years later, de Moivre (1733) simplified his result for $p=\tfrac 12$ and showed that the normal density function may be used as an approcimation to the binomial. The generalization to an arbitrary value of $p$ is of course very easy, so without proof de Moivre stated that
+  [...] Three years later, de Moivre (1733) simplified his result for $p=\tfrac 12$ and showed that the normal density function may be used as an approximation to the binomial. The generalization to an arbitrary value of $p$ is of course very easy, so without proof de Moivre stated that
 
   \begin{align*}
       b(np+d,n,p) \sim (2\pi npq)^{-\tfrac 12} \exp\left( -\frac{d^2}{2npq} \right), d = O(\sqrt n),
   \end{align*}
 
-  and that $P_d$ [with $P_d=\P{|\Bs -np|\le d}$] may be obtained by integration. He also showd how to calculate the standardized normal probability integral [numerically] and gave the result for one, two, and three times the standard deviation.''
+  and that $P_d$ [with $P_d=\P{|\Bs -np|\le d}$] may be obtained by integration. He also showed how to calculate the standardized normal probability integral [numerically] and gave the result for one, two, and three times the standard deviation.''
 \end{quotation}
 
 In his book \emph{A History of Mathematical Statistics From 1750 to 1930} Hald wrote about the proof by Laplace~\cite[p. 24]{hald2}:
 
 \begin{quote}
-  ``De Moivre's theorem is mentioned only occasionally in the probabilistic literature between 1740 and 1812, when Laplace [...] filled the gaps in the proof. Laplace assumes that p is a real number in the unit interval \todo{foonote} and shows that the mode of the binomial distribution equals $m=[(n+1)p]=np+z$, say, $-q < z \le p$. By means of Stirling's formula he obtains an expansion of $\ln(m+d)$ in powers of $d$ including terms of order $n^{-1/2}$, so that he gets a correction to the main term depending on $(q-p)d/npq$, a correction of skewness as it is called today. He notes, that the approximation may be improved by taking more terms of the expansion into account.''
+  ``De Moivre's theorem is mentioned only occasionally in the probabilistic literature between 1740 and 1812, when Laplace [...] filled the gaps in the proof. Laplace assumes that p is a real number in the unit interval \todo{footnote} and shows that the mode of the binomial distribution equals $m=[(n+1)p]=np+z$, say, $-q < z \le p$. By means of Stirling's formula he obtains an expansion of $\ln(m+d)$ in powers of $d$ including terms of order $n^{-1/2}$, so that he gets a correction to the main term depending on $(q-p)d/npq$, a correction of skewness as it is called today. He notes, that the approximation may be improved by taking more terms of the expansion into account.''
 \end{quote}
 
 \section{The error in the theorem}
