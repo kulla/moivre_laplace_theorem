@@ -1,6 +1,6 @@
 \chapter{Alternative proof via slope approximation}
 
-In this chapter I present an alternative proof of the de Moivre-Laplace theorem which approximates the slope of the probability mass function by an ODE. The idea of this proof comes from Prof. Peter Pickl and was first described in the thesis ``Der Zentrale Grenzwertsatz'' by Karolina Fels~\cite{fels}. However the idea to derive an ODE in order to find an approximation for the binomial distribution occurs already in two papers by Daniel Bernoulli in 1770 and 1771~\cite{hald1}.
+In this chapter I present an alternative proof of the de Moivre-Laplace theorem which approximates the slope of the probability mass function by an ordinary differential equation\footnote{Instead of the term ``ordinary differential equation'' also its acronym ``ODE'' is used~\cite[p. 2]{ricardo}\cite{wiki:ode}.}. The idea of this proof comes from Prof. Peter Pickl and was first described in the thesis ``Der Zentrale Grenzwertsatz'' by Karolina Fels~\cite{fels}. However the idea to derive an ODE in order to find an approximation for the binomial distribution occurs already in two papers by Daniel Bernoulli in 1770 and 1771~\cite{hald1}.
 
 \section{Intuition behind the proof}
 
@@ -22,7 +22,7 @@ Let us assume that the cumulative distribution of $\BBs$ can be approximated by 
   \bb{\x[k]} &\to \fphi{x} \nl
   \frac{np}{k+1} &= \frac{np}{\rnd{np+x\sqrt{np}}+1} \to 1
 \end{align}
-Therefor $\fphi{x}$ is described by the ODE
+Therefore $\fphi{x}$ is described by the ODE
 \begin{align}
   \phi'(x) = -x\phi(x)
 \end{align}
@@ -31,13 +31,13 @@ This ODE is solved by $\phi_c(x) = c \fexp{-\frac{x^2}2}$. Because $\int_\R \fph
 
 \section{Necessary prior knowledge from ODE}
 
-In order to formalize the above proof sketch into a valid proof we will need some concepts and theorems from the theory about ordinary differential equations. An equation of the form
+In order to formalize the above proof sketch into a valid proof we will need some concepts and theorems from the theory of ordinary differential equations. An equation of the form
 
 \begin{align} \label{ode:def}
   y'(x) = f(x,y(x))
 \end{align}
 
-with $f:I \times \R \to \R$ and $I$ being a connected subset of $\R$ will be called an \emph{ordinary differential equation} (of first order)~\cite[p. 465]{stoer}\cite{wiki:ode}. Instead of the term ``ordinary differential equation'' also its acronym ``ODE'' is used~\cite[p. 2]{ricardo}\cite{wiki:ode}. Any function $y:\R\to\R$ fulfilling the ODE \eqref{ode:def} is called a \emph{solution of the ordinary differential equation}~\cite[p. 8]{ricardo}\cite{wiki:ode}. For example the density function $\fphi{x} = \frac{1}{\sqrt{2\pi}} \fexp{-\frac{x^2}2}$ of the normal distribution is the solution of the ODE
+with $f:I \times \R \to \R$ and $I$ being a connected subset of $\R$ will be called an \emph{ordinary differential equation} (of first order)~\cite[p. 465]{stoer}\cite{wiki:ode}. Any function $y:\R\to\R$ fulfilling the ODE \eqref{ode:def} is called a \emph{solution of the ordinary differential equation}~\cite[p. 8]{ricardo}\cite{wiki:ode}. For example the density function $\fphi{x} = \frac{1}{\sqrt{2\pi}} \fexp{-\frac{x^2}2}$ of the normal distribution is the solution of the ODE
 \begin{align}
   y'(x) = -xy(x)
 \end{align}
@@ -68,10 +68,10 @@ ODEs can be approximated numerically with \emph{one-step methods}~\cite[pp.~471~
   y_{k+1} = y_k + M(x_k, y_k, h, f) \cdot h
 \end{align}
 
-One of the most famous one-step method is the \emph{Euler method} with $M(x,y,h,f) = f(x,y)$~\cite[p. 473]{stoer}. We will use the concept of one-step methods to connect the density function of the normal distribution with the probability mass function of the binomial distribution. To state the theorem of the global error of one-step methods we will need the following definition of the local discretization error (see \cite[pp. 473-474]{stoer}):
+One of the most famous one-step methods is the \emph{Euler method} with $M(x,y,h,f) = f(x,y)$~\cite[p. 473]{stoer}. We will use the concept of one-step methods to connect the density function of the normal distribution with the probability mass function of the binomial distribution. To state the theorem of the global error of one-step methods we will need the following definition of the local discretization error (see \cite[pp. 473-474]{stoer}):
 
 \begin{definition}[Local discretization error]
-  The \emph{local discretization error} is the error of the one-step method which is produced during a step of approximation. Given an one-step method $M(x,y,h,f)$ its local discretization error at the point $x_k$ is the value
+  The \emph{local discretization error} is the error of the one-step method which is produced during a step of approximation. Given a one-step method $M(x,y,h,f)$ its local discretization error at the point $x_k$ is the value
 
   \begin{align}
     \tau(x_k) = \frac{y(x_{k+1})-y(x_k)}h - M(x_k,y(x_k),h,f)
@@ -107,7 +107,7 @@ One of the most famous one-step method is the \emph{Euler method} with $M(x,y,h,
   \end{align}
 \end{theorem}
 
-We may also have an one-step method backwards by setting $h < 0$. The above definitions and the  above theorem \ref{thm:ode_global_error} are applicable in this case, too.
+We may also have a one-step backwards method by setting $h < 0$. The above definitions and the  above theorem \ref{thm:ode_global_error} are applicable in this case, too.
 
 \section{Local version of the de Moivre-Laplace theorem}
 
