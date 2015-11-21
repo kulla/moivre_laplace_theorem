@@ -1,6 +1,6 @@
 \chapter{Standard proof of the de Moivre-Laplace theorem}
 
-In this chapter I want to prove the theorem by de Moivre and Laplace whereby I want to follow the basic ideas of their original proof\footnote{You can find similar proofs without error estimations in \cite[pp. 64-67]{irle}, \cite[pp. 131-134]{georgii} and \cite{wiki:demoivrelaplace}}. So we will first derive Stirling's formula of the factorial with which we will find an approximation of the binomial's probability mass function. This approximation will be used to deduce de Moivre's and Laplace's theorem.
+In this chapter I prove the theorem by de Moivre and Laplace whereby I follow the basic ideas of their original proof\footnote{You can find similar proofs without error estimations in \cite[pp. 64-67]{irle}, \cite[pp. 131-134]{georgii} and \cite{wiki:demoivrelaplace}}. So I will first derive Stirling's formula of the factorial with which we will find an approximation of the binomial's probability mass function. This approximation will be used to deduce de Moivre's and Laplace's theorem.
 
 \section{Stirling's formula}
 
@@ -63,7 +63,7 @@ You can find a proof of the Euler-Maclaurin formula in~\cite[pp.~225-226]{koenig
 \end{remark}
 
 \begin{proof}
-  In the proof we will follow~\cite[pp. 227-228]{koenigsberger}. First we apply the Euler-Maclaurin formula~\eqref{euler-maclaurin-formula} to $\ln(n!)=\sum_{k=1}^n \ln(k)$:
+  In the proof we follow~\cite[pp. 227-228]{koenigsberger}. First we apply the Euler-Maclaurin formula~\eqref{euler-maclaurin-formula} to $\ln(n!)=\sum_{k=1}^n \ln(k)$:
 
   \begin{align}
     \ln(n!) & = \sum_{k=1}^n \ln(k) \nl
@@ -162,12 +162,12 @@ You can find a proof of the Euler-Maclaurin formula in~\cite[pp.~225-226]{koenig
 
 \section{Local version of the de Moivre-Laplace theorem}
 
-In this section we will show that the probability mass function of the standardized binomial distribution can be approximated by the density function of the normal distribution. This will be the basis for the global version of the de Moivre-Laplace theorem. The following proof is based on the ideas given by Iosif Pinelis\cite{iosif}.
+In this section we show that the probability mass function of the standardized binomial distribution can be approximated by the density function of the normal distribution. This will be the basis for the global version of the de Moivre-Laplace theorem. The following proof is based on ideas given by Iosif Pinelis\cite{iosif}.
 
 \newcommand*{\Ro}[1]{R_1\left({#1}\right)}
 \newcommand*{\Rt}[1]{R_2\left({#1}\right)}
 
-\begin{theorem}[Local version of de Moivre-Laplace theorem]
+\begin{theorem}[Local version of the de Moivre-Laplace theorem]
   Let $\pol{\x}$ be the set of all polynomials in $\x$. Let $\seq{c_n}$ be a sequence with $\seq{c_n} \in \littleo{\frac 1h}$. For all $\x$ with $0\le k\le n$ and $\abs{x_k} \le c_n$ we have
   \begin{align}
     \bb{x_k} &= \binom nk p^k q^{n-k} \nl
@@ -278,7 +278,7 @@ In this section we will show that the probability mass function of the standardi
     \end{array}
   \end{align}
 
-  Because $\tilde s$ is in the interval bounded by $p$ and $s=\frac kn = p + \littleo{1}$ we deduce $\tilde s \in p + \littleo{1}$, too. Similarly we get $1-\tilde s\in q+\littleo{1}$ because $1-s = \frac{n-k}{n} \in q+\littleo{1}$. From this follows:
+  Because $\tilde s$ is in the interval bounded by $p$ and $s=\frac kn = p + \littleo{1}$ we deduce $\tilde s \in p + \littleo{1}$, too. Similarly we get $1-\tilde s\in q+\littleo{1}$ because $1-s = \frac{n-k}{n} \in q+\littleo{1}$. It follows:
 
   \begin{align}
     \frac 1{\tilde s^3} + \frac 1{(1-\tilde s)^3} & \in \frac1{p^3} + \frac{1}{q^3} + \littleo{1} \subseteq \bigo{1}
@@ -353,7 +353,7 @@ In this section we will show that the probability mass function of the standardi
 \end{theorem}
 
 \begin{remark}
-  With the above theorem we can establish the same approximation Uspensky found in his textbook ``Introduction to mathematical probability'' of 1937 where he stated \cite[p. 129]{uspensky}
+  With the above theorem we can establish the same approximation Uspensky found in his textbook ``Introduction to mathematical probability'' of 1937 where he stated in \cite[p. 129]{uspensky}
   \begin{align}
     \P{a+\frac 12h \le \BBs \le b-\frac 12h} = \int_a^b \fphi{x} \d{x} + \frac{q-p}6 \left[\br{1-b^2}\fphi{b} - \br{1-a^2}\fphi{a}\right] h + \epsilon
   \end{align}
@@ -399,7 +399,7 @@ In this section we will show that the probability mass function of the standardi
     & \subseteq \fphi{\x} h + \bigo{h^3}
   \end{align}
 
-  \noindent we can follow
+  \noindent we can deduce
 
   \begin{align}
     \fphi{\x} h \in \int_{\x-\frac h2}^{\x+\frac h2} \fphi{t} \d{t} + \bigo{h^3}
@@ -480,7 +480,7 @@ In this section we will show that the probability mass function of the standardi
   \begin{align}
     \sum_{\x \le z} \bb{\x} = \sum_{\x < c_n} \bb{\x} + \sum_{c_n \le \x \le z} \bb{\x}
   \end{align}
-  The first sum can be estimated with the Chebyshev's inequality \cite{wiki:chebyshev}:
+  The first sum can be estimated with Chebyshev's inequality \cite{wiki:chebyshev}:
   \begin{align}
     0 \le \sum_{\x < c_n} \bb{\x} \le \P{\abs{\BBs} > \abs{c_n}} \le \frac{1}{c_n^2}
   \end{align}
@@ -574,7 +574,7 @@ In this section we will show that the probability mass function of the standardi
 \section{Conclusion}
 
 
-We see that the standard proof of the de Moivre-Laplace theorem with Stirling's formula yield a good estimation of the approximation's error. We do not only get the right order $\bigo{h}$ of the error's convergence as it is shown by the Berry-Esseen theorem, we also derived a better approximation for the binomial distribution which is
+We see that the standard proof of the de Moivre-Laplace theorem with Stirling's formula yields a good estimation of the error of the approximation. We do not only get the right order $\bigo{h}$ of the error's convergence as it is shown by the Berry-Esseen theorem. We also derived a better approximation for the binomial distribution which is
 
 \begin{align}
   \P{\BBs = \x}& \approx \fphi{\x} h +\frac{q-p}6 \left(\x^3-3\x\right) \fphi{\x} h^2 \nl
@@ -587,7 +587,7 @@ We see that the standard proof of the de Moivre-Laplace theorem with Stirling's 
 
 \includeplot{edgeworth_diff_cdf}{This plot shows some values of $f(z) = \P{\BBs \le z} -\fPhi{z}$ and $g(z)=\frac{q-p}6 \br{1-z^2}\fphi{z} h + \Ro{np+z\sqrt{npq}} \fphi{z} h $ for $n=1000$ and $p=\frac 14$. The fact that the values of both functions coincide demonstrates that we have found a good approximation.}
 
-These extensions of the normal approximation are precisely the first two terms of the Edgeworth Expansion  which is a series to approximates the cumulative distribution function of a random variable \cite[pp. 39 ff.]{hall}\cite{wiki:edgeworth}. In the case of the binomial distribution the Edgeworth Expansion is \cite[p. 46]{hall}
+These extensions of the normal approximation are precisely the first two terms of the Edgeworth Expansion  which is a series to approximate the cumulative distribution function of a random variable \cite[pp. 39 ff.]{hall}\cite{wiki:edgeworth}. In the case of the binomial distribution the Edgeworth Expansion is \cite[p. 46]{hall}
 \begin{align}
   \P{\BBs \le z} & \approx \int_{-\infty}^z \fphi{t} \d{t} + \frac{q-p}6 \br{1-z^2}\fphi{z} h + \Ro{np + z \sqrt{npq}}\fphi{z}h + \bigo{h^2}
 \end{align}
