@@ -18,5 +18,6 @@ xs = xs[sel]
 
 plt.plot(xs, binom.pmf(ks, n, p) - norm.pdf(xs) * h)
 plt.plot(xs, (q-p)/6 * (xs**3-3*xs) * norm.pdf(xs) * h**2)
-plt.legend( ("f(x)", "g(x)") )
+plt.legend( ("$f(x_k)$", "$g(x_k)$") )
+plt.xlabel("$x_k$")
 plt.savefig( os.path.splitext(__file__)[0] + ".pdf" )

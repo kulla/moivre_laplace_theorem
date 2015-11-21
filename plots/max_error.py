@@ -19,5 +19,6 @@ ps = np.arange(0.02, 0.99, 0.02)
 
 plt.plot(ps, np.vectorize(max_error)(ps))
 plt.plot(ps, 0.4215 * (ps**2+(1-ps)**2) / np.sqrt(ps*(1-ps)))
-plt.legend(("f(p)", "g(p)"))
+plt.legend(("$f(p)$", "$g(p)$"))
+plt.xlabel("$p$")
 plt.savefig( os.path.splitext(__file__)[0] + ".pdf" )

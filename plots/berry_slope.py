@@ -20,4 +20,6 @@ ps = np.arange(0.02, 0.99, 0.02)
 
 plt.plot(ps, np.vectorize(slope)(ps))
 plt.ylim([-0.8,-0.2])
+plt.xlabel("$x$")
+plt.ylabel("$\\alpha$")
 plt.savefig( os.path.splitext(__file__)[0] + ".pdf" )

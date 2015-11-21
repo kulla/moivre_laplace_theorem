@@ -15,4 +15,6 @@ def error(n):
 ns = np.arange(1, 1000, 1)
 
 plt.plot(np.log(ns), np.log( np.vectorize(error)(ns) ))
+plt.xlabel("$\ln(n)$")
+plt.ylabel("$\ln(f(n))$")
 plt.savefig( os.path.splitext(__file__)[0] + ".pdf" )

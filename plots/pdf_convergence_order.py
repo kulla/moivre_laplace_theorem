@@ -21,4 +21,6 @@ ps = np.arange(0.02, 0.99, 0.02)
 
 plt.plot(ps, np.vectorize(slope)(ps))
 plt.ylim([-1.6, -0.9])
+plt.xlabel("$p$")
+plt.ylabel("convergence order")
 plt.savefig( os.path.splitext(__file__)[0] + ".pdf" )
