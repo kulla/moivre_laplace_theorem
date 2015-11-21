@@ -140,15 +140,15 @@ We will prove the local version of the de Moivre-Laplace theorem in the followin
   \begin{align}
     \bb{\x} \in \frac{\bnp}{\fphi{\xnp}}\fphi{\x} + \bigabs{{\bnp}\cdot \tilde Ch}
   \end{align}
-  Please note that we get the right convergence order $\bigo{h^2}$ of the remaining error because $\bnp \in \bigo{h}$ as we will prove later. However the error estimation of this theorem is worse than in the standard proof with Stirling's formula. So we cannot use this kind of proof to get a better error estimation.
+  Please note that we get the right convergence order $\bigo{h^2}$ of the remaining error because $\bnp \in \bigo{h}$ as we will prove later. However, the error estimation of this theorem is less strong than that of the standard proof with Stirling's formula.
 \end{remark}
 
-This proof will heavily bases on the theory of one-step methods for approximating ordinary differential equations. Thereby we will revert the perspective: Whereas in the theory of ODEs one-step methods are approximations of unknown solutions of ODEs, we will consider the probability mass function of the binomial distribution as the result of an one-step method. This one-step method corresponds to an ODE and the solution to this ODE will be an approximation to the probability mass function. Thus we flip the role of the exact solution and the approximation. This makes this proof in particular interesting and my be a method which might be applicable in other proofs too.
+This proof bases on the theory of one-step methods for approximating ordinary differential equations. Thereby we will revert the perspective: Whereas in the theory of ODEs one-step methods are approximations of unknown solutions of ODEs, here we will consider the probability mass function of the binomial distribution as the result of an one-step method. This one-step method corresponds to an ODE and the solution of this ODE will be an approximation to the probability mass function. Thus we flip the role of the exact solution and the approximation. This makes this proof particularly interesting and may be a method applicable in other proofs too.
 
 \begin{proof}
   \newcommand*{\Lt}{\tilde L}
 
-  Let $\Lt$ be the maximum of $h$ and $\sup\{\abs{x}: x \in I\}$. We also extend $I$ to $\interval{-\Lt}{\Lt}$ so that $\xnp \in I$ because $\Lt \ge h$. We start with investigating $\bb{\x[k+1]}-\bb{\x[k]}$ (let $\pol{\x}$ be the set of all polynomials in $\x$):
+  Let $\Lt$ be the maximum of $h$ and $\sup\{\abs{x}: x \in I\}$. We extend $I$ to $\interval{-\Lt}{\Lt}$ so that $\xnp \in I$ because $\Lt \ge h$. We start with investigating $\bb{\x[k+1]}-\bb{\x[k]}$ (let $\pol{\x}$ be the set of all polynomials in $\x$):
 
   \begin{align}
     \bb{\x[k+1]} - \bb{\x[k]} &= \binom n{k+1} p^{k+1}q^{n-k-1} - \binom nk p^k q^k \nl
@@ -313,11 +313,11 @@ for any $a,b,z\in\R$. Thereby we will split the proof in several steps. We start
 \end{lemma}
 
 \begin{remark}
-  This lemma implies $\bnp \sim \frac{1}{\sqrt{2\pi npq}}$ because $\lim_{n\to\infty} \fphi{\xnp} = \frac1{\sqrt{2\pi}}$ as we already know from the standard proof of the de Moivre-Laplace theorem based on Stirling's formula. Therefore this lemma can be shown with Stirling's formula but I want to omit this approximation because it is only applicable for the binomial distribution and a use of Stirling's formula at this point contradicts the attempt to find a new proof of de Moivre-Laplace (which does not depend on methods of the standard proof).
+  This lemma implies $\bnp \sim \frac{1}{\sqrt{2\pi npq}}$ because $\lim_{n\to\infty} \fphi{\xnp} = \frac1{\sqrt{2\pi}}$ as we already know from the standard proof of the de Moivre-Laplace theorem based on Stirling's formula. Therefore this lemma can be shown with Stirling's formula. Yet it is only applicable for the binomial distribution and a use of Stirling's formula at this point contradicts the attempt to find a new proof of de Moivre-Laplace (which does not depend on methods of the standard proof). Thus I want to omit this approximation.
 \end{remark}
 
 \begin{proof}
-  Let $c_n = \frac{\fphi{\xnp}h}{\bnp}$. Let $\epsilon > 0$ be arbitrary with $\epsilon \le 2$. From the Chebyshev's inequality we know $\P{\abs{X}> R} \le \frac{1}{R^2}$ for any $R > 0$ and any standardized random variable $X$ \cite{wiki:chebyshev}. Thus there is a $R >0$ such that
+  Let $c_n = \frac{\fphi{\xnp}h}{\bnp}$. Let $\epsilon > 0$ be arbitrary with $\epsilon \le 2$. From the Chebyshev's inequality we know $\P{\abs{X}> R} \le \frac{1}{R^2}$ for any $R > 0$ and any standardized random variable $X$ \cite{wiki:chebyshev}. Thus there is an $R >0$ such that
   \begin{align}\label{eq1}
     1 -\frac{\epsilon}4 \le \sum_{-R \le \x \le R} \bb{\x[k]} \le 1
   \end{align}
