@@ -18,14 +18,14 @@ To describe the asymptotic behavior of an error, the big O notation can be utili
   \seq{\epsilon_n} \in \bigo{a_n} :\iff \exists C_\infty > 0 \colon\limsup_{n\to\infty} \abs{\frac{\epsilon_n}{a_n}} \le C_\infty
 \end{align}
 
-For example $\epsilon_n \in \bigo{\frac 1n}$ means that $\epsilon_n$ approaches zero at least with the convergence speed of $\seq{\frac 1n}$. Thereby the advantage of the big O notation is its simple arithmetic rules. For example we have
+For example $\epsilon_n \in \bigo{\frac 1n}$ means that $\epsilon_n$ approaches zero at least with the convergence speed of $\seq{\frac 1n}$. Thereby the advantage of the big O notation is its simple arithmetic rules. For example we can easily conclude
 \begin{align}
   \bigo{\frac 1n} + \bigo{\frac 1{n^2}} \subseteq \bigo{\frac 1n}
 \end{align}
 These arithmetic rules (which we will discuss in the end of this section) simplify error estimations.
 
 \section{The big Delta and the big Psi notation}
-Unfortunately the big O notation does only provide an estimate of the convergence speed but no upper bound of the error's value since the constants $C$ and $C_\infty$ in \eqref{bigo_def1} and \eqref{bigo_def_limsup} are not known\footnote{cf.~\cite[p.~444]{graham},~\cite{hurkyl_bigo} and \cite{templatetypedef_bigo}}. Therefore I want to introduce the big Delta and the big Psi notation with which besides to the convergence speed also an estimate for the absolute error and the asymptotic error can be stated. Both notations are defined as\footnote{Donald Knuth uses the term ``A notation'' for the big Delta notation \cite{anotation}. Please compare also \cite{tampis_bigpsi} and~\cite{tampis_bigabs} respectively for the usage of the big Psi notation and big Delta notation in mathematics.}:
+Unfortunately the big O notation does only provide an estimate of the convergence speed but no upper bound of the error's value since the constants $C$ and $C_\infty$ in \eqref{bigo_def1} and \eqref{bigo_def_limsup} are not known\footnote{cf.~\cite[p.~444]{graham},~\cite{hurkyl_bigo} and \cite{templatetypedef_bigo}}. Therefore I want to introduce the big Delta and the big Psi notation with which besides to the convergence speed also an estimate for the absolute error and the asymptotic error respectively can be stated. Both notations are defined as\footnote{Donald Knuth uses the term ``A notation'' for the big Delta notation \cite{anotation}. Please compare also \cite{tampis_bigpsi} and~\cite{tampis_bigabs} respectively for the usage of the big Psi notation and big Delta notation in mathematics.}:
 
 \begin{definition}[Big Delta notation for the absolute error]
   Let $\seq{a_n}$ be a sequence. $\bigabs{a_n}$ is the set of all sequences $\seq{\epsilon_n}$ with
@@ -35,13 +35,13 @@ Unfortunately the big O notation does only provide an estimate of the convergenc
 \end{definition}
 
 \begin{definition}[Big Psi notation for the asymptotic error]
-  Let $\seq{a_n}$ be a sequence with $a_n > 0$ for all $n\in\N$. $\bigpsi{a_n}$ is the set of all sequences $\seq{\epsilon_n}$ defined via
+  Let $\seq{a_n}$ be a sequence with $a_n > 0$ for all $n\in\N$. $\bigpsi{a_n}$ is the set defined via
   \begin{align}
     \seq{\epsilon_n} \in \bigpsi{a_n} :\iff \limsup_{n\to\infty} \abs{\frac{\epsilon_n}{a_n}} \le 1
   \end{align}
 \end{definition}
 
-Note that the definition of the big Psi notation is the same as the limes superior definition \eqref{bigo_def_limsup} of the big O notation whereby $C_\infty$ has the concrete value $1$ and the big Delta notation is the same as \eqref{bigo_def1} with $C=1$. Thus we directly see that both notations are specializations of the big O notation:
+Note that the definition of the big Psi notation is the same as the limes superior definition \eqref{bigo_def_limsup} of the big O notation whereby $C_\infty$ has the concrete value $1$ and the big Delta notation is the same as \eqref{bigo_def1} with $C=1$. Thus, we directly see that both notations are specializations of the big O notation:
 \begin{align}
   \seq{\epsilon_n} \in \bigabs{a_n} & \implies \seq{\epsilon_n} \in \bigo{a_n} \nl
   \seq{\epsilon_n} \in \bigpsi{a_n} & \implies \seq{\epsilon_n} \in \bigo{a_n}
@@ -52,7 +52,7 @@ Note that the definition of the big Psi notation is the same as the limes superi
 We will also use the little o notation which is defined as~\cite[pp.~99,~103]{aigner}\cite[p.~385]{hachenberger}\cite{wiki:bigo}
 
 \begin{definition}[Little o notation]
-  Let $\seq{a_n}$ be a sequence with positive members\footnote{To allow $a_n=0$ it is possible to define the little o notation via~\cite[pp.~448]{graham}\cite{wiki:bigo}
+  Let $\seq{a_n}$ be a sequence with strictly positive members\footnote{To allow $a_n=0$ it is possible to define the little o notation via~\cite[pp.~448]{graham}\cite{wiki:bigo}
   \begin{align}
     \seq{b_n}\in\littleo{a_n} :\iff \forall \epsilon > 0\, \exists N\in\N\, \forall n \ge N: \abs{b_n} \le \epsilon \abs{a_n}
   \end{align}
@@ -65,14 +65,14 @@ We will also use the little o notation which is defined as~\cite[pp.~99,~103]{ai
 
 \section{Calculations with sets} \label{sec:calculations_sets}
 
-With the above notations we can simplify error estimations. Instead of stating a concrete error $\epsilon_n$ of an approximation at the $n$-th step, we use one of the above notations in the form $S(a_n)$ with $S\in\{O, \Delta, \Psi, o\}$. By using $S(a_n)$ in an expression we mean that there is a $\seq{\epsilon_n}\in S(a_n)$ fulfilling the statement. Because we will have to deal with expressions containing sets of sequences, we need rules for interpreting such expressions. These rules are \cite{bigo_rules1}\cite[pp. 17-18]{kulla}:
+With the above notations we can simplify error estimations. Instead of stating a concrete error $\epsilon_n$ of an approximation at the $n$-th step, we use one of the above notations in the form $S(a_n)$ with $S\in\{O, \Delta, \Psi, o\}$. By using $S(a_n)$ in a statement we express that there is a $\seq{\epsilon_n}\in S(a_n)$ fulfilling the statement. Because we will have to deal with terms containing sets of sequences, we need rules for interpreting such expressions. These rules are \cite{bigo_rules1}\cite[pp. 17-18]{kulla}:
 
 \begin{enumerate}
-  \item Let $f:D\subseteq\R^n\to\R$ be an $n$-ary operation of real numbers and let $A_1,A_2,\ldots,A_n$ be $n$ subsets of $\R$ such that $A_1\times A_2\times \dots\times A_n\subseteq D$. The result  $f\left(A_1,\ldots,A_n\right)$ of the operation with all $n$ sets is defined as the image of $f$ \footnote{The extended version of $f$ on sets calls Ramon E. Moore in his book about interval analysis the ``unit extension''~\cite[p. 18]{moore}}
+  \item Let $f:D\subseteq\R^n\to\R$ be an $n$-ary operation of real numbers and let $A_1,A_2,\ldots,A_n$ be $n$ subsets of $\R$ such that $A_1\times A_2\times \dots\times A_n\subseteq D$. The result  $f\left(A_1,\ldots,A_n\right)$ of the operation with all $n$ sets is defined as the image of $f$\footnote{The extended version of $f$ on sets calls Ramon E. Moore in his book about interval analysis the ``unit extension''~\cite[p. 18]{moore}}:
 \begin{align}
   f\left(A_1,\ldots A_n\right)=\left\{f(x_1,\ldots,x_n):x_1\in A_1,x_2\in A_2,\ldots,x_n\in A_n\right\}
 \end{align}
-  For example
+  For example we find
   \begin{align}
     \bigo{a_n} + \bigabs{b_n} = \{ \seq{\epsilon_n+\delta_n} : \seq{\epsilon_n}\in \bigo{a_n} \land \seq{\delta_n}\in\bigabs{b_n}\}
   \end{align}
@@ -117,7 +117,7 @@ All the presented notations share a common property which is in the case of the 
 \end{align}
 This property of $\bigo{\cdot}$ can be condensed to the equation $\bigo{a_n} = a_n \cdot \bigo{1}$ because
 \begin{align}
-  \seq{\epsilon_n} \in \bigo{a_n} & \iff \seq{\abs{\frac{\epsilon_n}{a_n}}} \in a_n \cdot \bigo{1} \bnl
+  \seq{\epsilon_n} \in \bigo{a_n} & \iff \seq{\abs{\frac{\epsilon_n}{a_n}}} \in \bigo{1} \bnl
   & \iff \exists \seq{\delta_n} \in \bigo{1} : \abs{\frac{\epsilon_n}{a_n}} = \delta_n \bnl
   & \iff \exists \seq{\delta_n} \in \bigo{1}: \abs{\epsilon_n} = \abs{a_n} \delta_n \bnl
   &
@@ -128,7 +128,7 @@ This property of $\bigo{\cdot}$ can be condensed to the equation $\bigo{a_n} = a
   & \iff \seq{\epsilon_n} \in a_n \cdot \bigo{1} \bnl
 \end{align}
 
-So $\bigo{a_n}$ is fully determined by knowing $\bigo{1}$ (cf. \cite{tampis:char}). For $\bigabs{\cdot}$ and $\littleo{\cdot}$ we get the analogous equation. Because $A(1)$ for $A\in\{O, o, \Psi, \Delta\}$ determines $A(a_n)$ we can deduce all arithmetic rules for asymptotic notation from the arithmetic rules for sets of the form $A(1)$. For example there are the rules \cite{tampis:rules}
+So $\bigo{a_n}$ is fully determined by knowing $\bigo{1}$ (cf. \cite{tampis:char}). For $\bigabs{\cdot}$ and $\littleo{\cdot}$ we get the analogous equations. Because $A(1)$ for $A\in\{O, o, \Psi, \Delta\}$ determines $A(a_n)$, we can deduce all arithmetic rules for asymptotic notation from the arithmetic rules for sets of the form $A(1)$. We can derive the following rules for $A,B,C\in\{O, o, \Psi, \Delta\}$ \cite{tampis:rules}
 
 \begin{enumerate}
   \item $(1)_{n\in\mathbb N} \in A(1) \implies (a_n)_{n\in\mathbb N} \in A(a_n)$
@@ -141,9 +141,9 @@ So $\bigo{a_n}$ is fully determined by knowing $\bigo{1}$ (cf. \cite{tampis:char
 These rules can be mostly proven by using the equation $A(a_n) = a_n \cdot A(1)$. For example when we assume the premise $A(1) + B(1)\subseteq C(1)$ we can demonstrate rule \ref{rule:demo} via
 
 \begin{align}
-  A(a_n) + B(a_n) = a_n (A(1)+B(1)) \subseteq a_n C(1) = C(a_n)
+  A(a_n) + B(a_n) = a_n (A(1)+B(1)) \subseteq a_n \cdot C(1) = C(a_n)
 \end{align}
-Only the rule \ref{rule:toproof} is not obvious. However we find by assuming $A(1) \cdot B(1) \subseteq C(1)$ that
+Only the rule \ref{rule:toproof} is not obvious. However, we find by assuming $A(1) \cdot B(1) \subseteq C(1)$ that
 \begin{align}
   \seq{\epsilon_n} \in A(\delta_n) \land \seq{\delta_n} \in B(a_n) & \implies \seq{\abs{\frac{\epsilon_n}{\delta_n}}} \in A(1) \land \seq{\abs{\frac{\delta_n}{a_n}}} \in B(1) \bnl
   &
@@ -162,8 +162,10 @@ From rule \ref{rule:example} and \ref{rule:toproof} we can now conclude that $\l
 
 \section{Taylor series}
 
+We will need the following theorem in the upcoming proofs:
+
 \begin{theorem}
-  Let $f:D\to\R$ be a two times continuously differentiable function with an open domain $D$. Let $x_0\in D$. Then
+  Let $f:D\to\R$ be a two times continuously differentiable function with an open domain $D$. Let $x_0\in D$. Then for any sequence $\seq{h}$ with $\lim_{n\to\infty} h = 0$ we find
 
   \begin{align}
     f(x_0+h) = f(x_0) + f'(x_0) h + \bigo{h^2}
@@ -175,7 +177,7 @@ From rule \ref{rule:example} and \ref{rule:toproof} we can now conclude that $\l
   \begin{align}
     f(x_0+h)=f(x_0)+f'(x_0)h + \frac 12 f''(\tilde x) h^2
   \end{align}
-  with $\tilde x$ being in the interval bounded by $x_0$ and $x_0+h$. We fix a connected and compact neighborhood $U$ of $x_0$. $f''$ being continuous implies that $f''$ is bounded on $U$. Thus we find a $C > 0$ such that for all $h$ with $x_0+h\in U$ we find $\abs{f''(\tilde x)} \le C$. Hence for all $h$ with $x_0+h\in U$:
+  with $\tilde x$ being in the interval bounded by $x_0$ and $x_0+h$. We fix a connected and compact neighborhood $U$ of $x_0$. $f''$ being continuous implies that $f''$ is bounded on $U$. Thus we find a $C > 0$ such that for all $h$ with $x_0+h\in U$ the inequality $\abs{f''(\tilde x)} \le C$ holds. Hence for all $h$ with $x_0+h\in U$:
   \begin{align}
     f(x_0+h)& =f(x_0)+f'(x_0)h + \frac 12 f''(\tilde x) h^2 \nl
     & \in f(x_0)+f'(x_0)h + \bigabs{\frac 12 C h^2} \nl
@@ -185,14 +187,14 @@ From rule \ref{rule:example} and \ref{rule:toproof} we can now conclude that $\l
 
 \section{Asymptotic behavior of Riemann sums}
 
-Because we will have to deal with Riemann sums we need the following theorem:
+Because we will have to deal with Riemann sums, we need the following theorem:
 
 \begin{theorem} \label{thm:asymptotics_riemann}
-  Let $h > 0$ and $\x[k]$ be defined via $\x[k] = \x[0] + kh$ for $k\in\Z$ and any $\x[0]\in\R$. Let $f:\R\to\R$ with $\snorm{f} < \infty$ and $\snorm{f'} < \infty$. Let $a,b\in\R$. We find
+  Let $h > 0$ and $\x[k]$ be defined via $\x[k] = \x[0] + kh$ for $k\in\Z$ and any $\x[0]\in\R$. Let $f:\R\to\R$ be an integrable function with $\snorm{f} < \infty$ and $\snorm{f'} < \infty$. Let $a,b\in\R$. We find
 
   \begin{enumerate}
-    \item $\int_x^{x+h} f(t) \d{t} \in f(x)h + \bigabs{\frac 12 \snorm{f'} h^2}$ and $\int_{x-h}^x f(t) \d{t} \in f(x) h + \bigabs{\frac 12 \snorm{f'} h^2}$
-    \item $\f{\x} h \in \int_{\x-\frac h2}^{\x + \frac h2} \f{t}\d{t} + \bigabs{\frac 14 \snorm{f'} h^2}$
+    \item \label{rieman_first_rule} $\int_x^{x+h} f(t) \d{t} \in f(x)h + \bigabs{\frac 12 \snorm{f'} h^2}$ and $\int_{x-h}^x f(t) \d{t} \in f(x) h + \bigabs{\frac 12 \snorm{f'} h^2}$
+    \item \label{riemann_int} $\f{\x} h \in \int_{\x-\frac h2}^{\x + \frac h2} \f{t}\d{t} + \bigabs{\frac 14 \snorm{f'} h^2}$
     \item For $a \le b$ we have
 
       \begin{align}
@@ -219,11 +221,15 @@ Because we will have to deal with Riemann sums we need the following theorem:
     \item We have
       \begin{align}
         \f{\x} h & = \f{\x} \frac h2 + \f{\x} \frac h2 \bnl
+        &
+        \begin{comment}
+          \text{rule \ref{rieman_first_rule}}
+        \end{comment} \bnl
         &\in \int_{\x}^{\x+\frac h2} \f{t}\d{t} + \bigabs{\frac 18 \snorm{f'} h^2} + \int_{\x-\frac h2}^{\x} \f{t}\d{t} + \bigabs{\frac 18 \snorm{f'} h^2} \bnl
         &\subseteq \int_{\x-\frac h2}^{\x+\frac h2} \f{t}\d{t} + \bigabs{\frac 14 \snorm{f'} h^2}
       \end{align}
 
-    \item Let $\tilde a = \inf \{ \x : \x \ge a \}$ and $\tilde b = \sup \{ \x : \x \le b \}$. The difference of $a$ and $\tilde a$ is less than or equal $h$ and the distance of $a$ and $\tilde a - \frac h2$ can be estimated by $\frac h2$. Similarly we find $\abs{\tilde b-b} \le h$ and $\abs{\br{\tilde b+\frac h2}-b} \le \frac h2$. We have
+    \item Let $\tilde a = \inf \{ \x : \x \ge a \}$ and $\tilde b = \sup \{ \x : \x \le b \}$. The difference of $a$ and $\tilde a$ is less than or equal to $h$ and the distance of $a$ and $\tilde a - \frac h2$ can be estimated by $\frac h2$. Similarly we find $\abs{\tilde b-b} \le h$ and $\abs{\br{\tilde b+\frac h2}-b} \le \frac h2$. We find with rule \ref{riemann_int}
 
       \begin{align}
         \sum_{a \le \x \le b} \f{\x} h & \in \sum_{a\le \x\le b} \br{\int_{\x-\frac h2}^{\x+\frac h2} \f{t} \d{t} + \bigabs{\frac 14 \snorm{f'} h^2}} \bnl
