@@ -6,13 +6,13 @@
 
 \includefig[0.25\textwidth]{laplace}{Pierre Simon Laplace}{File \href{http://flickr.com/photos/37667416@N04/4840056407}{``Laplace''} from Flickr. Uploaded by \href{http://www.flickr.com/people/37667416@N04}{Biblioteca de la Facultad de Derecho y Ciencias del Trabajo Universidad de Sevilla} and licensed under \href{https://creativecommons.org/licenses/by/2.0/deed.en}{CC-BY 2.0}.}
 
-In the last chapter we have seen with the application of the binomial distribution in the investigation of the sex ratio that calculations with the binomial distribution are arduous. In order to compute $\binom nk p^kq^{n-k}$ there are $n+2\min\{k,n-k\}-1$ operations necessary.
+The application of the binomial distribution in the investigation of the sex ratio in the last chapter showed that calculations with the binomial distribution are arduous. In order to compute $\binom nk p^kq^{n-k}$ there are $n+2\min\{k,n-k\}-1$ operations necessary.
 
-This motivates approximations to the binomial distribution to minimize the computational effort. With those approximations also equations like $\P{\Bs \le z}=\alpha$ are easier to solve in $z$ or $n$. Explicit solutions for those equations are hard to calculate~\cite[p. 469]{hald1}.
+This motivates approximations of the binomial distribution to minimize the computational effort. With those approximations also equations like $\P{\Bs \le z}=\alpha$ are easier to solve in $z$ or $n$. Explicit solutions for those equations are hard to calculate~\cite[p. 469]{hald1}.
 
 The first simple approximation to the binomial distribution was found by Abraham de Moivre with the help of James Stirling~\cite[p. 469]{hald1}. His proof was later extended by Pierre Simon Laplace~\cite[pp. 495 ff.]{hald1}. Today this approximation is known as the ``De Moivre-Laplace theorem''~\cite[pp. 64-67]{irle}.
 
-I want to split this theorem in two parts. With the first part one get an approximation for the probability mass function of a binomial distribution:
+I want to split this theorem in two parts. With the first part one gets an approximation for the probability mass function of a binomial distribution:
 
 \includeplot{ml_pmf}{The probability mass function of $\BBs$ for $n=20$ and $p=\frac 14$ and the density function of the standardized normal distribution.}
 
@@ -47,10 +47,10 @@ Thus the main statement of the de Moivre-Laplace theorem is that the standardize
 
 \section{The journey to de Moivre-Laplace theorem}
 
-In \emph{A history of probability and statistics and their applications before 1750} Anders Hald gave a good summarize how de Moivre and Laplace found their theorem. In \cite[pp. 469-470]{hald1} he wrote:
+In \emph{A history of probability and statistics and their applications before 1750} Anders Hald gave a good summary of how de Moivre and Laplace found their theorem. In \cite[pp. 469-470]{hald1} he wrote:
 
 \begin{quotation}
-  ``In 1721 de Moivre began his investigations od the binomial distribution for $p=\tfrac 12$. He first found an approximation to the maximum term and next an approximation to the ratio of the maximum to the term at a distance of $d$ from the maximum. [...] From 1725 onward James Stirling (1692-1770) worked on the same problem and found that the constant entering de Moivre's formula equals $\sqrt{2\pi}$. After having obtained these results they realized that it would be simpler to begin with an approximation to $\ln n!$, and they both proved Stirling's formula, $n! \sim \sqrt{2\pi n}n^ne^{-n}$. De Moivre's proofs are given in the \emph{Miscellanea Analytica} (MA)(1730), Stirling's in his \emph{Methodus Differentialis} (1730).
+  ``In 1721 de Moivre began his investigations of the binomial distribution for $p=\tfrac 12$. He first found an approximation to the maximum term and next an approximation to the ratio of the maximum to the term at a distance of $d$ from the maximum. [...] From 1725 onward James Stirling (1692-1770) worked on the same problem and found that the constant entering de Moivre's formula equals $\sqrt{2\pi}$. After having obtained these results they realized that it would be simpler to begin with an approximation to $\ln n!$, and they both proved Stirling's formula, $n! \sim \sqrt{2\pi n}n^ne^{-n}$. De Moivre's proofs are given in the \emph{Miscellanea Analytica} (MA)(1730), Stirling's in his \emph{Methodus Differentialis} (1730).
 
   [...] Three years later, de Moivre (1733) simplified his result for $p=\tfrac 12$ and showed that the normal density function may be used as an approximation to the binomial. The generalization to an arbitrary value of $p$ is of course very easy, so without proof de Moivre stated that
 
@@ -99,7 +99,7 @@ We see that $\P{\BBs \le x}$ converges uniformly in $x$ to $\fPhi{x}$ with an er
 \newcommand*{\Cmaxbin}{0.4215}
 Currently the estimate $\Cmin \le C \le \Cmax$ is proven (see \cite{shevtsova2011} and \cite{esseen1956}). For the special case of the binomial distribution we can make the estimate $C \le \Cmaxbin$~\cite{nagaev}\cite{muaddib}.
 
-\includeplot{max_error}{This diagram shows $f(p) = \sup_{1 \le n \le 1000} \sqrt{n} \cdot \br{\sup_{x\in\R} \abs{\P{\BBs \le x} - \fPhi{x}}}$ and its upper bound $g(p) = C \frac{p^2+q^2}{\sqrt{pq}}$ provided by the Berry-Esseen theorem with $C=\Cmaxbin$.}
+\includeplot{max_error}{The function $f(p) = \sup_{1 \le n \le 1000} \sqrt{n} \cdot \br{\sup_{x\in\R} \abs{\P{\BBs \le x} - \fPhi{x}}}$ and its upper bound $g(p) = C \frac{p^2+q^2}{\sqrt{pq}}$ provided by the Berry-Esseen theorem with $C=\Cmaxbin$.}
 
 \begin{remark}
   The estimate of the error's convergence speed provided by the Berry-Esseen theorem cannot be improved \cite{tampis:speed}. As we will see, we find $\bb{\xdown{c}}\sim h$ for each $c\in\R$\footnote{See the later proved local version of de Moivre-Laplace.}. Thus $\P{\BBs \le z}$ has steps with heights of order $h$ \cite{tampis:speed}. Because $\fPhi{z}$ is continuous, also $\abs{\P{\BBs \le z} - \fPhi{z}}$ has steps of order $h$ which shows that the best convergence speed is $\bigo{h}$ \cite{tampis:speed}.
@@ -107,7 +107,7 @@ Currently the estimate $\Cmin \le C \le \Cmax$ is proven (see \cite{shevtsova201
 
 \section{Application}
 
-The huge advantage of the theorem by de Moivre and Laplace is that the binomial distribution can be approximated by the standardized normal distribution which does not depend on $n$ or $p$ \cite[p. 492]{hald1}. Therefore probabilities of the limiting distribution can be calculated beforehand an tabulated \cite[p. 21]{hald2}. Here de Moivre used numerical methods such as the expansion into a power series and termwise integration or Newton's three-eight's rule to compute certain probabilities like $\int_{-1}^1 \fphi{t} \d{t}$ \cite[p. 21]{hald2}. Anders Hald wrote \cite[p. 492]{hald1}
+The huge advantage of the theorem by de Moivre and Laplace is that the binomial distribution can be approximated by the standardized normal distribution which does not depend on $n$ or $p$ \cite[p. 492]{hald1}. Therefore probabilities of the limiting distribution can be calculated beforehand and tabulated \cite[p. 21]{hald2}. Here de Moivre used numerical methods such as the expansion into a power series and termwise integration or Newton's three-eight's rule to compute certain probabilities like $\int_{-1}^1 \fphi{t} \d{t}$ \cite[p. 21]{hald2}. Anders Hald wrote \cite[p. 492]{hald1}
 
 \begin{quote}
   ``De Moivre did not consider the normal distribution as a distribution in its own right (the error distribution) but only as a convenient means for approximating the binomial. [...] For de Moivre's purpose it was inessential what form the limiting distribution had if only its sum could be evaluated.''
