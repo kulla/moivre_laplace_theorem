@@ -1,10 +1,10 @@
 \chapter{Asymptotic notations} \label{chapter:tools}
 
-In this chapter I will introduce and explain the asymptotic notations like $\bigo{\cdot}$ and $\littleo{\cdot}$ we will use in this thesis.
+In this chapter I will introduce and explain the asymptotic notations such as $\bigo{\cdot}$ and $\littleo{\cdot}$ we will use in this thesis.
 
 \section{The big O notation}
 
-To describe the asymptotic behavior of an error, the big O notation can be utilized. It declares the convergence speed with which the error converges at least to zero and means~\cite[p. 444]{graham}\cite[p.~100]{aigner}
+To describe the asymptotic behavior of an error, the big O notation can be utilized. It declares the convergence speed with which the error converges at least to zero~\cite[p. 444]{graham}\cite[p.~100]{aigner}:
 
 \begin{definition}[Big O notation]
   Let $\seq{a_n}$ be a sequence with positive members. $\bigo{a_n}$ is the set of all sequences defined via
@@ -18,24 +18,24 @@ To describe the asymptotic behavior of an error, the big O notation can be utili
   \seq{\epsilon_n} \in \bigo{a_n} :\iff \exists C_\infty > 0 \colon\limsup_{n\to\infty} \abs{\frac{\epsilon_n}{a_n}} \le C_\infty
 \end{align}
 
-So $\epsilon_n \in \bigo{\frac 1n}$ means that $\epsilon_n$ approaches zero at least with the convergence speed of $\seq{\frac 1n}$. Thereby the advantage of the big O notation is its simple arithmetic rules. For example we have
+For example $\epsilon_n \in \bigo{\frac 1n}$ means that $\epsilon_n$ approaches zero at least with the convergence speed of $\seq{\frac 1n}$. Thereby the advantage of the big O notation is its simple arithmetic rules. For example we have
 \begin{align}
   \bigo{\frac 1n} + \bigo{\frac 1{n^2}} \subseteq \bigo{\frac 1n}
 \end{align}
 These arithmetic rules (which we will discuss in the end of this section) simplify error estimations.
 
 \section{The big Delta and the big Psi notation}
-Unfortunately the big O notation does only provide an estimate of the convergence speed but no estimation of the error's value since the constants $C$ and $C_\infty$ in \eqref{bigo_def1} and \eqref{bigo_def_limsup} are not known\footnote{cf.~\cite[p.~444]{graham},~\cite{hurkyl_bigo} and \cite{templatetypedef_bigo}}. Therefore I want to introduce the big Delta and the big Psi notation with which besides to the convergence speed also an estimate for the absolute error and the asymptotic error can be stated. Both notations are defined as\footnote{Donald Knuth uses the term ``A notation'' for the big Delta notation \cite{anotation}. Please compare also \cite{tampis_bigpsi} and~\cite{tampis_bigabs} respectively for the usage of the big Psi notation and big Delta notation in mathematics.}:
+Unfortunately the big O notation does only provide an estimate of the convergence speed but no upper bound of the error's value since the constants $C$ and $C_\infty$ in \eqref{bigo_def1} and \eqref{bigo_def_limsup} are not known\footnote{cf.~\cite[p.~444]{graham},~\cite{hurkyl_bigo} and \cite{templatetypedef_bigo}}. Therefore I want to introduce the big Delta and the big Psi notation with which besides to the convergence speed also an estimate for the absolute error and the asymptotic error can be stated. Both notations are defined as\footnote{Donald Knuth uses the term ``A notation'' for the big Delta notation \cite{anotation}. Please compare also \cite{tampis_bigpsi} and~\cite{tampis_bigabs} respectively for the usage of the big Psi notation and big Delta notation in mathematics.}:
 
 \begin{definition}[Big Delta notation for the absolute error]
-  Let $\seq{a_n}$ be a sequence. $\bigabs{a_n}$ is the set of all sequences $\seq{\epsilon_n}$ with $\abs{\epsilon_n} \le \abs{a_n}$ for all $n\in\N$:
+  Let $\seq{a_n}$ be a sequence. $\bigabs{a_n}$ is the set of all sequences $\seq{\epsilon_n}$ with
   \begin{align}
     \seq{\epsilon_n} \in \bigabs{a_n} \iff \forall n\in\N: \abs{\epsilon_n} \le \abs{a_n}
   \end{align}
 \end{definition}
 
 \begin{definition}[Big Psi notation for the asymptotic error]
-  Let $\seq{a_n}$ be a sequence with $a_n > 0$ for all $n\in\N$. $\bigpsi{a_n}$ is the set of all sequences $\seq{\epsilon_n}$ fulfilling $\limsup_{n\to\infty} \abs{\frac{\epsilon_n}{a_n}} \le 1$. Thus
+  Let $\seq{a_n}$ be a sequence with $a_n > 0$ for all $n\in\N$. $\bigpsi{a_n}$ is the set of all sequences $\seq{\epsilon_n}$ defined via
   \begin{align}
     \seq{\epsilon_n} \in \bigpsi{a_n} :\iff \limsup_{n\to\infty} \abs{\frac{\epsilon_n}{a_n}} \le 1
   \end{align}
