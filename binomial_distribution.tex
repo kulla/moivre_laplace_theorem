@@ -2,17 +2,17 @@
 
 \section{The motivational problem for the binomial distribution}
 
-Probability theory emerged from and was highly influenced by investigations of games of chance~\cite[p. 4]{hald1}. Since the antiquity dice games were played and since the 14th century card games became more and more popular~\cite[pp. 33-34]{hald1}. Governments used lotteries to finance their expenditures and a lot of private lotteries were conducted as well~\cite[p. 34]{hald1}.
-
 \includewrapfig{Christiaan_Huygens}{Christiaan Huygens}{File \href{https://commons.wikimedia.org/wiki/File:Christiaan_Huygens.jpg}{``Christiaan Huygens.jpg''} from Wikimedia Commons uploaded by \href{https://commons.wikimedia.org/w/index.php?title=User:Lord_Horatio_Nelson~commonswiki}{Lord Horatio Nelson$\sim$commonswiki} and licensed under Public domain}
 
+Probability theory emerged from and was highly influenced by investigations of games of chance~\cite[p. 4]{hald1}. Since the antiquity dice games were played and since the 14th century card games became more and more popular~\cite[pp. 33-34]{hald1}. Governments used lotteries to finance their expenditures and a lot of private lotteries were conducted as well~\cite[p. 34]{hald1}.
+
 From this economic and recreational importance arose a demand in calculating the odds of a game or the value of the expected winnings~\cite[p. 34]{hald1}. These studies started in 1654 when Fermat and Pascal solved in a correspondence the problem of division~\cite[pp. 42-64]{hald1} which marked the foundation of probability theory~\cite[p. 4]{hald1}\footnote{In the 16th century Cardano already discussed several problems about games of chance in his work \emph{Liber de ludo aleae} (Book on Games of Chance)~\cite[pp. 33-41]{hald1}. However his book was first published posthumously 1663 and thus did not influence Fermat, Pascal or Huygens~\cite[p. vii]{bernoulli}.}. Christiaan Huygens, who (according to himself) heard from the letters by Pascal and Fermat but did not know their methods~\cite[p. 67]{hald1}, wrote a short treatise \emph{De Ratiociniis in Ludo Aleae} (On Reckoning in Games of Chance) which was published 1657~\cite[p. vii]{bernoulli}\footnote{Huygens wrote his treatise in Dutch. His mathematics teacher Frans van Schooten translated it in Latin and published it at the end of his book \emph{Exercitationes Mathematicae}~\cite[pp. 65-68]{hald1}.}. Among the different problems, Huygens solved in his work, was the following~\cite[p. 163]{bernoulli}:
+
+\includewrapfig[0.38\textwidth]{tavern1658}{Men gambling in a tavern}{Painting \href{https://commons.wikimedia.org/wiki/File:Tavern_Scene-1658-David_Teniers_II.jpg}{``Tavern Scene''} by \href{https://en.wikipedia.org/wiki/David_Teniers_the_Younger}{David Teniers the Younger} from 1658. Cropped version of picture which was uploaded at Wikimedia Commons and which was taken by National Gallery of Art, Washington, D.C., USA. Picture is licensed under Public Domain.}
 
 \begin{quote}
   ``To find with how many dice one may undertake to throw two sixes on the first try.''
 \end{quote}
-
-\includewrapfig[0.5\textwidth]{tavern1658}{Men gambling in a tavern (image section of a Flemish painting from 1658)}{Painting \href{https://commons.wikimedia.org/wiki/File:Tavern_Scene-1658-David_Teniers_II.jpg}{``Tavern Scene''} by \href{https://en.wikipedia.org/wiki/David_Teniers_the_Younger}{David Teniers the Younger} from 1658. Cropped version of picture which was uploaded at Wikimedia Commons and which was taken by National Gallery of Art, Washington, D.C., USA. Picture is licensed under Public Domain.}
 
 The problem is to calculate the number of dices one needs to throw such that the probability of throwing two sixes is at least $\tfrac 12$. Is it for example advisable to play a game where you have to throw at least two sixes with eight dices? To solve this problem one first needs to calculate the probability two throw exactly $m$ sixes with $n$ dices. If you are already familiar with the binomial distribution you see how this distribution can be used in the solution of the problem. This was later done by Jacob Bernoulli who reprinted Huygens' work in the first part of his book \emph{Ars Conjectandi} (The Art of Conjecturing) where he also added additional comments~\cite[p. 63]{bernoulli}. Before we will have a look at Bernoulli's solution with a derivation of the binomial distribution I want to show how Huygens dealt with the problem to have a comparison of both attempts. Huygens first noted~\cite[p. 163]{bernoulli}:
 
@@ -31,8 +31,6 @@ After noting that it does not matter how the dices are thrown, Huygens showed ho
 \begin{quote}
   ``If someone undertook to do this in two throws, there would fall to him $a/36$, by what was shown before. If he is given three throws, then, if his first throw is a six, he will still have two throws, both of which must be sixes, and we said this is worth the same as $a/36$. But if his first throw is not a six, then he needs only to get one six on the remaining two throws. By proposition X this is worth of having $11a/36$. But there is certainly one case in which he throws a six the first time and five cases in which something else happens. So in the beginning there is one case for $11a/36$ and five cases for $a/36$. By proposition III, this is worth as much as $16a/127$ or $2a/27$. In repeatedly considering one more throw, we find that there is an advantage in undertaking to throw two sixes in ten throws with one die or in one throw with ten dice.''
 \end{quote}
-
-\todo{Typos untersuchen}
 
 The argumentation of Huygens is the following: First he looked at the case when two dices are thrown. In proposition XI he already had calculated the expected value for this case to be $\tfrac 1{36}a$. Then he investigated the case of three throws. There are five cases in which the first throw is not a six and the remaining expected value is $\tfrac 1{36}a$ because the two remaining throws must be a six. In one case the first throw is a six. Huygens already had shown in proposition X that the expected value of throwing at least one six in two throws is $\tfrac{11}{36}a$. So in total there are five cases with a remaining expected value of $\tfrac 1{36}a$ and one case with a remaining expected value of $\tfrac{11}{36} a$. Thus the total expected value for three throws is
 
@@ -87,9 +85,9 @@ As we have seen in the previous section, Christiaan Huygens found a solution for
   ``If the Author [Christiaan Huygens] had substituted letters for numbers, he could have expressed this and the preceding proposition as one problem and investigated its general solution with equal ease [...]''
 \end{quote}
 
-We also have seen that Huygens' recursive method needs a lot of computational effort for finding the final solution. Hence the following question arises: Is there a more direct and general solution for Huygens' problem?
+\includewrapfig{Ars_Conjectandi}{Cover of \emph{Ars Conjectandi}}{Cover of \emph{Ars Conjectandi} by Jacob Bernoulli 1713. File \href{https://commons.wikimedia.org/wiki/File:Arsconj.gif}{``Arsconj.gif''} from Wikimedia Commons uploaded by user \href{https://commons.wikimedia.org/wiki/User:Nousernamesleft}{Nousernamesleft} and licensed under Public Domain.}
 
-\includefig{Ars_Conjectandi}{Cover of \emph{Ars Conjectandi}}{Cover of \emph{Ars Conjectandi} by Jacob Bernoulli 1713. File \href{https://commons.wikimedia.org/wiki/File:Arsconj.gif}{``Arsconj.gif''} from Wikimedia Commons uploaded by user \href{https://commons.wikimedia.org/wiki/User:Nousernamesleft}{Nousernamesleft} and licensed under Public Domain.}
+We also have seen that Huygens' recursive method needs a lot of computational effort for finding the final solution. Hence the following question arises: Is there a more direct and general solution for Huygens' problem?
 
 Jacob Bernoulli addressed this question with the binomial distribution in his book \emph{Ars Conjectandi} (The Art of Conjecturing) from 1713~\cite[pp. 220-256]{hald1}\footnote{The book was published eight years after Jacob Bernoulli's death by his nephew Nicholas Bernoulli~\cite[pp. 223-224]{hald1}}. In the first part of this book Bernoulli\footnote{The family of Bernoullis is huge and had a lot of influential mathematicians. In the following I always refer to Jacob Bernoulli when I only mention ``Bernoulli''. A good overview of Bernoulli's family tree gives~\cite[pp. 1-4]{bernoulli}.} reprinted Huygens' \emph{De Ratiociniis in Ludo Aleae} with additional notes and alternative solutions~\cite[p. 63]{bernoulli}.
 
@@ -228,13 +226,13 @@ Although the premises for the binomial distribution is not fulfilled in this exa
 
 \includefig{great_plague}{Modern painting of the great plague in London (1665-1666)}{Painting ``The Great Plague 1665'' by Rita Greer of 2009 licensed under the \href{https://en.wikipedia.org/wiki/Free_Art_License}{Free Art License}. Picture was uploaded on Wikimedia Commons under the file name \href{https://commons.wikimedia.org/wiki/File:20_The_Great_Plague.JPG}{``20 The Great Plague.JPG''} by user \href{https://commons.wikimedia.org/wiki/User:James.Leek}{James.Leek}.}
 
-\includefig{bill_of_mortality}{The bill of mortality for 1665}{File \href{https://commons.wikimedia.org/wiki/File:Bill_of_Mortality.jpg}{``Bill of Mortality.jpg''} from Wikimedia Commons. Uploaded by user \href{https://commons.wikimedia.org/wiki/User:Dolledre}{Dolledre} and licensed under Public Domain.}
-
 I want to finish this chapter with showing how early statisticians used the binomial distribution to investigate the sex ratio at birth. This investigation was not only one of the earliest statistical analysis, it also motivates the theorem by de Moivre and Laplace.
 
 Starting from the 14th century plague epidemics occurred frequently in Europe for nearly 400 years~\cite[p. 82]{hald1}. Since the 1530s the parish clerks in London were requested to publish weekly the number of plague deaths together with the number of all other deaths~\cite[p. 82]{hald1}. These numbers were used by the government to recognize a new plague epidemic so that countermeasures could be taken. Also the wealthier part of the society used this data for making the decision whether they shall leave London to escape the epidemic~\cite[pp. 82-83]{hald1}. Alongside the number of deaths, the number of weddings and christenings inside the Church of England were registered too~\cite[p. 83]{hald1}. Besides the burials and christenings were given separately for male and female starting from 1629~\cite[p. 83]{hald1}.
 
 The first statistical analysis of this data was made by John Graunt~\cite[p. 83]{hald1} which was also one of the first statistical analysis in history~\cite[p. 81]{hald1}. In 1662 he published his book \emph{Natural and Political Observations Made upon the Bills of Mortality} in which he summarized and investigated the so far published data~\cite[pp. 81-105]{hald1}. He calculates the sex ratio in the christenings for each 8 years and concluded that there are on average more men than female born and that this ratio does not vary much~\cite[pp. 92-93]{hald1}.
+
+\includefig{bill_of_mortality}{The bill of mortality for 1665}{File \href{https://commons.wikimedia.org/wiki/File:Bill_of_Mortality.jpg}{``Bill of Mortality.jpg''} from Wikimedia Commons. Uploaded by user \href{https://commons.wikimedia.org/wiki/User:Dolledre}{Dolledre} and licensed under Public Domain.}
 
 \begin{figure}
   \begin{center}
@@ -259,11 +257,11 @@ In the following many mathematicians were inspired by Graunt's book to describe 
     ``This Equality of [adult] Males and Females is not the Effect of Chance but Divine Providence.''
 \end{quote}
 
+\includewrapfig{Gravesande}{Willem Jacob 'sGravesande}{File \href{https://en.wikipedia.org/wiki/File:Gravesande.jpg}{``Gravesande.jpg''} from Wikimedia Commons. Uploaded by user Vysotsky and licensed under Public Domain}
+
 To prove his assumptions Arbuthnott made the first test of significance in history~\cite[p. 276]{hald1}. He identified the determination of the birth's sex with the throw of a two sided die~\cite[pp. 275-276]{hald1}. Let the chances of a male birth be $p$ and thus let $q$ be the chances of the female birth\footnote{Here we ignore the possibility of an intersex birth (see \cite{wiki:intersex} and \cite{wiki:transgender} for more details about this issue).}. The yearly numbers of male and female births are then binomially distributed.
 
 As Anders Hald summarized in \cite[p. 278]{hald1}, Arbuthnott then estimated the probability that the number of male births exceeded the number of female births for 82 consecutive years under the binomial model for $p=\tfrac 12$. He argued that because of the symmetry of the binomial distribution for $p=\tfrac 12$ the probability for having more boys born than girls in one year is less or equal to $\tfrac 12$. Thus the probability that this happens for 82 consecutive years must be less than or equal $\left(\tfrac 12\right)^{82}$ which is less than $2.1\cdot 10^{-25}$. Because this probability is so low the assumption $p=\tfrac 12$ must be rejected for the alternative $p > \tfrac 12$~\cite[p. 278]{hald1}.
-
-\includefig{Gravesande}{Willem Jacob 'sGravesande}{File \href{https://en.wikipedia.org/wiki/File:Gravesande.jpg}{``Gravesande.jpg''} from Wikimedia Commons. Uploaded by user Vysotsky and licensed under Public Domain}
 
 The Dutch mathematician Willem Jacob 'sGravesande further improved the test made by Arbuthnott in his 1712 published paper \emph{Dèmonstration Mathèmatique du soin que Dieu prend de diriger ce qui se passe dans ce monde, tirèe du nombre des Garcons et des Filles qui naissent journellement} (A mathematical demonstration of the care, which God takes in governing that which happens in this world, drawn from the daily numbers of male and female birth)~\cite[p. 279]{hald1}. He first observed that the relative frequencies of male birth varies between $0.5027$ and $0.5362$ for the whole period of 82 years and that the average number of total births per year is $n=11,429$~\cite[p. 279]{hald1}. 'sGravesande then postulated a binomial model with $n=11,429$ and $p=\tfrac 12$ and calculated the probability that the number of male births lies between $0.5027n=5745$ and $0.5362n=6128$~\cite[p. 280]{hald1}. Hence he calculated
 

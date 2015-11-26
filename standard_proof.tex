@@ -81,6 +81,8 @@ You can find a proof of the Euler-Maclaurin formula in~\cite[pp.~225-226]{koenig
     \ln(n!) - n\ln(n) + n - \frac 12 \ln(n) = \frac{11}{12} + \frac{1}{12n} + \frac 13 \int_1^n \frac{\bp[3]{x}}{x^3} \d{x}
   \end{align}
 
+  \includeplot{beta3}{The function $\bp[3]{x}$ on the domain $[0,1)$.}
+
   $\bps[3]$ is on $[0,1)$ a polynomial and thus bounded. Because $\bps[3]$ is $1$-periodic, $\bps[3]$ is bounded on the whole domain $\R$. Thus $\int_1^\infty \frac{\bp[3]{x}}{x^3} \d{x}$ exists, because $\int_1^\infty \frac 1{x^3} d{x} < \infty$. Now we define $\seq{b_n}$ via
 
   \begin{align}
@@ -129,8 +131,6 @@ You can find a proof of the Euler-Maclaurin formula in~\cite[pp.~225-226]{koenig
     &= \frac{11}{12} + \frac{1}{12n} + \frac 13 \int_1^n \frac{\bp[3]{x}}{x^3} \d{x} -\left(\frac{11}{12}  + \frac 13 \int_1^\infty \frac{\bp[3]{x}}{x^3} \d{x}\right) \nl
     &= \frac{1}{12n}-\frac 13\int_n^\infty \frac{\bp[3]{x}}{x^3} \d{x}
   \end{align}
-
-  \includeplot{beta3}{The function $\bp[3]{x}$ on the domain $[0,1)$.}
 
   On $[0,1)$ the periodic Bernoulli polynomial has the form $\bp[3]{x} = x^3-\frac 32 x^2 + \frac 12 x$~\cite[p.~290]{koenigsberger}. It has roots at $x=0$ and $x=1$. Its derivative $\bps[3]'(x) = 3x^2-3x+\tfrac 12$ has two distinct roots at $x = \frac 12 \pm \sqrt{\frac 1{12}}$. Thus $\bps[3]$ has local extrema at $x=\frac 12 \pm \sqrt{\frac 1{12}}$. Because $\bp[3]{0}=\bp[3]{1}=0$ and $\bps[3]$ is 1-periodic its supremum is
 
@@ -583,14 +583,14 @@ We see that the standard proof of the de Moivre-Laplace theorem with Stirling's 
   \P{\BBs \le z} & \approx \int_{-\infty}^z \fphi{t} \d{t} + \frac{q-p}6 \br{1-z^2}\fphi{z} h + \Ro{np+z\sqrt{npq}} \fphi{z} h 
 \end{align}
 
-\includeplot{edgeworth_diff_pdf}{This plot shows $f(\x) = \bb{\x}-\fphi{\x}h$ and $g(\x)=\frac{q-p}6 \left(\x^3-3\x\right) \fphi{\x} h^2$ for $n=1000$ and $p=\frac 14$. It demonstrates that our correction term $\frac{q-p}6 \left(\x^3-3\x\right) \fphi{\x} h^2$ describes very well the error $\bb{\x}-\fphi{\x}$ in the normal approximation.}
-
-\includeplot{edgeworth_diff_cdf}{This plot shows some values of $f(z) = \P{\BBs \le z} -\fPhi{z}$ and $g(z)=\frac{q-p}6 \br{1-z^2}\fphi{z} h + \Ro{np+z\sqrt{npq}} \fphi{z} h $ for $n=1000$ and $p=\frac 14$. The fact that the values of both functions coincide demonstrates that we have found a good approximation.}
-
 These extensions of the normal approximation are precisely the first two terms of the Edgeworth Expansion  which is a series to approximate the cumulative distribution function of a random variable \cite[pp. 39 ff.]{hall}\cite{wiki:edgeworth}. In the case of the binomial distribution the Edgeworth Expansion is \cite[p. 46]{hall}
 \begin{align}
   \P{\BBs \le z} & \approx \int_{-\infty}^z \fphi{t} \d{t} + \frac{q-p}6 \br{1-z^2}\fphi{z} h + \Ro{np + z \sqrt{npq}}\fphi{z}h + \bigo{h^2}
 \end{align}
 By comparing the above equation with our second global version of the de Moivre-Laplace theorem we see that we can provide the same approximation terms. Only the estimation of the remaining error is worse ($\littleo{h}$ instead of $\bigo{h^2}$). This demonstrates the power of the standard proof with Stirling's formula.
+
+\includeplot{edgeworth_diff_pdf}{This plot shows $f(\x) = \bb{\x}-\fphi{\x}h$ and $g(\x)=\frac{q-p}6 \left(\x^3-3\x\right) \fphi{\x} h^2$ for $n=1000$ and $p=\frac 14$. It demonstrates that our correction term $\frac{q-p}6 \left(\x^3-3\x\right) \fphi{\x} h^2$ describes very well the error $\bb{\x}-\fphi{\x}$ in the normal approximation.}
+
+\includeplot{edgeworth_diff_cdf}{This plot shows some values of $f(z) = \P{\BBs \le z} -\fPhi{z}$ and $g(z)=\frac{q-p}6 \br{1-z^2}\fphi{z} h + \Ro{np+z\sqrt{npq}} \fphi{z} h $ for $n=1000$ and $p=\frac 14$. The fact that the values of both functions coincide demonstrates that we have found a good approximation.}
 
 \includeplot{pdf_convergence_order}{The value $p$ is plotted against the approximated convergence order $\alpha$ of $\sup_{\x} \abs{\P{\BBs = \x}-\fphi{\x} h}$ in terms of $n$. We see that $\sup_{\x} \abs{\P{\BBs = \x}-\fphi{\x} h}\sim n^{-1}$ unless $p=q=\tfrac 12$. In this case we have the convergence order $\sup_{\x} \abs{\P{\BBs = \x}-\fphi{\x} h}\sim n^{-3/2}$. This can be explained with our approximation of the probability mass function whose correction term $\frac{q-p}6 \left(\x^3-3\x\right) \fphi{\x} h^2$ vanishes for $p=q=\tfrac 12$.}
