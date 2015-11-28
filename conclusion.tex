@@ -1,17 +1,21 @@
 \chapter{Conclusion}
 
-We have seen that already for the local version of the de Moivre-Laplace theorem the error estimation provided by the alternative proof is worse than in the standard proof. Thus we have to give a negative answer to our introductory question whether the alternative proof yields a better approximation or a smaller error bound. However the new proof has some advantages over the standard proof with Stirling's formula:
+In this thesis I proposed a new proof for the de Moivre-Laplace theorem, which could represent a valid alternative to the standard proof concerning error estimation and concerning comprehensibility in class or in textbooks. 
+
+However, compared with the classic method, using Stirling’s formula, my alternative proof could not yield better approximations or smaller error bounds. This was already prevalent when testing it against the local version of the de Moivre-Laplace theorem.
+
+However the new proof has some clear advantages over the standard one:
 
 \begin{enumerate}
-  \item From the binomial distribution only the property
+  \item My new proof only uses the following property of the binomial distribution
     \begin{align}
       \bb{\x[k+1]} = \bb{\x[k]} - \x[k]\bb{\x[k]} h + \bigo{\bb{\x[k]} \pol{\x[k]} h^2}
     \end{align}
-    is used. Therefore, the same proof can be applied to each discrete probability distribution that fulfills the same property.
+    Therefore, the same proof applies to each discrete probability distribution fulfilling this property.
 
-  \item The alternative proof connects the theory of ordinary differential equations with probability theory in an interesting way: The one-step method corresponds to the given function and the solution of the ODE is the approximation. Thus, the role of approximated function and approximation is exchanged.
+  \item My alternative proof connects the theory of ordinary differential equations in an interesting way with probability theory: The one-step method corresponds to the given function and the solution of the ODE is the approximation. Thus, the role of approximated function and approximation is exchanged.
 
-  \item The new proof is easy to understand and intuitive. Therefore, it can be used in a course or a textbook for undergraduates. However, it is difficult to show that one proof is more understandable than another \cite{tampis:understandability} and further investigation into this issue is out of scope for this thesis.
+  \item Eventhough, it is a very subjective decision to rank one proof more understandable than another \cite{tampis:understandability}, the new proof arguably is easy to understand and intuitive. Therefore, it could be used in courses or textbooks for undergraduates. An investigation on this issue is out of scope for this thesis.
 \end{enumerate}
 
-To summarize the results: The presented proof by approximating the slopes cannot be used to get a better approximation, but is a good alternative for teaching the de Moivre-Laplace theorem.
+Eventhough my alternative proof does not result in better approximations or smaller error bounds, the presented proof is a valuable alternative for teaching and understanding the de Moivre-Laplace theorem and an addition to the classic method. 
