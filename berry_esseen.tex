@@ -4,9 +4,9 @@ In this chapter I present you the Berry-Essen theorem which not only proves the 
 
 \section{CLT and Berry-Esseen bounds}
 
-From the central limit theorem we know, that each standardized sum $S_n = \tfrac 1{\sqrt n\sigma} \left(\sum_{k=1}^n x_k - n\mu\right)$ of i.i.d real valued random variables $\seq{X_n}$ with finite expected value $\mu=\E{X_1}$ and finite variance $\sigma^2=\E{X_1^2}-\E{X_1}^2$ converges in distribution to the standard normal distribution \refneeded. So we have $\lim_{n\to\infty} \P{S_n\le x} = \Phi(x)$ for all $x\in\R$. Thus we can use the normal distribution to approximate the cumulative distribution function of $S_n$.
+From the central limit theorem we know, that each standardized sum $S_n = \tfrac 1{\sqrt n\sigma} \left(\sum_{k=1}^n x_k - n\mu\right)$ of i.i.d real valued random variables $\seq{X_n}$ with finite expected value $\mu=\E{X_1}$ and finite variance $\sigma^2=\E{X_1^2}-\E{X_1}^2$ converges in distribution to the standard normal distribution. So we have $\lim_{n\to\infty} \P{S_n\le x} = \Phi(x)$ for all $x\in\R$. Thus we can use the normal distribution to approximate the cumulative distribution function of $S_n$.
 
-Unfortunately not each proof of the central limit theorem provides an estimate of the error $\abs{\P{S_n\le x}-\Phi(x)}$ \refneeded. Here comes the Berry-Esseen theorem into play. It provides an upper bound for the maximal error between $\P{S_n \le x}$ and $\Phi(x)$. Therefore the Berry-Esseen theorem needs the finiteness of the third moment for each $X_n$ as an additional premise compared to the central limit theorem. The Berry-Esseen theorem states\cite[p. 71]{nourdin}:
+Unfortunately not each proof of the central limit theorem provides an estimate of the error $\abs{\P{S_n\le x}-\Phi(x)}$. Here comes the Berry-Esseen theorem into play. It provides an upper bound for the maximal error between $\P{S_n \le x}$ and $\Phi(x)$. Therefore the Berry-Esseen theorem needs the finiteness of the third moment for each $X_n$ as an additional premise compared to the central limit theorem. The Berry-Esseen theorem states\cite[p. 71]{nourdin}:
 
 \begin{theorem}[CLT and Berry-Esseen bounds]
   Let $\seq{X_n}$ be a sequence of standardized i.i.d real valued random variables with finite third moment. Thus we have $\E{X_1}=0$, $\E{X_1^2}=1$ and $\E{|X_1|^3} < \infty$. Let $S_n$ be the associated sequence of normalized partial sums, i.e
@@ -27,7 +27,7 @@ Unfortunately not each proof of the central limit theorem provides an estimate o
 \end{remark}
 
 \begin{remark}[Berry-Esseen theorem for the binomial distribution]
-  If for example $\seq{X_n}$ are Bernoulli trials with the probability of success $p \in (0,1)$ the third moment of all $X_n$ are finite. With $q=1-p$ we get \refneeded
+  If for example $\seq{X_n}$ are Bernoulli trials with the probability of success $p \in (0,1)$ the third moment of all $X_n$ are finite. With $q=1-p$ we get
 
 \begin{align}
   \E{X_1}=\frac{p^2+q^2}{\sqrt{pq}}
