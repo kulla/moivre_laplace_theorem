@@ -123,7 +123,7 @@ We will prove the local version of the de Moivre-Laplace theorem in the followin
   Let $I$ be a bounded interval and let $\xnp$ be the mode of $\bbs$ (i.e. the $\x$ where $\bbs$ attains its maximum).  Then there are $C > 0$ and $L > 0$ independent of $\x$ and $n$ such that
 
   \begin{align}
-    \bb{\x} = \frac{\bnp}{\fphi{\xnp}}\fphi{\x} + \bigabs{{\bnp}\cdot \frac{\fe{L\abs{\x-\xnp}}-1}L Ch}
+    \bb{\x} \in \frac{\bnp}{\fphi{\xnp}}\fphi{\x} + \bigabs{{\bnp}\cdot \frac{\fe{L\abs{\x-\xnp}}-1}L Ch}
   \end{align}
 \end{theorem}
 
@@ -187,7 +187,7 @@ This proof bases on the theory of one-step methods for approximating ordinary di
     \begin{comment}
       \text{Set } M(x,y,h,f) = f(x,y) + y \cdot \bigabs{A h}
     \end{comment} \bnl
-    &= \bb{\x[k]} + M(\x[k], \bb{\x[k]}, f, h) h
+    &= \bb{\x[k]} + M(\x[k], \bb{\x[k]}, f, h) \cdot h
   \end{align}
 
   Therefore we can think about $\bb{\x}$ as the results of the one-step method $M(x,y,f,h)=f(x,y)+\bb{\x} \cdot \bigabs{A h}$ whereby we take $\bnp$ for $\xnp$ as the initial value. This one-step method corresponds to the ODE with initial condition
@@ -231,17 +231,21 @@ This proof bases on the theory of one-step methods for approximating ordinary di
   \end{align}
   and therefore
   \begin{align}
-    & \abs{M(x,y_1,h,f)-M(x,y_2,h,f)} \nl
-    \in\ &  \abs{f(x,y_1)+y_1 \cdot \bigabs{Ah} - f(x,y_2)-y_2 \cdot \bigabs{A h}} \nl
-    \le\ & \abs{f(x,y_1)-f(x,y_2)} + \abs{y_1 \cdot \bigabs{Ah}-y_2 \cdot \bigabs{Ah}} \nl
-    \le\ & \Lt \abs{y_1-y_2} + \bigabs{Ah} \abs{y_1-y_2} \nl
-    \le\ & (L+Ah)\cdot \abs{y_1-y_2}
+    & M(x,y_1,h,f)-M(x,y_2,h,f) \nl
+    \in\ &  f(x,y_1)+y_1 \cdot \bigabs{Ah} - f(x,y_2)-y_2 \cdot \bigabs{A h} \nl
+    =\ & f(x,y_1)-f(x,y_2) + y_1 \cdot \bigabs{Ah}-y_2 \cdot \bigabs{Ah} \nl
+    \subseteq\ & \br{y_1-y_2} \cdot \bigabs{\Lt} + \br{y_1-y_2} \cdot \bigabs{Ah}  \nl
+    \subseteq\ & \br{y_1-y_2} \cdot \bigabs{\Lt+Ah}
+  \end{align}
+  So we can conclude
+  \begin{align}
+    \abs{M(x,y_1,h,f)-M(x,y_2,h,f)} \le (\Lt + Ah) \cdot \abs{y_1-y_2}
   \end{align}
 
   \noindent From the theorem \ref{thm:ode_global_error} about the global error of one-step methods we can conclude for $L=\Lt+Ah$
   \begin{align}
     & \abs{\bb{\x}-\phin{\x}} \le \frac{\fe{L\abs{\x-\xnp}}-1}L \cdot \bnp \cdot Ch \bnl
-    \implies & \bb{\x} = \phin{\x} + \bigabs{\bnp \cdot \frac{\fe{L\abs{\x-\xnp}}-1}L Ch}
+    \implies & \bb{\x} \in \phin{\x} + \bigabs{\bnp \cdot \frac{\fe{L\abs{\x-\xnp}}-1}L Ch}
   \end{align}
 \end{proof}
 
@@ -404,10 +408,10 @@ for any $a,b,z\in\R$. Thereby, we will split the proof in several steps. We star
 \begin{proof}
   For any $c \le z$ we have the estimation
 
-  \begin{align*}
+  \begin{align}
     \abs{\sum_{\x \le z} \bb{\x} - \int_{-\infty}^z \fphi{t}\d{t} } \le
     \underbrace{\abs{\sum_{\x \le c} \bb{\x} - \int_{-\infty}^c \fphi{t}\d{t} }}_\text{term I} + \underbrace{\abs{\sum_{c\le \x \le z} \bb{\x} - \int_c^z \fphi{t}\d{t} }}_\text{term II}
-  \end{align*}
+  \end{align}
 
   First we take $c$ small enough such that term I is smaller than $\frac \epsilon 2$. Due to the Chebyshev's inequality \cite{wiki:chebyshev} we know that such a $c$ must exist. From the first global version of de Moivre-Laplace we know that there is a $N \in\N$ such that the term II is smaller then $\frac \epsilon 2$ for all $n\ge N$. Thus we can make the above sum of the two terms arbitrary small for large enough $n\in\N$ which proves the convergence.
 \end{proof}
