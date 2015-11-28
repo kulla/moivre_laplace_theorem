@@ -1,18 +1,18 @@
 \chapter{The de Moivre-Laplace theorem}
 
-\section{Formulation of de Moivre-Laplace theorem}
+\section{Formulation of the de Moivre-Laplace theorem}
 
 \includewrapfig[0.25\textwidth]{moivre}{Abraham de Moivre}{File \href{https://commons.wikimedia.org/wiki/File:Abraham_de_moivre.jpg}{``Abraham de moivre.jpg''} from Wikimedia Commons. Uploaded by user \href{https://commons.wikimedia.org/wiki/User:\%E7\%AB\%B9\%E9\%BA\%A6\%E9\%AD\%9A(Searobin)} Searobin and licensed under Public Domain. Original source: \url{https://www.york.ac.uk/depts/maths/histstat/people/} .}
 
-The application of the binomial distribution in the investigation of the sex ratio in the last chapter showed that calculations with the binomial distribution are arduous. In order to compute $\binom nk p^kq^{n-k}$ there are $n+2\min\{k,n-k\}-1$ operations necessary.
+The application of the binomial distribution in the investigation of the sex ratio in the last chapter showed that calculations with the binomial distribution are arduous. In order to compute $\binom nk p^kq^{n-k}$ one needs $n+2\min\{k,n-k\}-1$ operations.
 
-This motivates approximations of the binomial distribution to minimize the computational effort. With those approximations also equations like $\P{\Bs \le z}=\alpha$ are easier to solve in $z$ or $n$. Explicit solutions for those equations are hard to calculate~\cite[p. 469]{hald1}.
+This motivates approximations of the binomial distribution to minimize the computational effort. With these approximations even equations like $\P{\Bs \le z}=\alpha$ are easier to solve in $z$ or $n$, whereas explicit solutions are hard to calculate~\cite[p. 469]{hald1}.
 
 The first simple approximation to the binomial distribution was found by Abraham de Moivre with the help of James Stirling~\cite[p. 469]{hald1}. His proof was later extended by Pierre Simon Laplace~\cite[pp. 495 ff.]{hald1}. Today this approximation is known as the ``De Moivre-Laplace theorem''~\cite[pp. 64-67]{irle}.
 
 I want to split this theorem in two parts. With the first part one gets an approximation for the probability mass function of a binomial distribution:
 
-\begin{theorem}[Local version of de Moivre-Laplace theorem]
+\begin{theorem}[Local version of the de Moivre-Laplace theorem]
   Let $\fphi{x}=\frac{1}{\sqrt{2\pi}}\fexp{-\frac{x^2}2}$ be the density function of the standardized normal distribution~\cite[p. 48]{georgii} and $p\in(0,1)$. For $n$ large enough we have~\cite[p. 65]{irle}
   \begin{align}
     \binom nk p^k q^{n-k} \approx \frac 1{\sqrt{2\pi npq}} \fexp{-\frac{(k-np)^2}{2npq}}
@@ -23,11 +23,9 @@ I want to split this theorem in two parts. With the first part one gets an appro
   \end{align}
 \end{theorem}
 
-\includeplot{ml_pmf}{The probability mass function of $\BBs$ for $n=20$ and $p=\frac 14$ and the density function of the standardized normal distribution.}
-
 \noindent With the second version one gets an approximation to the cumulative distribution function:
 
-\begin{theorem}[Global version of de Moivre-Laplace theorem]
+\begin{theorem}[Global version of the de Moivre-Laplace theorem]
   For any $b,a \in \R$ we find for $n$ being large enough~\cite[p. 136]{georgii}\cite[p. 67]{irle}
   \begin{align}
     \sum_{a \le \x\le b} \bb{\x} \approx \int_a^b \fphi{t} \d{t}
@@ -39,11 +37,13 @@ I want to split this theorem in two parts. With the first part one gets an appro
   with $\fPhi{a} = \int_{-\infty}^a \fphi{t} \d{t}$ being the cumulative distribution function of the standardized normal distribution~\cite[p. 134]{georgii}.
 \end{theorem}
 
-Thus the main statement of the de Moivre-Laplace theorem is that the standardized binomial distribution can be approximated with the standardized normal distribution (for large $n$).
+Thus the main statement of the de Moivre-Laplace theorem is that the standardized binomial distribution can be approximated by the standardized normal distribution (for large $n$).
+
+\includeplot{ml_pmf}{The probability mass function of $\BBs$ for $n=20$ and $p=\frac 14$ and the density function of the standardized normal distribution.}
 
 \includeplot{ml_cdf}{The cumulative distribution function of $\BBs$ for $n=20$ and $p=\frac 14$ and the cumulative distribution function of the standardized normal distribution.}
 
-\section{The journey to de Moivre-Laplace theorem}
+\section{Journey to the de Moivre-Laplace theorem}
 
 In \emph{A history of probability and statistics and their applications before 1750} Anders Hald gave a good summary of how de Moivre and Laplace found their theorem. In \cite[pp. 469-470]{hald1} he wrote:
 
@@ -61,7 +61,7 @@ In \emph{A history of probability and statistics and their applications before 1
 
 \includewrapfig[0.25\textwidth]{laplace}{Pierre Simon Laplace}{File \href{http://flickr.com/photos/37667416@N04/4840056407}{``Laplace''} from Flickr. Uploaded by \href{http://www.flickr.com/people/37667416@N04}{Biblioteca de la Facultad de Derecho y Ciencias del Trabajo Universidad de Sevilla} and licensed under \href{https://creativecommons.org/licenses/by/2.0/deed.en}{CC-BY 2.0}.}
 
-In his book \emph{A History of Mathematical Statistics From 1750 to 1930} Hald wrote about the proof by Laplace~\cite[p. 24]{hald2}:
+In his book \emph{A History of Mathematical Statistics From 1750 to 1930} Hald wrote about the Laplace's proof~\cite[p. 24]{hald2}:
 
 \begin{quote}
   ``De Moivre's theorem is mentioned only occasionally in the probabilistic literature between 1740 and 1812, when Laplace [...] filled the gaps in the proof. Laplace assumes that p is a real number in the unit interval \todo{footnote} and shows that the mode of the binomial distribution equals $m=[(n+1)p]=np+z$, say, $-q < z \le p$. By means of Stirling's formula he obtains an expansion of $\ln(m+d)$ in powers of $d$ including terms of order $n^{-1/2}$, so that he gets a correction to the main term depending on $(q-p)d/npq$, a correction of skewness as it is called today. He notes, that the approximation may be improved by taking more terms of the expansion into account.''
@@ -69,39 +69,39 @@ In his book \emph{A History of Mathematical Statistics From 1750 to 1930} Hald w
 
 \section{The error in the theorem}
 
-In the above section we have gotten to know the theorem by de Moivre-Laplace in a qualitative version without an estimate of the approximation error. The global version of de Moivre-Laplace with an error estimation provides the Berry-Esseen theorem. It states~\cite[70-71]{nourdin}\cite{wiki:berry}:
+In the above section we studied the de Moivre-Laplace theorem in a qualitative version without estimating the approximation's error. The global version of the de Moivre-Laplace theorem with an error estimation provides the Berry-Esseen theorem. It states~\cite[70-71]{nourdin}\cite{wiki:berry}:
 
 \begin{theorem}[The Berry-Esseen theorem]
-  Let $\seq{X_n}$ be i.i.d. random variables with $\E{X_k}=\mu$ and $\E{(X_k-\mu)^2}=\sigma^2$. Let $Y_n = \frac 1{\sqrt{n}\sigma} \sum_{k=0}^n \br{X_k-\mu}$ be the standardized sum of the first $n$ random variables $X_k$. Let $\rho = \E{\abs{X_k-\mu}^3} < \infty$. Then there is a $C>0$ independent of $n$ and $x$ such that
+  Let $\seq{X_n}$ be i.i.d. random variables with $\E{X_n}=\mu$ and $\E{(X_n-\mu)^2}=\sigma^2$. Let $Y_n = \frac 1{\sqrt{n}\sigma} \sum_{k=0}^n \br{X_k-\mu}$ be the standardized sum of the first $n$ random variables $X_k$. Let $\rho = \E{\abs{X_n-\mu}^3} < \infty$. Then there is a $C>0$ independent of $n$ and $x$ such that
 
   \begin{align}
     \abs{\P{Y_n \le x} - \fPhi{x}} \le \frac{C \rho}{\sqrt n \sigma^3}
   \end{align}
 \end{theorem}
 
-As we have already seen in the above section, $\BBs$ is the standardized sum of $n$ i.i.d. Bernoulli trials $\seq{X_n}$. $X_n$ has the two possible outcomes $1$ and $0$ whereby $1$ has the possibility $p$ and $0$ has the possibility $q=1-p$ \cite[p. 32]{georgii}\cite{wiki:bernoulli_distribution}. We have $\E{X_k} = \mu = p$ and $\E{(X_k-p)^2}=\sigma^2=pq$~\cite{wiki:bernoulli_distribution}\cite[p. 112]{georgii}. For $\rho$ we get
+As we have already seen in the above section, $\BBs$ is the standardized sum of $n$ i.i.d. Bernoulli trials of $\seq{X_n}$. $X_n$ has the two possible outcomes $1$ and $0$ whereby $1$ has the possibility $p$ and $0$ has the possibility $q=1-p$ \cite[p. 32]{georgii}\cite{wiki:bernoulli_distribution}. We have $\E{X_n} = \mu = p$ and $\E{(X_n-p)^2}=\sigma^2=pq$~\cite{wiki:bernoulli_distribution}\cite[p. 112]{georgii}. For $\rho$ we get
 \begin{align}
-  \E{\abs{X_k-p}^3} &= p q^3 + q p^3 = pq (p^2+q^2)
+  \E{\abs{X_n-p}^3} &= p q^3 + q p^3 = pq (p^2+q^2)
 \end{align}
-Thus we can follow from the Berry-Esseen theorem, that there is a $C>0$ with
+Thus, we can follow from the Berry-Esseen theorem, that there is a $C>0$ with
 \begin{align}
   \sup_{x\in\R} \abs{\P{\BBs \le x}-\fPhi{x}} \le \frac{C(p^2+q^2)}{\sqrt{npq}}
 \end{align}
 
-We see that $\P{\BBs \le x}$ converges uniformly in $x$ to $\fPhi{x}$ with an error of at least the order $\bigo{\frac 1{\sqrt{n}}}=\bigo{h}$. Because $\P{a\le \BBs \le b} = \P{\BBs \le b} - \P{\BBs < a}$ we can easily show, that also $\P{a \le \BBs \le b}$ converges uniformly in $x$ to $\fPhi{a}-\fPhi{b}$ with an error of at least the same convergence speed $\bigo{\frac 1{\sqrt{n}}}=\bigo{h}$.
+We see that $\P{\BBs \le x}$ converges uniformly in $x$ to $\fPhi{x}$ with an error's order of at least $\bigo{\frac 1{\sqrt{n}}}=\bigo{h}$. As $\P{a\le \BBs \le b} = \P{\BBs \le b} - \P{\BBs < a}$, we can easily show, that also $\P{a \le \BBs \le b}$ converges uniformly in $x$ to $\fPhi{a}-\fPhi{b}$ with the same error's order of at least $\bigo{\frac 1{\sqrt{n}}}=\bigo{h}$.
 
 \newcommand*{\Cmaxbin}{0.4215}
 Currently the estimate $\Cmin \le C \le \Cmax$ is proven (see \cite{shevtsova2011} and \cite{esseen1956}). For the special case of the binomial distribution we can make the estimate $C \le \Cmaxbin$~\cite{nagaev}\cite{muaddib}.
 
 \begin{remark}
-  The estimate of the error's convergence speed provided by the Berry-Esseen theorem cannot be improved \cite{tampis:speed}. As we will see, we find $\bb{\xdown{c}}\sim h$ for each $c\in\R$\footnote{See the later proved local version of de Moivre-Laplace.}. Thus $\P{\BBs \le z}$ has steps with heights of order $h$ \cite{tampis:speed}. Because $\fPhi{z}$ is continuous, also $\abs{\P{\BBs \le z} - \fPhi{z}}$ has steps of order $h$ which shows that the best convergence speed is $\bigo{h}$ \cite{tampis:speed}.
+  The estimate of the error's convergence speed provided by the Berry-Esseen theorem cannot be improved \cite{tampis:speed}. As we will see, we find $\bb{\xdown{c}}\sim h$ for each $c\in\R$\footnote{See the later proved local version of the de Moivre-Laplace theorem.}. Thus $\P{\BBs \le z}$ has steps with heights of order $h$ \cite{tampis:speed}. Because $\fPhi{z}$ is continuous, also $\abs{\P{\BBs \le z} - \fPhi{z}}$ has steps of order $h$ which shows that the best convergence speed is $\bigo{h}$ \cite{tampis:speed}.
 \end{remark}
 
 \includeplot{berry_diff}{The function $f(x) = \P{\BBs \le x} - \fPhi{x}$ for $n=50$ and $p=\frac 14$. The oscillations are caused by the fact that $\P{\BBs \le x}$ is a step function with step size $h$ and $\fPhi{x}$ is continuous. $g(\x)$ shows the same function with the restriction that it is only evaluated at the points $\x[k]$.}
 
-\includeplot{berry_line}{For $p=\frac 14$ the logarithm of $n$ is plotted against the logarithm of $f(n) = \sup_{x\in\R} \abs{\P{\BBs \le x}-\fPhi{x}}$. The fact that this curve has an asymptote, shows that $f(n)$ can be approximated by $cn^\alpha$ with $\alpha$ being the slope of the asymptote.}
+\includeplot{berry_line}{For $p=\frac 14$ the logarithm of $n$ is plotted against the logarithm of $f(n) = \sup_{x\in\R} \abs{\P{\BBs \le x}-\fPhi{x}}$. The fact, that this curve has an asymptote, shows that $f(n)$ can be approximated by $cn^\alpha$ with $\alpha$ being the slope of the asymptote.}
 
-\includeplot{berry_slope}{$f(n) = \sup_{x\in\R} \abs{\P{\BBs \le x}-\fPhi{x}}$ can be approximated by $cn^\alpha$ for large $n$. $\alpha$ can be approximated by applying a linear fit to plot of $\ln(n)$ against $\ln(f(n))$. This plot shows the graph of $p$ plotted against the approximation of $\alpha$ and demonstrates that $f(n) \sim n^{-\frac 12}$ is a plausible statement.}
+\includeplot{berry_slope}{$f(n) = \sup_{x\in\R} \abs{\P{\BBs \le x}-\fPhi{x}}$ can be approximated by $cn^\alpha$ for large $n$. $\alpha$ can be approximated by applying a linear fit to the plot of $\ln(n)$ against $\ln(f(n))$. This plot shows the graph of $p$ plotted against the approximation of $\alpha$ and demonstrates that $f(n) \sim n^{-\frac 12}$ is a plausible statement.}
 
 \includeplot{max_error}{The function $f(p) = \sup_{1 \le n \le 1000} \sqrt{n} \cdot \br{\sup_{x\in\R} \abs{\P{\BBs \le x} - \fPhi{x}}}$ and its upper bound $g(p) = C \frac{p^2+q^2}{\sqrt{pq}}$ provided by the Berry-Esseen theorem with $C=\Cmaxbin$.}
 
@@ -113,6 +113,6 @@ The huge advantage of the theorem by de Moivre and Laplace is that the binomial 
   ``De Moivre did not consider the normal distribution as a distribution in its own right (the error distribution) but only as a convenient means for approximating the binomial. [...] For de Moivre's purpose it was inessential what form the limiting distribution had if only its sum could be evaluated.''
 \end{quote}
 
-Laplace gave in his treatise only one application of his theorem: He demonstrated that the probability $\P{7037 \le \Bs \le 7363}$ for $n=14000$ and $p=\frac{18}{35}$ can be approximated with $0.994303$ (the correct value is $0.994306$) \cite[.497]{hald1}\cite[p. 25]{hald2}. This is precisely the same computation Nicolas Bernoulli did in his investigations of the sex ratio\footnote{However Laplace did not mention Nicolas Bernoulli in his work \cite[p. 25]{hald2}} \cite[p. 25]{hald2}. This shows one of the first usage of de Moivre's and Laplace's theorem in statistics.
+In his treatise Laplace gave only one application of his theorem: He demonstrated that the probability $\P{7037 \le \Bs \le 7363}$ for $n=14000$ and $p=\frac{18}{35}$ can be approximated with $0.994303$ (the correct value is $0.994306$) \cite[.497]{hald1}\cite[p. 25]{hald2}. This is precisely the same computation Nicolas Bernoulli did in his investigations of the sex ratio\footnote{However Laplace did not mention Nicolas Bernoulli in his work \cite[p. 25]{hald2}} \cite[p. 25]{hald2}. This shows one of the first application of de Moivre's and Laplace's theorem in statistics.
 
-Today The theorem of de Moivre and Laplace is taught in many courses and occurs in many textbooks (such as \cite[pp. 64-67]{irle} and \cite[pp. 131-134]{georgii}). It serves as an example for the central limit theorem and is used in many exercises\footnote{See for example the questions tagged with ``central-limit-theorem'' or ``binomial-distribution'' on \url{http://math.stackexchange.com/}}. However many numerical analysis libraries such as Mathematica, SciPy or R use other methods than the normal approximation to calculate probabilities for the binomial distribution (for example via reduction to the beta distribution) \cite{mathematica}\cite{scipy}\cite{r}.
+Today the theorem of de Moivre and Laplace is taught in many courses and occurs in many textbooks (such as \cite[pp. 64-67]{irle} and \cite[pp. 131-134]{georgii}). It serves as an example for the central limit theorem and is used in many exercises\footnote{See for example the questions tagged with ``central-limit-theorem'' or ``binomial-distribution'' on \url{http://math.stackexchange.com/}}. However, many numerical analysis libraries such as Mathematica, SciPy or R use other methods than the normal approximation to calculate probabilities for the binomial distribution (for example via reduction to the beta distribution) \cite{mathematica}\cite{scipy}\cite{r}.
