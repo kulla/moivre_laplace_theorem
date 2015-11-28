@@ -16,7 +16,7 @@ In this section I want to present the idea of the proof of Karolina Fels \cite[p
   &= -\x[k] \bb{\x[k]} \frac{np}{k+1} + \bb{\x[k]} q h \frac{np}{k+1}
 \end{align}
 
-Let us assume that the cumulative distribution of $\BBs$ can be approximated by a distribution with density function $\phi(x)$ for $n\to\infty$. Under the limit $n\to\infty$ we have $h\to 0$. For a fixed $x\in\R$ we also set $\x = \xrnd{x} = \frac{\rnd{np+ x \sqrt{npq}}-np}{\sqrt{npq}}$ which is the closest $\x$ to $x$. We get
+Let us assume that the cumulative distribution of $\BBs$ can be approximated by a distribution with density function $\phi(x)$ for $n\to\infty$. Under the limit $n\to\infty$ we have $h\to 0$. For a fixed $x\in\R$ we also set $\x = \xrnd{x} = \frac{\rnd{np+ x \sqrt{npq}}-np}{\sqrt{npq}}$, which is the closest $\x$ to $x$. We get
 \begin{align}
   \frac{\bb{\x[k+1]}-\bb{\x[k]}}h & \to \phi'(x) \nl
   \bb{\x[k]} &\to \fphi{x} \nl
@@ -29,7 +29,7 @@ Therefore $\fphi{x}$ is described by the ODE
 
 This ODE is solved by $\phi_c(x) = c \fexp{-\frac{x^2}2}$. Because $\int_\R \fphi{1} \d{t} = 1$ and $\int_\R \fexp{-\frac{t^2}2} d{t} = \sqrt{2\pi}$~\cite[p. 47]{georgii} we get finally $\fphi{x} = \frac{1}{\sqrt{2\pi}} \fexp{-\frac{x^2}2}$.
 
-\section{Necessary prior knowledge from ODE}
+\section{Necessary prior knowledge from ODE theory}
 
 In order to formalize the above proof sketch into a valid proof we will need some concepts and theorems from the theory of ordinary differential equations. An equation of the form
 
@@ -37,7 +37,7 @@ In order to formalize the above proof sketch into a valid proof we will need som
   y'(x) = f(x,y(x))
 \end{align}
 
-with $f:I \times \R \to \R$ and $I$ being a connected subset of $\R$ will be called an \emph{ordinary differential equation} (of first order)~\cite[p. 465]{stoer}\cite{wiki:ode}. Any function $y:\R\to\R$ fulfilling the ODE \eqref{ode:def} is called a \emph{solution of the ordinary differential equation}~\cite[p. 8]{ricardo}\cite{wiki:ode}. For example the density function $\fphi{x} = \frac{1}{\sqrt{2\pi}} \fexp{-\frac{x^2}2}$ of the normal distribution is the solution of the ODE
+with $f:I \times \R \to \R$ and $I$ being a connected subset of $\R$ will be called an \emph{ordinary differential equation} (of first order)~\cite[p. 465]{stoer}\cite{wiki:ode}. Any function $y:\R\to\R$ fulfilling the ODE \eqref{ode:def} is called a \emph{solution of the ordinary differential equation}~\cite[p. 8]{ricardo}\cite{wiki:ode}. For example, the density function $\fphi{x} = \frac{1}{\sqrt{2\pi}} \fexp{-\frac{x^2}2}$ of the normal distribution is the solution of the ODE
 \begin{align}
   y'(x) = -xy(x)
 \end{align}
@@ -55,10 +55,10 @@ with the initial value $y(0) = \frac{1}{\sqrt{2\pi}}$. This follows from the the
 
   \begin{align}
       && y'(x)& =-xy(x) \bnl
-      &\implies & \int_{y(a)}^{y(x)} \frac 1y \d{y} & = \int_a^x -t \d{t} \bnl
-      &\implies & \left[\ln{y}\right]^{y(x)}_{y(a)=b} & = \left[-\frac{t^2}2\right]_a^x \bnl
-      &\implies & \ln(y(x))-\ln(b) &= -\frac{x^2}2 + \frac{a^2}2 \bnl
-      &\implies & y(x) &= b \fexp{-\frac{x^2}2 + \frac{a^2}2} = \frac b{\fphi{a}}\fphi{x}
+      &\iff & \int_{y(a)}^{y(x)} \frac 1y \d{y} & = \int_a^x -t \d{t} \bnl
+      &\iff & \left[\ln{y}\right]^{y(x)}_{y(a)=b} & = \left[-\frac{t^2}2\right]_a^x \bnl
+      &\iff & \ln(y(x))-\ln(b) &= -\frac{x^2}2 + \frac{a^2}2 \bnl
+      &\iff & y(x) &= b \fexp{-\frac{x^2}2 + \frac{a^2}2} = \frac b{\fphi{a}}\fphi{x}
   \end{align}
 \end{proof}
 
@@ -71,29 +71,29 @@ ODEs can be approximated numerically with \emph{one-step methods}~\cite[pp.~471~
 One of the most famous one-step methods is the \emph{Euler method} with $M(x,y,h,f) = f(x,y)$~\cite[p. 473]{stoer}. We will use the concept of one-step methods to connect the density function of the normal distribution with the probability mass function of the binomial distribution. To state the theorem of the global error of one-step methods we will need the following definition of the local discretization error (see \cite[pp. 473-474]{stoer}):
 
 \begin{definition}[Local discretization error]
-  The \emph{local discretization error} is the error of the one-step method which is produced during a step of approximation. Given a one-step method $M(x,y,h,f)$ its local discretization error at the point $x_k$ is the value
+  The \emph{local discretization error} is the error of the one-step method which is produced during a step of approximation. Given a one-step method $M(x,y,h,f)$, its local discretization error at the point $x_k$ is the value
 
   \begin{align}
     \tau(x_k) = \frac{y(x_{k+1})-y(x_k)}h - M(x_k,y(x_k),h,f)
   \end{align}
 \end{definition}
 
-\noindent Therefore $\tau$ fulfills:
+\noindent Therefore, $\tau$ fulfills:
 
 \begin{align}
   \underbrace{y(x_{k+1})}_{\text{exact solution}} = \underbrace{y(x_k) + M(x_k,y(x_k),h,f)h}_{\text{approximation of one-step method}} + \underbrace{\tau(x_k)h}_{\text{error}}
 \end{align}
 
-\noindent The error of an one-step method can be estimated as~\cite[pp. 478-479]{stoer}:
+\noindent The error of an one-step method can be estimated as in~\cite[pp. 478-479]{stoer}
 
-\begin{theorem}[Global error of one-step method] \label{thm:ode_global_error}
-  Let $f:I\times \R\to\R$ and let $y(x)$ be the solution to the following ODE with initial value
+\begin{theorem}[Global error of one-step methods] \label{thm:ode_global_error}
+  Let $f:I\times \R\to\R$ and let $y(x)$ be the solution to the initial value problem
 
   \begin{align}
     y'(x)=f(x,y(x)),\ y'(x_0)=y_0,\ x_0 \in I
   \end{align}
 
-  Let $M(x,y,h,f)$ be a continuous one-step method for this ODE with step size $h > 0$. Let $M(x,y,h,f)$ fulfill the Lipschitz condition\footnote{See \cite[p. 467]{stoer} and \cite{wiki:lipschitz} for more details about Lipschitz continuity.} regarding the variable $y$ with the Lipschitz constant $L > 0$, i.e. for all $x\in I$ and $y_1,y_2\in\R$ we find
+  Let $M(x,y,h,f)$ be a continuous one-step method for this ODE with step size $h > 0$. Let $M(x,y,h,f)$ be Lipschitz continuous\footnote{See \cite[p. 467]{stoer} and \cite{wiki:lipschitz} for more details about Lipschitz continuity.} regarding the variable $y$ with the Lipschitz constant $L > 0$, i.e. for all $x\in I$ and $y_1,y_2\in\R$ we find
   \begin{align}
     \abs{M(x,y_1,h,f)-M(x,y_2,h,f)} \le L \abs{y_1-y_2}
   \end{align}
@@ -111,7 +111,7 @@ We may also have a one-step backwards method by setting $h < 0$. The above defin
 
 \section{Local version of the de Moivre-Laplace theorem}
 
-We will prove the local version of the de Moivre-Laplace theorem in the following form
+We will prove the local version of the de Moivre-Laplace theorem in the following form:
 
 \newcommand*{\bnp}{\bb{\xnp}}
 \newcommand*{\knp}{m}
@@ -120,7 +120,7 @@ We will prove the local version of the de Moivre-Laplace theorem in the followin
 \newcommand*{\dphin}[2][n]{y_{#1}'\left({#2}\right)}
 
 \begin{theorem}[Local version of the de Moivre Laplace theorem]
-  Let $I$ be a bounded interval and let $\xnp$ be the mode of $\bbs$ (i.e. the $\x$ where $\bb{\x}$ attains its maximum).  Then there are $C > 0$ and $L > 0$ independent of $\x$ and $n$ such that
+  Let $I$ be a bounded interval and let $\xnp$ be the mode of $\bbs$ (i.e. the $\x$ where $\bbs$ attains its maximum).  Then there are $C > 0$ and $L > 0$ independent of $\x$ and $n$ such that
 
   \begin{align}
     \bb{\x} = \frac{\bnp}{\fphi{\xnp}}\fphi{\x} + \bigabs{{\bnp}\cdot \frac{\fe{L\abs{\x-\xnp}}-1}L Ch}
@@ -128,7 +128,7 @@ We will prove the local version of the de Moivre-Laplace theorem in the followin
 \end{theorem}
 
 \begin{remark} \label{remark:alt_local}
-  The mode of $\xnp$ is the $\x[k]$ with $k = \lfloor (n+1)p \rfloor$ \cite{nicolas}\cite{wiki:binomial_distribution}. Thus we have
+  The mode of $\xnp$ is the $\x[k]$ with $k = \lfloor (n+1)p \rfloor$ (cf. \cite{wiki:binomial_distribution}\cite{nicolas}). Thus we have
   \begin{align}
     np+p-1 \le \knp \le np+p \implies \abs{\knp-np} \le 1 \implies \abs{\xnp} \le h \implies \lim_{n\to\infty} \xnp = 0
   \end{align}
@@ -140,15 +140,16 @@ We will prove the local version of the de Moivre-Laplace theorem in the followin
   \begin{align}
     \bb{\x} \in \frac{\bnp}{\fphi{\xnp}}\fphi{\x} + \bigabs{{\bnp}\cdot \tilde Ch}
   \end{align}
-  Please note that we get the right convergence order $\bigo{h^2}$ of the remaining error because $\bnp \in \bigo{h}$ as we will prove later. However, the error estimation of this theorem is less strong than that of the standard proof with Stirling's formula.
+
+  Note that we get the right convergence order $\bigo{h^2}$ of the remaining error because $\bnp \in \bigo{h}$ as we will prove later. However, the error estimation of this theorem is less strong than that of the standard proof with Stirling's formula.
 \end{remark}
 
-This proof bases on the theory of one-step methods for approximating ordinary differential equations. Thereby we will revert the perspective: Whereas in the theory of ODEs one-step methods are approximations of unknown solutions of ODEs, here we will consider the probability mass function of the binomial distribution as the result of an one-step method. This one-step method corresponds to an ODE and the solution of this ODE will be an approximation to the probability mass function. Thus we flip the role of the exact solution and the approximation. This makes this proof particularly interesting and may be a method applicable in other proofs too.
+This proof bases on the theory of one-step methods for approximating ordinary differential equations. Thereby, we will revert the perspective: Whereas in the theory of ODEs one-step methods are approximations of unknown solutions of ODEs, here we will consider the probability mass function of the binomial distribution as the result of an one-step method. This one-step method corresponds to an ODE and the solution of this ODE will be an approximation to the probability mass function. Thus we flip the role of the exact solution and the approximation.
 
 \begin{proof}
   \newcommand*{\Lt}{\tilde L}
 
-  Let $\Lt$ be the maximum of $h$ and $\sup\{\abs{x}: x \in I\}$. We extend $I$ to $\interval{-\Lt}{\Lt}$ so that $\xnp \in I$ because $\Lt \ge h$. We start with investigating $\bb{\x[k+1]}-\bb{\x[k]}$ (let $\pol{\x}$ be the set of all polynomials in $\x$):
+  Let $\Lt$ be the maximum of $h$ and $\sup\{\abs{x}: x \in I\}$ and let $\pol{\x}$ be the set of all polynomials in $\x$. We extend $I$ to $\interval{-\Lt}{\Lt}$ so that $\xnp \in I$ because $\Lt \ge h$. We start with investigating $\bb{\x[k+1]}-\bb{\x[k]}$
 
   \begin{align}
     \bb{\x[k+1]} - \bb{\x[k]} &= \binom n{k+1} p^{k+1}q^{n-k-1} - \binom nk p^k q^k \nl
@@ -169,11 +170,11 @@ This proof bases on the theory of one-step methods for approximating ordinary di
     &\subseteq \bb{\x[k]} \br{-\x[k]h + \bigo{\pol{\x}h^2}} \nl
     &\subseteq -\x[k]\bb{\x}h +  \bb{\x[k]} \cdot \bigo{\pol{\x}h^2}
   \end{align}
-  For any $\seq{\epsilon_n} \in \bigo{\pol{\x[k]}h^2}$ there is a polynomial $p(\x[k])$ and a $A_1 > 0$ with
+  For any $\seq{\epsilon_n} \in \bigo{\pol{\x[k]}h^2}$ there is a polynomial $p$ and a $A_1 > 0$ with
   \begin{align}
     \abs{\epsilon_n} \le \abs{p(\x[k])} \cdot A_1 h^2
   \end{align}
-  The polynomial $p(\x)$ is bounded on $I$ so that there is a $A_2>0$ independent of $\x$ with $\abs{p(x)} \le A_2$ for all $x\in I$. We set $A=A_1\cdot A_2$ and get $\abs{\epsilon_n} \le A h^2$ or $\seq{\epsilon_n}\in \bigabs{A h^2}$. So we can conclude
+  The polynomial $p$ is bounded on $I$ so that there is a $A_2>0$ with $\abs{p(x)} \le A_2$ for all $x\in I$. We set $A=A_1\cdot A_2$ and get $\abs{\epsilon_n} \le A h^2$ or $\seq{\epsilon_n}\in \bigabs{A h^2}$. So we can conclude
 
   \begin{align}
     \bb{\x[k+1]} &\in \bb{\x[k]} -\x[k]\bb{\x[k]} h + \bb{\x} \cdot \bigabs{A h^2}\bnl
@@ -181,7 +182,7 @@ This proof bases on the theory of one-step methods for approximating ordinary di
     \begin{comment}
       \text{Set } f(x,y) = -xy
     \end{comment} \bnl
-    &= \bb{\x[k]} - \br{\f{\x[k], \bb{\x[k]}} + \bb{\x} \cdot \bigabs{A h}}h \bnl
+    &= \bb{\x[k]} + \br{\f{\x[k], \bb{\x[k]}} + \bb{\x} \cdot \bigabs{A h}}h \bnl
     &
     \begin{comment}
       \text{Set } M(x,y,h,f) = f(x,y) + y \cdot \bigabs{A h}
@@ -202,7 +203,7 @@ This proof bases on the theory of one-step methods for approximating ordinary di
   \begin{align}
     & \phin{x+h} = \phin{x} -x\phin{x}h+\br{\tilde x^2-1}\phin{\tilde x} h^2
   \end{align}
-  whereas $\tilde x$ is a number in the interval bounded by $x$ and $x+h$. Because $\phin{\tilde x} = \frac{\bnp}{\fphi{\xnp}} \fphi{\tilde x}$ and $\frac{1}{\fphi{\xnp}} \br{\tilde x^2-1} \fphi{\tilde x}$ is bounded on $I$ there is a $B > 0$ with $\abs{\tilde x^2-1} \phin{\tilde x} h^2 \le \bnp \cdot B h^2$ independent of $\x[k]$. Thus
+  whereas $\tilde x$ is a number bounded by $x$ and $x+h$. Because $\phin{\tilde x} = \frac{\bnp}{\fphi{\xnp}} \fphi{\tilde x}$ and $\frac{1}{\fphi{\xnp}} \br{\tilde x^2-1} \fphi{\tilde x}$ is bounded on $I$ there is a $B > 0$ with $\abs{\tilde x^2-1} \phin{\tilde x} h^2 \le \bnp \cdot B h^2$ independent of $\x[k]$. Thus
 
   \begin{align}
     \frac{\phin{x+h}-\phin{x}}h &= -x\phin{x}+\br{\tilde x^2-1}\phin{x} h \in -x\phin{x} + \bigabs{\bnp \cdot Bh}
@@ -254,7 +255,7 @@ and
 \begin{align}
   \lim_{n\to\infty} \abs{\sum_{\x \le z} \bb{\x[k]} - \int_{-\infty}^z \fphi{t} \d{t}} = 0
 \end{align}
-for any $a,b,z\in\R$. Thereby we will split the proof in several steps. We start with the following lemma:
+for any $a,b,z\in\R$. Thereby, we will split the proof in several steps. We start with the following lemma:
 
 \begin{lemma} \label{alt:lemma1}
   For any $a,b \in \R$ with $a \le b$ we have
@@ -288,7 +289,7 @@ for any $a,b,z\in\R$. Thereby we will split the proof in several steps. We start
   \end{align}
 \end{proof}
 
-\begin{lemma}
+\begin{lemma} \label{lemma_ineq}
   All $x\in\R$ with $0 < x \le \frac 12$ fulfill the inequality $\frac{1+x}{1-x} \le 1+4x$.
 \end{lemma}
 
@@ -309,7 +310,7 @@ for any $a,b,z\in\R$. Thereby we will split the proof in several steps. We start
 \end{proof}
 
 \begin{lemma}
-  We find $\lim_{n\to\infty} \frac{\fphi{\xnp}h}{\bnp} = 1$.
+  We have $\lim_{n\to\infty} \frac{\fphi{\xnp}h}{\bnp} = 1$.
 \end{lemma}
 
 \begin{remark}
@@ -335,7 +336,7 @@ for any $a,b,z\in\R$. Thereby we will split the proof in several steps. We start
     1-\frac{\epsilon}2 \le c_n \sum_{-R \le \x \le R} \bb{\x} \le 1+\frac{\epsilon}4
   \end{align}
   Together with the first inequality \eqref{eq1} we can conclude
-  \begin{align}
+  \begin{align} \label{shown1}
     1-\frac \epsilon2 \le c_n \sum_{-R \le \x \le R} \bb{\x} \le c_n
   \end{align}
   and
@@ -344,11 +345,11 @@ for any $a,b,z\in\R$. Thereby we will split the proof in several steps. We start
     \implies & c_n \le \frac{1+\frac \epsilon4}{1-\frac\epsilon4} \bnl
     &
     \begin{comment}
-      0 < \frac \epsilon 4 \le \frac 12
+      \text{Lemma \ref{lemma_ineq}}
     \end{comment} \bnl
-    \implies & c_n \le 1+4\cdot \frac \epsilon 4 = 1+\epsilon
+    \implies & c_n \le 1+4\cdot \frac \epsilon 4 = 1+\epsilon \label{shown2}
   \end{align}
-  So we get
+  So we get from \eqref{shown1} and \eqref{shown2}
   \begin{align}
     1-\frac \epsilon 2 \le c_n \le 1+\epsilon
   \end{align}
@@ -364,7 +365,7 @@ for any $a,b,z\in\R$. Thereby we will split the proof in several steps. We start
 \end{theorem}
 
 \begin{proof}
-  For $a > b$ the theorem can be directly proven, because then
+  For $a > b$ the theorem is trivial as
   \begin{align}
     \sum_{a \le \x \le b} \bb{\x} = \int_{a \le t \le b} \fphi{t} \d{t} = 0
   \end{align}
@@ -403,10 +404,10 @@ for any $a,b,z\in\R$. Thereby we will split the proof in several steps. We start
 \begin{proof}
   For any $c \le z$ we have the estimation
 
-  \begin{multline}
+  \begin{align*}
     \abs{\sum_{\x \le z} \bb{\x} - \int_{-\infty}^z \fphi{t}\d{t} } \le
-    \underbrace{\abs{\sum_{\x \le c} \bb{\x} - \int_{-\infty}^c \fphi{t}\d{t} }}_\text{term I} + \nl \underbrace{\abs{\sum_{c\le \x \le z} \bb{\x} - \int_c^z \fphi{t}\d{t} }}_\text{term II}
-  \end{multline}
+    \underbrace{\abs{\sum_{\x \le c} \bb{\x} - \int_{-\infty}^c \fphi{t}\d{t} }}_\text{term I} + \underbrace{\abs{\sum_{c\le \x \le z} \bb{\x} - \int_c^z \fphi{t}\d{t} }}_\text{term II}
+  \end{align*}
 
   First we take $c$ small enough such that term I is smaller than $\frac \epsilon 2$. Due to the Chebyshev's inequality \cite{wiki:chebyshev} we know that such a $c$ must exist. From the first global version of de Moivre-Laplace we know that there is a $N \in\N$ such that the term II is smaller then $\frac \epsilon 2$ for all $n\ge N$. Thus we can make the above sum of the two terms arbitrary small for large enough $n\in\N$ which proves the convergence.
 \end{proof}
