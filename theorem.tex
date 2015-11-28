@@ -72,7 +72,7 @@ In his book \emph{A History of Mathematical Statistics From 1750 to 1930} Hald w
 In the above section we studied the de Moivre-Laplace theorem in a qualitative version without estimating the approximation's error. The global version of the de Moivre-Laplace theorem with an error estimation provides the Berry-Esseen theorem. It states~\cite[70-71]{nourdin}\cite{wiki:berry}:
 
 \begin{theorem}[The Berry-Esseen theorem]
-  Let $\seq{X_n}$ be i.i.d. random variables with $\E{X_n}=\mu$ and $\E{(X_n-\mu)^2}=\sigma^2$. Let $Y_n = \frac 1{\sqrt{n}\sigma} \sum_{k=0}^n \br{X_k-\mu}$ be the standardized sum of the first $n$ random variables $X_k$. Let $\rho = \E{\abs{X_n-\mu}^3} < \infty$. Then there is a $C>0$ independent of $n$ and $x$ such that
+  Let $\seq{X_n}$ be i.i.d. random variables with the mean $\E{X_n}=\mu$ and the variance $\E{(X_n-\mu)^2}=\sigma^2$. Let $Y_n = \frac 1{\sqrt{n}\sigma} \sum_{k=0}^n \br{X_k-\mu}$ be the standardized sum of the first $n$ random variables $X_k$. Let $\rho = \E{\abs{X_n-\mu}^3} < \infty$. Then there is a $C>0$ independent of $n$ and $x$ such that
 
   \begin{align}
     \abs{\P{Y_n \le x} - \fPhi{x}} \le \frac{C \rho}{\sqrt n \sigma^3}
