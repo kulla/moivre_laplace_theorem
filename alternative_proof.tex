@@ -1,10 +1,10 @@
 \chapter{Alternative proof via slope approximation}
 
-In this chapter I present an alternative proof of the de Moivre-Laplace theorem which approximates the slope of the probability mass function by an ordinary differential equation\footnote{Instead of the term ``ordinary differential equation'' also its acronym ``ODE'' is used~\cite[p. 2]{ricardo}\cite{wiki:ode}.}. The idea of this proof comes from Prof. Peter Pickl and was first described in the thesis ``Der Zentrale Grenzwertsatz'' by Karolina Fels~\cite{fels}. However the idea to derive an ODE in order to find an approximation for the binomial distribution occurs already in two papers by Daniel Bernoulli in 1770 and 1771~\cite{hald1}.
+In this chapter, I present an alternative proof of the de Moivre-Laplace theorem which approximates the slope of the probability mass function by an ordinary differential equation\footnote{Instead of the term ``ordinary differential equation'' also its acronym ``ODE'' is used~\cite[p. 2]{ricardo}\cite{wiki:ode}.}. The idea of this proof comes from Prof. Peter Pickl and was first described in the thesis ``Der Zentrale Grenzwertsatz'' by Karolina Fels~\cite{fels}. However, the idea to derive an ODE in order to find an approximation for the binomial distribution occurred already in two papers by Daniel Bernoulli in 1770 and 1771~\cite{hald1}.
 
 \section{Intuition behind the proof}
 
-In this section I want to present the proof idea of Karolina Fels \cite[pp. 16-19]{fels}. Thereby I will slightly change her proof sketch. She started with the function $f(x) = \binom nk p^kq^{n-k}$ whereby $k=np+x$ and approximated $f'(x)$ by calculating $f(x)-f(x-1)$~\cite[p. 16]{fels}. We will approximate the slope of $\bbs$ between $\bb{\x[k+1]}$ and $\bb{\x[k]}$:
+In this section I want to present the idea of the proof of Karolina Fels \cite[pp. 16-19]{fels}. Thereby, I will slightly change her proof sketch. She started with the function $f(x) = \binom nk p^kq^{n-k}$, whereby $k=np+x$, and approximated $f'(x)$ by calculating $f(x)-f(x-1)$~\cite[p. 16]{fels}. We will approximate the slope of $\bbs$ between $\bb{\x[k+1]}$ and $\bb{\x[k]}$:
 
 \begin{align}
   \frac{\bb{\x[k+1]}-\bb{\x[k]}}h &= \frac 1h \br{\binom n{k+1}p^{k+1}q^{n-k-1} - \binom nk p^k q^{n-k}} \nl
