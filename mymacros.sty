@@ -26,7 +26,7 @@
 
 \newcommand*{\includefig}[4][0.5\textwidth]{\begin{figure} \centering \includegraphics[width={#1}]{figures/{#2}} \caption[#4]{#3} \end{figure}}
 
-\newcommand*{\includeplot}[3][0.5\textwidth]{\begin{figure} \centering \includegraphics[width={#1}]{plots/{#2}} \caption{#3} \label{fig:#2} \end{figure}}
+\newcommand*{\includeplot}[3][0.5\textwidth]{\begin{figure} \centering \includegraphics[width={#1}]{plots/{#2}} \caption[]{#3} \label{fig:#2} \end{figure}}
 
 \newcommand*{\includewrapfig}[4][0.33\textwidth]{\begin{wrapfigure}{R}{#1} \centering \vspace{-10pt} \includegraphics[width=#1 - 0.02\textwidth]{figures/{#2}} \caption[#4]{#3} \vspace{-15pt} \end{wrapfigure}}
 
