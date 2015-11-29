@@ -29,7 +29,7 @@ So it does not make any difference whether $n$ dices are thrown at once or wheth
 After noting that it does not matter how the dices are thrown, Huygens showed how to calculate the expected winning recursively. Let $a$ be the stake one wins for throwing at least two sixes in a certain number of throws. Huygens wrote~\cite[p. 163]{bernoulli}:
 
 \begin{quote}
-  ``If someone undertook to do this in two throws, there would fall to him $a/36$, by what was shown before. If he is given three throws, then, if his first throw is a six, he will still have two throws, both of which must be sixes, and we said this is worth the same as $a/36$. But if his first throw is not a six, then he needs only to get one six on the remaining two throws. By proposition X this is worth of having $11a/36$. But there is certainly one case in which he throws a six the first time and five cases in which something else happens. So in the beginning there is one case for $11a/36$ and five cases for $a/36$. By proposition III, this is worth as much as $16a/127$ or $2a/27$. In repeatedly considering one more throw, we find that there is an advantage in undertaking to throw two sixes in ten throws with one die or in one throw with ten dice.''
+  ``If someone undertook to do this in two throws, there would fall to him $a/36$, by what was shown before. [...] If he is given three throws, then, if his first throw is not a six, he will still have two throws, both of which must be sixes, and we said this is worth the same as $a/36$. But if his first throw is a six, then he needs only to get one six on the remaining two throws. By proposition X this is worth as much as having $11a/36$. But there is certainly just one case in which he throws a six the first time and five cases in which something else happens. So in the beginning there is one case for $11a/36$ and five cases for $a/36$. By proposition II, this is worth as much as $16a/127$ or $2a/27$. In this way, by repeatedly considering one more throw, we find that there is an advantage in undertaking to throw two sixes in ten throws with one die or in one throw with ten dice.''
 \end{quote}
 
 The argumentation of Huygens is the following: First, he looked at the case when two dices are thrown. In proposition XI he already had calculated the expected value for this case to be $\tfrac 1{36}a$. Then he investigated the case of three throws. There are five cases in which the first throw is not a six and the remaining expected value is $\tfrac 1{36}a$ because the two remaining throws must be a six. In one case the first throw is a six. In proposition X, Huygens had already shown that the expected value of throwing at least one six in two throws is $\tfrac{11}{36}a$. So in total there are five cases with a remaining expected value of $\tfrac 1{36}a$ and one case with a remaining expected value of $\tfrac{11}{36} a$. Thus the total expected value for three throws is
@@ -37,12 +37,6 @@ The argumentation of Huygens is the following: First, he looked at the case when
 \begin{align}
   \frac{1}{5+1} \left(5 \cdot \frac 1{36} a + 1 \cdot \frac{11}{36} a \right) = \frac{1}{6} \cdot \frac{5+11}{36} a = \frac{16}{216} a = \frac{2}{27} a
 \end{align}
-
-\noindent Thereby, Huygens used his proposition III which states~\cite[p. 135]{bernoulli}:
-
-\begin{quote}
-  ``If the number of cases in which $a$ falls to me is $p$ and the number of cases in which $b$ falls to me is $q$, and if all the cases can happen equally easily, then my expectation will be worth $(pa+qb)/(p+q)$.\footnote{The final formula can be rewritten as $\tfrac{p}{p+q} a+\tfrac q{p+q} b$ which is the definition of the expected value for the Bernoulli trial, a distribution with two possible outcomes \cite{wiki:bernoulli_distribution}.}''
-\end{quote}
 
 Without writing it explicitly down, Huygens now calculated recursively the odds of having two sixes in $n$ throws. His calculation might have looked like the following: Let $O_n$ be the expected winning in having at least one six in $n$ throws. Huygens had already demonstrated by looking at several examples in proposition X that $O_n = \tfrac 1{1+5} \left( 1 \cdot a + 5 \cdot O_{n-1} \right)=\tfrac 16 \left( a + 5 \cdot O_{n-1} \right)$. If the first throw is a six, then the player gets the whole stack $a$. In the remaining five cases the player still has the opportunity to throw a six in the remaining $n-1$ throws and thus has an expected winning of $O_{n-1}$. The calculated values by Huygens are:
 
@@ -77,40 +71,36 @@ Starting with $10$ dices, the odds for the player to win is higher than $\tfrac 
 
 \section{Bernoulli's derivation of the binomial distribution}
 
-\includewrapfig{Jakob_Bernoulli}{Jacob Bernoulli}{File \href{https://commons.wikimedia.org/wiki/File:Jakob_Bernoulli.jpg}{``Jakob Bernoulli.jpg''} from Wikimedia Commons uploaded by user \href{https://commons.wikimedia.org/wiki/User:Materialscientist}{Materialscientist} and licensed under Public Domain}
-
 As we have seen in the previous section, Christiaan Huygens found a solution for his proposed problem. From this solution, an algorithm can be extracted with which similar problems can be solved as well. But he only investigated a special case, although a more general formulation of his method is possible. For example, one may be interested in a game with dices having more or less than six faces. Also the number of favorable faces or the number of necessary favorable throws may differ. Jacob Bernoulli wrote~\cite[p. 157]{bernoulli}:
 
 \begin{quote}
   ``If the Author [Christiaan Huygens] had substituted letters for numbers, he could have expressed this and the preceding proposition as one problem and investigated its general solution with equal ease [...]''
 \end{quote}
 
-\includewrapfig{Ars_Conjectandi}{Cover of \emph{Ars Conjectandi}}{Cover of \emph{Ars Conjectandi} by Jacob Bernoulli 1713. File \href{https://commons.wikimedia.org/wiki/File:Arsconj.gif}{``Arsconj.gif''} from Wikimedia Commons uploaded by user \href{https://commons.wikimedia.org/wiki/User:Nousernamesleft}{Nousernamesleft} and licensed under Public Domain.}
+\includewrapfig{Jakob_Bernoulli}{Jacob Bernoulli}{File \href{https://commons.wikimedia.org/wiki/File:Jakob_Bernoulli.jpg}{``Jakob Bernoulli.jpg''} from Wikimedia Commons uploaded by user \href{https://commons.wikimedia.org/wiki/User:Materialscientist}{Materialscientist} and licensed under Public Domain}
 
 We also have seen that Huygens' recursive method needs a lot of computational effort to find the final solution. Hence the following question arises: Is there a more direct and general solution for Huygens' problem?
+
+\includewrapfig{Ars_Conjectandi}{Cover of \emph{Ars Conjectandi}}{Cover of \emph{Ars Conjectandi} by Jacob Bernoulli 1713. File \href{https://commons.wikimedia.org/wiki/File:Arsconj.gif}{``Arsconj.gif''} from Wikimedia Commons uploaded by user \href{https://commons.wikimedia.org/wiki/User:Nousernamesleft}{Nousernamesleft} and licensed under Public Domain.}
 
 Jacob Bernoulli addressed this question with the binomial distribution in his book \emph{Ars Conjectandi} (The Art of Conjecturing) from 1713~\cite[pp. 220-256]{hald1}\footnote{The book was published eight years after Jacob Bernoulli's death by his nephew Nicholas Bernoulli~\cite[pp. 223-224]{hald1}}. In the first part of this book Bernoulli\footnote{The family of Bernoullis is huge and had a lot of influential mathematicians. In the following I always refer to Jacob Bernoulli when I only mention ``Bernoulli''. A good overview of Bernoulli's family tree gives~\cite[pp. 1-4]{bernoulli}.} reprinted Huygens' \emph{De Ratiociniis in Ludo Aleae} with additional notes and alternative solutions~\cite[p. 63]{bernoulli}.
 
 In his comments on the above problem outlined, Bernoulli first derived the binomial distribution by incomplete induction with an argumentation similar to Huygens' solution. Afterwards he derived the binomial distribution with a combinatorial argumentation~\cite[pp. 165-167]{bernoulli}:
 
-\begin{quotation}
-  ``[Consider] $n$ dice A, B, C, D, etc., each constructed with $a$ faces, $b$ of which match the purpose of the player, and the other $c$ of which do not. And ask in how many cases it may happen that what was undertaken is accomplished on none of the dice, on just one of the dice, or on only 2, 3, or 4 of them, and so on; finally, in how many cases the person undertaking the game fails in his purpose and his opponent wins. But it was shown in the Note to the preceding Proposition that there are $c^n$ cases in which what was undertaken is accomplished on none of the dice. And it may be concluded in a similar way that there are $b$ cases, or $bb$, or $b^3$, etc., in which one of the dice, for instance A, or two, A and B, or three, A, B, and C, and so on, meet the purpose of the person undertaking the game. Similarly, there are $c^{n-1}$ cases, or $c^{n-2}$ cases, and so on, in which $n-1$ dice, or $n-2$ dice, or $n-3$ dice, and so on, fail to fulfill his hopes. Therefore, since each of these cases can be joined with any of the preceding, multiplication of the latter by the former produces $bc^{n-1}$ cases, or $bbc^{n-2}$ cases, or $b^3c^{n-3}$ cases, and so on. And since the die or dice that favor the person undertaking the game might be either A or B or C, and so on, if there is one, or, if there are two, either A and B, or A and C, or B and C, and so on, or, if there are three, either A, B, and C, or A, B and D, and so on, these number of cases must again be multiplied by the number of units, pairs, triples, and so on that can be drawn from all $n$ dice. But by the theory of combinations developed in Part II, this number is $n$, or $n(n-1)/(1\cdot 2)$, or $n(n-1)(n-2)/(1\cdot 2\cdot 3)$, etc. So from this multiplication we obtain $nbc^{n-1}$, or
-
+\begin{quote}
+  ``[Consider] $n$ dice A, B, C, D, etc., each constructed with $a$ faces, $b$ of which match the purpose of the player, and the other $c$ of which do not. And ask in how many cases it may happen that what was undertaken is accomplished on none of the dice, on just one of the dice, or on only 2, 3, or 4 of them, and so on; finally, in how many cases is what was undertaken accomplished on just $m-1$ dice. For all of these cases the person undertaking the game fails in his purpose and his opponent wins. But it was shown [...] that there are $c^n$ cases in which what was undertaken is accomplished on none of the dice. And it may be concluded in a similar way that there are $b$ cases, or $bb$, or $b^3$, etc., in which one of the dice, for instance A, or two, A and B, or three, A, B, and C, and so on, meet the purpose of the person undertaking the game. Similarly, there are $c^{n-1}$ cases, or $c^{n-2}$ cases, and so on, in which $n-1$ dice, or $n-2$ dice, or $n-3$ dice, and so on, fail to fulfill his hopes. Therefore, since each of these cases can be joined with any of the preceding, multiplication of the latter by the former produces $bc^{n-1}$ cases, or $bbc^{n-2}$ cases, or $b^3c^{n-3}$ cases, and so on. And since the die or dice that favor the person undertaking the game might be either A or B or C, and so on, if there is one, or, if there are two, either A and B, or A and C, or B and C, and so on, or, if there are three, either A, B, and C, or A, B, and D, and so on, these numbers of cases must again be multiplied by the number of units, pairs, triples, and so on that can be drawn from all $n$ dice. But by the theory of combinations [...] this number is $n$, or $n(n-1)/(1\cdot 2)$, or $n(n-1)(n-2)/(1\cdot 2\cdot 3)$, etc. So from this multiplication we obtain $nbc^{n-1}$, or
   \begin{align*}
       & \frac{n(n-1)}{1\cdot 2}bbc^{n-2}, \nl
       & \text{or } \frac{n(n-1)(n-2)}{1\cdot 2\cdot 3}b^3c^{n-3} \text{ etc., on up to} \nl
       & \frac{n(n-1)(n-2)\ldots(n-m+2)}{1\cdot 2\cdot 3\cdot 4\ldots(m-1)} b^{m-1} c^{n-m+1}
   \end{align*}
-
-  for the numbers of cases in which what was undertaken is accomplished with exactly one die, or two dice, or three dice and so on up to $m-1$ dice. Since, as we mentioned, the opponent wins in all these cases and since there are altogether $a^n$ cases with $n$ dice, his lot is, \textbf{[42]} by Corollary 1 of Proposition III,
-
+  for the numbers of cases in which what was undertaken is accomplished with exactly one die, or two dice, or three dice and so on up to $m-1$ dice. Since, as we mentioned, the opponent wins in all these cases and since there are altogether $a^n$ cases with $n$ dice, his lot is [...]
   \begin{multline*}
   c^n+nbc^{n-1}+\frac{n(n-1)}{1\cdot 2}bbc^{n-2} + \frac{n(n-1)(n-2)}{1\cdot 2\cdot 3}b^3c^{n-3} \ldots \nl
   +\frac{n(n-1)(n-2)\ldots(n-m+2)}{1\cdot 2\cdot 3\cdot 4\ldots(m-1)} b^{m-1}c^{n-m+1} : a^n,
   \end{multline*}
-
   as above.''\footnote{The notation $x_1+x_2+\ldots+x_n:y$ means $\tfrac 1y (x_1+x_2+\ldots+x_n)$ \cite[p. 125]{bernoulli}.}
-\end{quotation}
+\end{quote}
 
 Bernoulli considered a die with $a$ faces which has $b$ faces being favorable for the player and $c=a-b$ faces being unfavorable. In order to win, the player has to throw at least $m$ times one of the $b$ favorable faces in a total of $n$ throws. What is the probability of winning or loosing respectively?
 
@@ -127,12 +117,12 @@ Because the total number of outcomes is $a^n$ and because all outcomes are equal
 This is the same formula Bernoulli derived in the end of the section quoted above. He ended his discussion of Huygens' problem with two corollaries which he named ``Rule for knowing the lot of a player to whom several throws of a die have given and who is held to achieving something precisely on some certain throws and not on others''~\cite[p. 170]{bernoulli}
 
 \begin{quotation}
-  \emph{Corollary 1.} If there are the same numbers of cases in all games [...] the expectation found to be [...] $b^mc^{n-m}/a^n$, taking $n$ for the number of all the throws, and $m$ for the number in which what is to be achieved ought to be achieved.
+  ``\emph{Corollary 1.} If there are the same numbers of cases in all games [...] the expectation found to be [...] $b^mc^{n-m}/a^n$, taking $n$ for the number of all the throws, and $m$ for the number in which what is to be achieved ought to be achieved.
 
-  \emph{Corollary 2.} If the same numbers of cases rule in all games and if, in addition, the number of games or throws is determined within which something is to be achieved, but such that the desired result can occur on any throws and not on certain determined ones [...] then it is clear that the quantity of the expectation found in the previous corollary should be multiplied by as many times as [...] $m$ things may be chosen from $n$ diverse things. This, however, may occur, by the Theory of Combinatorics to be treated in Part II, in $n(n-1)(n-2)(n-3)\ldots(n-m+1)/(1\cdot 2\cdot 3\cdot 4\ldots m)$ ways [...]. Thus the expectation of the player will be worth
+  \emph{Corollary 2.} If the same numbers of cases rule in all games and if, in addition, the number of games or throws is determined within which something is to be achieved, but such that the desired result can occur on any throws and not on certain determined ones [...] then it is clear that the quantity of the expectation found in the previous corollary should be multiplied by as many times as [...] $m$ things may be chosen from $n$ diverse things. This, however, may occur, by the Theory of Combinatorics [...] in $n(n-1)(n-2)(n-3)\ldots(n-m+1)/(1\cdot 2\cdot 3\cdot 4\ldots m)$ ways [...]. Thus the expectation of the player will be worth
 
   \begin{align*}
-    \frac{n(n-1)(n-2)(n-3)\ldots(n-m+1)}{(1\cdot 2\cdot 3\cdot 4\ldots m)}\cdot \frac{b^mc^{n-m}}{a^n}
+    \frac{n(n-1)(n-2)(n-3)\ldots(n-m+1)}{(1\cdot 2\cdot 3\cdot 4\ldots m)}\cdot \frac{b^mc^{n-m}}{a^n} \quad \text{''}
   \end{align*}
 \end{quotation}
 
